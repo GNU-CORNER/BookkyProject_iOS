@@ -3,8 +3,6 @@
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,114 +17,66 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="c1k-me-ii5"/>
-                        <segue destination="bWv-Nj-MgW" kind="relationship" relationship="viewControllers" id="dIE-tW-9NQ"/>
-                        <segue destination="LHw-JO-u3i" kind="relationship" relationship="viewControllers" id="PeM-z7-PTa"/>
-                        <segue destination="cTS-Kg-epS" kind="relationship" relationship="viewControllers" id="J4L-3t-q0r"/>
-                        <segue destination="WAB-J2-yYO" kind="relationship" relationship="viewControllers" id="Jds-je-KHQ"/>
+                        <segue destination="iaB-HF-s5W" kind="relationship" relationship="viewControllers" id="t9l-Cz-iF6"/>
+                        <segue destination="3s5-Qo-x87" kind="relationship" relationship="viewControllers" id="5Ue-9P-Jiy"/>
+                        <segue destination="ZY7-fn-TLR" kind="relationship" relationship="viewControllers" id="XQe-WV-iAW"/>
+                        <segue destination="BlM-iw-JJT" kind="relationship" relationship="viewControllers" id="lGU-Xl-hk1"/>
+                        <segue destination="E2N-Ga-WrV" kind="relationship" relationship="viewControllers" id="JcA-jS-XFu"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8KC-zZ-eL6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1874" y="2065"/>
+            <point key="canvasLocation" x="-2190" y="746"/>
         </scene>
-        <!--홈-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Home-->
+        <scene sceneID="XJc-WN-4IC">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="홈" image="star.fill" catalog="system" id="BOh-qs-I9N"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Home" referencedIdentifier="Home" id="iaB-HF-s5W" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="Xz1-fy-VWR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mlx-7Q-Jdl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="-481"/>
+            <point key="canvasLocation" x="-1014" y="400"/>
         </scene>
-        <!--커뮤니티-->
-        <scene sceneID="DRq-re-bh2">
+        <!--Community-->
+        <scene sceneID="zbf-dg-NKA">
             <objects>
-                <viewController id="bWv-Nj-MgW" customClass="CommunityViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Xaz-jq-la7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="4GE-eY-zVw"/>
-                        <color key="backgroundColor" systemColor="systemRedColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="커뮤니티" image="star.fill" catalog="system" id="eSF-8y-G46"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8L7-7H-Q3f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Community" referencedIdentifier="Community" id="3s5-Qo-x87" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="dbk-El-OQV"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sUa-Yq-mgh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="286"/>
+            <point key="canvasLocation" x="-1005" y="558"/>
         </scene>
-        <!--추천받개-->
-        <scene sceneID="keD-4r-0sY">
+        <!--Recommend-->
+        <scene sceneID="UcW-g6-d2w">
             <objects>
-                <viewController id="LHw-JO-u3i" customClass="CommunityViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Mux-3d-gy0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="PQr-aF-lqH"/>
-                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="추천받개" image="star.fill" catalog="system" id="F5P-LX-0oW"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CkI-j9-JHk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Recommend" referencedIdentifier="Recommend" id="ZY7-fn-TLR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="qeQ-Jz-aww"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7lm-gP-VZO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="1044"/>
+            <point key="canvasLocation" x="-1014" y="720"/>
         </scene>
-        <!--검색-->
-        <scene sceneID="rGT-qG-cMz">
+        <!--Search-->
+        <scene sceneID="cNO-GT-aEJ">
             <objects>
-                <viewController id="cTS-Kg-epS" customClass="SearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="2qQ-jd-3tb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="8fN-FH-LTh"/>
-                        <color key="backgroundColor" systemColor="systemTealColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="검색" image="star.fill" catalog="system" id="5OY-C9-a5x"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z60-lX-4gc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Search" referencedIdentifier="Search" id="BlM-iw-JJT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="ulE-Hx-d9r"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hoz-dI-4OW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="1810"/>
+            <point key="canvasLocation" x="-1006" y="872"/>
         </scene>
-        <!--내정보-->
-        <scene sceneID="ynF-qC-q47">
+        <!--MyProfile-->
+        <scene sceneID="cqw-0E-LJj">
             <objects>
-                <viewController id="WAB-J2-yYO" customClass="MyProfileViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ACq-Lc-1lN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="F1d-ic-1dY"/>
-                        <color key="backgroundColor" systemColor="systemYellowColor"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="내정보" image="star.fill" catalog="system" id="z7I-bN-2X2"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lKV-tX-qjs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="MyProfile" referencedIdentifier="MyProfile" id="E2N-Ga-WrV" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="wyn-jX-Unp"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zU9-sE-I9r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1078" y="2578"/>
+            <point key="canvasLocation" x="-1014" y="1037"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemTealColor">
-            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>
