@@ -1,6 +1,6 @@
 ---
-name: UI issue template
-about: Implement, modify, bug fix or something about UI
+name: feature issue template
+about: new feature
 title: ''
 labels: ''
 assignees: ''
