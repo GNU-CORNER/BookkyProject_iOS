@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		683A4E5627E31DE700223B3F /* FavoriteTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683A4E5427E31DE700223B3F /* FavoriteTagTableViewCell.swift */; };
+		683A4E5727E31DE700223B3F /* FavoriteTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683A4E5527E31DE700223B3F /* FavoriteTagTableViewCell.xib */; };
+		683A4E5A27E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683A4E5827E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift */; };
+		683A4E5B27E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683A4E5927E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib */; };
 		68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */; };
 		68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */; };
 		68683D4127DDF5EE008EF3CF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D4027DDF5EE008EF3CF /* HomeViewController.swift */; };
@@ -20,6 +24,7 @@
 		68683D7227DE40DB008EF3CF /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D7127DE40DB008EF3CF /* RecommendViewController.swift */; };
 		68683D7427DE40E8008EF3CF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D7327DE40E8008EF3CF /* SearchViewController.swift */; };
 		68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D7527DE40F4008EF3CF /* MyProfileViewController.swift */; };
+		68C7032527E0AFA500627C6D /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C7032427E0AFA500627C6D /* ProfileTableViewCell.swift */; };
 		68C8629427DF61D3004B4F73 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629327DF61D3004B4F73 /* Home.storyboard */; };
 		68C8629627DF6481004B4F73 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629527DF6481004B4F73 /* Community.storyboard */; };
 		68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629727DF650E004B4F73 /* Recommend.storyboard */; };
@@ -45,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		683A4E5427E31DE700223B3F /* FavoriteTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTagTableViewCell.swift; sourceTree = "<group>"; };
+		683A4E5527E31DE700223B3F /* FavoriteTagTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTagTableViewCell.xib; sourceTree = "<group>"; };
+		683A4E5827E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTagsCollectionViewCell.swift; sourceTree = "<group>"; };
+		683A4E5927E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTagsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68683D3927DDF5EE008EF3CF /* BookkyProject-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BookkyProject-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +71,7 @@
 		68683D7127DE40DB008EF3CF /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		68683D7327DE40E8008EF3CF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		68683D7527DE40F4008EF3CF /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		68C7032427E0AFA500627C6D /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		68C8629327DF61D3004B4F73 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		68C8629527DF6481004B4F73 /* Community.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		68C8629727DF650E004B4F73 /* Recommend.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recommend.storyboard; sourceTree = "<group>"; };
@@ -214,6 +224,11 @@
 			isa = PBXGroup;
 			children = (
 				68683D7527DE40F4008EF3CF /* MyProfileViewController.swift */,
+				68C7032427E0AFA500627C6D /* ProfileTableViewCell.swift */,
+				683A4E5427E31DE700223B3F /* FavoriteTagTableViewCell.swift */,
+				683A4E5527E31DE700223B3F /* FavoriteTagTableViewCell.xib */,
+				683A4E5827E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift */,
+				683A4E5927E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
@@ -323,7 +338,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				68683D4927DDF5EF008EF3CF /* LaunchScreen.storyboard in Resources */,
+				683A4E5B27E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib in Resources */,
 				68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */,
+				683A4E5727E31DE700223B3F /* FavoriteTagTableViewCell.xib in Resources */,
 				68C8629C27DF6605004B4F73 /* MyProfile.storyboard in Resources */,
 				68683D4627DDF5EF008EF3CF /* Assets.xcassets in Resources */,
 				68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */,
@@ -355,8 +372,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				68683D7427DE40E8008EF3CF /* SearchViewController.swift in Sources */,
+				68C7032527E0AFA500627C6D /* ProfileTableViewCell.swift in Sources */,
 				68683D7027DE408C008EF3CF /* CommunityViewController.swift in Sources */,
 				68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */,
+				683A4E5627E31DE700223B3F /* FavoriteTagTableViewCell.swift in Sources */,
+				683A4E5A27E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift in Sources */,
 				68683D4127DDF5EE008EF3CF /* HomeViewController.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
 				68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */,
