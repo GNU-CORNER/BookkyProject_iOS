@@ -9,31 +9,22 @@ import UIKit
 
 class MyProfileViewController: UIViewController {
 
-    @IBOutlet weak var myProfileHeaderView: UIView!
     @IBOutlet weak var myProfileTableView: UITableView!
-    @IBOutlet weak var myProfileHeaderLabel: UILabel!
-    @IBOutlet weak var myProfileSettingButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setMyProfileHeaderView()
+
         tableViewDelegate()
         tableViewDataSource()
-        
+
         let cellNib = UINib(nibName: "FavoriteTagTableViewCell", bundle: nil)
         self.myProfileTableView.register(cellNib, forCellReuseIdentifier: "FavoriteTagsCellid")
-    }
-    
-    func setMyProfileHeaderView() {
-        myProfileHeaderLabel.text = "내 정보"
-        myProfileSettingButton.setTitle(nil, for: .normal)
-        myProfileSettingButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
     }
     
 }
 
 extension MyProfileViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             return 1
@@ -44,7 +35,7 @@ extension MyProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let userName = "황랑귀"
         if indexPath.section == 0 {
@@ -55,23 +46,23 @@ extension MyProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             let cell: FavoriteTagTableViewCell = self.myProfileTableView.dequeueReusableCell(withIdentifier: "FavoriteTagsCellid", for: indexPath) as! FavoriteTagTableViewCell
-            cell.collectionHeaderLabel.text = "\(userName)님의 관심도서에요."
+            cell.collectionHeaderLabel?.text = "\(userName)님의 관심도서에요."
             return cell
         } else {
             return UITableViewCell()
         }
     }
-    
 
-    
+
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 5
     }
-    
+
     func tableViewDelegate() {
         myProfileTableView.delegate = self
     }
-    
+
     func tableViewDataSource() {
         myProfileTableView.dataSource = self
     }
