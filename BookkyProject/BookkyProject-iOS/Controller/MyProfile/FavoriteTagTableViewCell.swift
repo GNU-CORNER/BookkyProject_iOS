@@ -20,7 +20,7 @@ class FavoriteTagTableViewCell: UITableViewCell {
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: /*favoriteTagsCollectionView.frame.size.width*/ 100, height: 24)
+        flowLayout.itemSize = CGSize(width: 100, height: 24)
         flowLayout.minimumLineSpacing = 2.0
         flowLayout.minimumInteritemSpacing = 5.0
         self.favoriteTagsCollectionView?.collectionViewLayout = flowLayout

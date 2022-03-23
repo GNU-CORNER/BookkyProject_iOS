@@ -19,7 +19,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TagLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Xx-bH-F6d">
                         <rect key="frame" x="0.0" y="2" width="69" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -30,7 +30,7 @@
             <connections>
                 <outlet property="tagLabel" destination="2Xx-bH-F6d" id="iiL-tT-Kv6"/>
             </connections>
-            <point key="canvasLocation" x="165.21739130434784" y="103.125"/>
+            <point key="canvasLocation" x="162" y="90"/>
         </collectionViewCell>
     </objects>
 </document>
