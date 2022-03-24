@@ -23,11 +23,11 @@
                             <constraint firstAttribute="height" constant="105" id="Y3c-WR-ikv"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TN0-Eu-zXg">
-                        <rect key="frame" x="11" y="104" width="74" height="26"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TN0-Eu-zXg">
+                        <rect key="frame" x="5" y="104" width="90" height="26"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="26" id="6IK-mD-1k1"/>
-                            <constraint firstAttribute="width" constant="74" id="rCd-xJ-0mh"/>
+                            <constraint firstAttribute="width" constant="90" id="rCd-xJ-0mh"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <nil key="textColor"/>
@@ -41,9 +41,9 @@
                 <constraint firstAttribute="bottom" secondItem="yJl-HL-7Or" secondAttribute="bottom" constant="25" id="LVI-df-vka"/>
                 <constraint firstAttribute="trailing" secondItem="yJl-HL-7Or" secondAttribute="trailing" id="NZ1-xS-KXw"/>
                 <constraint firstAttribute="bottom" secondItem="TN0-Eu-zXg" secondAttribute="bottom" id="S8b-Oy-srO"/>
-                <constraint firstItem="TN0-Eu-zXg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="11" id="Vdk-8Z-ldj"/>
+                <constraint firstItem="TN0-Eu-zXg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Vdk-8Z-ldj"/>
                 <constraint firstItem="yJl-HL-7Or" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="j5W-Kk-kfZ"/>
-                <constraint firstAttribute="trailing" secondItem="TN0-Eu-zXg" secondAttribute="trailing" constant="10" id="kWd-yH-gaz"/>
+                <constraint firstAttribute="trailing" secondItem="TN0-Eu-zXg" secondAttribute="trailing" id="kWd-yH-gaz"/>
                 <constraint firstItem="yJl-HL-7Or" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="rJr-IF-CfJ"/>
             </constraints>
             <connections>

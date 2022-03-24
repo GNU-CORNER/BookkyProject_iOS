@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		683A4E5627E31DE700223B3F /* FavoriteTagTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683A4E5427E31DE700223B3F /* FavoriteTagTableViewCell.swift */; };
-		683A4E5727E31DE700223B3F /* FavoriteTagTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683A4E5527E31DE700223B3F /* FavoriteTagTableViewCell.xib */; };
-		683A4E5A27E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683A4E5827E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift */; };
-		683A4E5B27E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683A4E5927E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib */; };
+		684A685A27EC14BC00E96249 /* MyTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684A685927EC14BC00E96249 /* MyTagCollectionViewCell.swift */; };
 		6854E36F27E9D559001D79D1 /* MyPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6854E36D27E9D559001D79D1 /* MyPostTableViewCell.swift */; };
 		6854E37227E9EA77001D79D1 /* MyPostListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6854E37127E9EA77001D79D1 /* MyPostListTableViewCell.swift */; };
 		6854E37427E9FD58001D79D1 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6854E37327E9FD58001D79D1 /* PostModel.swift */; };
@@ -60,10 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		683A4E5427E31DE700223B3F /* FavoriteTagTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTagTableViewCell.swift; sourceTree = "<group>"; };
-		683A4E5527E31DE700223B3F /* FavoriteTagTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTagTableViewCell.xib; sourceTree = "<group>"; };
-		683A4E5827E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTagsCollectionViewCell.swift; sourceTree = "<group>"; };
-		683A4E5927E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteTagsCollectionViewCell.xib; sourceTree = "<group>"; };
+		684A685927EC14BC00E96249 /* MyTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		6854E36D27E9D559001D79D1 /* MyPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostTableViewCell.swift; sourceTree = "<group>"; };
 		6854E37127E9EA77001D79D1 /* MyPostListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostListTableViewCell.swift; sourceTree = "<group>"; };
 		6854E37327E9FD58001D79D1 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
@@ -214,8 +208,6 @@
 			isa = PBXGroup;
 			children = (
 				68C8629B27DF6605004B4F73 /* MyProfile.storyboard */,
-				683A4E5527E31DE700223B3F /* FavoriteTagTableViewCell.xib */,
-				683A4E5927E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib */,
 				687E6AA427E5BD3300B92E4C /* MyBooksTableViewCell.xib */,
 				687E6AA827E5BEFA00B92E4C /* MyBooksCollectionViewCell.xib */,
 			);
@@ -259,8 +251,7 @@
 			children = (
 				68683D7527DE40F4008EF3CF /* MyProfileViewController.swift */,
 				68C7032427E0AFA500627C6D /* ProfileTableViewCell.swift */,
-				683A4E5427E31DE700223B3F /* FavoriteTagTableViewCell.swift */,
-				683A4E5827E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift */,
+				684A685927EC14BC00E96249 /* MyTagCollectionViewCell.swift */,
 				687E6AA327E5BD3300B92E4C /* MyBooksTableViewCell.swift */,
 				687E6AA727E5BEFA00B92E4C /* MyBooksCollectionViewCell.swift */,
 				6854E36D27E9D559001D79D1 /* MyPostTableViewCell.swift */,
@@ -377,10 +368,8 @@
 			files = (
 				68683D4927DDF5EF008EF3CF /* LaunchScreen.storyboard in Resources */,
 				687E6AAA27E5BEFA00B92E4C /* MyBooksCollectionViewCell.xib in Resources */,
-				683A4E5B27E36D2300223B3F /* FavoriteTagsCollectionViewCell.xib in Resources */,
 				687E6AA627E5BD3300B92E4C /* MyBooksTableViewCell.xib in Resources */,
 				68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */,
-				683A4E5727E31DE700223B3F /* FavoriteTagTableViewCell.xib in Resources */,
 				68C8629C27DF6605004B4F73 /* MyProfile.storyboard in Resources */,
 				68683D4627DDF5EF008EF3CF /* Assets.xcassets in Resources */,
 				68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */,
@@ -412,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6854E36F27E9D559001D79D1 /* MyPostTableViewCell.swift in Sources */,
+				684A685A27EC14BC00E96249 /* MyTagCollectionViewCell.swift in Sources */,
 				6854E37627EA0B5C001D79D1 /* MyReviewTableViewCell.swift in Sources */,
 				6854E37427E9FD58001D79D1 /* PostModel.swift in Sources */,
 				68683D7427DE40E8008EF3CF /* SearchViewController.swift in Sources */,
@@ -422,8 +412,6 @@
 				68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */,
 				687E6AA927E5BEFA00B92E4C /* MyBooksCollectionViewCell.swift in Sources */,
 				6854E37827EA0C60001D79D1 /* MyReviewListTableViewCell.swift in Sources */,
-				683A4E5627E31DE700223B3F /* FavoriteTagTableViewCell.swift in Sources */,
-				683A4E5A27E36D2300223B3F /* FavoriteTagsCollectionViewCell.swift in Sources */,
 				68683D4127DDF5EE008EF3CF /* HomeViewController.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
 				68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */,
