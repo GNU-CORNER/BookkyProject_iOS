@@ -210,10 +210,10 @@
                                                         <color key="titleColor" systemColor="labelColor"/>
                                                     </state>
                                                 </button>
-                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hWB-iH-Mai">
+                                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hWB-iH-Mai">
                                                     <rect key="frame" x="8" y="42" width="359" height="150"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="140" id="HlQ-hv-hf1"/>
+                                                        <constraint firstAttribute="height" constant="150" id="HlQ-hv-hf1"/>
                                                         <constraint firstAttribute="width" constant="359" id="PJj-Ls-FOu"/>
                                                     </constraints>
                                                     <prototypes>
@@ -327,7 +327,7 @@
                                                 <constraint firstItem="xgU-e9-EUc" firstAttribute="leading" secondItem="0aM-fC-Zei" secondAttribute="trailing" constant="27" id="AMq-Gf-rZk"/>
                                                 <constraint firstItem="xgU-e9-EUc" firstAttribute="trailing" secondItem="Pw4-rB-CaL" secondAttribute="trailingMargin" id="DEd-54-rC9"/>
                                                 <constraint firstItem="xgU-e9-EUc" firstAttribute="top" secondItem="Pw4-rB-CaL" secondAttribute="topMargin" constant="7" id="OKe-nw-orv"/>
-                                                <constraint firstItem="hWB-iH-Mai" firstAttribute="bottom" secondItem="Pw4-rB-CaL" secondAttribute="bottomMargin" constant="-7" id="S0s-Lm-80f"/>
+                                                <constraint firstItem="hWB-iH-Mai" firstAttribute="bottom" secondItem="Pw4-rB-CaL" secondAttribute="bottomMargin" constant="3" id="S0s-Lm-80f"/>
                                                 <constraint firstItem="hWB-iH-Mai" firstAttribute="trailing" secondItem="Pw4-rB-CaL" secondAttribute="trailingMargin" constant="8" id="SNK-zB-pgu"/>
                                                 <constraint firstItem="hWB-iH-Mai" firstAttribute="leading" secondItem="Pw4-rB-CaL" secondAttribute="leadingMargin" constant="-8" id="ijz-kU-wsf"/>
                                                 <constraint firstItem="0aM-fC-Zei" firstAttribute="leading" secondItem="Pw4-rB-CaL" secondAttribute="leadingMargin" constant="4" id="p4t-Ew-CTU"/>

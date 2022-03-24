@@ -25,6 +25,7 @@ class MyReviewListTableViewCell: UITableViewCell {
         self.layer.cornerRadius = 8
         /// 테마 색상으로 변경!
         self.layer.borderColor = CGColor(red: 0.98, green: 0.98, blue: 0.98, alpha: 1.00)
+//        self.frame = self.frame.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 10))
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
