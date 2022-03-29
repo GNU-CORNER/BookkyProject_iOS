@@ -24,6 +24,7 @@
                                 <connections>
                                     <action selector="loginTestButton:" destination="4Zf-eB-bVH" eventType="touchUpInside" id="R6c-jt-6Jp"/>
                                     <action selector="loginTestButton:" destination="jiU-TX-IRE" eventType="touchUpInside" id="de3-Fm-8MN"/>
+                                    <segue destination="i2C-eo-o0x" kind="show" id="o5D-Id-mLw"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -37,6 +38,16 @@
                 <exit id="jiU-TX-IRE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-172" y="274"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="bfE-pm-u2e">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="i2C-eo-o0x" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="YHg-et-fXn"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Df-ls-36S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="622" y="212"/>
         </scene>
     </scenes>
     <resources>

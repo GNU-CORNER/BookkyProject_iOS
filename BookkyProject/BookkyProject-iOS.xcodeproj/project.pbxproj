@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		6852E56B27F2EE1300CAEF02 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6852E56A27F2EE1300CAEF02 /* Login.storyboard */; };
 		6852E56E27F2EE8900CAEF02 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852E56D27F2EE8900CAEF02 /* LoginVC.swift */; };
+		6852E57027F3079700CAEF02 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852E56F27F3079700CAEF02 /* SignupVC.swift */; };
+		6852E57427F307BB00CAEF02 /* SocialSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852E57327F307BB00CAEF02 /* SocialSignupVC.swift */; };
+		6852E57727F35EC600CAEF02 /* FindPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852E57627F35EC600CAEF02 /* FindPasswordVC.swift */; };
+		6852E57927F372CC00CAEF02 /* NewPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852E57827F372CC00CAEF02 /* NewPasswordVC.swift */; };
 		68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */; };
 		68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */; };
 		68683D4127DDF5EE008EF3CF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D4027DDF5EE008EF3CF /* HomeViewController.swift */; };
@@ -49,6 +53,10 @@
 /* Begin PBXFileReference section */
 		6852E56A27F2EE1300CAEF02 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		6852E56D27F2EE8900CAEF02 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		6852E56F27F3079700CAEF02 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		6852E57327F307BB00CAEF02 /* SocialSignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSignupVC.swift; sourceTree = "<group>"; };
+		6852E57627F35EC600CAEF02 /* FindPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPasswordVC.swift; sourceTree = "<group>"; };
+		6852E57827F372CC00CAEF02 /* NewPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordVC.swift; sourceTree = "<group>"; };
 		68683D3927DDF5EE008EF3CF /* BookkyProject-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BookkyProject-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,8 +118,19 @@
 			isa = PBXGroup;
 			children = (
 				6852E56D27F2EE8900CAEF02 /* LoginVC.swift */,
+				6852E56F27F3079700CAEF02 /* SignupVC.swift */,
+				6852E57327F307BB00CAEF02 /* SocialSignupVC.swift */,
+				6852E57627F35EC600CAEF02 /* FindPasswordVC.swift */,
+				6852E57827F372CC00CAEF02 /* NewPasswordVC.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		6852E57527F3112B00CAEF02 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = extension;
 			sourceTree = "<group>";
 		};
 		68683D3027DDF5EE008EF3CF = {
@@ -190,6 +209,7 @@
 		68683D6E27DDFCDD008EF3CF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6852E57527F3112B00CAEF02 /* extension */,
 				6852E56C27F2EE6400CAEF02 /* Login */,
 				68C8628927DF0CD9004B4F73 /* Home */,
 				68C8628A27DF0CDF004B4F73 /* Community */,
@@ -380,11 +400,15 @@
 				68683D7427DE40E8008EF3CF /* SearchViewController.swift in Sources */,
 				68683D7027DE408C008EF3CF /* CommunityViewController.swift in Sources */,
 				6852E56E27F2EE8900CAEF02 /* LoginVC.swift in Sources */,
+				6852E57927F372CC00CAEF02 /* NewPasswordVC.swift in Sources */,
+				6852E57027F3079700CAEF02 /* SignupVC.swift in Sources */,
 				68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */,
 				68683D4127DDF5EE008EF3CF /* HomeViewController.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
 				68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */,
 				68683D7227DE40DB008EF3CF /* RecommendViewController.swift in Sources */,
+				6852E57727F35EC600CAEF02 /* FindPasswordVC.swift in Sources */,
+				6852E57427F307BB00CAEF02 /* SocialSignupVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
