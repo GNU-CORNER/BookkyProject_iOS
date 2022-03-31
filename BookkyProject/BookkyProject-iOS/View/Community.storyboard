@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9hD-PD-AKX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TwZ-xM-w1V">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -8,28 +8,138 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--커뮤니티-->
-        <scene sceneID="HXm-qE-rTi">
+        <!--Navigation Controller-->
+        <scene sceneID="7aZ-dU-Ag6">
             <objects>
-                <viewController storyboardIdentifier="Community" id="9hD-PD-AKX" customClass="CommunityViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="6hB-5E-II2">
+                <navigationController navigationBarHidden="YES" id="TwZ-xM-w1V" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="b5C-m2-Xsr">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="4qt-eI-r4a" kind="relationship" relationship="rootViewController" id="KnA-R4-8BT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IbZ-na-Pq3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="970" y="33"/>
+        </scene>
+        <!--커뮤니티-->
+        <scene sceneID="Znj-Og-OAS">
+            <objects>
+                <viewController storyboardIdentifier="Community" id="4qt-eI-r4a" customClass="CommunityViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dNM-Mi-XuV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="r4e-sW-IXD"/>
-                        <color key="backgroundColor" systemColor="systemRedColor"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="wTn-c4-DbP">
+                                <rect key="frame" x="20" y="64" width="374" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0od-xq-pB9">
+                                        <rect key="frame" x="0.0" y="0.0" width="208" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="자유게시판"/>
+                                        <connections>
+                                            <action selector="tapChangeBoard:" destination="4qt-eI-r4a" eventType="touchUpInside" id="1rk-tb-YuV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hi-7a-Ycb">
+                                        <rect key="frame" x="238" y="0.0" width="21.5" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="" image="magnifyingglass" catalog="system"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dpx-Zo-6fq">
+                                        <rect key="frame" x="289.5" y="0.0" width="84.5" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="글쓰기   " image="pencil" catalog="system"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="6kB-fX-hhh">
+                                <rect key="frame" x="20" y="114" width="70" height="164"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2x-1q-SsB">
+                                        <rect key="frame" x="20" y="5" width="30" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="자유"/>
+                                        <connections>
+                                            <action selector="tapGoBoard:" destination="4qt-eI-r4a" eventType="touchUpInside" id="Rq8-KF-Mjd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v3f-dq-BiH">
+                                        <rect key="frame" x="19" y="36" width="32" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="HOT"/>
+                                        <connections>
+                                            <action selector="tapGoBoard:" destination="4qt-eI-r4a" eventType="touchUpInside" id="CV9-fk-ID5"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GLi-nU-enr">
+                                        <rect key="frame" x="19" y="67" width="32" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Q&amp;A"/>
+                                        <connections>
+                                            <action selector="tapGoBoard:" destination="4qt-eI-r4a" eventType="touchUpInside" id="Amf-1b-htc"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sk1-CY-gXg">
+                                        <rect key="frame" x="13.5" y="98" width="43" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="책 장터"/>
+                                        <connections>
+                                            <action selector="tapGoBoard:" destination="4qt-eI-r4a" eventType="touchUpInside" id="L5m-Jd-kI9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sC-h6-yaR">
+                                        <rect key="frame" x="5" y="129" width="60" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="내 글 보기"/>
+                                        <connections>
+                                            <action selector="tapGoBoard:" destination="4qt-eI-r4a" eventType="touchUpInside" id="533-BC-HQl"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="5" leading="5" bottom="5" trailing="5"/>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1ll-Tj-jfQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="wTn-c4-DbP" firstAttribute="leading" secondItem="1ll-Tj-jfQ" secondAttribute="leading" constant="20" id="Aij-Rq-Brj"/>
+                            <constraint firstItem="wTn-c4-DbP" firstAttribute="top" secondItem="1ll-Tj-jfQ" secondAttribute="top" constant="20" id="Ot0-xn-9Us"/>
+                            <constraint firstItem="6kB-fX-hhh" firstAttribute="top" secondItem="wTn-c4-DbP" secondAttribute="bottom" constant="20" id="X7l-oI-xh6"/>
+                            <constraint firstItem="1ll-Tj-jfQ" firstAttribute="trailing" secondItem="wTn-c4-DbP" secondAttribute="trailing" constant="20" id="Z92-kA-VM3"/>
+                            <constraint firstItem="6kB-fX-hhh" firstAttribute="leading" secondItem="1ll-Tj-jfQ" secondAttribute="leading" constant="20" id="kr6-qr-rN9"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="커뮤니티" image="star.fill" catalog="system" id="F78-bS-iYk"/>
+                    <tabBarItem key="tabBarItem" title="커뮤니티" image="star.fill" catalog="system" id="U9H-V6-xJj"/>
+                    <navigationItem key="navigationItem" id="9ln-M3-xPc"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="QnABoardGoButton" destination="GLi-nU-enr" id="Zx3-Qe-Hj5"/>
+                        <outlet property="boardNameButton" destination="0od-xq-pB9" id="379-PF-IAb"/>
+                        <outlet property="boardTypeStackView" destination="6kB-fX-hhh" id="HFA-DK-1ne"/>
+                        <outlet property="bookMarketGoButton" destination="Sk1-CY-gXg" id="Ms1-je-8jK"/>
+                        <outlet property="freeBoardGoButton" destination="z2x-1q-SsB" id="iTF-jh-g2B"/>
+                        <outlet property="headerStackView" destination="wTn-c4-DbP" id="LqB-ol-wdZ"/>
+                        <outlet property="hotBoardGobutton" destination="v3f-dq-BiH" id="pOX-dx-KSp"/>
+                        <outlet property="myTextGoButton" destination="4sC-h6-yaR" id="w0k-7D-kIg"/>
+                        <outlet property="searchButton" destination="5hi-7a-Ycb" id="Y9A-zR-vLb"/>
+                        <outlet property="writeTextButton" destination="Dpx-Zo-6fq" id="mMJ-zF-1LK"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="afZ-jT-GQT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wkc-kB-JGd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="245" y="42"/>
+            <point key="canvasLocation" x="1784" y="26"/>
         </scene>
     </scenes>
     <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
