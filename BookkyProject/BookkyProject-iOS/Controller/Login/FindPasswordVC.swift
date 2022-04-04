@@ -36,7 +36,7 @@ class FindPasswordVC: UIViewController {
         self.emailTextField.layer.cornerRadius = 8.0
         self.requestAuthenticationCodeButton.setTitle("인증번호 요청", for: .normal)
         /// 수정할 것
-        self.requestAuthenticationCodeButton.layer.borderColor = CGColor(red: 0.42, green: 0.58, blue: 1.00, alpha: 1.00)
+        self.requestAuthenticationCodeButton.layer.borderColor = UIColor(named: "PrimaryColor")?.cgColor
         self.requestAuthenticationCodeButton.layer.borderWidth = 1.0
         self.requestAuthenticationCodeButton.layer.cornerRadius = 8.0
         
@@ -46,13 +46,13 @@ class FindPasswordVC: UIViewController {
         self.authenticationCodeTextField.layer.cornerRadius = 8.0
         self.checkAuthenticationCodeButton.setTitle("인증번호 확인", for: .normal)
         /// 수정할 것
-        self.checkAuthenticationCodeButton.layer.borderColor = CGColor(red: 0.42, green: 0.58, blue: 1.00, alpha: 1.00)
+        self.checkAuthenticationCodeButton.layer.borderColor = UIColor(named: "PrimaryColor")?.cgColor
         self.checkAuthenticationCodeButton.layer.borderWidth = 1.0
         self.checkAuthenticationCodeButton.layer.cornerRadius = 8.0
         
         self.nextStepButton.setTitle("다음으로", for: .normal)
         /// 수정할 것
-        self.nextStepButton.layer.borderColor = CGColor(red: 0.42, green: 0.58, blue: 1.00, alpha: 1.00)
+        self.nextStepButton.layer.borderColor = UIColor(named: "PrimaryColor")?.cgColor
         self.nextStepButton.layer.borderWidth = 1.0
         self.nextStepButton.layer.cornerRadius = 8.0
     }

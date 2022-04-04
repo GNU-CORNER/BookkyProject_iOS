@@ -16,7 +16,9 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var socialLoginLabel: UILabel!
-    @IBOutlet weak var naverSocialLoginButton: UIButton!
+    
+    @IBOutlet weak var signInWithGoogleButton: UIButton!
+    
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var somethingWrongInLoginButton: UIButton!
     
@@ -49,24 +51,14 @@ class LoginVC: UIViewController {
         self.somethingWrongInLoginButton?.setTitle("로그인에 문제가 있나요?", for: .normal)
     }
     
-    @IBAction func signupDidTap(_ sender: Any) {
-        let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "Signup") else { return }
-        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-        self.present(vc, animated: true)
-    }
-    
   
-    @IBAction func naverSocialLogin(_ sender: Any) {
+    @IBAction func signInWithGoogle(_ sender: Any) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "SocialSignup") else { return }
         vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(vc, animated: true)
     }
     
-    @IBAction func back(_ sender: Any) {
-        self.dismiss(animated: true)
-    }
     
 }
 
