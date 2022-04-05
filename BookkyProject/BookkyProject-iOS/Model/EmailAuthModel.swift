@@ -14,7 +14,16 @@ struct EmailAuthModel: Codable {
     let errorMessage: String
 }
 
+// MARK: - EmailAuthCheckModel
+struct EmailAuthCheckModel: Codable {
+    let success: Bool
+//    let result: Result
+    let errorMessage: String
+}
+
 // MARK: - Result
 struct Result: Codable {
     let email: String
 }
+
+
