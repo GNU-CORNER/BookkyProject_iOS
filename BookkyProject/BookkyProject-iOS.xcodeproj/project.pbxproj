@@ -26,6 +26,8 @@
 		68683D7227DE40DB008EF3CF /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D7127DE40DB008EF3CF /* RecommendViewController.swift */; };
 		68683D7427DE40E8008EF3CF /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D7327DE40E8008EF3CF /* SearchViewController.swift */; };
 		68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D7527DE40F4008EF3CF /* MyProfileViewController.swift */; };
+		686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686AE6BA27FC01DC00B77245 /* EmailAuthenticate.swift */; };
+		686AE6C227FC1F9200B77245 /* EmailAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */; };
 		68C8629427DF61D3004B4F73 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629327DF61D3004B4F73 /* Home.storyboard */; };
 		68C8629627DF6481004B4F73 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629527DF6481004B4F73 /* Community.storyboard */; };
 		68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629727DF650E004B4F73 /* Recommend.storyboard */; };
@@ -74,6 +76,8 @@
 		68683D7127DE40DB008EF3CF /* RecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		68683D7327DE40E8008EF3CF /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		68683D7527DE40F4008EF3CF /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		686AE6BA27FC01DC00B77245 /* EmailAuthenticate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthenticate.swift; sourceTree = "<group>"; };
+		686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthModel.swift; sourceTree = "<group>"; };
 		68C8629327DF61D3004B4F73 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		68C8629527DF6481004B4F73 /* Community.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		68C8629727DF650E004B4F73 /* Recommend.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recommend.storyboard; sourceTree = "<group>"; };
@@ -156,7 +160,8 @@
 		68683D3B27DDF5EE008EF3CF /* BookkyProject-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				68683D6C27DDFCD2008EF3CF /* Model */,
+				686AE6B927FC01B600B77245 /* Service */,
+				686AE6BE27FC1F5100B77245 /* Model */,
 				68683D6D27DDFCD8008EF3CF /* View */,
 				68683D6E27DDFCDD008EF3CF /* Controller */,
 				68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */,
@@ -182,13 +187,6 @@
 				68683D5F27DDF5EF008EF3CF /* BookkyProject_iOSUITestsLaunchTests.swift */,
 			);
 			path = "BookkyProject-iOSUITests";
-			sourceTree = "<group>";
-		};
-		68683D6C27DDFCD2008EF3CF /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		68683D6D27DDFCD8008EF3CF /* View */ = {
@@ -218,6 +216,22 @@
 				68C8628D27DF0CF4004B4F73 /* MyProfile */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		686AE6B927FC01B600B77245 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				686AE6BA27FC01DC00B77245 /* EmailAuthenticate.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		686AE6BE27FC1F5100B77245 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		68C8628927DF0CD9004B4F73 /* Home */ = {
@@ -404,8 +418,10 @@
 				6852E57027F3079700CAEF02 /* SignupVC.swift in Sources */,
 				68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */,
 				68683D4127DDF5EE008EF3CF /* HomeViewController.swift in Sources */,
+				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
 				68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */,
+				686AE6C227FC1F9200B77245 /* EmailAuthModel.swift in Sources */,
 				68683D7227DE40DB008EF3CF /* RecommendViewController.swift in Sources */,
 				6852E57727F35EC600CAEF02 /* FindPasswordVC.swift in Sources */,
 				6852E57427F307BB00CAEF02 /* SocialSignupVC.swift in Sources */,

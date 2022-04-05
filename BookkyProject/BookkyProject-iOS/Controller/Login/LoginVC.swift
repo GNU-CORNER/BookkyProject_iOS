@@ -51,7 +51,6 @@ class LoginVC: UIViewController {
         self.somethingWrongInLoginButton?.setTitle("로그인에 문제가 있나요?", for: .normal)
     }
     
-  
     @IBAction func signInWithGoogle(_ sender: Any) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "SocialSignup") else { return }

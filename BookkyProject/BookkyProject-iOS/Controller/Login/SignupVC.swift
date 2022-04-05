@@ -87,6 +87,26 @@ class SignupVC: UIViewController {
         self.signupButton.setTitle("회원가입", for: .normal)
     }
     
+    // 코드 확인 필요
+    func showToast(message : String) {
+        let toastLabel = UILabel(
+            frame: CGRect(x: self.view.frame.size.width/2 - 150, y: self.view.frame.size.height - 180, width: 300, height: 35)
+        )
+        toastLabel.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        toastLabel.textColor = UIColor.white
+        toastLabel.textAlignment = .center;
+        toastLabel.text = message
+        toastLabel.alpha = 1.0
+        toastLabel.layer.cornerRadius = 10;
+        toastLabel.clipsToBounds = true
+        self.view.addSubview(toastLabel)
+        UIView.animate(withDuration: 6.0, delay: 0.1, options: .curveEaseOut, animations: {
+            toastLabel.alpha = 0.0
+        }, completion: {
+            (isCompleted) in toastLabel.removeFromSuperview()
+        })
+    }
+    
     func timerReset() {
         if let timer = self.timer {
             timer.invalidate()
@@ -94,6 +114,7 @@ class SignupVC: UIViewController {
         }
     }
 
+    // - [x] 이메일 형식 확인 절차
     func isValidEmail(testStr: String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -109,17 +130,42 @@ class SignupVC: UIViewController {
         guard let emailText = self.emailTextField?.text else { return }
         if isValidEmail(testStr: emailText) {
             print("이메일 형식 통과")
+            self.emailTextField.layer.borderWidth = 0
             // - [x] 3분 타이머 실행
             totalSecond = 180
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ThreeMinutesTimer), userInfo: nil, repeats: true)
-            // - [ ] 서버로 인증 요청
-            // - [ ] 본인의 이메일로 인증번호 확인 부탁한다는 토스트 메시지 띄우기
+            // - [x] 서버로 이메일 인증 요청
+            if let userEmail = self.emailTextField?.text as? String {
+                requestEmailAuth(email: userEmail)
+            }
+            // - [x] 본인의 이메일로 인증번호 확인 부탁한다는 토스트 메시지 띄우기
+            showToast(message: "해당 이메일로 인증번호를 보냈습니다.")
         } else {
             print("이메일 형식이 맞지 않아요!")
-            // - [ ] 토스트 메시지 "이메일 형식이 맞지 않습니다"
-            // - [ ] 이메일 입력칸에 빨간 테두리로 경고!! 타이머로 0.8초 정도?
+            // - [x] 토스트 메시지 "이메일 형식이 맞지 않습니다"
+            showToast(message: "이메일 형식이 맞지 않습니다.")
+            // - [x] 이메일 입력칸에 빨간 테두리로 경고
+            self.emailTextField.layer.borderWidth = 1.0
+            self.emailTextField.layer.borderColor = UIColor.red.cgColor
+            UIView.animate(withDuration: 3.0, animations: {
+                self.emailTextField.layer.borderWidth = 0
+            })
+            
         }
         
+    }
+    
+    func requestEmailAuth(email: String) {
+        EmailAuthenticate.shared.authenticateCodeSender(userEmail: email) { (success, data) in
+            if success {
+                guard let resultData = data as? EmailAuthModel else { return }
+                print(resultData)
+                print(resultData.success)
+                print(resultData.result.email)
+            } else {
+                print("통신실패 ㅠ")
+            }
+        }
     }
     
     @objc func ThreeMinutesTimer() {
