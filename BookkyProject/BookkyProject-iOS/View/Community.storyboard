@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="208" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="자유게시판"/>
+                                        <state key="normal" title="자유"/>
                                         <connections>
                                             <action selector="tapChangeBoard:" destination="4qt-eI-r4a" eventType="touchUpInside" id="1rk-tb-YuV"/>
                                         </connections>
@@ -61,6 +61,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2x-1q-SsB">
                                         <rect key="frame" x="20" y="5" width="30" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="자유"/>
                                         <connections>
@@ -102,6 +103,51 @@
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="5" leading="5" bottom="5" trailing="5"/>
                             </stackView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vWY-d1-37t">
+                                <rect key="frame" x="0.0" y="114" width="414" height="704"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="boadrTableViewCellid" rowHeight="77" id="sIE-hF-UT8" customClass="BoardTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="77"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sIE-hF-UT8" id="Kru-H5-HVP">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="77"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="7Au-yi-Xkb">
+                                                    <rect key="frame" x="20" y="5" width="374" height="67"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="자유게시판입니다." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJC-IZ-Sd9">
+                                                            <rect key="frame" x="0.0" y="0.0" width="122.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="자유롭게 글을 써주세요" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0y-DA-Utc">
+                                                            <rect key="frame" x="0.0" y="21.5" width="156" height="45.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="7Au-yi-Xkb" secondAttribute="bottom" constant="5" id="DTI-kH-SDP"/>
+                                                <constraint firstItem="7Au-yi-Xkb" firstAttribute="leading" secondItem="Kru-H5-HVP" secondAttribute="leading" constant="20" id="Ffq-7v-4c3"/>
+                                                <constraint firstAttribute="trailing" secondItem="7Au-yi-Xkb" secondAttribute="trailing" constant="20" id="drS-NT-yxC"/>
+                                                <constraint firstItem="7Au-yi-Xkb" firstAttribute="top" secondItem="Kru-H5-HVP" secondAttribute="top" constant="5" id="e8J-zM-2Po"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="boardTableViewCellStackView" destination="7Au-yi-Xkb" id="stT-mq-9vb"/>
+                                            <outlet property="subtittleLabel" destination="n0y-DA-Utc" id="6Hu-bq-DMk"/>
+                                            <outlet property="tableViewCell" destination="Kru-H5-HVP" id="tpd-02-jaz"/>
+                                            <outlet property="tittleLabel" destination="VJC-IZ-Sd9" id="MIX-sv-F1G"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1ll-Tj-jfQ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -109,8 +155,12 @@
                             <constraint firstItem="wTn-c4-DbP" firstAttribute="leading" secondItem="1ll-Tj-jfQ" secondAttribute="leading" constant="20" id="Aij-Rq-Brj"/>
                             <constraint firstItem="wTn-c4-DbP" firstAttribute="top" secondItem="1ll-Tj-jfQ" secondAttribute="top" constant="20" id="Ot0-xn-9Us"/>
                             <constraint firstItem="6kB-fX-hhh" firstAttribute="top" secondItem="wTn-c4-DbP" secondAttribute="bottom" constant="20" id="X7l-oI-xh6"/>
+                            <constraint firstItem="1ll-Tj-jfQ" firstAttribute="trailing" secondItem="vWY-d1-37t" secondAttribute="trailing" id="XA8-Mm-AYA"/>
                             <constraint firstItem="1ll-Tj-jfQ" firstAttribute="trailing" secondItem="wTn-c4-DbP" secondAttribute="trailing" constant="20" id="Z92-kA-VM3"/>
+                            <constraint firstItem="vWY-d1-37t" firstAttribute="bottom" secondItem="1ll-Tj-jfQ" secondAttribute="bottom" constant="5" id="cM6-2g-exs"/>
+                            <constraint firstItem="vWY-d1-37t" firstAttribute="leading" secondItem="1ll-Tj-jfQ" secondAttribute="leading" id="hJG-bl-a1M"/>
                             <constraint firstItem="6kB-fX-hhh" firstAttribute="leading" secondItem="1ll-Tj-jfQ" secondAttribute="leading" constant="20" id="kr6-qr-rN9"/>
+                            <constraint firstItem="vWY-d1-37t" firstAttribute="top" secondItem="wTn-c4-DbP" secondAttribute="bottom" constant="20" id="xbV-Vf-ODG"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="커뮤니티" image="star.fill" catalog="system" id="U9H-V6-xJj"/>
@@ -119,8 +169,10 @@
                     <connections>
                         <outlet property="QnABoardGoButton" destination="GLi-nU-enr" id="Zx3-Qe-Hj5"/>
                         <outlet property="boardNameButton" destination="0od-xq-pB9" id="379-PF-IAb"/>
+                        <outlet property="boardTableView" destination="vWY-d1-37t" id="fhN-Lm-5eA"/>
                         <outlet property="boardTypeStackView" destination="6kB-fX-hhh" id="HFA-DK-1ne"/>
                         <outlet property="bookMarketGoButton" destination="Sk1-CY-gXg" id="Ms1-je-8jK"/>
+                        <outlet property="communityView" destination="dNM-Mi-XuV" id="RqD-Sj-pSx"/>
                         <outlet property="freeBoardGoButton" destination="z2x-1q-SsB" id="iTF-jh-g2B"/>
                         <outlet property="headerStackView" destination="wTn-c4-DbP" id="LqB-ol-wdZ"/>
                         <outlet property="hotBoardGobutton" destination="v3f-dq-BiH" id="pOX-dx-KSp"/>
@@ -131,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkc-kB-JGd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1784" y="26"/>
+            <point key="canvasLocation" x="1782.608695652174" y="25.446428571428569"/>
         </scene>
     </scenes>
     <resources>
