@@ -236,6 +236,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="rOf-dI-y1a">
                         <barButtonItem key="backBarButtonItem" title="뒤로가기" id="3Md-30-q8s"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="QIu-Oq-WfV">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="WDH-jj-JWM">
+                                <rect key="frame" x="20" y="5" width="92" height="34.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" name="PrimaryColor"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="xmark" catalog="system"/>
+                                <connections>
+                                    <action selector="cancelLogin:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="iFI-cM-pyR"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="bookkyLogoImage" destination="tMz-k0-1m9" id="frp-3Z-Ff9"/>
@@ -458,6 +470,9 @@
                                         <color key="tintColor" name="PrimaryColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                        <connections>
+                                            <action selector="signupDidTap:" destination="9pw-zk-4OP" eventType="touchUpInside" id="2I2-R2-ZzT"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -835,7 +850,7 @@
         <image name="square" catalog="system" width="128" height="114"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <namedColor name="PrimaryColor">
-            <color red="0.42352941176470588" green="0.58431372549019611" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.42399999499320984" green="0.58399999141693115" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -58,6 +58,10 @@ class LoginVC: UIViewController {
         self.present(vc, animated: true)
     }
     
+    @IBAction func cancelLogin(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
+
     
 }
 

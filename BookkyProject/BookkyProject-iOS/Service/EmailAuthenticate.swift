@@ -10,19 +10,21 @@ import Foundation
 /// 비슷한 코드가 반복되는데 하나의 함수로 만들 수는 없을까?
 class EmailAuthenticate {
     static let shared = EmailAuthenticate()
-    var baseURL = "http://203.255.3.144:8002/v1"
     
     func authenticateCodeSender(userEmail: String, completionHandler: @escaping(Bool, Any) -> Void) {
         // URLSessionConfiguraion 생성, .default로만 생성 가능
         let session = URLSession(configuration: URLSessionConfiguration.default)
-        guard let url = URL(string: baseURL + "/user/email") else {
+        guard var urlComponent = URLComponents(string: BookkyURL.baseURL + "/user/email") else {
             print("Error: Cannot create URL")
             return
         }
+
+        let email = userEmail.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        urlComponent.queryItems = [ URLQueryItem(name: "email", value: email) ]
+        guard let url = urlComponent.url else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = "POST"
+        request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpBody = try? JSONSerialization.data(withJSONObject: ["email": userEmail], options: [])
         
         session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
@@ -45,7 +47,7 @@ class EmailAuthenticate {
     func validateCode(userEmail: String, code: Int, completionHandler: @escaping(Bool, Any) -> Void) {
         let httpBody: [String: Any] = ["email": userEmail, "code": code]
         let session = URLSession(configuration: .default)
-        guard let url = URL(string: baseURL + "/user/check") else {
+        guard let url = URL(string: BookkyURL.baseURL + "/user/check") else {
             print("Error: Cannot create URL")
             return
         }

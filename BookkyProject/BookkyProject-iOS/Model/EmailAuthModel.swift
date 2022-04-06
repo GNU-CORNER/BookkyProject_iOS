@@ -10,8 +10,9 @@ import Foundation
 // MARK: - EmailAuthModel
 struct EmailAuthModel: Codable {
     let success: Bool
-    let result: Result
+    let result: Result?
     let errorMessage: String
+
 }
 
 // MARK: - EmailAuthCheckModel
@@ -19,11 +20,7 @@ struct EmailAuthCheckModel: Codable {
     let success: Bool
 //    let result: Result
     let errorMessage: String
+    
 }
 
-// MARK: - Result
-struct Result: Codable {
-    let email: String
-}
-
-
+// Model 데이터도 통일하면 어떨까아앙
