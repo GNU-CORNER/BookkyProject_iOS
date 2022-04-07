@@ -29,6 +29,8 @@ class CommunityViewController: UIViewController {
     //tableView
     @IBOutlet weak var boardTableView: UITableView!
     
+    @IBOutlet weak var grayView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,28 +44,42 @@ class CommunityViewController: UIViewController {
         self.bookMarketGoButton.setTitle("책 장터", for: .normal)
         self.myTextGoButton.setTitle("내 글 보기", for: .normal)
         
-        self.freeBoardGoButton.setTitleColor(.black, for: .normal)
+        
+        
         //boardNameButton 초기
-        self.headerStackView.setCustomSpacing(50, after: boardNameButton)
+        self.freeBoardGoButton.setTitleColor(.black, for: .normal)
+        
+        //보드게시판 클릭 초기
+        
         self.boardNameButton.setTitle("자유 게시판", for: .normal)
         self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
         self.boardNameButton.sizeToFit()
         self.boardNameButton.tintColor = .black
-        //보드게시판 클릭 초기
+        
         
         //searchButton
         self.searchButton.tintColor = .black
+        
+        
         //writeTextButton
+        
+        self.writeTextButton.setImage(UIImage(systemName: "pencil"), for: .normal)
+        self.writeTextButton.setTitle("글쓰기 ", for: .normal)
+        self.writeTextButton.setPreferredSymbolConfiguration(.init(pointSize: 15, weight: .regular, scale: .default), forImageIn: .normal)
+        self.writeTextButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         self.writeTextButton.backgroundColor = UIColor(named: "primaryColor")
         self.writeTextButton.sizeToFit()
         self.writeTextButton.tintColor = .white
         self.writeTextButton.layer.borderWidth = 2
         self.writeTextButton.layer.borderColor = UIColor(named: "primaryColor")?.cgColor
-        self.writeTextButton.layer.cornerRadius = 10
+        self.writeTextButton.layer.cornerRadius = 8
+        
+        
         self.boardTypeStackView.layer.borderWidth = 2
-        self.boardTypeStackView.layer.borderColor = UIColor.black.cgColor
+        self.boardTypeStackView.layer.borderColor = UIColor.white.cgColor
         self.boardTypeStackView.layer.cornerRadius = 10
         self.boardTypeStackView.sizeToFit()
+        
         boardTypeColor()
         
     }
@@ -86,12 +102,18 @@ class CommunityViewController: UIViewController {
             self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             self.freeBoardGoButton.setTitleColor(.black, for: .normal)
             self.boardTypeStackView.isHidden = true
+            self.grayView.isHidden = true
             
             //이부분 좀더 간편하게 하는 방법 없을까
             self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
             self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
             self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
             self.myTextGoButton.setTitleColor(.gray, for: .normal)
+            // 이부분도
+            self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.myTextGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
             
         }else if sender == self.hotBoardGobutton{
             self.boardTypeNumber = 1
@@ -101,11 +123,17 @@ class CommunityViewController: UIViewController {
             self.hotBoardGobutton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             self.hotBoardGobutton.setTitleColor(.black, for: .normal)
             self.boardTypeStackView.isHidden = true
+            self.grayView.isHidden = true
             
             self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
             self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
             self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
             self.myTextGoButton.setTitleColor(.gray, for: .normal)
+            
+            self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.myTextGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
             
         }else if sender == self.QnABoardGoButton{
             self.boardTypeNumber = 2
@@ -115,11 +143,17 @@ class CommunityViewController: UIViewController {
             self.QnABoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             self.QnABoardGoButton.setTitleColor(.black, for: .normal)
             self.boardTypeStackView.isHidden = true
+            self.grayView.isHidden = true
             
             self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
             self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
             self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
             self.myTextGoButton.setTitleColor(.gray, for: .normal)
+            
+            self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.myTextGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
             
         }else if sender == self.bookMarketGoButton{
             self.boardTypeNumber = 3
@@ -128,11 +162,17 @@ class CommunityViewController: UIViewController {
             self.bookMarketGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             self.bookMarketGoButton.setTitleColor(.black, for: .normal)
             self.boardTypeStackView.isHidden = true
+            self.grayView.isHidden = true
             
             self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
             self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
             self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
             self.myTextGoButton.setTitleColor(.gray, for: .normal)
+            
+            self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.myTextGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
             
         }else if sender == self.myTextGoButton{
             self.boardTypeNumber = 4
@@ -142,11 +182,17 @@ class CommunityViewController: UIViewController {
             self.myTextGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             self.myTextGoButton.setTitleColor(.black, for: .normal)
             self.boardTypeStackView.isHidden = true
+            self.grayView.isHidden = true
             
             self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
             self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
             self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
             self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
+            
+            self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         }
         self.boardTableView.reloadData()
     }
@@ -155,12 +201,15 @@ class CommunityViewController: UIViewController {
         
         if boardTypeStackView.isHidden == false {
             self.boardTypeStackView.isHidden = true
+            self.grayView.isHidden = true
             self.boardTableView.backgroundColor = .white
         }else{
             self.boardTypeStackView.isHidden = false
+            self.grayView.isHidden = false
             self.boardTypeStackView.backgroundColor = .white
+            self.communityView.bringSubviewToFront(self.grayView)
             self.communityView.bringSubviewToFront(self.boardTypeStackView)
-            self.boardTableView.backgroundColor = .gray
+           
             
         }
         self.boardTableView.reloadData()
@@ -172,37 +221,36 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = boardTableView.dequeueReusableCell(withIdentifier: "boadrTableViewCellid", for: indexPath) as! BoardTableViewCell
+        guard let cell = boardTableView.dequeueReusableCell(withIdentifier: "boadrTableViewCellid", for: indexPath) as? BoardTableViewCell else { return UITableViewCell()}
+        
         cell.tittleLabel.text = freeBoard.objectArray[indexPath.row].title
         cell.subtittleLabel.text = freeBoard.objectArray[indexPath.row].subtitle
+        cell.subtittleLabel.numberOfLines = 2
+        cell.subtittleLabel.font = UIFont.systemFont(ofSize: 13)
+       
         
-        if boardTypeStackView.isHidden == false{
-            cell.backgroundColor = .gray
-        }else {
-            cell.backgroundColor = .white
-            self.boardTableView.backgroundColor = .white
-        }
         if boardTypeNumber == 0 {
             cell.tittleLabel.text = freeBoard.objectArray[indexPath.row].title
             cell.subtittleLabel.text = freeBoard.objectArray[indexPath.row].subtitle
+          
             
         }else if boardTypeNumber == 1{
             cell.tittleLabel.text = HotBoard.objectArray[indexPath.row].title
             cell.subtittleLabel.text = HotBoard.objectArray[indexPath.row].subtitle
-            
+        
         }
         else if boardTypeNumber == 2{
             cell.tittleLabel.text = QnABoard.objectArray[indexPath.row].title
             cell.subtittleLabel.text = QnABoard.objectArray[indexPath.row].subtitle
-            
+      
         }else if boardTypeNumber == 3{
             cell.tittleLabel.text = bookMarketBoard.objectArray[indexPath.row].title
             cell.subtittleLabel.text = bookMarketBoard.objectArray[indexPath.row].subtitle
-            
+    
         }else if boardTypeNumber == 4{
             cell.tittleLabel.text = myTextBoard.objectArray[indexPath.row].title
             cell.subtittleLabel.text = myTextBoard.objectArray[indexPath.row].subtitle
-            
+
             
         }
         return cell
@@ -210,7 +258,7 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 100
     }
     
     

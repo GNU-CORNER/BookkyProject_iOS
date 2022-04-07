@@ -11,7 +11,7 @@ struct BoardText{
     let subtitle : String
 }
 struct Free {
-    var objectArray = [BoardText(title: "자유게시판입니다.", subtitle: "자유롭게 글을 작성해주세요. 에티켓은 꼭 지켜주시구요 !! 반가워요 모두들~행복한 2022년 보내세요 개서적 많이 많이                          써주세요."),
+    var objectArray = [BoardText(title: "자유게시판입니다.", subtitle: "자유롭게 글을 작성해주세요. 에티켓은 꼭 지켜주시구요 !! 반가워요 모두들~행복한 2022년 보내세요 개서적 많이 많이 써주세요."),
                        BoardText(title: "자유게시판입니다.", subtitle: "자유롭게 글을 작성해주세요. 에티켓은 꼭 지켜주시구요 !! 반가워요 모두들~행복한 2022년 보내세요 개서적 많이 많이 써주세요."),
                        BoardText(title: "자유게시판입니다.", subtitle: "자유롭게 글을 작성해주세요. 에티켓은 꼭 지켜주시구요 !! 반가워요 모두들~행복한 2022년 보내세요 개서적 많이 많이 써주세요."),
                        BoardText(title: "자유게시판입니다.", subtitle: "자유롭게 글을 작성해주세요. 에티켓은 꼭 지켜주시구요 !! 반가워요 모두들~행복한 2022년 보내세요 개서적 많이 많이 써주세요."),

@@ -8,16 +8,20 @@
 import UIKit
 
 class BoardTableViewCell: UITableViewCell {
-
     @IBOutlet weak var tableViewCell: UIView!
-    @IBOutlet weak var boardTableViewCellStackView: UIStackView!
     @IBOutlet weak var tittleLabel: UILabel!
     @IBOutlet weak var subtittleLabel: UILabel!
+    
+    @IBOutlet weak var likeThatImageView: UIImageView!
+    @IBOutlet weak var likeThatCountLabel: UILabel!
+    
+    @IBOutlet weak var commentImageView: UIImageView!
+    @IBOutlet weak var commentCountLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.subtittleLabel.numberOfLines = 2
-      
+        self.likeThatImageView.image = UIImage(named: "likeThat")
+        self.commentImageView.image = UIImage(named: "comment")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
