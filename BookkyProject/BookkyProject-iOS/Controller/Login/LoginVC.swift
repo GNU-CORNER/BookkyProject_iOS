@@ -44,6 +44,7 @@ class LoginVC: UIViewController {
         self.passwordTextField.layer.cornerRadius = 8.0
         
         self.loginButton?.setTitle("로그인", for: .normal)
+        self.loginButton.layer.cornerRadius = 8.0
         
         self.socialLoginLabel?.text = "간편 로그인"
         

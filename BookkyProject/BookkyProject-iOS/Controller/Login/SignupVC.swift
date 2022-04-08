@@ -89,6 +89,7 @@ class SignupVC: UIViewController {
         self.passwordCheckTextField.textContentType = .oneTimeCode
         
         self.signupButton.setTitle("회원가입", for: .normal)
+        self.signupButton.layer.cornerRadius = 8.0
     }
 
     // - [x] 이메일 형식 확인 절차

@@ -12,4 +12,6 @@ class BookkyURL {
     
     static let signupURL = "/user/signup"
     static let signinURL = "/user/signin"
+    
+    static let refreshURL = "/auth/refresh"
 }

@@ -40,6 +40,7 @@ class NewPasswordVC: UIViewController {
         self.checkNewPasswordTextField.layer.cornerRadius = 8.0
         
         self.setNewPasswordButton.setTitle("PW 변경하기", for: .normal)
+        self.setNewPasswordButton.layer.cornerRadius = 8.0
     }
 
 }
