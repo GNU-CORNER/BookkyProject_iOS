@@ -51,6 +51,36 @@ class LoginVC: UIViewController {
         self.somethingWrongInLoginButton?.setTitle("로그인에 문제가 있나요?", for: .normal)
     }
     
+    func requestLogin(email: String, password: String) {
+        Account.shared.login(userEmail: email, userPassword: password) { (suceess, data) in
+            if suceess {
+                guard let userAccount = data as? SignupModel else { return }
+                if userAccount.success {
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true)
+                    }
+                    // - [x] 토큰값 저장할 것, 토큰값 갱신...
+                    UserDefaults.standard.set(userAccount.result.email, forKey: UserDefaultModel.email.rawValue )
+                    UserDefaults.standard.set(userAccount.accessToken, forKey: UserDefaultModel.accessToken.rawValue )
+                    UserDefaults.standard.set(userAccount.refreshToken, forKey: UserDefaultModel.refreshToken.rawValue )
+                    UserDefaults.standard.set(userAccount.result.loginMethod, forKey: UserDefaultModel.loginMethod.rawValue )
+                    print("엑세스 토큰 값!!!")
+                    if let accessToken = UserDefaults.standard.string(forKey: "accessToken") {
+                        print( accessToken )
+                    }
+                }
+            } else {
+                print("통신실패")
+            }
+        }
+    }
+    
+    
+}
+
+
+extension LoginVC {
+    
     @IBAction func signInWithGoogle(_ sender: Any) {
         let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "SocialSignup") else { return }
@@ -62,15 +92,16 @@ class LoginVC: UIViewController {
         self.dismiss(animated: true)
     }
 
-    
-}
-
-extension UITextField {
-    
-    func addLeftPadding() {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 13, height: self.frame.height))
-        self.leftView = paddingView
-        self.leftViewMode = ViewMode.always
+    @IBAction func login(_ sender: Any) {
+        guard let userEmail = self.emailTextField?.text, self.emailTextField?.text != "" else {
+            print("이메일을 입력하세요.")
+            return
+        }
+        guard let userPassword = self.passwordTextField?.text, self.passwordTextField?.text != "" else {
+            print("비밀번호를 입력하세요.")
+            return
+        }
+        requestLogin(email: userEmail, password: userPassword)
     }
     
 }

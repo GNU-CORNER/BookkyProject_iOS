@@ -9,5 +9,7 @@ import Foundation
 
 class BookkyURL {
     static let baseURL = "http://203.255.3.144:8002/v1"
-
+    
+    static let signupURL = "/user/signup"
+    static let signinURL = "/user/signin"
 }

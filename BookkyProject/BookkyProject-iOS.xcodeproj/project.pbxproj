@@ -36,6 +36,9 @@
 		68C8629C27DF6605004B4F73 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629B27DF6605004B4F73 /* MyProfile.storyboard */; };
 		68FBE65427FCA245003DBFB7 /* BookkyURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65327FCA245003DBFB7 /* BookkyURL.swift */; };
 		68FBE65727FD50E8003DBFB7 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65627FD50E8003DBFB7 /* SignupModel.swift */; };
+		68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65827FDB1EF003DBFB7 /* UITextField.swift */; };
+		68FBE65B27FDB468003DBFB7 /* BookkyHttpBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65A27FDB468003DBFB7 /* BookkyHttpBody.swift */; };
+		68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +92,9 @@
 		68C8629B27DF6605004B4F73 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
 		68FBE65327FCA245003DBFB7 /* BookkyURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookkyURL.swift; sourceTree = "<group>"; };
 		68FBE65627FD50E8003DBFB7 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
+		68FBE65827FDB1EF003DBFB7 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		68FBE65A27FDB468003DBFB7 /* BookkyHttpBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookkyHttpBody.swift; sourceTree = "<group>"; };
+		68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 		6852E57527F3112B00CAEF02 /* extension */ = {
 			isa = PBXGroup;
 			children = (
+				68FBE65827FDB1EF003DBFB7 /* UITextField.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -230,6 +237,7 @@
 				686AE6BA27FC01DC00B77245 /* EmailAuthenticate.swift */,
 				686AE6C327FC6D3700B77245 /* Account.swift */,
 				68FBE65327FCA245003DBFB7 /* BookkyURL.swift */,
+				68FBE65A27FDB468003DBFB7 /* BookkyHttpBody.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 			children = (
 				686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */,
 				68FBE65627FD50E8003DBFB7 /* SignupModel.swift */,
+				68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -431,12 +440,15 @@
 				68683D4127DDF5EE008EF3CF /* HomeViewController.swift in Sources */,
 				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
+				68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */,
 				68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */,
 				686AE6C227FC1F9200B77245 /* EmailAuthModel.swift in Sources */,
 				68FBE65427FCA245003DBFB7 /* BookkyURL.swift in Sources */,
 				68683D7227DE40DB008EF3CF /* RecommendViewController.swift in Sources */,
 				6852E57727F35EC600CAEF02 /* FindPasswordVC.swift in Sources */,
 				6852E57427F307BB00CAEF02 /* SocialSignupVC.swift in Sources */,
+				68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */,
+				68FBE65B27FDB468003DBFB7 /* BookkyHttpBody.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

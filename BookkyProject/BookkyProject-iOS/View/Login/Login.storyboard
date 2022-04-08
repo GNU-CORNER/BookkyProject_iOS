@@ -117,6 +117,9 @@
                                                 <color key="tintColor" name="PrimaryColor"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                                                <connections>
+                                                    <action selector="login:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="2Rd-38-TzF"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
