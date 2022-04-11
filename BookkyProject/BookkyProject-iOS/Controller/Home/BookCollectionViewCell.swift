@@ -8,13 +8,13 @@
 import UIKit
 
 class BookCollectionViewCell: UICollectionViewCell {
-
-
+    
+    
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var bookNameLabel: UILabel!
     
     func setBookData(model: BookData){
-       
+        
         bookNameLabel.text = model.TITLE
         let url = URL(string: "\(model.thumbnailImage)")
         let data = try! Data(contentsOf: url!)
@@ -24,7 +24,7 @@ class BookCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-      
+        
     }
-
+    
 }

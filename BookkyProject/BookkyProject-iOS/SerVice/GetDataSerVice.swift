@@ -19,11 +19,12 @@ class GetBookData {
         request.httpMethod = "GET"
         session.dataTask(with: request) { (data,response,error) in
             guard error == nil else {
+            
                 print("Error: error.")
                 return
              
             }
-       
+//            print("\(error)")
             guard let  data = data , let response = response as? HTTPURLResponse, (200..<300) ~= response.statusCode else {
                 print("\(String(describing: error))")
            
@@ -40,30 +41,3 @@ class GetBookData {
         }.resume()
     }
 }
-//func getBookData(){
-//   let session = URLSession.shared
-//   guard let  requestURL = URL(string: url) else {return}
-//   session.dataTask(with: requestURL) { data, response, error in
-//               guard error == nil else {
-//                   //error 가 nil 이면 데이터가 받아와지는것
-////                        debugPrint(error?.localizedDescription)
-//                   //경고 떠서 주석처리해놓음  경고 제거 필요 error 발생시 print
-//                   return
-//               }
-//                print("\(error)")
-//               if let data = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
-//                   do {
-//                       let bookData = try JSONDecoder().decode(BookInformation.self, from: data)    //BookInformation 은 서버에서 받아오는 데이터의 구조체
-//
-//                       self.bookList = bookData.result.bookList
-//                       print("\(self.bookList)")
-//                       DispatchQueue.main.async {
-//                           self.bookCollectionView.reloadData()
-//                       }
-//                   } catch(let err) {
-//                       print("Decoding Error")
-//                       print(err.localizedDescription)
-//                   }
-//               }
-//           }.resume()
-//   }

@@ -8,8 +8,8 @@
 import UIKit
 
 class BookTableViewCell: UITableViewCell {
-
-
+    
+    
     @IBOutlet weak var bookTableViewCell: UIView!
     @IBOutlet weak var tagNameLabel: UILabel!
     @IBOutlet weak var bookCollectionView: UICollectionView!
@@ -19,18 +19,19 @@ class BookTableViewCell: UITableViewCell {
         bookDataLsit = model.data
         bookCollectionView.reloadData()
     }
+//    var bookList = BookData()
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         setCollectionVieCell()
         self.bookTableViewCell.backgroundColor = UIColor(named: "primaryColor")
-       
+        
     }
     
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-     
+        
         // Configure the view for the selected state
     }
     private func setCollectionVieCell() {
@@ -46,19 +47,22 @@ class BookTableViewCell: UITableViewCell {
         let cellNib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         self.bookCollectionView?.register(cellNib, forCellWithReuseIdentifier: "bookCollectionViewCellid")
     }
-
+    
 }
 extension BookTableViewCell :UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("\(bookDataLsit.count)")
         return bookDataLsit.count
+        //        print("\(bookList.object[section].book.count)")
+        //        return bookList.object[section].book.count
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell :BookCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCollectionViewCellid", for: indexPath) as? BookCollectionViewCell else {return UICollectionViewCell()}
         cell.setBookData(model: bookDataLsit[indexPath.row])
-//        cell.bookNameLabel.text = bookList.object[indexPath.section].book[indexPath.row].bookName
-//        cell.bookImageView.image = UIImage(named: "\(bookList.object[indexPath.section].book[indexPath.row].bookImage)")
+        
+        //        cell.bookNameLabel.text = bookList.object[indexPath.section].book[indexPath.row].bookName
+        //        cell.bookImageView.image = UIImage(named: "\(self.bookList.object[indexPath.row].book[indexPath.row].bookImage)")
         return cell
     }
     

@@ -14,7 +14,7 @@ struct BookInformation : Codable {
 struct ResultData : Codable {
     let bookList : [BookList]
     let communityList : [Int]
-    let userData : UserData
+//    let userData : UserData
 }
 struct UserData : Codable{
     let UID : Int
@@ -34,16 +34,6 @@ struct BookData : Codable{
     let TITLE : String
     let AUTHOR: String
     let thumbnailImage : String
-    //    let SUBTITLE: String
 
-    //    let ISBN: String
-    //    let PUBLISHER: String
-    //    let PRICE: String
-    //    let PAGE: String
-    //    let BOOK_INDEX: String
-    //    let BOOK_INTRODUCTION: String
-    //    let PUBLISH_DATE: String
-    //    let Allah_BID: String
+
 }
-
-
