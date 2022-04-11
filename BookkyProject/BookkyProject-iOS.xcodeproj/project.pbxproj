@@ -39,6 +39,8 @@
 		68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65827FDB1EF003DBFB7 /* UITextField.swift */; };
 		68FBE65B27FDB468003DBFB7 /* BookkyHttpBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65A27FDB468003DBFB7 /* BookkyHttpBody.swift */; };
 		68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */; };
+		F88EF53227FD809600634696 /* testData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88EF53127FD809600634696 /* testData.swift */; };
+		F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88EF53327FD86A400634696 /* BoardTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +97,8 @@
 		68FBE65827FDB1EF003DBFB7 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		68FBE65A27FDB468003DBFB7 /* BookkyHttpBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookkyHttpBody.swift; sourceTree = "<group>"; };
 		68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModel.swift; sourceTree = "<group>"; };
+		F88EF53127FD809600634696 /* testData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testData.swift; sourceTree = "<group>"; };
+		F88EF53327FD86A400634696 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,6 +206,14 @@
 			path = "BookkyProject-iOSUITests";
 			sourceTree = "<group>";
 		};
+		68683D6C27DDFCD2008EF3CF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F88EF53127FD809600634696 /* testData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		68683D6D27DDFCD8008EF3CF /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -264,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				68683D6F27DE408C008EF3CF /* CommunityViewController.swift */,
+				F88EF53327FD86A400634696 /* BoardTableViewCell.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -437,6 +450,8 @@
 				6852E57027F3079700CAEF02 /* SignupVC.swift in Sources */,
 				686AE6C427FC6D3700B77245 /* Account.swift in Sources */,
 				68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */,
+				F88EF53227FD809600634696 /* testData.swift in Sources */,
+				F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */,
 				68683D4127DDF5EE008EF3CF /* HomeViewController.swift in Sources */,
 				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
