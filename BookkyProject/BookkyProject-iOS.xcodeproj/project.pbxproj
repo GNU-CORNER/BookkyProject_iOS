@@ -25,6 +25,8 @@
 		68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629727DF650E004B4F73 /* Recommend.storyboard */; };
 		68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629927DF659F004B4F73 /* Search.storyboard */; };
 		68C8629C27DF6605004B4F73 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629B27DF6605004B4F73 /* MyProfile.storyboard */; };
+		F88EF53227FD809600634696 /* testData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88EF53127FD809600634696 /* testData.swift */; };
+		F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88EF53327FD86A400634696 /* BoardTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +69,8 @@
 		68C8629727DF650E004B4F73 /* Recommend.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recommend.storyboard; sourceTree = "<group>"; };
 		68C8629927DF659F004B4F73 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		68C8629B27DF6605004B4F73 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
+		F88EF53127FD809600634696 /* testData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testData.swift; sourceTree = "<group>"; };
+		F88EF53327FD86A400634696 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +152,7 @@
 		68683D6C27DDFCD2008EF3CF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F88EF53127FD809600634696 /* testData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				68683D6F27DE408C008EF3CF /* CommunityViewController.swift */,
+				F88EF53327FD86A400634696 /* BoardTableViewCell.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -357,6 +363,8 @@
 				68683D7427DE40E8008EF3CF /* SearchViewController.swift in Sources */,
 				68683D7027DE408C008EF3CF /* CommunityViewController.swift in Sources */,
 				68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */,
+				F88EF53227FD809600634696 /* testData.swift in Sources */,
+				F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */,
 				68683D4127DDF5EE008EF3CF /* HomeViewController.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
 				68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */,

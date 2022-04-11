@@ -1,15 +1,16 @@
 ---
-name: feature issue template
-about: new feature
+name: feature
+about: 구현할 기능들에 대한 작업(Task)를 적어주세요!
 title: ''
 labels: ''
 assignees: ''
 
 ---
 
-### 요약
+## Feature Issue
 
 
-### 자세한 설명
-
+## ToDo
+- [ ] ~
+- [ ] ~
 
