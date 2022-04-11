@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum UserDefaultModel: String {
+enum UserDefaultsModel: String {
     case email = "email"
     case accessToken = "accessToken"
     case refreshToken = "refreshToken"

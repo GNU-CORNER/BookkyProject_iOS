@@ -22,6 +22,7 @@ class LoginVC: UIViewController {
     @IBOutlet weak var signupButton: UIButton!
     @IBOutlet weak var somethingWrongInLoginButton: UIButton!
     
+    let userDefaultData = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,15 +61,16 @@ class LoginVC: UIViewController {
                     DispatchQueue.main.async {
                         self.dismiss(animated: true)
                     }
+                    print( userAccount.result?.accessToken )
                     // - [x] 토큰값 저장할 것, 토큰값 갱신...
-                    UserDefaults.standard.set(userAccount.result.email, forKey: UserDefaultModel.email.rawValue )
-                    UserDefaults.standard.set(userAccount.accessToken, forKey: UserDefaultModel.accessToken.rawValue )
-                    UserDefaults.standard.set(userAccount.refreshToken, forKey: UserDefaultModel.refreshToken.rawValue )
-                    UserDefaults.standard.set(userAccount.result.loginMethod, forKey: UserDefaultModel.loginMethod.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.userData.email, forKey: UserDefaultsModel.email.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.accessToken, forKey: UserDefaultsModel.accessToken.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.refreshToken, forKey: UserDefaultsModel.refreshToken.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.userData.loginMethod, forKey: UserDefaultsModel.loginMethod.rawValue )
+                    UserDefaults.standard.synchronize()
                     print("엑세스 토큰 값!!!")
-                    if let accessToken = UserDefaults.standard.string(forKey: "accessToken") {
-                        print( accessToken )
-                    }
+                    print( UserDefaults.standard.string(forKey: UserDefaultsModel.accessToken.rawValue) )
+                    print( UserDefaults.standard.string(forKey: UserDefaultsModel.refreshToken.rawValue) )
                 }
             } else {
                 print("통신실패")

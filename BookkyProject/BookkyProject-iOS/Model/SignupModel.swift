@@ -10,24 +10,48 @@ import Foundation
 // MARK: - SignupModel
 struct SignupModel: Codable {
     let success: Bool
-    let result: Result
+    let result: Result?
     let errorMessage: String
-    let accessToken: String?
-    let refreshToken: String?
+}
+
+// MARK: - Result
+struct Result: Codable {
+    let userData: UserData
+    let accessToken, refreshToken: String
 
     enum CodingKeys: String, CodingKey {
-        case success, result, errorMessage
+        case userData
         case accessToken = "access_token"
         case refreshToken = "refresh_token"
     }
 }
 
-// MARK: - Result
-struct Result: Codable {
-    let email: String?
-    let nickname: String?
+// MARK: - UserData
+struct UserData: Codable {
+    let uid: Int
+    let email, nickname: String
     let pushToken: String?
-    let pushNoti: Bool?
+    let pushNoti: Bool
     let thumbnail: String?
-    let loginMethod: Int?
+    let loginMethod: Int
+    let tagArray: String?
+
+    enum CodingKeys: String, CodingKey {
+        case uid = "UID"
+        case email, nickname, pushToken, pushNoti, thumbnail, loginMethod
+        case tagArray = "tag_array"
+    }
+}
+
+// MARK: - RefreshModel
+struct RefreshModel: Codable {
+    let success: Bool
+    let result: Result?
+    let errorMessage: String
+    let accessToken: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case success, result, errorMessage
+        case accessToken = "access-token"
+    }
 }

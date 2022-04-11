@@ -259,7 +259,7 @@ extension SignupVC {
                 if resultData.success {
                     print(resultData)
                     print(resultData.success)
-                    print(resultData.result!.email!)
+                    print(resultData.result?.userData.email)
                 } else {
                     // - [x] 이미 존재하는 이메일입니다.
                     DispatchQueue.main.async {
@@ -309,10 +309,10 @@ extension SignupVC {
                         self.dismiss(animated: true)
                     }
                     // - [x] 토큰값 저장할 것
-                    UserDefaults.standard.set(userAccount.result.email, forKey: UserDefaultModel.email.rawValue )
-                    UserDefaults.standard.set(userAccount.accessToken, forKey: UserDefaultModel.accessToken.rawValue )
-                    UserDefaults.standard.set(userAccount.refreshToken, forKey: UserDefaultModel.refreshToken.rawValue )
-                    UserDefaults.standard.set(userAccount.result.loginMethod, forKey: UserDefaultModel.loginMethod.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.userData.email, forKey: UserDefaultsModel.email.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.accessToken, forKey: UserDefaultsModel.accessToken.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.refreshToken, forKey: UserDefaultsModel.refreshToken.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.userData.loginMethod, forKey: UserDefaultsModel.loginMethod.rawValue )
                 }
             } else {
                 print("통신 실패...")
