@@ -192,8 +192,6 @@
 			isa = PBXGroup;
 			children = (
 				F87431982802FFEE003EA8C0 /* New Group */,
-				F87B810A28016C2200E2FB7A /* SerVice */,
-				68683D6C27DDFCD2008EF3CF /* Model */,
 				686AE6B927FC01B600B77245 /* Service */,
 				686AE6BE27FC1F5100B77245 /* Model */,
 				68683D6D27DDFCD8008EF3CF /* View */,
@@ -223,22 +221,13 @@
 			path = "BookkyProject-iOSUITests";
 			sourceTree = "<group>";
 		};
-		68683D6C27DDFCD2008EF3CF /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F85406CE2800284A0027C096 /* testData.swift */,
-				F87B810828016BEF00E2FB7A /* GetForMatData.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		68683D6D27DDFCD8008EF3CF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F8C84C94280427E200B5E7DA /* Home */,
 				6852E56727F2EDC300CAEF02 /* Login */,
 				68683D4727DDF5EF008EF3CF /* LaunchScreen.storyboard */,
 				68683D4227DDF5EE008EF3CF /* Main.storyboard */,
-				68C8629327DF61D3004B4F73 /* Home.storyboard */,
 				68C8629527DF6481004B4F73 /* Community.storyboard */,
 				68C8629727DF650E004B4F73 /* Recommend.storyboard */,
 				68C8629927DF659F004B4F73 /* Search.storyboard */,
@@ -264,6 +253,7 @@
 		686AE6B927FC01B600B77245 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F87B810B28016C3D00E2FB7A /* GetDataSerVice.swift */,
 				686AE6BA27FC01DC00B77245 /* EmailAuthenticate.swift */,
 				686AE6C327FC6D3700B77245 /* Account.swift */,
 				68FBE65327FCA245003DBFB7 /* BookkyURL.swift */,
@@ -275,6 +265,8 @@
 		686AE6BE27FC1F5100B77245 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F85406CE2800284A0027C096 /* testData.swift */,
+				F87B810828016BEF00E2FB7A /* GetForMatData.swift */,
 				686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */,
 				68FBE65627FD50E8003DBFB7 /* SignupModel.swift */,
 				68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */,
@@ -287,9 +279,7 @@
 			children = (
 				68683D4027DDF5EE008EF3CF /* HomeViewController.swift */,
 				F877020D2800893A002EA1F5 /* BookTableViewCell.swift */,
-				F877020E2800893A002EA1F5 /* BookTableViewCell.xib */,
 				F877021128008C72002EA1F5 /* BookCollectionViewCell.swift */,
-				F877021228008C72002EA1F5 /* BookCollectionViewCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -335,12 +325,14 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
-		F87B810A28016C2200E2FB7A /* SerVice */ = {
+		F8C84C94280427E200B5E7DA /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				F87B810B28016C3D00E2FB7A /* GetDataSerVice.swift */,
+				68C8629327DF61D3004B4F73 /* Home.storyboard */,
+				F877020E2800893A002EA1F5 /* BookTableViewCell.xib */,
+				F877021228008C72002EA1F5 /* BookCollectionViewCell.xib */,
 			);
-			path = SerVice;
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

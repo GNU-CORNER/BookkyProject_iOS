@@ -16,12 +16,12 @@ struct ResultData : Codable {
     let communityList : [Int]
 //    let userData : UserData
 }
-struct UserData : Codable{
-    let UID : Int
-    let tag_array : [Int]
-    let nickname : String
-    let thumbnail : String
-}
+//struct UserData : Codable{
+//    let UID : Int
+//    let tag_array : [Int]
+//    let nickname : String
+//    let thumbnail : String
+//}
 struct BookList : Codable{
     //    let success : Bool
     
