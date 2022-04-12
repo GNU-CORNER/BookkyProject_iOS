@@ -343,11 +343,13 @@ extension SignupVC: UITextFieldDelegate {
         if self.emailTextField.isEditing {
             print("이메일 텍스트 입력중")
             self.emailAuthenticationRequestButton.isEnabled = true
-            self.emailAuthenticationRequestButton.backgroundColor = UIColor(named: "PrimaryColor")
+            self.emailAuthenticationRequestButton.backgroundColor = UIColor(named: "primaryColor")
+//            self.emailAuthenticationRequestButton.setTitleColor(UIColor(named: "White color"), for: .normal)
         } else if self.emailCheckTextField.isEditing {
             print("이메일 체크 텍스트 입력중")
             self.emailCheckButton.isEnabled = true
-            self.emailCheckButton.backgroundColor = UIColor(named: "PrimaryColor")
+            self.emailCheckButton.backgroundColor = UIColor(named: "primaryColor")
+//            self.emailAuthenticationRequestButton.setTitleColor(UIColor(named: "White color"), for: .normal)
         } else { return }
     }
     
