@@ -61,16 +61,24 @@ class LoginVC: UIViewController {
                     DispatchQueue.main.async {
                         self.dismiss(animated: true)
                     }
-                    print( userAccount.result?.accessToken )
-                    // - [x] 토큰값 저장할 것, 토큰값 갱신...
-                    UserDefaults.standard.set(userAccount.result?.userData.email, forKey: UserDefaultsModel.email.rawValue )
-                    UserDefaults.standard.set(userAccount.result?.accessToken, forKey: UserDefaultsModel.accessToken.rawValue )
-                    UserDefaults.standard.set(userAccount.result?.refreshToken, forKey: UserDefaultsModel.refreshToken.rawValue )
-                    UserDefaults.standard.set(userAccount.result?.userData.loginMethod, forKey: UserDefaultsModel.loginMethod.rawValue )
+                    // - [x] 사용자 이메일, 로그인 방식은 UserDefaults에 저장
+                    UserDefaults.standard.set(userAccount.result?.userData?.email, forKey: UserDefaultsModel.email.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.userData?.loginMethod, forKey: UserDefaultsModel.loginMethod.rawValue )
                     UserDefaults.standard.synchronize()
                     print("엑세스 토큰 값!!!")
-                    print( UserDefaults.standard.string(forKey: UserDefaultsModel.accessToken.rawValue) )
-                    print( UserDefaults.standard.string(forKey: UserDefaultsModel.refreshToken.rawValue) )
+                    // - [x] 사용자 AT, RT는 Keychain에 저장
+                    if let accessToken = userAccount.result?.accessToken {
+                        if !KeychainManager.shared.create(accessToken, userEmail: email, itemLabel: UserDefaultsModel.accessToken.rawValue) {
+                            // - [ ] 저장이 안될 경우 예외처리 할 것.
+                            print("Login : AT 저장이 안되었따.")
+                        }
+                    }
+                    if let refreshToken = userAccount.result?.refreshToken {
+                        if !KeychainManager.shared.create(refreshToken, userEmail: email, itemLabel: UserDefaultsModel.refreshToken.rawValue) {
+                            // - [ ] 저장이 안될 경우 예외처리 할 것.
+                            print("Login : RT 저장이 안되었따.")
+                        }
+                    }
                 }
             } else {
                 print("통신실패")

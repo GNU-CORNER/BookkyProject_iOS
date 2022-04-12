@@ -16,8 +16,9 @@ struct SignupModel: Codable {
 
 // MARK: - Result
 struct Result: Codable {
-    let userData: UserData
-    let accessToken, refreshToken: String
+    let userData: UserData?
+    let accessToken: String
+    let refreshToken: String?
 
     enum CodingKeys: String, CodingKey {
         case userData
@@ -48,10 +49,10 @@ struct RefreshModel: Codable {
     let success: Bool
     let result: Result?
     let errorMessage: String
-    let accessToken: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case success, result, errorMessage
-        case accessToken = "access-token"
-    }
+//    let accessToken: String?
+//
+//    enum CodingKeys: String, CodingKey {
+//        case success, result, errorMessage
+//        case accessToken = "access-token"
+//    }
 }

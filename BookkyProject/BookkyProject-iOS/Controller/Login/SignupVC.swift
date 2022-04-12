@@ -174,7 +174,7 @@ extension SignupVC {
         if isValidEmail(testStr: emailText) {
             print("이메일 형식 통과")
             self.emailTextField.layer.borderWidth = 0
-//            // - [x] 이메일 요청의 응답이 올 때까지 사용자에게 알려주기
+            // - [x] 이메일 요청의 응답이 올 때까지 사용자에게 알려주기
             DispatchQueue.main.async {
                 // - [x] 3분 타이머 실행
                 self.totalSecond = 180
@@ -259,7 +259,7 @@ extension SignupVC {
                 if resultData.success {
                     print(resultData)
                     print(resultData.success)
-                    print(resultData.result?.userData.email)
+                    print(resultData.result?.userData?.email)
                 } else {
                     // - [x] 이미 존재하는 이메일입니다.
                     DispatchQueue.main.async {
@@ -308,11 +308,23 @@ extension SignupVC {
                         // - [ ] 로그인까지 자동으로 하자~~
                         self.dismiss(animated: true)
                     }
-                    // - [x] 토큰값 저장할 것
-                    UserDefaults.standard.set(userAccount.result?.userData.email, forKey: UserDefaultsModel.email.rawValue )
-                    UserDefaults.standard.set(userAccount.result?.accessToken, forKey: UserDefaultsModel.accessToken.rawValue )
-                    UserDefaults.standard.set(userAccount.result?.refreshToken, forKey: UserDefaultsModel.refreshToken.rawValue )
-                    UserDefaults.standard.set(userAccount.result?.userData.loginMethod, forKey: UserDefaultsModel.loginMethod.rawValue )
+                    // - [x] 사용자 이메일, 로그인 방식은 UserDefaults에 저장
+                    UserDefaults.standard.set(email, forKey: UserDefaultsModel.email.rawValue )
+                    UserDefaults.standard.set(userAccount.result?.userData?.loginMethod, forKey: UserDefaultsModel.loginMethod.rawValue )
+                    // - [x] 사용자 AT, RT는 Keychain에 저장
+                    if let accessToken = userAccount.result?.accessToken {
+                        if !KeychainManager.shared.create(accessToken, userEmail: email, itemLabel: UserDefaultsModel.accessToken.rawValue) {
+                            // - [ ] 저장이 안될 경우 예외처리 할 것.
+                            print("Signup : AT 저장이 안되었따.")
+                        }
+                    }
+                    if let refreshToken = userAccount.result?.refreshToken {
+                        if !KeychainManager.shared.create(refreshToken, userEmail: email, itemLabel: UserDefaultsModel.refreshToken.rawValue) {
+                            // - [ ] 저장이 안될 경우 예외처리 할 것.
+                            print("Signup : RT 저장이 안되었따.")
+                        }
+                    }
+                    print( KeychainManager.shared.read(userEmail: email, itemLabel: UserDefaultsModel.refreshToken.rawValue) as Any )
                 }
             } else {
                 print("통신 실패...")
