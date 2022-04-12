@@ -1,13 +1,13 @@
 ---
 name: HotFix
 about: 빠르게 수정해야하는 Bug를 적어주세요!
-title: "[BugFix]"
-labels: bug
+title: "[HotFix]"
+labels: ''
 assignees: ''
 
 ---
 
-## BUG Issue
+## HotFix Issue
 
 
 ## ToDo
