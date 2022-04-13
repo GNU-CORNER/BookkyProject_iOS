@@ -7,7 +7,7 @@ assignees: ''
 
 ---
 
-## Feature Issue
+## View Issue
 
 
 ## ToDo
