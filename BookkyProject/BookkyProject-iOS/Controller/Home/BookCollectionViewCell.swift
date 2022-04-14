@@ -9,13 +9,14 @@ import UIKit
 
 class BookCollectionViewCell: UICollectionViewCell {
     
-    
+    var BID :Int = 0
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var bookNameLabel: UILabel!
     
     func setBookData(model: BookData){
-        
+        BID = model.BID
         bookNameLabel.text = model.TITLE
+        
         let url = URL(string: "\(model.thumbnailImage)")
         let data = try! Data(contentsOf: url!)
         bookImageView.image = UIImage(data: data)
@@ -24,7 +25,7 @@ class BookCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        self.bookNameLabel.textColor = UIColor.white
     }
     
 }
