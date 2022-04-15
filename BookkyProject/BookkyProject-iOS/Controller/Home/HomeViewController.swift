@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     var BID : Int = 0
     //추천하게 button&Label
     var cellSize : CGFloat = 0
-    let screenHeight = UIScreen.main.bounds.height
+   
     @IBOutlet weak var recommendButton: UIButton!
     @IBOutlet weak var recommendExplainLabel: UILabel!
     
@@ -170,7 +170,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
     @objc
     func tapAddMoreTagViewButton(sender: UIButton!){
-        let deleteDecimalPoint = Int(self.screenHeight*(1/4))
+        let deleteDecimalPoint = Int(self.bookListTabelView.frame.height*(1/4))
         if cellSize == 0 {
             self.buttonText = "더보기 닫기 >"
             cellSize = CGFloat(deleteDecimalPoint)
@@ -213,6 +213,8 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         headerView.addSubview(noticeButton)
         
         welComeLabel.text = "오늘\n\(user)님에게\n추천하는 책이에요!"
+     
+  
         welComeLabel.adjustsFontSizeToFitWidth = true
         welComeLabel.numberOfLines = 3
         welComeLabel.font = UIFont.systemFont(ofSize: 36)
@@ -251,7 +253,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         return bookList.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let deleteDecimalPoint = Int(self.screenHeight*(1/4))
+        let deleteDecimalPoint = Int(self.bookListTabelView.frame.height*(1/4))
         
         if indexPath.row < 2 {
             

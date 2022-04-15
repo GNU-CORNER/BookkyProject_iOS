@@ -12,7 +12,7 @@ protocol BookCollectionViewCellDeleGate : AnyObject {
 }
 class BookTableViewCell: UITableViewCell {
     
-    let screenHeight = UIScreen.main.bounds.height
+
     weak var cellDelegate : BookCollectionViewCellDeleGate?
     @IBOutlet weak var bookTableViewCell: UIView!
    
@@ -24,7 +24,7 @@ class BookTableViewCell: UITableViewCell {
         bookDataLsit = model.data
         bookCollectionView.reloadData()
     }
-//    var bookList = BookData()
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -46,7 +46,7 @@ class BookTableViewCell: UITableViewCell {
         self.bookCollectionView.backgroundColor = UIColor(named: "primaryColor")
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: 120, height: screenHeight*(1/4)*(11/14))  //cellsize
+        flowLayout.itemSize = CGSize(width: 120, height: 180)  //cellsize
         flowLayout.minimumLineSpacing = 4.0
         self.bookCollectionView?.collectionViewLayout = flowLayout
         self.bookCollectionView?.showsHorizontalScrollIndicator = false

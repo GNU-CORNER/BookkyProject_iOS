@@ -30,4 +30,14 @@ extension CALayer {
 }
 
 //출처: https://archijude.tistory.com/191 [글을 잠깐 혼자 써봤던 진성 프로그래머]
+//ios letter spacing 조절하기
+open class CustomLabel : UILabel {
+    @IBInspectable open var characterSpacing:CGFloat = 1 {
+        didSet {
+            let attributedString = NSMutableAttributedString(string: self.text!)
+            attributedString.addAttribute(NSAttributedString.Key.kern, value: self.characterSpacing, range: NSRange(location: 0, length: attributedString.length))
+            self.attributedText = attributedString
+        }
 
+    }
+}
