@@ -39,6 +39,9 @@ class BookDetailViewController: UIViewController {
     
     //리뷰
     @IBOutlet weak var reviewTitleLabel: UILabel!
+    //펼쳐보기 버튼
+    @IBOutlet weak var tapViewMoreBookIntroduction: UIButton!
+    @IBOutlet weak var tapViewMoreBookIndex: UIButton!
     
     override func viewDidLoad() {
         
@@ -144,19 +147,22 @@ class BookDetailViewController: UIViewController {
     @IBAction func tapMoreBookIntroduction(_ sender: UIButton) {
         if bookExplainContent.numberOfLines == 4{
             bookExplainContent.numberOfLines = 0
-            self.bookExplainContent.text = "펼쳐 보기"
+            self.tapViewMoreBookIntroduction.setTitle("펼쳐보기 닫기>", for: .normal)
         }else if bookExplainContent.numberOfLines == 0 {
             bookExplainContent.numberOfLines = 4
-            self.bookExplainContent.text = "펼쳐 닫기"
+            self.tapViewMoreBookIntroduction.setTitle("펼쳐보기>", for: .normal)
         }
+        
         
     }
     
     @IBAction func tapMoreBookIndex(_ sender: UIButton) {
         if bookIndexLabel.numberOfLines == 4{
             bookIndexLabel.numberOfLines = 0
+            self.tapViewMoreBookIntroduction.setTitle("펼쳐보기 닫기>", for: .normal)
         }else if bookIndexLabel.numberOfLines == 0 {
             bookIndexLabel.numberOfLines = 4
+            self.tapViewMoreBookIntroduction.setTitle("펼쳐보기>", for: .normal)
         }
     }
 }

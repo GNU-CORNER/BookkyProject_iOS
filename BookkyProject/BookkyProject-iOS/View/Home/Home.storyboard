@@ -587,6 +587,8 @@
                         <outlet property="priceLabel" destination="Rtj-hO-8c6" id="8mH-lc-gBw"/>
                         <outlet property="publisherLabel" destination="wjG-5N-eKh" id="HSk-wt-yxq"/>
                         <outlet property="reviewTitleLabel" destination="Ibl-cB-EKP" id="NYU-aC-F6u"/>
+                        <outlet property="tapViewMoreBookIndex" destination="rhx-4y-Iyc" id="MUh-ij-5QH"/>
+                        <outlet property="tapViewMoreBookIntroduction" destination="ZT5-V5-Tlt" id="2hM-i9-7dB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0y-b7-61a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
