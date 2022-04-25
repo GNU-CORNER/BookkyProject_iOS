@@ -76,7 +76,7 @@ class Account {
             }
             do {
                 let decodedData: SignupModel = try JSONDecoder().decode(SignupModel.self, from: data)
-                print(decodedData)
+//                print(decodedData)
                 completion(true, decodedData)
             } catch {
                 print("Error: Email Sender Decode Error. \(String(describing: error))")
@@ -111,7 +111,7 @@ class Account {
                 print("Error: error.")
                 return
             }
-            guard let data = data/*, let response = response as? HTTPURLResponse, (200..<300) ~= response.statusCode */else {
+            guard let data = data, let response = response as? HTTPURLResponse/*, (200..<300) ~= response.statusCode */else {
                 if let response = response as? HTTPURLResponse {
                     print("Error: Email Sender Http Request Failed.")
                     print( response.statusCode )
@@ -120,8 +120,10 @@ class Account {
             }
             do {
                 let decodedData: RefreshModel = try JSONDecoder().decode(RefreshModel.self, from: data)
-                print("야야양")
-                completion(true, decodedData)
+                print("Account-refreshAuth: token 갱신 완!!")
+                print(response.statusCode)
+                print(decodedData)
+                completion(decodedData.success, decodedData)
             } catch {
                 print("Error: Email Sender Decode Error. \(String(describing: error))")
             }
