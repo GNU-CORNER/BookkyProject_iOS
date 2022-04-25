@@ -152,12 +152,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         
     }
     func getBookData(){
-        GetBookData.shared.getBookData() { (sucess,data) in
+        GetBookData.shared.getBookData(){ (sucess,data) in
             if sucess {
                 guard let bookData = data as? BookInformation else {return}
-                //                print("\(BookData)")
                 self.bookList = bookData.result.bookList
-                
                 if bookData.success{
                     DispatchQueue.main.async {
                         self.bookListTabelView.reloadData()
