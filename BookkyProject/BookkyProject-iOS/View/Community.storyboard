@@ -12,7 +12,8 @@
         <!--Navigation Controller-->
         <scene sceneID="7aZ-dU-Ag6">
             <objects>
-                <navigationController navigationBarHidden="YES" id="TwZ-xM-w1V" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="Community" storyboardIdentifier="Community" navigationBarHidden="YES" id="TwZ-xM-w1V" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b5C-m2-Xsr">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -27,7 +28,7 @@
         <!--커뮤니티-->
         <scene sceneID="Znj-Og-OAS">
             <objects>
-                <viewController storyboardIdentifier="Community" id="4qt-eI-r4a" customClass="CommunityViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommunityViewController" id="4qt-eI-r4a" customClass="CommunityViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dNM-Mi-XuV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

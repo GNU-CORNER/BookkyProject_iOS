@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -18,37 +18,42 @@
                 <rect key="frame" x="0.0" y="0.0" width="400" height="180"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tagName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DdP-8v-6KM">
-                        <rect key="frame" x="20" y="0.0" width="70" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Pqk-K7-kaG">
-                        <rect key="frame" x="20" y="21" width="380" height="159"/>
+                        <rect key="frame" x="0.0" y="31" width="400" height="149"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g7W-Uo-MXb">
-                            <size key="itemSize" width="128" height="128"/>
+                            <size key="itemSize" width="128" height="130"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T4p-9f-GoL">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="31"/>
+                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
+                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="Button"/>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="DdP-8v-6KM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9eO-n0-uAH"/>
+                    <constraint firstAttribute="trailing" secondItem="T4p-9f-GoL" secondAttribute="trailing" id="5YH-Io-sJ6"/>
+                    <constraint firstItem="T4p-9f-GoL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Cd3-Mh-u95"/>
+                    <constraint firstItem="T4p-9f-GoL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Hgj-bd-DBR"/>
+                    <constraint firstItem="Pqk-K7-kaG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="JsG-g6-RNs"/>
+                    <constraint firstAttribute="bottom" secondItem="Pqk-K7-kaG" secondAttribute="bottom" id="M4V-7T-5aM"/>
+                    <constraint firstItem="T4p-9f-GoL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="P36-1q-mbh"/>
+                    <constraint firstItem="Pqk-K7-kaG" firstAttribute="top" secondItem="T4p-9f-GoL" secondAttribute="bottom" id="PO1-vS-BKj"/>
                     <constraint firstAttribute="trailing" secondItem="Pqk-K7-kaG" secondAttribute="trailing" id="QRr-0e-ImI"/>
-                    <constraint firstAttribute="bottom" secondItem="Pqk-K7-kaG" secondAttribute="bottom" id="gvN-xd-Tdq"/>
-                    <constraint firstItem="Pqk-K7-kaG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="mOE-4y-ZWo"/>
-                    <constraint firstItem="Pqk-K7-kaG" firstAttribute="top" secondItem="DdP-8v-6KM" secondAttribute="bottom" id="mcq-J4-UJG"/>
-                    <constraint firstItem="DdP-8v-6KM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="wMX-Qp-2bC"/>
+                    <constraint firstItem="Pqk-K7-kaG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mOE-4y-ZWo"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="bookCollectionView" destination="Pqk-K7-kaG" id="cbw-Tx-bPe"/>
                 <outlet property="bookTableViewCell" destination="H2p-sc-9uM" id="XqP-57-1QY"/>
-                <outlet property="tagNameLabel" destination="DdP-8v-6KM" id="5eT-Q1-PoU"/>
+                <outlet property="tagNameButton" destination="T4p-9f-GoL" id="gP9-AF-qCR"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="111.83035714285714"/>
         </tableViewCell>
