@@ -10,15 +10,21 @@ protocol BookCollectionViewCellDeleGate : AnyObject {
     func collectionView(collectionviewcell: BookCollectionViewCell?, index: Int, didTappedInTableViewCell: BookTableViewCell)
 
 }
+protocol BookTableViewCellDeleGate : AnyObject{
+    //위임해줄기능
+    func tapGoTagViewButton()
+}
 class BookTableViewCell: UITableViewCell {
     
-
+    var TID = 0
     weak var cellDelegate : BookCollectionViewCellDeleGate?
+    var tableViewCellDelegate : BookTableViewCellDeleGate?
     @IBOutlet weak var bookTableViewCell: UIView!
    
     @IBOutlet weak var tagNameButton: UIButton!
     @IBOutlet weak var bookCollectionView: UICollectionView!
     var bookDataLsit : [BookData] = []
+   
     func setBookInformation(model : BookList){
         tagNameButton.setTitle(model.tag, for:.normal)
         bookDataLsit = model.data
@@ -56,6 +62,13 @@ class BookTableViewCell: UITableViewCell {
         let cellNib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         self.bookCollectionView?.register(cellNib, forCellWithReuseIdentifier: "bookCollectionViewCellid")
     }
+
+  
+   
+    @IBAction func tapGoTagViewButton(_ sender: UIButton) {
+        tableViewCellDelegate?.tapGoTagViewButton()
+    }
+    
     
 }
 extension BookTableViewCell :UICollectionViewDelegate,UICollectionViewDataSource{
@@ -68,7 +81,9 @@ extension BookTableViewCell :UICollectionViewDelegate,UICollectionViewDataSource
    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell :BookCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCollectionViewCellid", for: indexPath) as? BookCollectionViewCell else {return UICollectionViewCell()}
+        
         cell.setBookData(model: bookDataLsit[indexPath.row])
+        
         
         //        cell.bookNameLabel.text = bookList.object[indexPath.section].book[indexPath.row].bookName
         //        cell.bookImageView.image = UIImage(named: "\(self.bookList.object[indexPath.row].book[indexPath.row].bookImage)")

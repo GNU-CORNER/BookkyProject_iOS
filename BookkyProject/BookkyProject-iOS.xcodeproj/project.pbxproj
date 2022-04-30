@@ -47,6 +47,7 @@
 		F877021428008C72002EA1F5 /* BookCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F877021228008C72002EA1F5 /* BookCollectionViewCell.xib */; };
 		F87B810928016BEF00E2FB7A /* GetForMatData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B810828016BEF00E2FB7A /* GetForMatData.swift */; };
 		F87B810C28016C3D00E2FB7A /* HomeGetDataBookSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B810B28016C3D00E2FB7A /* HomeGetDataBookSerVice.swift */; };
+		F88808DE281D6BDA007CE79C /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88808DD281D6BDA007CE79C /* TagViewController.swift */; };
 		F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88EF53327FD86A400634696 /* BoardTableViewCell.swift */; };
 		F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D4027DDF5EE008EF3CF /* HomeViewController.swift */; };
 		F8F6623C280588A5000135B8 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6623B280588A5000135B8 /* BookDetailViewController.swift */; };
@@ -115,6 +116,7 @@
 		F877021228008C72002EA1F5 /* BookCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookCollectionViewCell.xib; sourceTree = "<group>"; };
 		F87B810828016BEF00E2FB7A /* GetForMatData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetForMatData.swift; sourceTree = "<group>"; };
 		F87B810B28016C3D00E2FB7A /* HomeGetDataBookSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGetDataBookSerVice.swift; sourceTree = "<group>"; };
+		F88808DD281D6BDA007CE79C /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		F88EF53327FD86A400634696 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 		F8F6623B280588A5000135B8 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -285,6 +287,7 @@
 				F877021128008C72002EA1F5 /* BookCollectionViewCell.swift */,
 				F8F6623B280588A5000135B8 /* BookDetailViewController.swift */,
 				F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */,
+				F88808DD281D6BDA007CE79C /* TagViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -507,6 +510,7 @@
 				686B21302805498000384408 /* KeychainManager.swift in Sources */,
 				F85406CF2800284A0027C096 /* testData.swift in Sources */,
 				6852E57727F35EC600CAEF02 /* FindPasswordVC.swift in Sources */,
+				F88808DE281D6BDA007CE79C /* TagViewController.swift in Sources */,
 				6852E57427F307BB00CAEF02 /* SocialSignupVC.swift in Sources */,
 				68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */,
 			);

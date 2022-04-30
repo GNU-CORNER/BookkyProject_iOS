@@ -11,6 +11,34 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Tag View Controller-->
+        <scene sceneID="nvC-hf-OGh">
+            <objects>
+                <viewController storyboardIdentifier="TagViewController" id="lk3-hT-9mY" customClass="TagViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8dw-pT-NtZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cw3-L8-9rA">
+                                <rect key="frame" x="186" y="237" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f2N-CA-ZpF"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="LqD-bC-r9E"/>
+                    <connections>
+                        <outlet property="tagNameLabel" destination="cw3-L8-9rA" id="g19-6Y-F7r"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Zf-dE-lh8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="520" y="-935"/>
+        </scene>
         <!--홈-->
         <scene sceneID="dbN-Lt-57n">
             <objects>
@@ -226,11 +254,12 @@
                         <outlet property="roadMapGoButtonFirst" destination="LV9-DF-Ecv" id="ubc-mi-9k5"/>
                         <outlet property="roadMapGoButtonSecond" destination="S7G-hy-d5a" id="3qj-f0-cD6"/>
                         <segue destination="SlN-ec-z5q" kind="show" identifier="bookDetailViewSegue" id="Wun-3I-KCd"/>
+                        <segue destination="lk3-hT-9mY" kind="show" identifier="bookTagViewSegue" id="GOj-gx-B2b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xaG-HA-xCd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="122" y="-121"/>
+            <point key="canvasLocation" x="43" y="-122"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Piq-jg-gbw">
@@ -593,7 +622,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0y-b7-61a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="785.50724637681162" y="14.0625"/>
+            <point key="canvasLocation" x="1077" y="-64"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Vlg-fT-93m">

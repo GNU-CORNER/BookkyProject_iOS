@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 class HomeViewController: UIViewController, UICollectionViewDelegate {
     let user = "황랑귀"
     //    let bookList = BookData()
@@ -17,7 +16,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     var BID : Int = 0
     //추천하게 button&Label
     var cellSize : CGFloat = 0
-   
+    var TID : Int = 0
     @IBOutlet weak var recommendButton: UIButton!
     @IBOutlet weak var recommendExplainLabel: UILabel!
     
@@ -59,6 +58,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         
         
     }
+    
     override var preferredStatusBarStyle: UIStatusBarStyle{
         
         return .lightContent
@@ -150,6 +150,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         let cellNib = UINib(nibName: "BookTableViewCell", bundle: nil)
         self.bookListTabelView.register(cellNib, forCellReuseIdentifier: "BookTableViewCellid")
         
+        
     }
     func getBookData(){
         GetBookData.shared.getBookData(){ (sucess,data) in
@@ -168,7 +169,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
     @objc
     func tapAddMoreTagViewButton(sender: UIButton!){
-        let deleteDecimalPoint = Int(self.bookListTabelView.frame.height*(1/4))
+        let deleteDecimalPoint = 230
         if cellSize == 0 {
             self.buttonText = "더보기 닫기 >"
             cellSize = CGFloat(deleteDecimalPoint)
@@ -195,6 +196,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         tabBarController?.selectedIndex = 1
     }
     
+  
 }
 
 extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
@@ -244,6 +246,8 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         guard let cell:BookTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BookTableViewCellid", for: indexPath) as? BookTableViewCell else { return UITableViewCell()}
         cell.setBookInformation(model: bookList[indexPath.row])
         cell.cellDelegate = self
+        cell.tableViewCellDelegate = self
+        
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -251,7 +255,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         return bookList.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let deleteDecimalPoint = Int(self.bookListTabelView.frame.height*(1/4))
+        let deleteDecimalPoint = 230
         
         if indexPath.row < 2 {
             
@@ -266,7 +270,9 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
             let BookDetailViewController = segue.destination as! BookDetailViewController
             
             BookDetailViewController.BID = self.BID
-            
+        }else if segue.identifier == "bookTagViewSegue"{
+            let TagViewController = segue.destination as! TagViewController
+            TagViewController.tagNameLabel?.text = "\(self.TID)"
             
         }
         
@@ -281,5 +287,14 @@ extension HomeViewController:BookCollectionViewCellDeleGate{
         //        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController
         //        else {return}
         //        self.navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+extension HomeViewController:BookTableViewCellDeleGate{
+    func tapGoTagViewButton(){
+//      guard let tagViewController = self.storyboard?.instantiateViewController(withIdentifier: "TagViewController") as? TagViewController else {return}
+//        self.navigationController?.pushViewController(tagViewController, animated: true)
+        performSegue(withIdentifier: "bookTagViewSegue", sender: self)
+        
     }
 }
