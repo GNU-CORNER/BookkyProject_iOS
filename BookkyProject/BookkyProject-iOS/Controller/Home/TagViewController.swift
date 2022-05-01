@@ -24,6 +24,7 @@ class TagViewController: UIViewController {
 //        UIApplication.shared.statusBarStyle
         // 13에서 안먹힌다 다른방법 연구
         // Do any additional setup after loading the view.
+        //
     }
     private func getTagBookData(){
         GetBookData.shared.getTagBookData(TID: self.TID){ (sucess,data) in
