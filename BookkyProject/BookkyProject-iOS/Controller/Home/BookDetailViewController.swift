@@ -136,7 +136,7 @@ class BookDetailViewController: UIViewController {
                     self.setBookDetailData(model: bookDeatilData)
                     self.detailBookTagListCollectionView.reloadData()
                 }
-                debugPrint("\(bookDetailData)")
+//                debugPrint("\(bookDetailData)")
             }catch(let err) {
                 print("Decoding Error")
                 print(err.localizedDescription)

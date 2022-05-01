@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate {
     let user = "황랑귀"
-    //    let bookList = BookData()
+
     var buttonText = "태그 더보기>"
     var bookList : [BookList] = []
     //
@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     //추천하게 button&Label
     var cellSize : CGFloat = 0
     var TID : Int = 0
+    var tidArray : [Int] = []
     @IBOutlet weak var recommendButton: UIButton!
     @IBOutlet weak var recommendExplainLabel: UILabel!
     
@@ -42,7 +43,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     //
     @IBOutlet weak var bookListTabelView: UITableView!
     
-    
+   
     
     override func viewDidLoad() {
         
@@ -133,7 +134,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         
         self.QnABoardGoButton.setTitle("QnA 게시판", for: .normal)
         self.QnABoardGoButton.tintColor = UIColor.black
-        self.QnABoardTextGoButton.setTitle("함수를 썻는데 너무이상해요함수를 썻는데 너무이상해요함수를 썻는데 너무이상해요함수를 썻는데 너무이상해요 ", for: .normal)
+        self.QnABoardTextGoButton.setTitle("함수를 썻는데 너무이상해요함수를 썻는데 너무 이상해요  ", for: .normal)
         self.QnABoardTextGoButton.tintColor = UIColor.black
         
         self.hotBoardGoButton.setTitle("HoT 게시판", for: .normal)
@@ -185,14 +186,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
     
     @IBAction func tapCommunityGoButton(_ sender: Any) {
-//루트뷰 컨트롤러 전환
-//        let storyBoard = UIStoryboard(name: "Community", bundle: nil)
-//        let communityViewController = storyBoard.instantiateViewController(withIdentifier: "Community")
-//        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-//        guard let delegate = sceneDelegate else {
-//            return
-//        }
-//        delegate.window?.rootViewController = communityViewController
+
         tabBarController?.selectedIndex = 1
     }
     
@@ -246,8 +240,13 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         guard let cell:BookTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BookTableViewCellid", for: indexPath) as? BookTableViewCell else { return UITableViewCell()}
         cell.setBookInformation(model: bookList[indexPath.row])
         cell.cellDelegate = self
-        cell.tableViewCellDelegate = self
-        
+        if indexPath.row == 0 {
+            tidArray.append(cell.TID)
+        }else if indexPath.row == 1{
+            tidArray.append(cell.TID)
+        }else if indexPath.row == 2{
+            tidArray.append(cell.TID)
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -271,12 +270,30 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
             
             BookDetailViewController.BID = self.BID
         }else if segue.identifier == "bookTagViewSegue"{
-            let TagViewController = segue.destination as! TagViewController
-            TagViewController.tagNameLabel?.text = "\(self.TID)"
+            guard let tagViewController = segue.destination as? TagViewController else {return}
             
+            switch sender {
+            case 0 as Int:
+                tagViewController.TID = tidArray[0]
+            case 1 as Int:
+                tagViewController.TID = tidArray[1]
+            case 2 as Int:
+                tagViewController.TID = tidArray[2]
+            default :
+                print("선택 error")
+            }
+            
+                
+            
+     
         }
-        
+           
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "bookTagViewSegue", sender: indexPath.row)
+    }
+     
+  
 }
 
 extension HomeViewController:BookCollectionViewCellDeleGate{
@@ -284,17 +301,7 @@ extension HomeViewController:BookCollectionViewCellDeleGate{
         self.BID = collectionviewcell?.BID ?? 0
         
         performSegue(withIdentifier: "bookDetailViewSegue", sender: self)
-        //        guard let viewController = self.storyboard?.instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController
-        //        else {return}
-        //        self.navigationController?.pushViewController(viewController, animated: true)
+
     }
 }
 
-extension HomeViewController:BookTableViewCellDeleGate{
-    func tapGoTagViewButton(){
-//      guard let tagViewController = self.storyboard?.instantiateViewController(withIdentifier: "TagViewController") as? TagViewController else {return}
-//        self.navigationController?.pushViewController(tagViewController, animated: true)
-        performSegue(withIdentifier: "bookTagViewSegue", sender: self)
-        
-    }
-}

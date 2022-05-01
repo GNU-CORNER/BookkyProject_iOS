@@ -49,8 +49,11 @@
 		F87B810C28016C3D00E2FB7A /* HomeGetDataBookSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B810B28016C3D00E2FB7A /* HomeGetDataBookSerVice.swift */; };
 		F88808DE281D6BDA007CE79C /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88808DD281D6BDA007CE79C /* TagViewController.swift */; };
 		F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88EF53327FD86A400634696 /* BoardTableViewCell.swift */; };
+		F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */; };
+		F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */; };
 		F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D4027DDF5EE008EF3CF /* HomeViewController.swift */; };
 		F8F6623C280588A5000135B8 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6623B280588A5000135B8 /* BookDetailViewController.swift */; };
+		F8FFC1F9281EA639005B18B2 /* TagDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFC1F8281EA639005B18B2 /* TagDataFormat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,7 +121,10 @@
 		F87B810B28016C3D00E2FB7A /* HomeGetDataBookSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeGetDataBookSerVice.swift; sourceTree = "<group>"; };
 		F88808DD281D6BDA007CE79C /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
 		F88EF53327FD86A400634696 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
+		F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCollectionViewCell.swift; sourceTree = "<group>"; };
+		F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionReusableViewHeader.swift; sourceTree = "<group>"; };
 		F8F6623B280588A5000135B8 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
+		F8FFC1F8281EA639005B18B2 /* TagDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDataFormat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +281,7 @@
 				686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */,
 				68FBE65627FD50E8003DBFB7 /* SignupModel.swift */,
 				68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */,
+				F8FFC1F8281EA639005B18B2 /* TagDataFormat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +295,8 @@
 				F8F6623B280588A5000135B8 /* BookDetailViewController.swift */,
 				F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */,
 				F88808DD281D6BDA007CE79C /* TagViewController.swift */,
+				F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */,
+				F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -502,10 +511,13 @@
 				686AE6C227FC1F9200B77245 /* EmailAuthModel.swift in Sources */,
 				68FBE65427FCA245003DBFB7 /* BookkyURL.swift in Sources */,
 				F8F6623C280588A5000135B8 /* BookDetailViewController.swift in Sources */,
+				F8FFC1F9281EA639005B18B2 /* TagDataFormat.swift in Sources */,
+				F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */,
 				68683D7227DE40DB008EF3CF /* RecommendViewController.swift in Sources */,
 				F80756DC2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift in Sources */,
 				F87B810928016BEF00E2FB7A /* GetForMatData.swift in Sources */,
 				F87B810C28016C3D00E2FB7A /* HomeGetDataBookSerVice.swift in Sources */,
+				F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */,
 				F874319A28030012003EA8C0 /* ExtensionUikit.swift in Sources */,
 				686B21302805498000384408 /* KeychainManager.swift in Sources */,
 				F85406CF2800284A0027C096 /* testData.swift in Sources */,

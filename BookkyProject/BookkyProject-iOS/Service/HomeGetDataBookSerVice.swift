@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 let Homeurl = "http://app.bookky.org:8002/v1/home"
+let tagUrl = "http://app.bookky.org:8002/v1/books/tag/"
 class GetBookData {
     static var shared = GetBookData()
     func getBookData(completion: @escaping(Bool,Any)->Void){
@@ -33,6 +34,35 @@ class GetBookData {
                 completion(true,bookData)
 //                debugPrint("\(bookData)")
             }catch(let err) {
+                print("Decoding Error")
+                print(err.localizedDescription)
+            }
+        }.resume()
+    }
+    func getTagBookData(TID:Int,completion: @escaping(Bool,Any)->Void){
+        let session = URLSession(configuration: .default)
+        guard let url = URL(string: tagUrl+"\(TID)")else{
+            print("Error : Can not Create URL")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        session.dataTask(with: request) { (data,response,error) in
+            guard error == nil else {
+                print("Error: error.")
+                return
+            }
+
+            guard let  data = data , let response = response as? HTTPURLResponse, (200..<300) ~= response.statusCode else {
+                print("\(String(describing: error))")
+                return
+            }
+            do {
+                let tagBookData = try JSONDecoder().decode(TagInformation.self, from: data)
+                completion(true,tagBookData)
+     
+            }
+            catch(let err) {
                 print("Decoding Error")
                 print(err.localizedDescription)
             }
