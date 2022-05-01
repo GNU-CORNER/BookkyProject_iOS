@@ -8,23 +8,91 @@
 import UIKit
 
 class TagViewController: UIViewController {
-    var BID :Int = 0
-    @IBOutlet weak var tagNameLabel: UILabel!
+    var TID :Int = 0
+  
+  
+    
+    @IBOutlet weak var tagCollectionView: UICollectionView!
+    
+    var tagBookList : [TagBookData]  = []
+    var tagName : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+      
+        setCollectionView()
+        getTagBookData()
+//        UIApplication.shared.statusBarStyle
+        // 13에서 안먹힌다 다른방법 연구
         // Do any additional setup after loading the view.
     }
-    
+    private func getTagBookData(){
+        GetBookData.shared.getTagBookData(TID: self.TID){ (sucess,data) in
+            if sucess {
+                guard let tagBookData = data as? TagInformation else {return}
+                self.tagBookList = tagBookData.result.bookList.data
+                self.tagName = tagBookData.result.bookList.tag
+                
+                if tagBookData.success{
+                    DispatchQueue.main.async {
+                        
+                        self.tagCollectionView.reloadData()
+                    }
+                }else {
+                    print("통신 오류")
+                }
+            }
+        }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
+    private func setCollectionView(){
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "primaryColor")
+        // 꼭 체킹해줘야함 선언한지안한지
+        self.tagCollectionView.dataSource = self
+        self.tagCollectionView.delegate = self
+        let tagCollectionViewWidth = CGFloat(self.tagCollectionView.frame.width*(1/5))
+        let flowlLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        flowlLayout.itemSize = CGSize(width: tagCollectionViewWidth, height: 120)
+      
+        tagCollectionView.collectionViewLayout = flowlLayout
+    }
+    
+}
+extension TagViewController : UICollectionViewDelegate,UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("\(tagBookList.count)")
+        return tagBookList.count
+   
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell : TagViewCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewId", for: indexPath) as? TagViewCollectionViewCell else {return UICollectionViewCell()}
+        cell.setTagBookList(model: tagBookList[indexPath.row])
+       
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "tagCollectionViewHedaerId", for: indexPath)as! TagCollectionReusableViewHeader
+        headerView.tagNameLabel.text = "\(self.tagName)과\n관련된 책이에요!"
+        
+        return headerView
+        
+       
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: tagCollectionView.frame.width, height: 150)
+    }
+}
+extension TagViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        //컬렉션뷰 전체 상화좌우 간격
+           return UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
+        }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        //cell 위아래 간격
+            return 20
+        }
 }

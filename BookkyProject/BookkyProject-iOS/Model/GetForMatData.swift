@@ -26,6 +26,7 @@ struct BookList : Codable{
     //    let success : Bool
     
     let tag : String
+    let TID : Int
     let data : [BookData]
     
 }
