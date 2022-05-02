@@ -62,6 +62,9 @@
                                                     <color key="titleColor" red="0.90196078430000004" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="tapWriteGOButton:" destination="4qt-eI-r4a" eventType="touchUpInside" id="gVS-va-ofm"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

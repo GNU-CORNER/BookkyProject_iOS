@@ -214,6 +214,9 @@ class CommunityViewController: UIViewController {
         }
         self.boardTableView.reloadData()
     }
+    
+    @IBAction func tapWriteGOButton(_ sender: UIButton) {
+    }
 }
 extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
