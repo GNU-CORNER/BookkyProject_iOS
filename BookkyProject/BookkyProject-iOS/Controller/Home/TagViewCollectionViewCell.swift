@@ -24,7 +24,7 @@ class TagViewCollectionViewCell: UICollectionViewCell {
        
         flowLayout.itemSize = CGSize(width: 80, height: 120)  //cellsize
         flowLayout.minimumLineSpacing = 1.0
-        bookNameLabel.numberOfLines = 2
+        bookNameLabel.numberOfLines = 2 
         bookNameLabel.font = UIFont.systemFont(ofSize: 13)
     }
     override func awakeFromNib() {
