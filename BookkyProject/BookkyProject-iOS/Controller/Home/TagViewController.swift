@@ -54,7 +54,6 @@ class TagViewController: UIViewController {
         // 꼭 체킹해줘야함 선언한지안한지
         self.tagCollectionView.dataSource = self
         self.tagCollectionView.delegate = self
-        let tagCollectionViewWidth = CGFloat(self.tagCollectionView.frame.width*(1/5))
         let flowlLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         flowlLayout.itemSize = CGSize(width: deviceWidth*(1/5), height: 120)
       
