@@ -82,6 +82,19 @@ class CommunityViewController: UIViewController {
         
         boardTypeColor()
         
+
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     private func boardTypeColor() {
         self.freeBoardGoButton.tintColor = UIColor(named: "grayColor")
@@ -215,8 +228,7 @@ class CommunityViewController: UIViewController {
         self.boardTableView.reloadData()
     }
     
-    @IBAction func tapWriteGOButton(_ sender: UIButton) {
-    }
+   
 }
 extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

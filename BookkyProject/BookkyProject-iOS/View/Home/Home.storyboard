@@ -79,7 +79,6 @@ Label</string>
                                     <color key="backgroundColor" name="primaryColor"/>
                                     <constraints>
                                         <constraint firstItem="dan-wP-5pT" firstAttribute="leading" secondItem="yyy-qn-c9V" secondAttribute="leadingMargin" constant="20" id="8xh-or-nlY"/>
-
                                         <constraint firstAttribute="trailingMargin" secondItem="dan-wP-5pT" secondAttribute="trailing" id="CBX-bR-RH7"/>
                                         <constraint firstItem="dan-wP-5pT" firstAttribute="top" secondItem="yyy-qn-c9V" secondAttribute="topMargin" id="EdG-aa-D5j"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="dan-wP-5pT" secondAttribute="bottom" id="d4t-vl-Vzx"/>
