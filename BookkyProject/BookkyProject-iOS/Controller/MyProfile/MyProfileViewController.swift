@@ -9,12 +9,34 @@ import UIKit
 
 class MyProfileViewController: UIViewController {
 
+    @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    var userName = "이다혜"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setDefaultMyProfileView()
     }
     
+    func setUserImageViewCornerRadius() {
+        userImageView.layer.cornerRadius = self.userImageView.frame.width / 2
+    }
+    
+    func setDefaultUserImage() {
+        userImageView.image = UIImage(named: "북키프사")
+    }
+    
+    func setUserNameLabel(_ userName:String) {
+        userNameLabel.text = userName + "님, 반가워요!"
+    }
+    
+    func setDefaultMyProfileView() {
+        setUserImageViewCornerRadius()
+        setDefaultUserImage()
+        setUserNameLabel(userName)
+        
+    }
 
     @IBAction func loginTestButton(_ sender: Any) {
          //스토리보드의 파일 찾기
@@ -31,14 +53,5 @@ class MyProfileViewController: UIViewController {
         // 화면 전환!
         self.present(vc, animated: true)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
