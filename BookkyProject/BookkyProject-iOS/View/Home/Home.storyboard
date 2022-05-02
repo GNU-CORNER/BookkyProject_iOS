@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--책 더보기-->
+        <!--태그 더보기-->
         <scene sceneID="nvC-hf-OGh">
             <objects>
                 <viewController storyboardIdentifier="TagViewController" id="lk3-hT-9mY" customClass="TagViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,7 +39,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="azU-eg-DET">
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="132.5"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSk-1P-R5J">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSk-1P-R5J">
                                                     <rect key="frame" x="0.0" y="132.5" width="128" height="20.5"/>
                                                     <string key="text">Label
 Label</string>
@@ -70,7 +70,7 @@ Label</string>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dan-wP-5pT">
-                                            <rect key="frame" x="8" y="8" width="398" height="34"/>
+                                            <rect key="frame" x="28" y="8" width="378" height="34"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -78,7 +78,7 @@ Label</string>
                                     </subviews>
                                     <color key="backgroundColor" name="primaryColor"/>
                                     <constraints>
-                                        <constraint firstItem="dan-wP-5pT" firstAttribute="leading" secondItem="yyy-qn-c9V" secondAttribute="leadingMargin" id="8xh-or-nlY"/>
+                                        <constraint firstItem="dan-wP-5pT" firstAttribute="leading" secondItem="yyy-qn-c9V" secondAttribute="leadingMargin" constant="20" id="8xh-or-nlY"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="dan-wP-5pT" secondAttribute="trailing" id="CBX-bR-RH7"/>
                                         <constraint firstItem="dan-wP-5pT" firstAttribute="top" secondItem="yyy-qn-c9V" secondAttribute="topMargin" id="EdG-aa-D5j"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="dan-wP-5pT" secondAttribute="bottom" id="d4t-vl-Vzx"/>
@@ -98,8 +98,8 @@ Label</string>
                             <constraint firstItem="xbJ-Kn-WC5" firstAttribute="top" secondItem="f2N-CA-ZpF" secondAttribute="top" id="z8E-In-KfA"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="책 더보기" id="LqD-bC-r9E">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="Hc8-Tj-vvs"/>
+                    <navigationItem key="navigationItem" title="태그 더보기" id="LqD-bC-r9E">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="square.and.arrow.up" catalog="system" id="wbn-2E-Fli"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tagCollectionView" destination="xbJ-Kn-WC5" id="3zn-ME-V4I"/>

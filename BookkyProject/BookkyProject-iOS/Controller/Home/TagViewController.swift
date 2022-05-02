@@ -16,6 +16,7 @@ class TagViewController: UIViewController {
     
     var tagBookList : [TagBookData]  = []
     var tagName : String = ""
+    var deviceWidth = UIScreen.main.bounds.size.width
     override func viewDidLoad() {
         super.viewDidLoad()
       
@@ -49,13 +50,13 @@ class TagViewController: UIViewController {
     private func setCollectionView(){
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
-        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "primaryColor")
+//        self.navigationController?.navigationBar.backgroundColor = UIColor(named: "primaryColor")
         // 꼭 체킹해줘야함 선언한지안한지
         self.tagCollectionView.dataSource = self
         self.tagCollectionView.delegate = self
         let tagCollectionViewWidth = CGFloat(self.tagCollectionView.frame.width*(1/5))
         let flowlLayout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        flowlLayout.itemSize = CGSize(width: tagCollectionViewWidth, height: 120)
+        flowlLayout.itemSize = CGSize(width: deviceWidth*(1/5), height: 120)
       
         tagCollectionView.collectionViewLayout = flowlLayout
     }
@@ -84,7 +85,7 @@ extension TagViewController : UICollectionViewDelegate,UICollectionViewDataSourc
        
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: tagCollectionView.frame.width, height: 150)
+        return CGSize(width: tagCollectionView.frame.width, height: 110)
     }
 }
 extension TagViewController : UICollectionViewDelegateFlowLayout {
@@ -94,6 +95,6 @@ extension TagViewController : UICollectionViewDelegateFlowLayout {
         }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         //cell 위아래 간격
-            return 20
+            return 25
         }
 }
