@@ -63,7 +63,7 @@ class TagViewController: UIViewController {
 }
 extension TagViewController : UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("\(tagBookList.count)")
+       
         return tagBookList.count
    
     }

@@ -7,18 +7,19 @@
 
 import Foundation
 import UIKit
-let Homeurl = "http://app.bookky.org:8002/v1/home"
-let tagUrl = "http://app.bookky.org:8002/v1/books/tag/"
+
 class GetBookData {
     static var shared = GetBookData()
     func getBookData(completion: @escaping(Bool,Any)->Void){
         let session = URLSession(configuration: .default)
-        guard let url = URL(string: Homeurl) else{
+        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.HomeURL) else{
             print("Error: Cannot Create URL")
             return
         }
+       
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "accept")
         session.dataTask(with: request) { (data,response,error) in
             guard error == nil else {
                 print("Error: error.")
@@ -41,12 +42,14 @@ class GetBookData {
     }
     func getTagBookData(TID:Int,completion: @escaping(Bool,Any)->Void){
         let session = URLSession(configuration: .default)
-        guard let url = URL(string: tagUrl+"\(TID)")else{
+        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.tagURL+"\(TID)")else{
+        
             print("Error : Can not Create URL")
             return
         }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "accept")
         session.dataTask(with: request) { (data,response,error) in
             guard error == nil else {
                 print("Error: error.")

@@ -153,7 +153,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         
         
     }
-    func getBookData(){
+    private func getBookData(){
         GetBookData.shared.getBookData(){ (sucess,data) in
             if sucess {
                 guard let bookData = data as? BookInformation else {return}
@@ -247,6 +247,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         }else if indexPath.row == 2{
             tidArray.append(cell.TID)
         }
+       
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
