@@ -15,8 +15,10 @@ class CommunityViewController: UIViewController {
     let bookMarketBoard = BookMarket()
     let myTextBoard = Mytext()
     
+    var postList : [PostListData] = []
+    // 좋아요개수 와 댓글개수
+    var subDataList : [CommunitySubData] = []
     @IBOutlet var communityView: UIView!
-    @IBOutlet weak var headerStackView: UIStackView!
     @IBOutlet weak var boardNameButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var writeTextButton: UIButton!
@@ -38,31 +40,37 @@ class CommunityViewController: UIViewController {
         boardTableView.delegate = self
         boardTableView.dataSource = self
         
+        
+        SetdropDownView()
+        
+      
+     
+        //searchButton
+        self.searchButton.tintColor = .black
+        //writeTextButton
+        setwriteTextButton()
+        //초기화
+        setinitCommunity()
+        boardTypeColor()
+        communityGetWriteList()
+    }
+    func SetdropDownView(){
+    
         self.freeBoardGoButton.setTitle("자유", for: .normal)
         self.hotBoardGobutton.setTitle("HOT", for: .normal)
         self.QnABoardGoButton.setTitle("Q&A", for: .normal)
         self.bookMarketGoButton.setTitle("책 장터", for: .normal)
         self.myTextGoButton.setTitle("내 글 보기", for: .normal)
-        
-        
-        
-        //boardNameButton 초기
-        self.freeBoardGoButton.setTitleColor(.black, for: .normal)
-        
-        //보드게시판 클릭 초기
-        
+    }
+    func setinitCommunity(){
+        //보드게시판 클릭전 초기
         self.boardNameButton.setTitle("자유 게시판", for: .normal)
         self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
         self.boardNameButton.sizeToFit()
         self.boardNameButton.tintColor = .black
-        
-        
-        //searchButton
-        self.searchButton.tintColor = .black
-        
-        
-        //writeTextButton
-        
+        self.freeBoardGoButton.setTitleColor(.black, for: .normal)
+    }
+    private func setwriteTextButton(){
         self.writeTextButton.setImage(UIImage(systemName: "pencil"), for: .normal)
         self.writeTextButton.setTitle("글쓰기 ", for: .normal)
         self.writeTextButton.setPreferredSymbolConfiguration(.init(pointSize: 15, weight: .regular, scale: .default), forImageIn: .normal)
@@ -79,9 +87,22 @@ class CommunityViewController: UIViewController {
         self.boardTypeStackView.layer.borderColor = UIColor.white.cgColor
         self.boardTypeStackView.layer.cornerRadius = 10
         self.boardTypeStackView.sizeToFit()
+    }
+    override func viewWillAppear(_ animated: Bool) {
         
-        boardTypeColor()
-        
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+      
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        communityGetWriteList()
+        self.boardTableView.reloadData()
     }
     private func boardTypeColor() {
         self.freeBoardGoButton.tintColor = UIColor(named: "grayColor")
@@ -91,114 +112,31 @@ class CommunityViewController: UIViewController {
         self.myTextGoButton.tintColor = UIColor(named: "grayColor")
     }
     
-    //button 선택에 따라 게시판 이름 바뀜
+    //드롭다운 메뉴구현
     @IBAction func tapGoBoard(_ sender: UIButton) {
-        
         if sender == self.freeBoardGoButton{
             self.boardTypeNumber = 0
-            self.boardNameButton.setTitle("자유 게시판", for: .normal)
-            self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
-            
-            self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            self.freeBoardGoButton.setTitleColor(.black, for: .normal)
-            self.boardTypeStackView.isHidden = true
-            self.grayView.isHidden = true
-            
-            //이부분 좀더 간편하게 하는 방법 없을까
-            self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
-            self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
-            self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
-            self.myTextGoButton.setTitleColor(.gray, for: .normal)
-            // 이부분도
-            self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.myTextGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            
-        }else if sender == self.hotBoardGobutton{
+            setDropDownMenu()
+            communityGetWriteList()
+        }else if sender == self.bookMarketGoButton{
             self.boardTypeNumber = 1
-            self.boardNameButton.setTitle("H🔥t 게시판", for: .normal)
-            self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
-            
-            self.hotBoardGobutton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            self.hotBoardGobutton.setTitleColor(.black, for: .normal)
-            self.boardTypeStackView.isHidden = true
-            self.grayView.isHidden = true
-            
-            self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
-            self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
-            self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
-            self.myTextGoButton.setTitleColor(.gray, for: .normal)
-            
-            self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.myTextGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            
+            setDropDownMenu()
+            communityGetWriteList()
         }else if sender == self.QnABoardGoButton{
             self.boardTypeNumber = 2
-            self.boardNameButton.setTitle("Q&A 게시판", for: .normal)
-            self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
-            
-            self.QnABoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            self.QnABoardGoButton.setTitleColor(.black, for: .normal)
-            self.boardTypeStackView.isHidden = true
-            self.grayView.isHidden = true
-            
-            self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
-            self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
-            self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
-            self.myTextGoButton.setTitleColor(.gray, for: .normal)
-            
-            self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.myTextGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            
-        }else if sender == self.bookMarketGoButton{
+            setDropDownMenu()
+            communityGetWriteList()
+        }else if sender == self.hotBoardGobutton{
             self.boardTypeNumber = 3
-            self.boardNameButton.setTitle("책 장터 게시판", for: .normal)
-            self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
-            self.bookMarketGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            self.bookMarketGoButton.setTitleColor(.black, for: .normal)
-            self.boardTypeStackView.isHidden = true
-            self.grayView.isHidden = true
-            
-            self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
-            self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
-            self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
-            self.myTextGoButton.setTitleColor(.gray, for: .normal)
-            
-            self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.myTextGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            
+            setDropDownMenu()
         }else if sender == self.myTextGoButton{
             self.boardTypeNumber = 4
-            self.boardNameButton.setTitle("내글 보기", for: .normal)
-            self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
-            
-            self.myTextGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            self.myTextGoButton.setTitleColor(.black, for: .normal)
-            self.boardTypeStackView.isHidden = true
-            self.grayView.isHidden = true
-            
-            self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
-            self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
-            self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
-            self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
-            
-            self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-            self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            setDropDownMenu()
         }
         self.boardTableView.reloadData()
     }
     
     @IBAction func tapChangeBoard(_ sender: UIButton) {
-        
         if boardTypeStackView.isHidden == false {
             self.boardTypeStackView.isHidden = true
             self.grayView.isHidden = true
@@ -209,53 +147,104 @@ class CommunityViewController: UIViewController {
             self.boardTypeStackView.backgroundColor = .white
             self.communityView.bringSubviewToFront(self.grayView)
             self.communityView.bringSubviewToFront(self.boardTypeStackView)
-           
-            
         }
         self.boardTableView.reloadData()
     }
+    //드롭다운을 위한 메소드
+    func setDropDownMenu(){
+        var boardName : String = "자유 게시판"
+        self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
+        self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
+        self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
+        self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
+        self.myTextGoButton.setTitleColor(.gray, for: .normal)
+        
+        self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        self.myTextGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        self.boardTypeStackView.isHidden = true
+        self.grayView.isHidden = true
+        self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+        
+        if boardTypeNumber == 0{
+            self.freeBoardGoButton.setTitleColor(.black, for: .normal)
+            self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            boardName = "자유 게시판"
+        }
+        else if boardTypeNumber == 1 {
+            self.bookMarketGoButton.setTitleColor(.black, for: .normal)
+            self.bookMarketGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            boardName = "책 장터 게시판"
+        }else if boardTypeNumber == 2{
+            self.QnABoardGoButton.setTitleColor(.black, for: .normal)
+            self.QnABoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            boardName = "Q&A 게시판"
+        }else if boardTypeNumber == 3{
+            self.hotBoardGobutton.setTitleColor(.black, for: .normal)
+            self.hotBoardGobutton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            boardName = "H🔥t 게시판"
+        }else if boardTypeNumber == 4{
+            self.myTextGoButton.setTitleColor(.black, for: .normal)
+            self.myTextGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            boardName = "내글 보기"
+        }else{
+            self.freeBoardGoButton.setTitleColor(.black, for: .normal)
+            self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            boardName = "자유 게시판"
+        }
+        self.boardNameButton.setTitle(boardName, for: .normal)
+
+    }
+    private func communityGetWriteList(){
+        CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber) { (success,data) in
+            if success{
+                guard let communityGetWriteList = data as? WriteListInformation else {return}
+                self.postList = communityGetWriteList.result.postList.reversed()
+                self.subDataList = communityGetWriteList.result.subData.reversed()
+                print(self.postList)
+                print(self.subDataList)
+                if communityGetWriteList.success{
+                    DispatchQueue.main.async {
+                        self.boardTableView.reloadData()
+                        
+                    }
+                }else{
+                    print("통신오류")
+                }
+                
+            }
+        }
+    }
+   
 }
 extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return postList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = boardTableView.dequeueReusableCell(withIdentifier: "boadrTableViewCellid", for: indexPath) as? BoardTableViewCell else { return UITableViewCell()}
+        cell.setBoardTableViewPostList(model:postList[indexPath.row])
         
-        cell.tittleLabel.text = freeBoard.objectArray[indexPath.row].title
-        cell.subtittleLabel.text = freeBoard.objectArray[indexPath.row].subtitle
         cell.subtittleLabel.numberOfLines = 2
-        cell.subtittleLabel.font = UIFont.systemFont(ofSize: 13)
-       
-        
+        cell.subtittleLabel.font = UIFont.systemFont(ofSize: 15)
         if boardTypeNumber == 0 {
-            cell.tittleLabel.text = freeBoard.objectArray[indexPath.row].title
-            cell.subtittleLabel.text = freeBoard.objectArray[indexPath.row].subtitle
-          
-            
+            cell.setBoardTableViewPostList(model:postList[indexPath.row])
+            cell.setBoardTableViewSubList(model: subDataList[indexPath.row])
         }else if boardTypeNumber == 1{
-            cell.tittleLabel.text = HotBoard.objectArray[indexPath.row].title
-            cell.subtittleLabel.text = HotBoard.objectArray[indexPath.row].subtitle
-        
+            cell.setBoardTableViewPostList(model:postList[indexPath.row])
+            cell.setBoardTableViewSubList(model: subDataList[indexPath.row])
+        }else if boardTypeNumber == 2{
+            cell.setBoardTableViewPostList(model:postList[indexPath.row])
+            cell.setBoardTableViewSubList(model: subDataList[indexPath.row])
         }
-        else if boardTypeNumber == 2{
-            cell.tittleLabel.text = QnABoard.objectArray[indexPath.row].title
-            cell.subtittleLabel.text = QnABoard.objectArray[indexPath.row].subtitle
-      
-        }else if boardTypeNumber == 3{
-            cell.tittleLabel.text = bookMarketBoard.objectArray[indexPath.row].title
-            cell.subtittleLabel.text = bookMarketBoard.objectArray[indexPath.row].subtitle
-    
-        }else if boardTypeNumber == 4{
-            cell.tittleLabel.text = myTextBoard.objectArray[indexPath.row].title
-            cell.subtittleLabel.text = myTextBoard.objectArray[indexPath.row].subtitle
-
-            
-        }
+//        else if boardTypeNumber == 4{
+//            cell.tittleLabel.text = myTextBoard.objectArray[indexPath.row].title
+//            cell.subtittleLabel.text = myTextBoard.objectArray[indexPath.row].subtitle
+//        }
         return cell
-        
-        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
