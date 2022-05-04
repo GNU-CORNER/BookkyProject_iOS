@@ -273,16 +273,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         }else if segue.identifier == "bookTagViewSegue"{
             guard let tagViewController = segue.destination as? TagViewController else {return}
             
-            switch sender {
-            case 0 as Int:
-                tagViewController.TID = tidArray[0]
-            case 1 as Int:
-                tagViewController.TID = tidArray[1]
-            case 2 as Int:
-                tagViewController.TID = tidArray[2]
-            default :
-                print("선택 error")
-            }
+            tagViewController.TID = self.TID
             
                 
             
@@ -291,6 +282,9 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
            
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? BookTableViewCell else {return}
+        self.TID = cell.TID
         performSegue(withIdentifier: "bookTagViewSegue", sender: indexPath.row)
     }
      

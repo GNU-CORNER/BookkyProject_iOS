@@ -56,6 +56,7 @@
 		F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */; };
 		F8C11E83281FE45E000D1689 /* ButtonPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C11E82281FE45E000D1689 /* ButtonPadding.swift */; };
 		F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D4027DDF5EE008EF3CF /* HomeViewController.swift */; };
+		F8DA0E2728227C1700FD457F /* BoardTextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8DA0E2628227C1700FD457F /* BoardTextDetailViewController.swift */; };
 		F8F6623C280588A5000135B8 /* BookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F6623B280588A5000135B8 /* BookDetailViewController.swift */; };
 		F8FE3FFC281FCA200014E060 /* WriteTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FE3FFB281FCA200014E060 /* WriteTextViewController.swift */; };
 		F8FFC1F9281EA639005B18B2 /* TagDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8FFC1F8281EA639005B18B2 /* TagDataFormat.swift */; };
@@ -132,6 +133,7 @@
 		F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionReusableViewHeader.swift; sourceTree = "<group>"; };
 		F8C11E82281FE45E000D1689 /* ButtonPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPadding.swift; sourceTree = "<group>"; };
+		F8DA0E2628227C1700FD457F /* BoardTextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextDetailViewController.swift; sourceTree = "<group>"; };
 		F8F6623B280588A5000135B8 /* BookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewController.swift; sourceTree = "<group>"; };
 		F8FE3FFB281FCA200014E060 /* WriteTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTextViewController.swift; sourceTree = "<group>"; };
 		F8FFC1F8281EA639005B18B2 /* TagDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagDataFormat.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				68683D6F27DE408C008EF3CF /* CommunityViewController.swift */,
 				F88EF53327FD86A400634696 /* BoardTableViewCell.swift */,
 				F8FE3FFB281FCA200014E060 /* WriteTextViewController.swift */,
+				F8DA0E2628227C1700FD457F /* BoardTextDetailViewController.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				686AE6C227FC1F9200B77245 /* EmailAuthModel.swift in Sources */,
 				F8C11E83281FE45E000D1689 /* ButtonPadding.swift in Sources */,
 				68FBE65427FCA245003DBFB7 /* BookkyURL.swift in Sources */,
+				F8DA0E2728227C1700FD457F /* BoardTextDetailViewController.swift in Sources */,
 				F8F6623C280588A5000135B8 /* BookDetailViewController.swift in Sources */,
 				F8FFC1F9281EA639005B18B2 /* TagDataFormat.swift in Sources */,
 				F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */,

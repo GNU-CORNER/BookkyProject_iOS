@@ -14,10 +14,13 @@ class CommunityViewController: UIViewController {
     let HotBoard = Hot()
     let bookMarketBoard = BookMarket()
     let myTextBoard = Mytext()
-    
+    var PID : Int = 0
     var postList : [PostListData] = []
     // 좋아요개수 와 댓글개수
     var subDataList : [CommunitySubData] = []
+    
+ 
+    
     @IBOutlet var communityView: UIView!
     @IBOutlet weak var boardNameButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
@@ -217,6 +220,12 @@ class CommunityViewController: UIViewController {
             }
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "boardTextDetailSegueId"{
+            guard let boardTextDetailViewController = segue.destination as? BoardTextDetailViewController else {return}
+            boardTextDetailViewController.PID = self.PID
+        }
+    }
    
 }
 extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
@@ -250,5 +259,12 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         return 100
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return}
+        self.PID = cell.PID
+       
+        performSegue(withIdentifier: "boardTextDetailSegueId", sender: indexPath.row)
+      
+    }
 }

@@ -10,9 +10,7 @@ protocol BookCollectionViewCellDeleGate : AnyObject {
     func collectionView(collectionviewcell: BookCollectionViewCell?, index: Int, didTappedInTableViewCell: BookTableViewCell)
 
 }
-//protocol BookTableViewCellDeleGate : AnyObject{
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-//}
+
 class BookTableViewCell: UITableViewCell {
     
     var TID : Int = 0

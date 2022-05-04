@@ -252,6 +252,7 @@
                         <outlet property="myTextGoButton" destination="4sC-h6-yaR" id="w0k-7D-kIg"/>
                         <outlet property="searchButton" destination="5hi-7a-Ycb" id="Y9A-zR-vLb"/>
                         <outlet property="writeTextButton" destination="Dpx-Zo-6fq" id="mMJ-zF-1LK"/>
+                        <segue destination="RvC-ap-qYP" kind="show" identifier="boardTextDetailSegueId" id="cxf-8T-2ll"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wkc-kB-JGd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -462,20 +463,33 @@
             </objects>
             <point key="canvasLocation" x="2669.5652173913045" y="10.714285714285714"/>
         </scene>
-        <!--View Controller-->
+        <!--Board Text Detail View Controller-->
         <scene sceneID="Ezk-tr-XXm">
             <objects>
-                <viewController id="RvC-ap-qYP" sceneMemberID="viewController">
+                <viewController id="RvC-ap-qYP" customClass="BoardTextDetailViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j91-14-Bpx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2v-gF-cby">
+                                <rect key="frame" x="186" y="211" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="gHQ-LH-5Aa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6EQ-Pr-lrI"/>
+                    <connections>
+                        <outlet property="PIDLabel" destination="o2v-gF-cby" id="P0W-MF-Yz7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hys-CR-2Vz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1765" y="693"/>
+            <point key="canvasLocation" x="1783" y="800"/>
         </scene>
     </scenes>
     <resources>
