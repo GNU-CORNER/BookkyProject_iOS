@@ -92,12 +92,17 @@ class CommunityViewController: UIViewController {
         
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        
+      
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        communityGetWriteList()
+        self.boardTableView.reloadData()
     }
     private func boardTypeColor() {
         self.freeBoardGoButton.tintColor = UIColor(named: "grayColor")
@@ -196,10 +201,10 @@ class CommunityViewController: UIViewController {
         CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber) { (success,data) in
             if success{
                 guard let communityGetWriteList = data as? WriteListInformation else {return}
-                self.postList = communityGetWriteList.result.postList
-                self.subDataList = communityGetWriteList.result.subData
-//                print(self.postList)
-//                print(self.subDataList)
+                self.postList = communityGetWriteList.result.postList.reversed()
+                self.subDataList = communityGetWriteList.result.subData.reversed()
+                print(self.postList)
+                print(self.subDataList)
                 if communityGetWriteList.success{
                     DispatchQueue.main.async {
                         self.boardTableView.reloadData()

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-let accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUxNTgyOTYzLCJVSUQiOjcwfQ.qFBzc0h5n1br_QgwtgVv4IubyeR0EFHWpMzvEeS41Xo"
+let accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUxNjMzMDEwLCJVSUQiOjcwfQ.hERrj6LrVIvSjl2uA7xvbDmBRVwz-fpmYUq1KdjNWn8"
 class CommunityAPI {
     static let shared = CommunityAPI()
     func getCommunityWriteList(CommunityBoardNumber:Int ,completion : @escaping(Bool, Any) -> Void){

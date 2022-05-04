@@ -175,6 +175,9 @@ class WriteTextViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+       
+        
+        
     }
     
     @IBAction func tapGoBackCommunityButton(_ sender: UIButton) {
@@ -185,7 +188,10 @@ class WriteTextViewController: UIViewController {
         let textTitle = writeTitleTextField.text ?? ""
         let textContent = writeContentTextView.text ?? ""
         communityPostWriteData(textTitle: textTitle, textContetnt: textContent, boardTypeNumber: boardTypeNumber)
+        
         self.navigationController?.popViewController(animated: true)
+        let communityViewController = storyboard?.instantiateViewController(withIdentifier: "CommunityViewController") as! CommunityViewController
+        communityViewController.boardTableView?.reloadData()
         
     }
     private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int){
