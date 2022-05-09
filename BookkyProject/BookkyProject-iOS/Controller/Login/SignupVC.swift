@@ -259,7 +259,7 @@ extension SignupVC {
                 if resultData.success {
                     print(resultData)
                     print(resultData.success)
-                    print(resultData.result?.userData?.email)
+//                    print(resultData.result?.userData?.email)
                 } else {
                     // - [x] 이미 존재하는 이메일입니다.
                     DispatchQueue.main.async {
