@@ -13,7 +13,7 @@ class MyProfileViewController: UIViewController {
     var myBooksArray = ["책제목 테스트입니다1", "책제목 테스트입니다2", "책제목 테스트입니다3", "책제목 테스트입니다4", "책제목 테스트입니다5"]
     struct MyPost {
         static var title = ["리뷰리뷰립류테스트1", "립뷰뷰븁뷰뷰테스트2"]
-        static var description = ["안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.."]
+        static var description = ["안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~."]
     }
     struct MyReviews {
         static var title = ["리뷰리뷰립류테스트1", "립뷰뷰븁뷰뷰테스트2"]
@@ -62,6 +62,8 @@ class MyProfileViewController: UIViewController {
     private func registerNibCollectionViewCell() {
         
         self.myPostCollectionView.register(UINib(nibName: "MyPostsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyPostsCollectionViewCell")
+        
+        self.myReviewsCollectionView.register(UINib(nibName: "MyReviewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyReviewsCollectionViewCell")
     }
 
     @IBAction func loginTestButton(_ sender: Any) {
@@ -127,7 +129,7 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             return myPostCell
             
         } else {
-            guard let myReviewsCell: MyReviewsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyReviewsCell", for: indexPath) as? MyReviewsCollectionViewCell
+            guard let myReviewsCell: MyReviewsCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyReviewsCollectionViewCell", for: indexPath) as? MyReviewsCollectionViewCell
             else {
                 return UICollectionViewCell()
             }

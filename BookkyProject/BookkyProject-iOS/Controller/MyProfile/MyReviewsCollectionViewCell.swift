@@ -18,6 +18,7 @@ class MyReviewsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myReviewsLikeImageView: UIImageView!
     
     override func awakeFromNib() {
+        super.awakeFromNib()
         self.layer.cornerRadius = 8
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor(named: "F9F9F9")?.cgColor
