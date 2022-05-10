@@ -27,10 +27,9 @@ class BookTableViewCell: UITableViewCell {
     func setBookInformation(model : BookList){
         tagNameLabel.text = model.tag
         bookDataLsit = model.data
-        
-        //        self.TID = model.TID
-        
+        self.TID = model.TID ?? 0
         bookCollectionView.reloadData()
+        
     }
     
     override func awakeFromNib() {
