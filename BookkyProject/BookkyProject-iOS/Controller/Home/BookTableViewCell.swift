@@ -8,17 +8,17 @@
 import UIKit
 protocol BookCollectionViewCellDeleGate : AnyObject {
     func collectionView(collectionviewcell: BookCollectionViewCell?, index: Int, didTappedInTableViewCell: BookTableViewCell)
-
+    
 }
 
 class BookTableViewCell: UITableViewCell {
     
     var TID : Int = 0
-
+    
     weak var cellDelegate : BookCollectionViewCellDeleGate?
-   
+    
     @IBOutlet weak var bookTableViewCell: UIView!
-   
+    
     @IBOutlet weak var tagNameLabel: UILabel!
     
     @IBOutlet weak var bookCollectionView: UICollectionView!
@@ -27,12 +27,12 @@ class BookTableViewCell: UITableViewCell {
     func setBookInformation(model : BookList){
         tagNameLabel.text = model.tag
         bookDataLsit = model.data
-       
-//        self.TID = model.TID
-      
+        
+        //        self.TID = model.TID
+        
         bookCollectionView.reloadData()
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -57,19 +57,19 @@ class BookTableViewCell: UITableViewCell {
         flowLayout.minimumLineSpacing = 4.0
         self.bookCollectionView?.collectionViewLayout = flowLayout
         self.bookCollectionView?.showsHorizontalScrollIndicator = false
-      
+        
         self.bookCollectionView?.dataSource = self
         self.bookCollectionView?.delegate = self
         let cellNib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         self.bookCollectionView?.register(cellNib, forCellWithReuseIdentifier: "bookCollectionViewCellid")
     }
-
+    
 }
 extension BookTableViewCell :UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookDataLsit.count
     }
-   
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell :BookCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCollectionViewCellid", for: indexPath) as? BookCollectionViewCell else {return UICollectionViewCell()}
         
@@ -77,7 +77,7 @@ extension BookTableViewCell :UICollectionViewDelegate,UICollectionViewDataSource
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       let cell = collectionView.cellForItem(at: indexPath) as? BookCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as? BookCollectionViewCell
         self.cellDelegate?.collectionView(collectionviewcell: cell, index: indexPath.item, didTappedInTableViewCell: self)
     }
     

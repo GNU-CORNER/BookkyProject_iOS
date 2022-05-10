@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-let accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUyMDk4ODk0LCJVSUQiOjcwfQ.-c94wdqcQLBvpIuuqgj9OnqX2kusTsIRcjy2ufktQdQ"
+let accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUyMTgyMDY3LCJVSUQiOjcwfQ.GqvRdag9pl2L70GZp_xK9JZpO6MlceUq2pgKC7wERfg"
 class CommunityAPI {
     static let shared = CommunityAPI()
     func getCommunityWriteList(CommunityBoardNumber:Int ,completion : @escaping(Bool, Any) -> Void){
@@ -17,7 +17,7 @@ class CommunityAPI {
             print("Error : Cannot create URL")
             return
         }
-//        print("\(url)")
+        //        print("\(url)")
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "accept")
@@ -49,7 +49,7 @@ class CommunityAPI {
             print("Error : Cannot create URL")
             return
         }
-//        print("\(url)")
+        //        print("\(url)")
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "accept")
@@ -76,7 +76,7 @@ class CommunityAPI {
         
     }
     func postCommunityWrite(textTitle : String , textContent : String ,CommunityBoardNumber : Int,completionHandler : @escaping(Bool, Any) -> Void){
-      
+        
         let httpBody : [String:Any] = ["title":textTitle,"contents":textContent]
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityWritePostURL+"\(CommunityBoardNumber)") else {
