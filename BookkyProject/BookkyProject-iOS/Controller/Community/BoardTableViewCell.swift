@@ -24,16 +24,16 @@ class BoardTableViewCell: UITableViewCell {
         // Initialization code
         self.likeThatImageView.image = UIImage(named: "likeThat")
         self.commentImageView.image = UIImage(named: "comment")
-       
+        
     }
-//    func selectInfoPID(){
-//
-//    }
+    //    func selectInfoPID(){
+    //
+    //    }
     func setBoardTableViewPostList(model :PostListData){
         tittleLabel.text = model.title
         subtittleLabel.text = model.contents
         self.PID = model.PID
-     
+        
         
     }
     func setBoardTableViewSubList(model :CommunitySubData ){
@@ -45,5 +45,5 @@ class BoardTableViewCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
-
+    
 }

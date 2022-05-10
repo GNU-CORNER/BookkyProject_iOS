@@ -8,7 +8,7 @@
 import UIKit
 
 class BoardTextCommentTableViewCell: UITableViewCell {
-   //textDetailComment 댓글
+    //textDetailComment 댓글
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userCommentContentsLabel: UILabel!
     @IBOutlet weak var commentCreateAtLabel: UILabel!
@@ -19,11 +19,11 @@ class BoardTextCommentTableViewCell: UITableViewCell {
     func setComment(model: WriteTextDetailCommentdata ){
         let likeCount = model.like?.count ?? 0
         
-       
+        
         self.userCommentContentsLabel.text = model.comment
         self.commentCreateAtLabel.text = model.updateAt
         self.commentLikeThatCntLabel.text = "공감(\(likeCount))"
-       
+        
     }
     func userComment(model :WriteTextDetailCommentuserdata ){
         self.userNameLabel.text = model.nickname
@@ -40,11 +40,11 @@ class BoardTextCommentTableViewCell: UITableViewCell {
         super.awakeFromNib()
         BoardTextCommentTableViewCellUI()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
-
+    
 }

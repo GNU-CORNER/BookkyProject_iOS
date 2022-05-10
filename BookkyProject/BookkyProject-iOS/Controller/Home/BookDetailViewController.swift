@@ -21,6 +21,7 @@ class BookDetailViewController: UIViewController {
     
     var bookDetailTagList : [BookDetailDataTagData] = []
     //네이버
+    var bookDetailRevieList  : [ReviewData] = []
     @IBOutlet weak var naverGoButton: UIButton!
     //도서정보
     @IBOutlet weak var bookInformationLabel: UILabel!
@@ -42,13 +43,16 @@ class BookDetailViewController: UIViewController {
     //펼쳐보기 버튼
     @IBOutlet weak var tapViewMoreBookIntroduction: UIButton!
     @IBOutlet weak var tapViewMoreBookIndex: UIButton!
-    
+    //리뷰 테이블뷰
     @IBOutlet weak var bookDetailCommentTableView: UITableView!
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        //리뷰 테이블뷰
         self.bookDetailCommentTableView.delegate = self
         self.bookDetailCommentTableView.dataSource = self
+        getBookDetailReViewData()
+        
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
         self.setBookDetailUI()
@@ -74,14 +78,29 @@ class BookDetailViewController: UIViewController {
             if sucess {
                 guard let bookDetailData = data as? BookDetailInformation else {return}
               
-                let bookDetail = bookDetailData.result.bookList
+                let DetailData = bookDetailData.result.bookList
                 if bookDetailData.success{
                     DispatchQueue.main.async {
-                        self.setBookDetailData(model: bookDetail)
+                        self.setBookDetailData(model: DetailData)
                         self.detailBookTagListCollectionView.reloadData()
                     }
                 }else {
                     print("통신 오류")
+                }
+            }
+        }
+    }
+    private func getBookDetailReViewData(){
+        GetBookData.shared.getBookDetailReviewData(BID: self.BID) { (success,data) in
+            if success {
+                guard let bookDetailReviewData = data as? BookDetailReviewInformation else {return}
+                self.bookDetailRevieList = bookDetailReviewData.result.reviewList
+                if bookDetailReviewData.success{
+                    DispatchQueue.main.async {
+                        self.bookDetailCommentTableView.reloadData()
+                    }
+                }else {
+                    print("통신오류")
                 }
             }
         }
@@ -103,7 +122,6 @@ class BookDetailViewController: UIViewController {
         self.detailBookName.text = model.TITLE
         self.detailBookAuthor.text = model.AUTHOR
         self.bookDetailTagList = model.tagData
-        print("\(model.tagData)")
         self.publisherLabel.text = "출판사 : " + model.PUBLISHER
         self.authorLabel.text = "저자 : " + model.AUTHOR
         self.priceLabel.text = "정가 : " + model.PRICE
@@ -186,16 +204,14 @@ extension BookDetailViewController : UICollectionViewDelegateFlowLayout{
 }
 extension BookDetailViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return self.bookDetailRevieList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell : BookDetailCommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "bookDetailCommentTableViewcellid")as? BookDetailCommentTableViewCell else {return UITableViewCell()}
-        cell.textlabel.text = "가나다라마바사아차타카타파하"
+        guard let cell : BookDetailReviewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "bookDetailCommentTableViewcellid")as? BookDetailReviewTableViewCell else {return UITableViewCell()}
+        cell.setReview(model : self.bookDetailRevieList[indexPath.row])
         return cell
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
+ 
     
 }

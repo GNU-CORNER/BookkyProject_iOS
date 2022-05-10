@@ -19,7 +19,7 @@ class CommunityViewController: UIViewController {
     // 좋아요개수 와 댓글개수
     var subDataList : [CommunitySubData] = []
     
- 
+    
     
     @IBOutlet var communityView: UIView!
     @IBOutlet weak var boardNameButton: UIButton!
@@ -40,17 +40,17 @@ class CommunityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-     
+        
         boardTableView.delegate = self
         boardTableView.dataSource = self
         self.boardTableView.reloadData()
-
-       
+        
+        
         
         SetdropDownView()
         
-      
-     
+        
+        
         //searchButton
         self.searchButton.tintColor = .black
         //writeTextButton
@@ -61,7 +61,7 @@ class CommunityViewController: UIViewController {
         communityGetWriteList()
     }
     func SetdropDownView(){
-    
+        
         self.freeBoardGoButton.setTitle("자유", for: .normal)
         self.hotBoardGobutton.setTitle("HOT", for: .normal)
         self.QnABoardGoButton.setTitle("Q&A", for: .normal)
@@ -98,9 +98,9 @@ class CommunityViewController: UIViewController {
         
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-      
+        
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -201,7 +201,7 @@ class CommunityViewController: UIViewController {
             boardName = "자유 게시판"
         }
         self.boardNameButton.setTitle(boardName, for: .normal)
-
+        
     }
     private func communityGetWriteList(){
         CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber) { (success,data) in
@@ -209,8 +209,8 @@ class CommunityViewController: UIViewController {
                 guard let communityGetWriteList = data as? WriteListInformation else {return}
                 self.postList = communityGetWriteList.result.postList.reversed()
                 self.subDataList = communityGetWriteList.result.subData.reversed()
-//                print(self.postList)
-//                print(self.subDataList)
+                //                print(self.postList)
+                //                print(self.subDataList)
                 if communityGetWriteList.success{
                     DispatchQueue.main.async {
                         self.boardTableView.reloadData()
@@ -230,7 +230,7 @@ class CommunityViewController: UIViewController {
             boardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
         }
     }
-   
+    
 }
 extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -253,22 +253,22 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
             cell.setBoardTableViewPostList(model:postList[indexPath.row])
             cell.setBoardTableViewSubList(model: subDataList[indexPath.row])
         }
-//        else if boardTypeNumber == 4{
-//            cell.tittleLabel.text = myTextBoard.objectArray[indexPath.row].title
-//            cell.subtittleLabel.text = myTextBoard.objectArray[indexPath.row].subtitle
-//        }
+        //        else if boardTypeNumber == 4{
+        //            cell.tittleLabel.text = myTextBoard.objectArray[indexPath.row].title
+        //            cell.subtittleLabel.text = myTextBoard.objectArray[indexPath.row].subtitle
+        //        }
         return cell
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 80
-//    }
+    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        return 80
+    //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return}
         self.PID = cell.PID
-       
+        
         performSegue(withIdentifier: "boardTextDetailSegueId", sender: indexPath.row)
-      
+        
     }
 }
