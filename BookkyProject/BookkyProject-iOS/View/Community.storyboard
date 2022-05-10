@@ -685,17 +685,17 @@
                     <navigationItem key="navigationItem" title="Title" id="Cuc-kd-qFW"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="bookDetailCommentTableView" destination="v8B-Vc-PLy" id="VqO-gF-RK6"/>
-                        <outlet property="commentButton" destination="yHZ-ev-lFr" id="GOi-NN-Fdx"/>
-                        <outlet property="likeThatButton" destination="R9w-EA-JKU" id="kjy-Dz-rXC"/>
-                        <outlet property="navigationBarTitleLabel" destination="Cuc-kd-qFW" id="dZx-jm-euW"/>
-                        <outlet property="textDetailContentsLabel" destination="IwX-9U-1qv" id="V0s-Na-DxS"/>
-                        <outlet property="textDetailCreateDateLabel" destination="k0I-an-mb3" id="NXV-0a-ki6"/>
-                        <outlet property="textDetailTitleLabel" destination="tQF-Ih-x3k" id="sj9-t4-yti"/>
-                        <outlet property="textDetailUserImage" destination="KR2-MY-Psi" id="gON-oQ-OB7"/>
-                        <outlet property="textDetailUserNickname" destination="QIM-ct-Feq" id="uBu-jv-w8p"/>
-                        <outlet property="textDetailViewsImage" destination="TKI-wf-ASH" id="UYm-Aj-Mo0"/>
-                        <outlet property="textDetailViewsLabel" destination="y92-fX-qHR" id="WFI-0A-sbW"/>
+                        <outlet property="NavigationBarTitleLabel" destination="Cuc-kd-qFW" id="ccF-Ha-ieP"/>
+                        <outlet property="bookDetailCommentTableView" destination="v8B-Vc-PLy" id="c2V-HI-XkM"/>
+                        <outlet property="commentButton" destination="yHZ-ev-lFr" id="zSX-a9-wk7"/>
+                        <outlet property="likeThatButton" destination="R9w-EA-JKU" id="ixp-CE-AAN"/>
+                        <outlet property="textDetailContentsLabel" destination="IwX-9U-1qv" id="6MI-mM-TjH"/>
+                        <outlet property="textDetailCreateDateLabel" destination="k0I-an-mb3" id="zbd-gB-Nf4"/>
+                        <outlet property="textDetailTitleLabel" destination="tQF-Ih-x3k" id="flu-eW-hoC"/>
+                        <outlet property="textDetailUserImage" destination="KR2-MY-Psi" id="XUI-tn-ZWf"/>
+                        <outlet property="textDetailUserNickname" destination="QIM-ct-Feq" id="v2l-lz-5FM"/>
+                        <outlet property="textDetailViewsImage" destination="TKI-wf-ASH" id="YpU-Nh-SZR"/>
+                        <outlet property="textDetailViewsLabel" destination="y92-fX-qHR" id="dwj-bi-nMC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gtv-aa-dCq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

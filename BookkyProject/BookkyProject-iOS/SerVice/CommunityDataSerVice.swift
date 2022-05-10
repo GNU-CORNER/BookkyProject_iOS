@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-let accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUyMTgyMDY3LCJVSUQiOjcwfQ.GqvRdag9pl2L70GZp_xK9JZpO6MlceUq2pgKC7wERfg"
+let accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUyMTk1Mjg3LCJVSUQiOjcwfQ.N-QEXM38BoQWEGjC3yakMgdzZe4RA_kNU4Y4EeRmtR4"
 class CommunityAPI {
     static let shared = CommunityAPI()
     func getCommunityWriteList(CommunityBoardNumber:Int ,completion : @escaping(Bool, Any) -> Void){
@@ -49,7 +49,6 @@ class CommunityAPI {
             print("Error : Cannot create URL")
             return
         }
-        //        print("\(url)")
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "accept")
@@ -101,6 +100,37 @@ class CommunityAPI {
             }
         }.resume()
     }
+//    func getCommunityTextDetail(PID : Int,completion : @escaping(Bool, Any) -> Void){
+//        let session = URLSession(configuration: .default)
+//        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityTextDetail+"\(CommunityBoardNumber)/"+"\(PID)") else {
+//            print("Error : Cannot create URL")
+//            return
+//        }
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "GET"
+//        request.setValue("application/json", forHTTPHeaderField: "accept")
+//        session.dataTask(with: request) { (data, response, error) in
+//            guard error == nil else {
+//                print("Error : error.")
+//                return
+//            }
+//            guard let data = data, let response = response as? HTTPURLResponse,(200..<300) ~= response.statusCode
+//            else{
+//                print("\(String(describing: error))")
+//                return
+//            }
+//            do {
+//                let CommunityTextDetail = try JSONDecoder().decode(WriteTextDetailInformation.self, from: data)
+//                completion(true,CommunityTextDetail)
+//            }
+//
+//            catch(let err){
+//                print("Decoding Error")
+//                print(err.localizedDescription)
+//            }
+//        }.resume()
+//
+//    }
 }
 
 
