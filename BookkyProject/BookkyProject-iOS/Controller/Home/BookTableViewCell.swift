@@ -23,12 +23,12 @@ class BookTableViewCell: UITableViewCell {
     
     @IBOutlet weak var bookCollectionView: UICollectionView!
     var bookDataLsit : [BookData] = []
-   
+    
     func setBookInformation(model : BookList){
         tagNameLabel.text = model.tag
         bookDataLsit = model.data
        
-        self.TID = model.TID
+//        self.TID = model.TID
       
         bookCollectionView.reloadData()
     }

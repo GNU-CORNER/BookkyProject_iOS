@@ -17,9 +17,9 @@ class BookDetailViewController: UIViewController {
     //    @IBOutlet weak var detailBookTagListView: UICollectionView!
     @IBOutlet weak var bookDetailImage: UIImageView!
     var BID = 0
-    let bookDetailURl = "http://app.bookky.org:8002/v1/books/"
+//    let
     
-    var bookDetailTagList : [String] = []
+    var bookDetailTagList : [BookDetailDataTagData] = []
     //네이버
     @IBOutlet weak var naverGoButton: UIButton!
     //도서정보
@@ -43,9 +43,12 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var tapViewMoreBookIntroduction: UIButton!
     @IBOutlet weak var tapViewMoreBookIndex: UIButton!
     
+    @IBOutlet weak var bookDetailCommentTableView: UITableView!
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        self.bookDetailCommentTableView.delegate = self
+        self.bookDetailCommentTableView.dataSource = self
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
         self.setBookDetailUI()
@@ -65,7 +68,24 @@ class BookDetailViewController: UIViewController {
        
         
     }
-    
+    private func getBookDetailData(){
+       
+        GetBookData.shared.getDetailBookData(BID: self.BID){ (sucess,data) in
+            if sucess {
+                guard let bookDetailData = data as? BookDetailInformation else {return}
+              
+                let bookDetail = bookDetailData.result.bookList
+                if bookDetailData.success{
+                    DispatchQueue.main.async {
+                        self.setBookDetailData(model: bookDetail)
+                        self.detailBookTagListCollectionView.reloadData()
+                    }
+                }else {
+                    print("통신 오류")
+                }
+            }
+        }
+    }
     private func setColletioView(){
         self.detailBookTagListCollectionView.delegate = self
         self.detailBookTagListCollectionView.dataSource = self
@@ -82,7 +102,8 @@ class BookDetailViewController: UIViewController {
         bookDetailImage.image = UIImage(data: data)
         self.detailBookName.text = model.TITLE
         self.detailBookAuthor.text = model.AUTHOR
-        self.bookDetailTagList = model.tagName
+        self.bookDetailTagList = model.tagData
+        print("\(model.tagData)")
         self.publisherLabel.text = "출판사 : " + model.PUBLISHER
         self.authorLabel.text = "저자 : " + model.AUTHOR
         self.priceLabel.text = "정가 : " + model.PRICE
@@ -112,37 +133,7 @@ class BookDetailViewController: UIViewController {
         self.detailBookName.font = UIFont.boldSystemFont(ofSize: 18)
         self.detailBookAuthor.font = UIFont.systemFont(ofSize: 13)
     }
-    private func getBookDetailData(){
-        let session = URLSession(configuration: .default)
-        guard let url = URL(string: bookDetailURl+"\(BID)") else{
-            print("Error: Cannot Create URL")
-            return
-        }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        session.dataTask(with: request) { (data,response,error) in
-            guard error == nil else {
-                print("Error: error.")
-                return
-            }
-            guard let  data = data , let response = response as? HTTPURLResponse, (200..<300) ~= response.statusCode else {
-                print("\(String(describing: error))")
-                return
-            }
-            do {
-                let bookDetailData = try JSONDecoder().decode(BookDetailInformation.self, from: data)
-                let bookDeatilData = bookDetailData.result.bookList
-                DispatchQueue.main.async {
-                    self.setBookDetailData(model: bookDeatilData)
-                    self.detailBookTagListCollectionView.reloadData()
-                }
-//                debugPrint("\(bookDetailData)")
-            }catch(let err) {
-                print("Decoding Error")
-                print(err.localizedDescription)
-            }
-        }.resume()
-    }
+  
     
     @IBAction func tapMoreBookIntroduction(_ sender: UIButton) {
         if bookExplainContent.numberOfLines == 4{
@@ -174,8 +165,8 @@ extension BookDetailViewController : UICollectionViewDataSource,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookDetailTagCollectionViewCellid", for: indexPath) as? BookDetailTagCollectionViewCell else {return UICollectionViewCell()}
-        cell.tagNameLabel.text = "# "+self.bookDetailTagList[indexPath.row]
-        
+//        cell.tagNameLabel.text = "# "+self.bookDetailTagList[indexPath.row]
+        cell.setTagList(model: bookDetailTagList[indexPath.row])
         return cell
     }
     
@@ -185,11 +176,26 @@ extension BookDetailViewController : UICollectionViewDelegateFlowLayout{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookDetailTagCollectionViewCellid", for: indexPath) as? BookDetailTagCollectionViewCell else {
             return .zero
         }
-        cell.tagNameLabel.text = self.bookDetailTagList[indexPath.row]
+//        cell.tagNameLabel.text = self.bookDetailTagList[indexPath.row]
         cell.tagNameLabel.sizeToFit()
         
         let cellWidth = cell.tagNameLabel.frame.width + 25
         
         return CGSize(width: cellWidth, height: 30)
     }
+}
+extension BookDetailViewController : UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell : BookDetailCommentTableViewCell = tableView.dequeueReusableCell(withIdentifier: "bookDetailCommentTableViewcellid")as? BookDetailCommentTableViewCell else {return UITableViewCell()}
+        cell.textlabel.text = "가나다라마바사아차타카타파하"
+        return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
 }

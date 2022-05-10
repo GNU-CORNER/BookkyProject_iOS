@@ -71,5 +71,37 @@ class GetBookData {
             }
         }.resume()
     }
+    func getDetailBookData(BID:Int,completion: @escaping(Bool,Any)->Void){
+        let session = URLSession(configuration: .default)
+        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.bookDetatilURL+"\(BID)")else{
+          
+            print("Error : Can not Create URL")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "accept")
+        session.dataTask(with: request) { (data,response,error) in
+            guard error == nil else {
+                print("Error: error.")
+                return
+            }
+
+            guard let  data = data , let response = response as? HTTPURLResponse, (200..<300) ~= response.statusCode else {
+                print("\(String(describing: error))")
+                return
+            }
+            do {
+                let DetailBookData = try JSONDecoder().decode(BookDetailInformation.self, from: data)
+                completion(true,DetailBookData)
+     
+            }
+            catch(let err) {
+                print("Decoding Error")
+                print(err.localizedDescription)
+            }
+        }.resume()
+    }
+   
 }
 

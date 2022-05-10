@@ -158,6 +158,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
             if sucess {
                 guard let bookData = data as? BookInformation else {return}
                 self.bookList = bookData.result.bookList
+                
                 if bookData.success{
                     DispatchQueue.main.async {
                         self.bookListTabelView.reloadData()

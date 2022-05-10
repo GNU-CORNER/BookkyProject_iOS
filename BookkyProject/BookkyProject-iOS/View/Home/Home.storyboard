@@ -537,10 +537,42 @@ Label</string>
                                                     <action selector="tapMoreBookIndex:" destination="SlN-ec-z5q" eventType="touchUpInside" id="uNL-kd-Cnb"/>
                                                 </connections>
                                             </button>
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mRR-9v-GX7">
+                                                <rect key="frame" x="20" y="555.5" width="374" height="338.5"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <prototypes>
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="bookDetailCommentTableViewcellid" id="1cm-6a-s5L" customClass="BookDetailCommentTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="44.5" width="374" height="43"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1cm-6a-s5L" id="iJS-Fl-fJB">
+                                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OfS-DK-NlI">
+                                                                    <rect key="frame" x="20" y="11" width="334" height="21"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="OfS-DK-NlI" firstAttribute="top" secondItem="iJS-Fl-fJB" secondAttribute="topMargin" id="0Ff-IV-RCO"/>
+                                                                <constraint firstItem="OfS-DK-NlI" firstAttribute="leading" secondItem="iJS-Fl-fJB" secondAttribute="leadingMargin" id="I3y-gV-ca5"/>
+                                                                <constraint firstAttribute="trailingMargin" secondItem="OfS-DK-NlI" secondAttribute="trailing" id="QQv-dV-v03"/>
+                                                                <constraint firstAttribute="bottomMargin" secondItem="OfS-DK-NlI" secondAttribute="bottom" id="bI5-da-TGR"/>
+                                                            </constraints>
+                                                        </tableViewCellContentView>
+                                                        <connections>
+                                                            <outlet property="textlabel" destination="OfS-DK-NlI" id="FZk-XI-efH"/>
+                                                        </connections>
+                                                    </tableViewCell>
+                                                </prototypes>
+                                            </tableView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="J5B-GE-n6d" firstAttribute="top" secondItem="EzR-dh-vTE" secondAttribute="bottom" constant="20" id="2eg-ee-qbo"/>
+                                            <constraint firstAttribute="trailing" secondItem="tID-RB-2zP" secondAttribute="trailing" constant="364.5" id="6q8-q4-1k0"/>
                                             <constraint firstAttribute="trailing" secondItem="ZT5-V5-Tlt" secondAttribute="trailing" constant="20" id="6rj-qZ-Lo4"/>
                                             <constraint firstItem="oLk-yc-laX" firstAttribute="top" secondItem="O03-SN-uL6" secondAttribute="bottom" constant="50" id="7H8-HF-h2c"/>
                                             <constraint firstItem="tID-RB-2zP" firstAttribute="top" secondItem="ZT5-V5-Tlt" secondAttribute="bottom" constant="6" id="AsM-C3-kE2"/>
@@ -561,13 +593,18 @@ Label</string>
                                             <constraint firstAttribute="trailing" secondItem="Ibl-cB-EKP" secondAttribute="trailing" constant="349" id="Ylt-fU-LUX"/>
                                             <constraint firstItem="iHx-XL-aF8" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="30" id="Z91-4h-V1q"/>
                                             <constraint firstItem="J5B-GE-n6d" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="aFL-WW-174"/>
+                                            <constraint firstAttribute="trailing" secondItem="mRR-9v-GX7" secondAttribute="trailing" constant="20" id="e8o-WT-22U"/>
                                             <constraint firstItem="Rtj-hO-8c6" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="30" id="emS-Wn-dRg"/>
                                             <constraint firstItem="Ibl-cB-EKP" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="30" id="erd-mD-lpU"/>
+                                            <constraint firstItem="mRR-9v-GX7" firstAttribute="top" secondItem="Ibl-cB-EKP" secondAttribute="bottom" constant="15" id="gqI-m6-8FP"/>
                                             <constraint firstItem="ROM-14-Too" firstAttribute="top" secondItem="tID-RB-2zP" secondAttribute="bottom" constant="14" id="hlt-e4-p8d"/>
                                             <constraint firstAttribute="trailing" secondItem="rhx-4y-Iyc" secondAttribute="trailing" constant="20" id="i60-cZ-i1c"/>
                                             <constraint firstItem="wjG-5N-eKh" firstAttribute="top" secondItem="J5B-GE-n6d" secondAttribute="bottom" constant="15" id="jEo-l5-bJp"/>
                                             <constraint firstItem="O03-SN-uL6" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="30" id="n4i-l8-pLJ"/>
+                                            <constraint firstItem="mRR-9v-GX7" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="oCY-YN-jxa"/>
                                             <constraint firstItem="EzR-dh-vTE" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="tJm-1H-taa"/>
+                                            <constraint firstItem="ZT5-V5-Tlt" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="332" id="u93-z1-rYc"/>
+                                            <constraint firstAttribute="bottom" secondItem="mRR-9v-GX7" secondAttribute="bottom" id="vsU-Xe-chS"/>
                                             <constraint firstItem="0KB-aq-LdD" firstAttribute="top" secondItem="Rtj-hO-8c6" secondAttribute="bottom" constant="5" id="w9u-dS-nDZ"/>
                                             <constraint firstItem="EzR-dh-vTE" firstAttribute="top" secondItem="AaO-8P-Zih" secondAttribute="top" constant="10" id="wN1-R6-hjd"/>
                                             <constraint firstItem="tID-RB-2zP" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="xZH-MY-dLM"/>
@@ -662,6 +699,7 @@ Label</string>
                     <connections>
                         <outlet property="ISBNLabel" destination="O03-SN-uL6" id="Ofb-Ny-QIc"/>
                         <outlet property="authorLabel" destination="iHx-XL-aF8" id="dDv-WU-Ctv"/>
+                        <outlet property="bookDetailCommentTableView" destination="mRR-9v-GX7" id="mfg-EO-BmW"/>
                         <outlet property="bookDetailImage" destination="gOQ-aM-be2" id="GG5-ie-2SD"/>
                         <outlet property="bookDetailView" destination="3zK-zW-ID7" id="kve-Wa-eIg"/>
                         <outlet property="bookExplainContent" destination="35B-HJ-9e1" id="XXO-UU-BD1"/>
@@ -683,7 +721,7 @@ Label</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0y-b7-61a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1077" y="-64"/>
+            <point key="canvasLocation" x="1076.8115942028987" y="-64.285714285714278"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Vlg-fT-93m">

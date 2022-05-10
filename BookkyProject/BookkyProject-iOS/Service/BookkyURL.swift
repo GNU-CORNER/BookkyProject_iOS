@@ -16,7 +16,10 @@ class BookkyURL {
     //Home
     static let HomeURL = "/home"
     static let tagURL = "/books/tag/"
+    static let bookDetatilURL = "/books/detail/"
     //Community
     static let communityPostListGetURL =  "/community/postlist/"
     static let communityWritePostURL = "/community/writepost/"
+    static let communityTextDetail = "/community/postdetail/"
+    
 }

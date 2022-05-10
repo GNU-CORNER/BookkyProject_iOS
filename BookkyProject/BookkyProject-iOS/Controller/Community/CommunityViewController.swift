@@ -39,10 +39,13 @@ class CommunityViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.boardTableView.reloadData()
+        
+     
         boardTableView.delegate = self
         boardTableView.dataSource = self
-        
+        self.boardTableView.reloadData()
+
+       
         
         SetdropDownView()
         
@@ -206,8 +209,8 @@ class CommunityViewController: UIViewController {
                 guard let communityGetWriteList = data as? WriteListInformation else {return}
                 self.postList = communityGetWriteList.result.postList.reversed()
                 self.subDataList = communityGetWriteList.result.subData.reversed()
-                print(self.postList)
-                print(self.subDataList)
+//                print(self.postList)
+//                print(self.subDataList)
                 if communityGetWriteList.success{
                     DispatchQueue.main.async {
                         self.boardTableView.reloadData()
@@ -224,6 +227,7 @@ class CommunityViewController: UIViewController {
         if segue.identifier == "boardTextDetailSegueId"{
             guard let boardTextDetailViewController = segue.destination as? BoardTextDetailViewController else {return}
             boardTextDetailViewController.PID = self.PID
+            boardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
         }
     }
    
@@ -255,9 +259,9 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
 //        }
         return cell
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 80
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

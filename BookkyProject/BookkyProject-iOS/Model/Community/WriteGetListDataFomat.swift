@@ -18,7 +18,7 @@ struct TypeResultList : Codable{
     let subData : [CommunitySubData]
 }
 struct PostListData : Codable{
-    let APID : Int
+    let PID : Int
     let title : String
     let contents : String
 //    let like : [Int]

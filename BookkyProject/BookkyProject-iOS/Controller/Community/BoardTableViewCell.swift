@@ -32,7 +32,7 @@ class BoardTableViewCell: UITableViewCell {
     func setBoardTableViewPostList(model :PostListData){
         tittleLabel.text = model.title
         subtittleLabel.text = model.contents
-        self.PID = model.APID
+        self.PID = model.PID
      
         
     }
