@@ -78,20 +78,22 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" text="재설정하기" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHv-TY-S2f">
-                                                                <rect key="frame" x="335.33333333333331" y="0.0" width="52.666666666666686" height="17"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNF-NZ-joz">
+                                                                <rect key="frame" x="171" y="0.0" width="45" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                                                <color key="textColor" name="grayColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="재설정하기">
+                                                                    <color key="titleColor" name="grayColor"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="TnR-c2-Vvd" kind="show" id="7cH-Yc-gvS"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <constraints>
                                                             <constraint firstItem="Dbt-07-JSe" firstAttribute="leading" secondItem="TpW-2R-0cn" secondAttribute="leading" id="05T-nP-02d"/>
-                                                            <constraint firstAttribute="bottom" secondItem="oHv-TY-S2f" secondAttribute="bottom" id="S4E-Ey-aK1"/>
                                                             <constraint firstAttribute="bottom" secondItem="Dbt-07-JSe" secondAttribute="bottom" id="ZU0-hd-Sf1"/>
-                                                            <constraint firstAttribute="trailing" secondItem="oHv-TY-S2f" secondAttribute="trailing" id="ZWm-Qb-p5A"/>
                                                             <constraint firstItem="Dbt-07-JSe" firstAttribute="top" secondItem="TpW-2R-0cn" secondAttribute="top" id="ykF-Lf-UW3"/>
-                                                            <constraint firstItem="oHv-TY-S2f" firstAttribute="top" secondItem="TpW-2R-0cn" secondAttribute="top" id="zUj-hB-jhQ"/>
                                                         </constraints>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="53R-1P-TI3">
@@ -157,12 +159,17 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="더보기" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T75-do-CD8">
-                                                                <rect key="frame" x="329.66666666666669" y="0.0" width="58.333333333333314" height="17"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghz-aX-3qy">
+                                                                <rect key="frame" x="171" y="0.0" width="45" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                                                <color key="textColor" name="grayColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="더보기">
+                                                                    <color key="titleColor" name="grayColor"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="cHW-n9-LBa" kind="show" id="kc7-Nk-ZRS"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RyT-40-hCK">
@@ -239,12 +246,17 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="더보기" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RO6-6u-QMF">
-                                                                <rect key="frame" x="326" y="0.0" width="62" height="17"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HP8-oo-Xb7">
+                                                                <rect key="frame" x="171" y="0.0" width="45" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                                                <color key="textColor" name="grayColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="더보기">
+                                                                    <color key="titleColor" name="grayColor"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="p3U-aD-hC5" kind="show" id="VQ9-xq-5Fz"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4HK-A8-0xD">
@@ -274,7 +286,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jie-TO-e3l">
                                                 <rect key="frame" x="0.0" y="563" width="428" height="175"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jdi-ra-Wsd">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jdi-ra-Wsd">
                                                         <rect key="frame" x="20" y="0.0" width="388" height="17"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내가 작성한 후기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SAP-sV-9T2">
@@ -283,13 +295,26 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" text="더보기" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="82x-GN-gxD">
-                                                                <rect key="frame" x="336.33333333333331" y="0.0" width="51.666666666666686" height="17"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BF3-Hp-KfD">
+                                                                <rect key="frame" x="171" y="0.0" width="45" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                                                <color key="textColor" name="grayColor"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="더보기">
+                                                                    <color key="titleColor" name="grayColor"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <segue destination="XiE-pf-xY9" kind="show" id="goR-Kl-zux"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="SAP-sV-9T2" secondAttribute="bottom" id="Hoe-WZ-EsE"/>
+                                                            <constraint firstItem="SAP-sV-9T2" firstAttribute="leading" secondItem="jdi-ra-Wsd" secondAttribute="leading" id="LGB-yY-jRY"/>
+                                                            <constraint firstItem="SAP-sV-9T2" firstAttribute="top" secondItem="jdi-ra-Wsd" secondAttribute="top" id="bUh-oY-7q5"/>
+                                                            <constraint firstAttribute="bottom" secondItem="BF3-Hp-KfD" secondAttribute="bottom" id="kKP-JL-l6C"/>
+                                                            <constraint firstItem="BF3-Hp-KfD" firstAttribute="top" secondItem="jdi-ra-Wsd" secondAttribute="top" id="m6z-9g-miA"/>
+                                                            <constraint firstAttribute="trailing" secondItem="BF3-Hp-KfD" secondAttribute="trailing" id="qF0-eg-Gfa"/>
+                                                        </constraints>
                                                     </stackView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="saI-E8-1Vu">
                                                         <rect key="frame" x="0.0" y="25" width="428" height="150"/>
@@ -414,6 +439,46 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Df-ls-36S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1531.1594202898552" y="211.60714285714286"/>
+        </scene>
+        <!--Storyboard Reference-->
+        <scene sceneID="5gI-vJ-r1r">
+            <objects>
+                <viewControllerPlaceholder id="TnR-c2-Vvd" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="SWV-lq-Zit"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rLS-RB-5KE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530" y="301"/>
+        </scene>
+        <!--MyBooksMore-->
+        <scene sceneID="ujD-6D-AHS">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyBooksMoreView" referencedIdentifier="MyBooksMore" id="cHW-n9-LBa" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="CSi-Mi-caA"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G9H-XM-bGs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530" y="367"/>
+        </scene>
+        <!--MyPostsMore-->
+        <scene sceneID="Xpt-sK-gxu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyPostsMoreView" referencedIdentifier="MyPostsMore" id="p3U-aD-hC5" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="LUG-BT-0hO"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXu-hh-QVy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530" y="425"/>
+        </scene>
+        <!--MyReviewsMore-->
+        <scene sceneID="A0k-n0-1kq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MyReviewsMoreView" referencedIdentifier="MyReviewsMore" id="XiE-pf-xY9" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="i98-6c-OfQ"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="doO-od-qdo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1530" y="494"/>
         </scene>
     </scenes>
     <resources>

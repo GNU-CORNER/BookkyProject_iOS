@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		68169244282A85450066946A /* MyProfileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68169243282A85450066946A /* MyProfileAPI.swift */; };
+		68169247282B8B530066946A /* RedirectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68169246282B8B530066946A /* RedirectView.swift */; };
+		68169249282B906C0066946A /* MyBooksMoreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68169248282B906C0066946A /* MyBooksMoreView.storyboard */; };
+		6816924C282B91B80066946A /* MyPostsMoreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6816924B282B91B80066946A /* MyPostsMoreView.storyboard */; };
+		6816924E282B925A0066946A /* MyReviewsMoreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6816924D282B925A0066946A /* MyReviewsMoreView.storyboard */; };
 		683674BE282215B500CB618D /* MyTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683674BD282215B500CB618D /* MyTagsCollectionViewCell.swift */; };
 		683674C0282215C200CB618D /* MyBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683674BF282215C200CB618D /* MyBooksCollectionViewCell.swift */; };
 		683674C2282215D500CB618D /* MyReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683674C1282215D500CB618D /* MyReviewsCollectionViewCell.swift */; };
@@ -79,6 +83,10 @@
 
 /* Begin PBXFileReference section */
 		68169243282A85450066946A /* MyProfileAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyProfileAPI.swift; path = "BookkyProject-iOS/SerVice/MyProfileAPI.swift"; sourceTree = SOURCE_ROOT; };
+		68169246282B8B530066946A /* RedirectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RedirectView.swift; path = "BookkyProject-iOS/SerVice/RedirectView.swift"; sourceTree = SOURCE_ROOT; };
+		68169248282B906C0066946A /* MyBooksMoreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyBooksMoreView.storyboard; sourceTree = "<group>"; };
+		6816924B282B91B80066946A /* MyPostsMoreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPostsMoreView.storyboard; sourceTree = "<group>"; };
+		6816924D282B925A0066946A /* MyReviewsMoreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyReviewsMoreView.storyboard; sourceTree = "<group>"; };
 		683674BD282215B500CB618D /* MyTagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		683674BF282215C200CB618D /* MyBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		683674C1282215D500CB618D /* MyReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -160,6 +168,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6816924A282B91960066946A /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */,
+				68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
 		6852E56727F2EDC300CAEF02 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +295,7 @@
 				68FBE65327FCA245003DBFB7 /* BookkyURL.swift */,
 				686B212F2805498000384408 /* KeychainManager.swift */,
 				68169243282A85450066946A /* MyProfileAPI.swift */,
+				68169246282B8B530066946A /* RedirectView.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -299,8 +317,10 @@
 			isa = PBXGroup;
 			children = (
 				68C8629B27DF6605004B4F73 /* MyProfile.storyboard */,
-				68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */,
-				68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */,
+				6816924A282B91960066946A /* CollectionViewCell */,
+				68169248282B906C0066946A /* MyBooksMoreView.storyboard */,
+				6816924B282B91B80066946A /* MyPostsMoreView.storyboard */,
+				6816924D282B925A0066946A /* MyReviewsMoreView.storyboard */,
 			);
 			path = MyProfile;
 			sourceTree = "<group>";
@@ -486,7 +506,10 @@
 				68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */,
 				68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */,
 				68C8629627DF6481004B4F73 /* Community.storyboard in Resources */,
+				68169249282B906C0066946A /* MyBooksMoreView.storyboard in Resources */,
+				6816924C282B91B80066946A /* MyPostsMoreView.storyboard in Resources */,
 				68C8629427DF61D3004B4F73 /* Home.storyboard in Resources */,
+				6816924E282B925A0066946A /* MyReviewsMoreView.storyboard in Resources */,
 				F877021428008C72002EA1F5 /* BookCollectionViewCell.xib in Resources */,
 				6852E56B27F2EE1300CAEF02 /* Login.storyboard in Resources */,
 				68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */,
@@ -530,6 +553,7 @@
 				F877020F2800893A002EA1F5 /* BookTableViewCell.swift in Sources */,
 				683674C0282215C200CB618D /* MyBooksCollectionViewCell.swift in Sources */,
 				F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */,
+				68169247282B8B530066946A /* RedirectView.swift in Sources */,
 				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
 				68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */,

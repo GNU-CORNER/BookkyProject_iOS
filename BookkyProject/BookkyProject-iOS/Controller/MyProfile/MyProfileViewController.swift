@@ -50,14 +50,16 @@ class MyProfileViewController: UIViewController {
         // - [x] UserDefaults에 저장되어 있는 사용자 이메일 가져오기
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
             print("Launch: 사용자 이메일을 불러올 수 없음.")
-            redirectLoginView()
+//            redirectLoginView()
+            RedirectView.redirectLoginView(previousView: self)
             return
         }
 
         // - [x] 사용자 이메일로 KeyChain에 저장되어 있는 AT, RT를 가져오기
         guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
             print("Launch: 토큰을 불러올 수 없음.")
-            redirectLoginView()
+//            redirectLoginView()
+            RedirectView.redirectLoginView(previousView: self)
             return
         }
         print("view will appear")
@@ -121,8 +123,8 @@ class MyProfileViewController: UIViewController {
                             } else if statuscode == 403 {
                                 // 기간이 지난 토큰입니다.
                                 // 로그인 화면 리다이렉트
-                                // (여기 좀 이상함..)
-                                self.redirectLoginView()
+//                                self.redirectLoginView()
+                                RedirectView.redirectLoginView(previousView: self)
                             }
                         }
                     }
@@ -166,26 +168,27 @@ class MyProfileViewController: UIViewController {
     
     // MARK: - Redirect Login View
     // 임시, 새로 시나리오 짤 것...
-    func redirectLoginView() {
-        //스토리보드의 파일 찾기
-        let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
-
-        // 스토리보드에서 지정해준 ViewController의 ID
-        DispatchQueue.main.async {
-            guard let vc = storyboard?.instantiateViewController(identifier: "LoginNavigation") else {
-                return
-            }
-            // 화면 전환방식 선택 (default : .modal)
-            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-            
-
-            // 화면 전환!
-            self.present(vc, animated: true)
-        }
-    }
+//    func redirectLoginView() {
+//        //스토리보드의 파일 찾기
+//        let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
+//
+//        // 스토리보드에서 지정해준 ViewController의 ID
+//        DispatchQueue.main.async {
+//            guard let vc = storyboard?.instantiateViewController(identifier: "LoginNavigation") else {
+//                return
+//            }
+//            // 화면 전환방식 선택 (default : .modal)
+//            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+//
+//
+//            // 화면 전환!
+//            self.present(vc, animated: true)
+//        }
+//    }
 
     @IBAction func loginTestButton(_ sender: Any) {
-        redirectLoginView()
+//        redirectLoginView()
+        RedirectView.redirectLoginView(previousView: self)
     }
 
 }
