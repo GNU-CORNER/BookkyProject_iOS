@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Launch: 사용자 이메일을 불러올 수 없음.")
             return true
         }
-//        print(userEmail)
+        print(userEmail)
         // - [x] 사용자 이메일로 KeyChain에 저장되어 있는 AT, RT를 가져오기
         guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
               let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
@@ -30,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         // - [x] 서버에 토큰 갱신 요청
         print("갱신요청")
-        Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data) in
+        Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data, statuscode) in
             print(success)
+            guard let tokens = data as? RefreshModel else { return }
             if success {
-                guard let tokens = data as? RefreshModel else { return }
                 // - [x] 갱신받은 access token 다시 Keychain에 저장
                 if let newAccessToken = tokens.result?.accessToken {
                     let statusUpdateAccessToken = KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
@@ -45,7 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             } else {
-                print("RT 만료")
+                if statuscode == 400 {
+                    // 유효한 토큰입니다.
+                    print(tokens.errorMessage)
+                } else if statuscode == 403 {
+                    // 기간이 지난 토큰입니다.
+                    print(tokens.errorMessage)
+                }
             }
         }
         print("런치끝")

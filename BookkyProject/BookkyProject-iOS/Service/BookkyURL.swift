@@ -14,4 +14,6 @@ class BookkyURL {
     static let signinURL = "/user/signin"
     
     static let refreshURL = "/auth/refresh"
+    
+    static let myprofilePath = "/myprofile"
 }

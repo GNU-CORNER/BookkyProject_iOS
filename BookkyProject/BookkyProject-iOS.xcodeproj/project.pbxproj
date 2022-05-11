@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		68169244282A85450066946A /* MyProfileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68169243282A85450066946A /* MyProfileAPI.swift */; };
 		683674BE282215B500CB618D /* MyTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683674BD282215B500CB618D /* MyTagsCollectionViewCell.swift */; };
 		683674C0282215C200CB618D /* MyBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683674BF282215C200CB618D /* MyBooksCollectionViewCell.swift */; };
 		683674C2282215D500CB618D /* MyReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683674C1282215D500CB618D /* MyReviewsCollectionViewCell.swift */; };
@@ -35,6 +36,7 @@
 		686B21302805498000384408 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686B212F2805498000384408 /* KeychainManager.swift */; };
 		68B21B052829269C00707C5A /* MyPostsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */; };
 		68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */; };
+		68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B21B08282A2D4C00707C5A /* MyProfileModel.swift */; };
 		68C8629427DF61D3004B4F73 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629327DF61D3004B4F73 /* Home.storyboard */; };
 		68C8629627DF6481004B4F73 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629527DF6481004B4F73 /* Community.storyboard */; };
 		68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629727DF650E004B4F73 /* Recommend.storyboard */; };
@@ -76,6 +78,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		68169243282A85450066946A /* MyProfileAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyProfileAPI.swift; path = "BookkyProject-iOS/SerVice/MyProfileAPI.swift"; sourceTree = SOURCE_ROOT; };
 		683674BD282215B500CB618D /* MyTagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		683674BF282215C200CB618D /* MyBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		683674C1282215D500CB618D /* MyReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -109,6 +112,7 @@
 		686B212F2805498000384408 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainManager.swift; path = "BookkyProject-iOS/SerVice/KeychainManager.swift"; sourceTree = SOURCE_ROOT; };
 		68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyReviewsCollectionViewCell.xib; sourceTree = "<group>"; };
+		68B21B08282A2D4C00707C5A /* MyProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileModel.swift; sourceTree = "<group>"; };
 		68C8629327DF61D3004B4F73 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		68C8629527DF6481004B4F73 /* Community.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		68C8629727DF650E004B4F73 /* Recommend.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recommend.storyboard; sourceTree = "<group>"; };
@@ -273,6 +277,7 @@
 				686AE6C327FC6D3700B77245 /* Account.swift */,
 				68FBE65327FCA245003DBFB7 /* BookkyURL.swift */,
 				686B212F2805498000384408 /* KeychainManager.swift */,
+				68169243282A85450066946A /* MyProfileAPI.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */,
 				68FBE65627FD50E8003DBFB7 /* SignupModel.swift */,
 				68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */,
+				68B21B08282A2D4C00707C5A /* MyProfileModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -509,6 +515,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				683674C2282215D500CB618D /* MyReviewsCollectionViewCell.swift in Sources */,
+				68169244282A85450066946A /* MyProfileAPI.swift in Sources */,
 				F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */,
 				68683D7427DE40E8008EF3CF /* SearchViewController.swift in Sources */,
 				68683D7027DE408C008EF3CF /* CommunityViewController.swift in Sources */,
@@ -536,6 +543,7 @@
 				F87B810C28016C3D00E2FB7A /* HomeGetDataBookSerVice.swift in Sources */,
 				F874319A28030012003EA8C0 /* ExtensionUikit.swift in Sources */,
 				683674C4282215DE00CB618D /* MyPostCollectionViewCell.swift in Sources */,
+				68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */,
 				686B21302805498000384408 /* KeychainManager.swift in Sources */,
 				F85406CF2800284A0027C096 /* testData.swift in Sources */,
 				6852E57727F35EC600CAEF02 /* FindPasswordVC.swift in Sources */,

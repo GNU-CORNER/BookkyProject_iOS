@@ -20,8 +20,7 @@ class KeychainManager {
             kSecValueData: userData.data(using: .utf8)! /*필수*/
         ]
         let status = SecItemAdd(query as CFDictionary, nil)
-//        print(status)
-//        print( status == errSecSuccess )
+
         return status == errSecSuccess
     }
     
@@ -35,8 +34,7 @@ class KeychainManager {
         ]
         var item: AnyObject?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
-//        print(status)
-//        print(status == errSecSuccess)
+
         guard status == errSecSuccess else {
             print("KeychainManager: status code -> \(status)")
             return nil
@@ -47,6 +45,7 @@ class KeychainManager {
             return nil
         }
         guard let result = String(data: data, encoding: .utf8) else { return nil }
+        print("keychain 읽기")
         print(itemLabel)
         print(result)
         return result
@@ -61,8 +60,20 @@ class KeychainManager {
         let updateFields: [CFString: Any] = [
             kSecValueData: userData.data(using: .utf8)!
         ]
-        print("없뎃")
+        print("keychain 업데이트")
+
         let status = SecItemUpdate(previousQuery as CFDictionary, updateFields as CFDictionary)
+        // 만약 처음 저장하는 것이라면 create 함수 호출.
+        if !(status == errSecSuccess) {
+            let beWellCreated = create(userData, userEmail: userEmail, itemLabel: itemLabel)
+            if beWellCreated {
+                print("\(userData) 저장 완료")
+                return true
+            } else{
+                return false
+            }
+        }
+        
         return status == errSecSuccess
     }
     

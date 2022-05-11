@@ -10,17 +10,21 @@ import UIKit
 class MyProfileViewController: UIViewController {
     
     var myTagsArray = ["iOS", "Swift", "Xcode", "UIUX", "Python", "Django", "iPhone"]
-    var myBooksArray = ["책제목 테스트입니다1", "책제목 테스트입니다2", "책제목 테스트입니다3", "책제목 테스트입니다4", "책제목 테스트입니다5"]
-    struct MyPost {
-        static var title = ["리뷰리뷰립류테스트1", "립뷰뷰븁뷰뷰테스트2"]
-        static var description = ["안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~."]
-    }
-    struct MyReviews {
-        static var title = ["리뷰리뷰립류테스트1", "립뷰뷰븁뷰뷰테스트2"]
-        static var description = ["안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.."]
-        static var author = ["뮹먕밍뮹", "뮹뮹뮹밍밍밍미아망ㅁ아망"]
-    }
-    
+    var myBooksArray: [FavoriteBookList] = [
+        FavoriteBookList(bid: 0, title: "책제목 테스트입니다1", author: "", thumbnailImage: "", rating: 0),
+        FavoriteBookList(bid: 0, title: "책제목 테스트입니다2", author: "", thumbnailImage: "", rating: 0),
+        FavoriteBookList(bid: 0, title: "책제목 테스트입니다3", author: "", thumbnailImage: "", rating: 0),
+        FavoriteBookList(bid: 0, title: "책제목 테스트입니다4", author: "", thumbnailImage: "", rating: 0),
+        FavoriteBookList(bid: 0, title: "책제목 테스트입니다5", author: "", thumbnailImage: "", rating: 0)
+    ]
+    var myPostArray: [UserPostList] = [
+        UserPostList(title: "리뷰리뷰립류테스트1", contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", communityType: 0, pid: 0, commentCnt: 0, likeCnt: 0),
+        UserPostList(title: "립뷰뷰븁뷰뷰테스트2", contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", communityType: 0, pid: 0, commentCnt: 0, likeCnt: 0)
+    ]
+    var myReviewsArray: [UserReviewList] = [
+        UserReviewList(rid: 0, bid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "리뷰리뷰립류테스트1", thumbnail: ""),
+        UserReviewList(rid: 0, bid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "립뷰뷰븁뷰뷰테스트2", thumbnail: "")
+    ]
     
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -31,6 +35,7 @@ class MyProfileViewController: UIViewController {
     
     var userName = "이다혜"
     
+    // MARK: - View Did Load
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,6 +43,91 @@ class MyProfileViewController: UIViewController {
         setCollectionViewDelegate()
         setCollectionViewDataSource()
         registerNibCollectionViewCell()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // - [x] UserDefaults에 저장되어 있는 사용자 이메일 가져오기
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Launch: 사용자 이메일을 불러올 수 없음.")
+            redirectLoginView()
+            return
+        }
+
+        // - [x] 사용자 이메일로 KeyChain에 저장되어 있는 AT, RT를 가져오기
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+            print("Launch: 토큰을 불러올 수 없음.")
+            redirectLoginView()
+            return
+        }
+        print("view will appear")
+        self.requestMyprofile(accessToken: previousAccessToken)
+        
+                
+    }
+    
+    private func requestMyprofile(accessToken: String) {
+        print("request MyProfile: 통신 요청")
+        MyProfileAPI.shared.myprofile(accessToken: accessToken) { (success, data, statuscode) in
+            guard let myprofileData = data as? MyprofileModel else { return }
+            if success {
+                print("잘 되었따.")
+                self.myTagsArray = (myprofileData.result?.userData.userTagList)!
+                self.myBooksArray = (myprofileData.result?.favoriteBookList)!
+                DispatchQueue.main.async {
+                    self.myTagsCollectionView.reloadData()
+                    self.myBooksCollectionView.reloadData()
+                    self.setUserNameLabel((myprofileData.result?.userData.nickname)!)
+                }
+                
+            } else {
+                print("request MyProfile: false")
+                if statuscode == 403 {
+                    // 새로 AT 갱신할 것.
+                    print(statuscode)
+                    if let errorMessage = myprofileData.errorMessage {
+                        print("request MyProfile false의 이유: \(errorMessage)")
+                    }
+
+                    guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+                        print("Launch: 사용자 이메일을 불러올 수 없음.")
+                        return
+                    }
+                    guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+                          let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+                        print("Launch: 토큰을 불러올 수 없음.")
+                        return
+                    }
+                    print("갱신요청")
+                    Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data, statuscode) in
+                        print(success)
+                        guard let tokens = data as? RefreshModel else { return }
+                        if success {
+                            if let newAccessToken = tokens.result?.accessToken {
+                                if !KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) {
+                                    print("Launch: 새로운 토큰 제대로 저장이 안되었어요~~~~")
+                                }
+                                self.requestMyprofile(accessToken: previousAccessToken)
+                            }
+                        } else {
+                            if statuscode == 400 {
+                                // 유효한 토큰입니다.
+                                print(tokens.errorMessage)
+                            } else if statuscode == 403 {
+                                // 기간이 지난 토큰입니다.
+                                // 로그인 화면 리다이렉트
+                                self.redirectLoginView()
+                            }
+                        }
+                    }
+                    
+                } else {
+                    print(statuscode)
+                    if let errorMessage = myprofileData.errorMessage {
+                        print("request MyProfile false의 이유: \(errorMessage)")
+                    }
+                }
+            }
+        }
     }
     
     private func setUserImageViewCornerRadius() {
@@ -65,9 +155,10 @@ class MyProfileViewController: UIViewController {
         
         self.myReviewsCollectionView.register(UINib(nibName: "MyReviewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyReviewsCollectionViewCell")
     }
-
-    @IBAction func loginTestButton(_ sender: Any) {
-         //스토리보드의 파일 찾기
+    
+    // 임시, 새로 시나리오 짤 것...
+    func redirectLoginView() {
+        //스토리보드의 파일 찾기
         let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
 
         // 스토리보드에서 지정해준 ViewController의 ID
@@ -82,8 +173,14 @@ class MyProfileViewController: UIViewController {
         self.present(vc, animated: true)
     }
 
+    @IBAction func loginTestButton(_ sender: Any) {
+        redirectLoginView()
+    }
+
 }
 
+
+// MARK: - UICollectionView Extension
 extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -114,7 +211,7 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
                 return UICollectionViewCell()
             }
             myBooksCell.myBooksImageView.image = UIImage(named: "hi")
-            myBooksCell.myBooksLabel.text = "\(myBooksArray[indexPath.row])"
+            myBooksCell.myBooksLabel.text = "\(myBooksArray[indexPath.row].title)"
             return myBooksCell
             
         } else if collectionView == self.myPostCollectionView {
@@ -122,8 +219,8 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             else {
                 return UICollectionViewCell()
             }
-            myPostCell.myPostsTitleLabel.text = MyPost.title[indexPath.row]
-            myPostCell.myPostsDescriptionLabel.text = MyPost.description[indexPath.row]
+            myPostCell.myPostsTitleLabel.text = myPostArray[indexPath.row].title
+            myPostCell.myPostsDescriptionLabel.text = myPostArray[indexPath.row].contents
 //            myPostCell.myPostsLikeLabel.text
 //            myPostCell.myPostsCommentsLabel.text
             return myPostCell
@@ -133,9 +230,9 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             else {
                 return UICollectionViewCell()
             }
-            myReviewsCell.myReviewsBookTitleLabel.text = MyReviews.title[indexPath.row]
-            myReviewsCell.myReviewsBookDescriptionLabel.text = MyReviews.description[indexPath.row]
-            myReviewsCell.myReviewsBookAuthorLabel.text = MyReviews.author[indexPath.row]
+            myReviewsCell.myReviewsBookTitleLabel.text = myReviewsArray[indexPath.row].bookTitle
+            myReviewsCell.myReviewsBookDescriptionLabel.text = myReviewsArray[indexPath.row].contents
+            myReviewsCell.myReviewsBookAuthorLabel.text = myReviewsArray[indexPath.row].author
             myReviewsCell.myReviewsBookImageView.image = UIImage(named: "생각하는북키1")
 //            myReviewsCell.myReviewsLikeLabel.text
 //            myReviewsCell.myReviewsLikeImageView.image

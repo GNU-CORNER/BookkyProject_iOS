@@ -35,7 +35,7 @@ struct UserData: Codable {
     let pushNoti: Bool
     let thumbnail: String?
     let loginMethod: Int
-    let tagArray: String?
+    let tagArray: [String]?
 
     enum CodingKeys: String, CodingKey {
         case uid = "UID"

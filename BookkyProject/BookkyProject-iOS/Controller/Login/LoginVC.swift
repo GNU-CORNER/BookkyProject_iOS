@@ -54,7 +54,7 @@ class LoginVC: UIViewController {
     }
     
     func requestLogin(email: String, password: String) {
-        Account.shared.login(userEmail: email, userPassword: password) { (suceess, data) in
+        Account.shared.login(userEmail: email, userPassword: password) { (suceess, data, statuscode) in
             if suceess {
                 guard let userAccount = data as? SignupModel else { return }
                 if userAccount.success {
@@ -68,23 +68,26 @@ class LoginVC: UIViewController {
                     print("엑세스 토큰 값!!!")
                     // - [x] 사용자 AT, RT는 Keychain에 저장
                     if let accessToken = userAccount.result?.accessToken {
-                        if !KeychainManager.shared.create(accessToken, userEmail: email, itemLabel: UserDefaultsModel.accessToken.rawValue) {
+                        if !KeychainManager.shared.update(accessToken, userEmail: email, itemLabel: UserDefaultsModel.accessToken.rawValue) {
                             // - [ ] 저장이 안될 경우 예외처리 할 것.
                             print("Login : AT 저장이 안되었따.")
                         }
                     }
                     if let refreshToken = userAccount.result?.refreshToken {
-                        if !KeychainManager.shared.create(refreshToken, userEmail: email, itemLabel: UserDefaultsModel.refreshToken.rawValue) {
+                        if !KeychainManager.shared.update(refreshToken, userEmail: email, itemLabel: UserDefaultsModel.refreshToken.rawValue) {
                             // - [ ] 저장이 안될 경우 예외처리 할 것.
                             print("Login : RT 저장이 안되었따.")
                         }
                     }
+                    
                 }
             } else {
-                print("통신실패")
+                print(statuscode)
+                print("비번 틀림.")
             }
         }
     }
+    
     
     
 }
