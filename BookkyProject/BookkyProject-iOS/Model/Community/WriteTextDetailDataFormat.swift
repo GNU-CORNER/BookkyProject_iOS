@@ -14,9 +14,8 @@ struct WriteTextDetailInformation : Codable {
 }
 struct WriteTextDetailData : Codable{
     let postdata : WriteTextDetailPostData
-    let postuserdata : WriteTextDetailPostuserdata
     let commentdata : [WriteTextDetailCommentdata]?
-    let commentuserdata : [WriteTextDetailCommentuserdata]?
+    let commentCnt : Int?
 }
 struct WriteTextDetailPostData : Codable {
     let title : String
@@ -25,22 +24,21 @@ struct WriteTextDetailPostData : Codable {
     let createAt : String
     let updateAt : String
     let like : [Int]?
-    let UID : Int
-}
-struct WriteTextDetailPostuserdata : Codable {
     let nickname : String
     let thumbnail : String?
 }
 struct WriteTextDetailCommentdata : Codable{
-    let UID : Int
-    let parentID : Int
     let comment : String
     let updateAt : String
     let like : [Int]?
-    let CID : Int
-    let PID : Int
+    let nickname : String
+    let thumbnail : String?
+    let childComment : [ChildComment]?
 }
-struct WriteTextDetailCommentuserdata : Codable {
+struct ChildComment : Codable{
+    let comment : String
+    let updateAt : String
+    let like : [Int]?
     let nickname : String
     let thumbnail : String?
 }

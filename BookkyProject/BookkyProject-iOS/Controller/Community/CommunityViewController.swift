@@ -39,6 +39,7 @@ class CommunityViewController: UIViewController {
     var moreScroll : Bool = false
     var totalTextCount : Int = 0
     var currentTextCount : Int = 0
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -276,9 +277,6 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         //        }
         return cell
     }
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return 80
-    //    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
