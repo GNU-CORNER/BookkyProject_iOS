@@ -33,7 +33,7 @@ class MyProfileViewController: UIViewController {
     @IBOutlet weak var myPostCollectionView: UICollectionView!
     @IBOutlet weak var myReviewsCollectionView: UICollectionView!
     
-    var userName = "이다혜"
+    var userName = "비회원"
     
     // MARK: - View Did Load
     override func viewDidLoad() {
@@ -45,6 +45,7 @@ class MyProfileViewController: UIViewController {
         registerNibCollectionViewCell()
     }
     
+    // MARK: - View Will Appear
     override func viewWillAppear(_ animated: Bool) {
         // - [x] UserDefaults에 저장되어 있는 사용자 이메일 가져오기
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
@@ -65,6 +66,7 @@ class MyProfileViewController: UIViewController {
                 
     }
     
+    // MARK: - Request MyProfile
     private func requestMyprofile(accessToken: String) {
         print("request MyProfile: 통신 요청")
         MyProfileAPI.shared.myprofile(accessToken: accessToken) { (success, data, statuscode) in
@@ -73,10 +75,14 @@ class MyProfileViewController: UIViewController {
                 print("잘 되었따.")
                 self.myTagsArray = (myprofileData.result?.userData.userTagList)!
                 self.myBooksArray = (myprofileData.result?.favoriteBookList)!
+                self.myPostArray = (myprofileData.result?.userPostList)!
+                self.myReviewsArray = (myprofileData.result?.userReviewList)!
                 DispatchQueue.main.async {
+                    self.setUserNameLabel((myprofileData.result?.userData.nickname)!)
                     self.myTagsCollectionView.reloadData()
                     self.myBooksCollectionView.reloadData()
-                    self.setUserNameLabel((myprofileData.result?.userData.nickname)!)
+                    self.myPostCollectionView.reloadData()
+                    self.myReviewsCollectionView.reloadData()
                 }
                 
             } else {
@@ -115,6 +121,7 @@ class MyProfileViewController: UIViewController {
                             } else if statuscode == 403 {
                                 // 기간이 지난 토큰입니다.
                                 // 로그인 화면 리다이렉트
+                                // (여기 좀 이상함..)
                                 self.redirectLoginView()
                             }
                         }
@@ -130,6 +137,7 @@ class MyProfileViewController: UIViewController {
         }
     }
     
+    // MARK: - Set Up View func.
     private func setUserImageViewCornerRadius() {
         userImageView.layer.cornerRadius = self.userImageView.frame.width / 2
     }
@@ -156,21 +164,24 @@ class MyProfileViewController: UIViewController {
         self.myReviewsCollectionView.register(UINib(nibName: "MyReviewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyReviewsCollectionViewCell")
     }
     
+    // MARK: - Redirect Login View
     // 임시, 새로 시나리오 짤 것...
     func redirectLoginView() {
         //스토리보드의 파일 찾기
         let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
 
         // 스토리보드에서 지정해준 ViewController의 ID
-        guard let vc = storyboard?.instantiateViewController(identifier: "LoginNavigation") else {
-            return
+        DispatchQueue.main.async {
+            guard let vc = storyboard?.instantiateViewController(identifier: "LoginNavigation") else {
+                return
+            }
+            // 화면 전환방식 선택 (default : .modal)
+            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            
+
+            // 화면 전환!
+            self.present(vc, animated: true)
         }
-
-        // 화면 전환방식 선택 (default : .modal)
-        vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-
-        // 화면 전환!
-        self.present(vc, animated: true)
     }
 
     @IBAction func loginTestButton(_ sender: Any) {
@@ -189,9 +200,9 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
         } else if collectionView == self.myBooksCollectionView {
             return myBooksArray.count
         } else if collectionView == self.myPostCollectionView {
-            return 2
+            return myPostArray.count
         } else {
-            return 2
+            return myReviewsArray.count
         }
     }
     
@@ -210,7 +221,14 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             else {
                 return UICollectionViewCell()
             }
-            myBooksCell.myBooksImageView.image = UIImage(named: "hi")
+            if let thumbnailUrl = URL(string: myBooksArray[indexPath.row].thumbnailImage) {
+                do {
+                    let thumbnailData = try Data(contentsOf: thumbnailUrl)
+                    myBooksCell.myBooksImageView.image = UIImage(data: thumbnailData)
+                } catch {
+                    print(error)
+                }
+            }
             myBooksCell.myBooksLabel.text = "\(myBooksArray[indexPath.row].title)"
             return myBooksCell
             
@@ -221,8 +239,8 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             }
             myPostCell.myPostsTitleLabel.text = myPostArray[indexPath.row].title
             myPostCell.myPostsDescriptionLabel.text = myPostArray[indexPath.row].contents
-//            myPostCell.myPostsLikeLabel.text
-//            myPostCell.myPostsCommentsLabel.text
+            myPostCell.myPostsLikeLabel.text = String(myPostArray[indexPath.row].likeCnt)
+            myPostCell.myPostsCommentsLabel.text = String(myPostArray[indexPath.row].commentCnt)
             return myPostCell
             
         } else {
@@ -233,9 +251,16 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             myReviewsCell.myReviewsBookTitleLabel.text = myReviewsArray[indexPath.row].bookTitle
             myReviewsCell.myReviewsBookDescriptionLabel.text = myReviewsArray[indexPath.row].contents
             myReviewsCell.myReviewsBookAuthorLabel.text = myReviewsArray[indexPath.row].author
-            myReviewsCell.myReviewsBookImageView.image = UIImage(named: "생각하는북키1")
-//            myReviewsCell.myReviewsLikeLabel.text
-//            myReviewsCell.myReviewsLikeImageView.image
+            if let thumbnailUrl = URL(string: myReviewsArray[indexPath.row].thumbnail) {
+                do {
+                    let thumbnailData = try Data(contentsOf: thumbnailUrl)
+                    myReviewsCell.myReviewsBookImageView.image = UIImage(data: thumbnailData)
+                } catch {
+                    print(error)
+                }
+            }
+            myReviewsCell.myReviewsLikeLabel.text = String(myReviewsArray[indexPath.row].likeCnt)
+
             return myReviewsCell
         }
     }

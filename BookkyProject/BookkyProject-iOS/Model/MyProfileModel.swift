@@ -63,7 +63,8 @@ struct UserReviewList: Codable {
     let contents: String
     let views: Int
     let createAt: String
-    let rating, likeCnt: Int
+    let rating: Double
+    let likeCnt: Int
     let isLiked, isAccessible: Bool
     let nickname, author, bookTitle: String
     let thumbnail: String
