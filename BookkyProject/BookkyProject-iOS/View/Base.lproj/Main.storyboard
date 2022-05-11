@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="-1014" y="400"/>
         </scene>
-        <!--Community-->
+        <!--CommunityNavigation-->
         <scene sceneID="zbf-dg-NKA">
             <objects>
-                <viewControllerPlaceholder storyboardName="Community" referencedIdentifier="Community" id="3s5-Qo-x87" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Community" referencedIdentifier="CommunityNavigation" id="3s5-Qo-x87" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="dbk-El-OQV"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sUa-Yq-mgh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

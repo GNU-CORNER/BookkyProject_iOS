@@ -26,6 +26,13 @@ class BookCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         self.bookNameLabel.textColor = UIColor.white
+      
     }
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        bookImageView.image = nil
+        bookNameLabel.text = ""
+    }
+ 
 }
+

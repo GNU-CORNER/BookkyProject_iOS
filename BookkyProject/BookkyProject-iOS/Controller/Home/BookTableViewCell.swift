@@ -10,18 +10,28 @@ protocol BookCollectionViewCellDeleGate : AnyObject {
     func collectionView(collectionviewcell: BookCollectionViewCell?, index: Int, didTappedInTableViewCell: BookTableViewCell)
 
 }
+//protocol BookTableViewCellDeleGate : AnyObject{
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+//}
 class BookTableViewCell: UITableViewCell {
     
+    var TID : Int = 0
 
     weak var cellDelegate : BookCollectionViewCellDeleGate?
+   
     @IBOutlet weak var bookTableViewCell: UIView!
    
-    @IBOutlet weak var tagNameButton: UIButton!
+    @IBOutlet weak var tagNameLabel: UILabel!
+    
     @IBOutlet weak var bookCollectionView: UICollectionView!
     var bookDataLsit : [BookData] = []
+   
     func setBookInformation(model : BookList){
-        tagNameButton.setTitle(model.tag, for:.normal)
+        tagNameLabel.text = model.tag
         bookDataLsit = model.data
+       
+        self.TID = model.TID
+      
         bookCollectionView.reloadData()
     }
 
@@ -29,10 +39,9 @@ class BookTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         setCollectionVieCell()
-        self.tagNameButton.backgroundColor = UIColor(named: "primaryColor")
-        self.tagNameButton.tintColor = UIColor.white
-        self.tagNameButton.titleLabel?.font = UIFont.systemFont(ofSize: 18)
-//        self.bookTableViewCell.backgroundColor = UIColor(named: "primaryColor")
+        self.tagNameLabel.textColor = UIColor.white
+        self.tagNameLabel.font = UIFont.systemFont(ofSize: 18)
+        self.bookTableViewCell.backgroundColor = UIColor(named: "primaryColor")
         
     }
     
@@ -56,22 +65,17 @@ class BookTableViewCell: UITableViewCell {
         let cellNib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         self.bookCollectionView?.register(cellNib, forCellWithReuseIdentifier: "bookCollectionViewCellid")
     }
-    
+
 }
 extension BookTableViewCell :UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return bookDataLsit.count
-        //        print("\(bookList.object[section].book.count)")
-        //        return bookList.object[section].book.count
-        
     }
    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell :BookCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCollectionViewCellid", for: indexPath) as? BookCollectionViewCell else {return UICollectionViewCell()}
-        cell.setBookData(model: bookDataLsit[indexPath.row])
         
-        //        cell.bookNameLabel.text = bookList.object[indexPath.section].book[indexPath.row].bookName
-        //        cell.bookImageView.image = UIImage(named: "\(self.bookList.object[indexPath.row].book[indexPath.row].bookImage)")
+        cell.setBookData(model: bookDataLsit[indexPath.row])
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

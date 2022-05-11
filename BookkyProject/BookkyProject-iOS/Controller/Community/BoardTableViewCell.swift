@@ -17,13 +17,22 @@ class BoardTableViewCell: UITableViewCell {
     
     @IBOutlet weak var commentImageView: UIImageView!
     @IBOutlet weak var commentCountLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         self.likeThatImageView.image = UIImage(named: "likeThat")
         self.commentImageView.image = UIImage(named: "comment")
     }
-
+    func setBoardTableViewPostList(model :PostListData){
+        tittleLabel.text = model.title
+        subtittleLabel.text = model.contents
+        
+    }
+    func setBoardTableViewSubList(model :CommunitySubData ){
+        likeThatCountLabel.text = "\(model.likeCnt)"
+        commentCountLabel.text = "\(model.commentCnt)"
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

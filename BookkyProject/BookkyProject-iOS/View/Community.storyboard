@@ -6,13 +6,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="7aZ-dU-Ag6">
             <objects>
-                <navigationController restorationIdentifier="Community" storyboardIdentifier="Community" navigationBarHidden="YES" id="TwZ-xM-w1V" sceneMemberID="viewController">
+                <navigationController restorationIdentifier="Community" storyboardIdentifier="CommunityNavigation" navigationBarHidden="YES" id="TwZ-xM-w1V" sceneMemberID="viewController">
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b5C-m2-Xsr">
                         <autoresizingMask key="autoresizingMask"/>
@@ -55,13 +56,15 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dpx-Zo-6fq">
                                                 <rect key="frame" x="22.5" y="0.0" width="50" height="30"/>
-                                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="9" bottom="8" trailing="8"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="글   " image="pencil" catalog="system">
                                                     <color key="titleColor" red="0.90196078430000004" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="25"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="S2f-aB-ImO" kind="show" id="6Qp-lb-V7Q"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -255,11 +258,220 @@
             </objects>
             <point key="canvasLocation" x="1782.608695652174" y="25.446428571428569"/>
         </scene>
+        <!--Write Text View Controller-->
+        <scene sceneID="j06-qz-2e6">
+            <objects>
+                <viewController id="S2f-aB-ImO" customClass="WriteTextViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GrY-E0-XQH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목을 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0d-vc-Ocv">
+                                <rect key="frame" x="0.0" y="124.5" width="414" height="34"/>
+                                <color key="backgroundColor" red="0.97647064920000004" green="0.97647064920000004" blue="0.97647064920000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="글" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6DD-f5-uJi">
+                                <rect key="frame" x="0.0" y="428.5" width="414" height="329.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vuP-dQ-yQz">
+                                <rect key="frame" x="10" y="168.5" width="394" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="Php-5W-iBh"/>
+                                </constraints>
+                            </imageView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zpN-cr-IHi">
+                                <rect key="frame" x="10" y="298.5" width="394" height="120"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="xr8-CK-D9W"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="14I-Wp-Whq">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="writeCollectionViewId" id="lZZ-Jd-1Hu">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="m3w-i8-BXr">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GlQ-DA-Zck">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="GlQ-DA-Zck" firstAttribute="leading" secondItem="m3w-i8-BXr" secondAttribute="leading" id="3OL-qv-ppU"/>
+                                                <constraint firstAttribute="trailing" secondItem="GlQ-DA-Zck" secondAttribute="trailing" id="ejX-K8-cmd"/>
+                                                <constraint firstItem="GlQ-DA-Zck" firstAttribute="top" secondItem="m3w-i8-BXr" secondAttribute="top" id="r0L-T8-Z6U"/>
+                                                <constraint firstAttribute="bottom" secondItem="GlQ-DA-Zck" secondAttribute="bottom" id="wEd-5f-uAC"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zwq-Ry-Uzh">
+                                <rect key="frame" x="5" y="54" width="34" height="30"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="back"/>
+                                <connections>
+                                    <action selector="tapGoBackCommunityButton:" destination="S2f-aB-ImO" eventType="touchUpInside" id="RpH-Bj-H2a"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="글 쓰기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egO-Jd-hbW">
+                                <rect key="frame" x="183" y="94" width="48.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="93" translatesAutoresizingMaskIntoConstraints="NO" id="dKb-dl-uVB">
+                                <rect key="frame" x="10" y="763" width="384" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d30-4R-TQK">
+                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="30"/>
+                                        <color key="tintColor" red="0.50196081400000003" green="0.50196087359999997" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="book.fill" catalog="system"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDr-dN-2zg">
+                                        <rect key="frame" x="116.5" y="0.0" width="24.5" height="30"/>
+                                        <color key="tintColor" red="0.50196081400000003" green="0.50196087359999997" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="camera" catalog="system"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H04-As-wcp" customClass="AutoAddPaddingButtton" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="234" y="0.0" width="150" height="30"/>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="20" bottom="10" trailing="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="글 작성"/>
+                                        <connections>
+                                            <action selector="postTextContent:" destination="S2f-aB-ImO" eventType="touchUpInside" id="GT3-aE-CpJ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="exe-B8-6et">
+                                <rect key="frame" x="172" y="89" width="70" height="144"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31S-2K-t7W">
+                                        <rect key="frame" x="12" y="12" width="46" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="tapGoBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="rWW-9b-3AP"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hld-kb-QF5">
+                                        <rect key="frame" x="12" y="42" width="46" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="tapGoBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="mfk-kG-h7x"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dkt-Tr-NfF">
+                                        <rect key="frame" x="12" y="72" width="46" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="tapGoBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="B1l-FQ-ZOL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGe-dW-KRi">
+                                        <rect key="frame" x="12" y="102" width="46" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="tapGoBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="A6j-Kp-E6T"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="12" leading="12" bottom="12" trailing="12"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GF6-Fe-oI9">
+                                <rect key="frame" x="132" y="51" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="eML-0U-Yq9"/>
+                                </constraints>
+                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="20" bottom="8" trailing="20"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="자유"/>
+                                <connections>
+                                    <action selector="tapChangeBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="wde-o6-pMI"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="74j-7L-e1u"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zpN-cr-IHi" firstAttribute="top" secondItem="vuP-dQ-yQz" secondAttribute="bottom" constant="10" id="0dK-ys-tz5"/>
+                            <constraint firstItem="egO-Jd-hbW" firstAttribute="top" secondItem="GF6-Fe-oI9" secondAttribute="bottom" constant="13" id="1pg-Kr-Jk8"/>
+                            <constraint firstItem="74j-7L-e1u" firstAttribute="trailing" secondItem="6DD-f5-uJi" secondAttribute="trailing" id="1zF-An-4jX"/>
+                            <constraint firstItem="74j-7L-e1u" firstAttribute="bottom" secondItem="dKb-dl-uVB" secondAttribute="bottom" constant="20" id="62y-Te-Ec8"/>
+                            <constraint firstItem="vuP-dQ-yQz" firstAttribute="top" secondItem="a0d-vc-Ocv" secondAttribute="bottom" constant="10" id="7XA-Mo-7Xl"/>
+                            <constraint firstAttribute="trailing" secondItem="dKb-dl-uVB" secondAttribute="trailing" constant="20" id="8Dx-6e-Zim"/>
+                            <constraint firstItem="74j-7L-e1u" firstAttribute="trailing" secondItem="a0d-vc-Ocv" secondAttribute="trailing" id="8Ht-Pu-pvd"/>
+                            <constraint firstItem="exe-B8-6et" firstAttribute="top" secondItem="GF6-Fe-oI9" secondAttribute="bottom" constant="8" id="A8D-dS-cTz"/>
+                            <constraint firstItem="Zwq-Ry-Uzh" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" constant="5" id="H8u-Iw-g73"/>
+                            <constraint firstItem="GF6-Fe-oI9" firstAttribute="centerX" secondItem="GrY-E0-XQH" secondAttribute="centerX" id="IBo-uM-fFF"/>
+                            <constraint firstItem="GF6-Fe-oI9" firstAttribute="top" secondItem="74j-7L-e1u" secondAttribute="top" constant="7" id="L2e-S6-VIT"/>
+                            <constraint firstItem="exe-B8-6et" firstAttribute="centerX" secondItem="GrY-E0-XQH" secondAttribute="centerX" id="NGv-we-GMd"/>
+                            <constraint firstItem="74j-7L-e1u" firstAttribute="trailing" secondItem="zpN-cr-IHi" secondAttribute="trailing" constant="10" id="WTK-bS-TP7"/>
+                            <constraint firstItem="6DD-f5-uJi" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" id="Y2R-v8-C5V"/>
+                            <constraint firstItem="dKb-dl-uVB" firstAttribute="leading" secondItem="GrY-E0-XQH" secondAttribute="leading" constant="10" id="aCj-Hm-j67"/>
+                            <constraint firstItem="a0d-vc-Ocv" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" id="hJM-cI-Uxm"/>
+                            <constraint firstItem="zpN-cr-IHi" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" constant="10" id="hX3-YS-ZdO"/>
+                            <constraint firstItem="74j-7L-e1u" firstAttribute="trailing" secondItem="vuP-dQ-yQz" secondAttribute="trailing" constant="10" id="hzY-7m-qpN"/>
+                            <constraint firstItem="egO-Jd-hbW" firstAttribute="centerX" secondItem="GrY-E0-XQH" secondAttribute="centerX" id="lFk-4d-Nhc"/>
+                            <constraint firstItem="a0d-vc-Ocv" firstAttribute="top" secondItem="egO-Jd-hbW" secondAttribute="bottom" constant="10" id="lMO-dd-EUF"/>
+                            <constraint firstItem="Zwq-Ry-Uzh" firstAttribute="top" secondItem="74j-7L-e1u" secondAttribute="top" constant="10" id="pPU-cj-JS8"/>
+                            <constraint firstItem="6DD-f5-uJi" firstAttribute="top" secondItem="zpN-cr-IHi" secondAttribute="bottom" constant="10" id="qKS-Zv-gF9"/>
+                            <constraint firstItem="dKb-dl-uVB" firstAttribute="top" secondItem="6DD-f5-uJi" secondAttribute="bottom" constant="5" id="wQX-td-wKb"/>
+                            <constraint firstItem="vuP-dQ-yQz" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" constant="10" id="x8y-h9-7UP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="FHm-Oe-5j5">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ImageAddButton" destination="SDr-dN-2zg" id="JVH-ao-586"/>
+                        <outlet property="QnABoardGoButton" destination="Dkt-Tr-NfF" id="ltO-lS-jKI"/>
+                        <outlet property="boardNameButton" destination="GF6-Fe-oI9" id="86O-bX-bMq"/>
+                        <outlet property="boardTypeStackView" destination="exe-B8-6et" id="aae-sm-AiH"/>
+                        <outlet property="bookMarketGoButton" destination="uGe-dW-KRi" id="Vcd-58-hMI"/>
+                        <outlet property="bookthumbnailImageAddButton" destination="d30-4R-TQK" id="ZFh-yZ-Y6r"/>
+                        <outlet property="communityGoBackButton" destination="Zwq-Ry-Uzh" id="gWj-Ow-fIR"/>
+                        <outlet property="freeBoardGoButton" destination="31S-2K-t7W" id="srn-ef-XMS"/>
+                        <outlet property="hotBoardGobutton" destination="hld-kb-QF5" id="hus-Pc-2lK"/>
+                        <outlet property="writeContentTextView" destination="6DD-f5-uJi" id="YOg-CS-bPe"/>
+                        <outlet property="writeTextBottomStackView" destination="dKb-dl-uVB" id="YmW-ap-0mA"/>
+                        <outlet property="writeTextButton" destination="H04-As-wcp" id="EqJ-qH-nTM"/>
+                        <outlet property="writeTitleTextField" destination="a0d-vc-Ocv" id="bDg-Nb-g7m"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7e9-pR-Fbd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2669.5652173913045" y="10.714285714285714"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="book.fill" catalog="system" width="128" height="95"/>
+        <image name="camera" catalog="system" width="128" height="94"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
