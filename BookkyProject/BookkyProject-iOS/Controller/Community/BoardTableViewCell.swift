@@ -22,24 +22,25 @@ class BoardTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setBoardTableViewCellUI()
+        
+    }
+    
+    func setBoardTableViewPostList(model :PostListData){
+        self.tittleLabel.text = model.title
+        self.subtittleLabel.text = model.contents
+        self.PID = model.PID
+        self.likeThatCountLabel.text = "\(model.likeCnt)"
+        self.commentCountLabel.text = "\(model.commentCnt)"
+        
+    }
+    func setBoardTableViewCellUI(){
         self.likeThatImageView.image = UIImage(named: "likeThat")
         self.commentImageView.image = UIImage(named: "comment")
-        
+        self.likeThatCountLabel.textColor = UIColor(named: "PrimaryOrangeColor")
+        self.commentCountLabel.textColor = UIColor(named: "PrimaryBlueColor")
     }
-    //    func selectInfoPID(){
-    //
-    //    }
-    func setBoardTableViewPostList(model :PostListData){
-        tittleLabel.text = model.title
-        subtittleLabel.text = model.contents
-        self.PID = model.PID
-        
-        
-    }
-    func setBoardTableViewSubList(model :CommunitySubData ){
-        likeThatCountLabel.text = "\(model.likeCnt)"
-        commentCountLabel.text = "\(model.commentCnt)"
-    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

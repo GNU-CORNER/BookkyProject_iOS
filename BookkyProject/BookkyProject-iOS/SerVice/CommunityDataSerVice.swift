@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-let accessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUyMTk1Mjg3LCJVSUQiOjcwfQ.N-QEXM38BoQWEGjC3yakMgdzZe4RA_kNU4Y4EeRmtR4"
+
 class CommunityAPI {
     static let shared = CommunityAPI()
-    func getCommunityWriteList(CommunityBoardNumber:Int ,completion : @escaping(Bool, Any) -> Void){
+    func getCommunityWriteList(CommunityBoardNumber:Int ,pageCount : Int ,completion : @escaping(Bool, Any) -> Void){
         let session = URLSession(configuration: .default)
-        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityPostListGetURL+"\(CommunityBoardNumber)") else {
+        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityPostListGetURL+"\(CommunityBoardNumber)?"+"page=\(pageCount)") else {
             print("Error : Cannot create URL")
             return
         }
@@ -75,7 +75,16 @@ class CommunityAPI {
         
     }
     func postCommunityWrite(textTitle : String , textContent : String ,CommunityBoardNumber : Int,completionHandler : @escaping(Bool, Any) -> Void){
-        
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Launch: 사용자 이메일을 불러올 수 없음.")
+            return
+        }
+      
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+            print("Launch: 토큰을 불러올 수 없음.")
+            return
+        }
         let httpBody : [String:Any] = ["title":textTitle,"contents":textContent]
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityWritePostURL+"\(CommunityBoardNumber)") else {
@@ -85,7 +94,7 @@ class CommunityAPI {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        request.setValue("\(accessToken)", forHTTPHeaderField: "access-token")
+        request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
         request.setValue("application/json", forHTTPHeaderField: "accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONSerialization.data(withJSONObject: httpBody, options: [])

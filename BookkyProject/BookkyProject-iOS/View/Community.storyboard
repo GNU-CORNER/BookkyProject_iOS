@@ -122,9 +122,8 @@
                                 </subviews>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="5" leading="5" bottom="5" trailing="5"/>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vWY-d1-37t">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vWY-d1-37t">
                                 <rect key="frame" x="0.0" y="146" width="414" height="672"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="boadrTableViewCellid" rowHeight="77" id="sIE-hF-UT8" customClass="BoardTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="77"/>
@@ -264,7 +263,7 @@
         <!--Write Text View Controller-->
         <scene sceneID="j06-qz-2e6">
             <objects>
-                <viewController id="S2f-aB-ImO" customClass="WriteTextViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="S2f-aB-ImO" customClass="WriteTextViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GrY-E0-XQH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -276,7 +275,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="글" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6DD-f5-uJi">
-                                <rect key="frame" x="0.0" y="472.5" width="414" height="285.5"/>
+                                <rect key="frame" x="0.0" y="472.5" width="414" height="334.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -337,7 +336,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="93" translatesAutoresizingMaskIntoConstraints="NO" id="dKb-dl-uVB">
-                                <rect key="frame" x="10" y="763" width="384" height="30"/>
+                                <rect key="frame" x="10" y="812" width="384" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d30-4R-TQK">
                                         <rect key="frame" x="0.0" y="0.0" width="23.5" height="30"/>
@@ -468,7 +467,7 @@
         <!--Title-->
         <scene sceneID="Xkf-ea-Nlx">
             <objects>
-                <viewController storyboardIdentifier="BookDetailViewController" id="Ux7-33-kLW" customClass="BoardTextDetailViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookDetailViewController" hidesBottomBarWhenPushed="YES" id="Ux7-33-kLW" customClass="BoardTextDetailViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wAp-h6-iL4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

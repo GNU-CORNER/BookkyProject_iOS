@@ -172,8 +172,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     @objc
     func tapAddMoreTagViewButton(sender: UIButton!){
   
-        
-        self.bookListTabelView.reloadData()
+        performSegue(withIdentifier: "tagMoreButtonSegueid", sender: self)
+    
         
     }
     

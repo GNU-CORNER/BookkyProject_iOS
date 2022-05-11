@@ -17,9 +17,9 @@ class CommunityViewController: UIViewController {
     var PID : Int = 0
     var postList : [PostListData] = []
     // 좋아요개수 와 댓글개수
-    var subDataList : [CommunitySubData] = []
-    
-    
+   
+    var currentPage = 1
+    var getPageDataCount : Int = 0
     
     @IBOutlet var communityView: UIView!
     @IBOutlet weak var boardNameButton: UIButton!
@@ -36,21 +36,16 @@ class CommunityViewController: UIViewController {
     
     @IBOutlet weak var grayView: UIView!
     
-    
+    var moreScroll : Bool = false
+    var totalTextCount : Int = 0
+    var currentTextCount : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         boardTableView.delegate = self
         boardTableView.dataSource = self
         self.boardTableView.reloadData()
-        
-        
-        
         SetdropDownView()
-        
-        
-        
         //searchButton
         self.searchButton.tintColor = .black
         //writeTextButton
@@ -61,7 +56,6 @@ class CommunityViewController: UIViewController {
         communityGetWriteList()
     }
     func SetdropDownView(){
-        
         self.freeBoardGoButton.setTitle("자유", for: .normal)
         self.hotBoardGobutton.setTitle("HOT", for: .normal)
         self.QnABoardGoButton.setTitle("Q&A", for: .normal)
@@ -105,11 +99,12 @@ class CommunityViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        communityGetWriteList()
-        self.boardTableView.reloadData()
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//
+//
+//    }
+    
     private func boardTypeColor() {
         self.freeBoardGoButton.tintColor = UIColor(named: "grayColor")
         self.hotBoardGobutton.tintColor = UIColor(named: "grayColor")
@@ -204,17 +199,19 @@ class CommunityViewController: UIViewController {
         
     }
     private func communityGetWriteList(){
-        CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber) { (success,data) in
+        CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
             if success{
                 guard let communityGetWriteList = data as? WriteListInformation else {return}
-                self.postList = communityGetWriteList.result.postList.reversed()
-                self.subDataList = communityGetWriteList.result.subData.reversed()
-                //                print(self.postList)
-                //                print(self.subDataList)
+              
+                print("\(communityGetWriteList.result.postList.count)get받아오는 개수")
+                self.getPageDataCount = communityGetWriteList.result.postList.count
+                self.postList.append(contentsOf: communityGetWriteList.result.postList)
+                self.totalTextCount = communityGetWriteList.result.total_size
+                self.currentTextCount+=self.getPageDataCount
                 if communityGetWriteList.success{
                     DispatchQueue.main.async {
+                      
                         self.boardTableView.reloadData()
-                        
                     }
                 }else{
                     print("통신오류")
@@ -222,6 +219,18 @@ class CommunityViewController: UIViewController {
                 
             }
         }
+    }
+    private func beginfetch(){
+        moreScroll = true
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+            print("\(self.totalTextCount)")
+            self.currentPage+=1
+            print("\(self.currentPage)currentPage")
+            self.communityGetWriteList()
+            self.moreScroll = false
+            self.boardTableView.reloadData()
+            
+        })
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "boardTextDetailSegueId"{
@@ -233,6 +242,14 @@ class CommunityViewController: UIViewController {
     
 }
 extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        return footerView
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postList.count
     }
@@ -245,13 +262,13 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         cell.subtittleLabel.font = UIFont.systemFont(ofSize: 15)
         if boardTypeNumber == 0 {
             cell.setBoardTableViewPostList(model:postList[indexPath.row])
-            cell.setBoardTableViewSubList(model: subDataList[indexPath.row])
+         
         }else if boardTypeNumber == 1{
             cell.setBoardTableViewPostList(model:postList[indexPath.row])
-            cell.setBoardTableViewSubList(model: subDataList[indexPath.row])
+          
         }else if boardTypeNumber == 2{
             cell.setBoardTableViewPostList(model:postList[indexPath.row])
-            cell.setBoardTableViewSubList(model: subDataList[indexPath.row])
+          
         }
         //        else if boardTypeNumber == 4{
         //            cell.tittleLabel.text = myTextBoard.objectArray[indexPath.row].title
@@ -267,8 +284,25 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return}
         self.PID = cell.PID
-        
         performSegue(withIdentifier: "boardTextDetailSegueId", sender: indexPath.row)
-        
     }
+    //무한스크롤
+    //스크롤 될때마다 
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let totalScrollSize = scrollView.contentSize.height - scrollView.bounds.height
+        let scrollSize = scrollView.contentOffset.y+50
+       
+        if currentTextCount < totalTextCount  {
+            if  scrollSize > totalScrollSize{
+                if !moreScroll {
+                    print("로딩실행")
+                    beginfetch()
+                }
+                
+            }
+            
+        }
+       
+    }
+    
 }

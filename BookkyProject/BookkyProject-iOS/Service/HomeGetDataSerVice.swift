@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-let accessTokenHome = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUyMjQ4NTcyLCJVSUQiOjcwfQ.f1-9qQ80oPxRclyXm5czQ945nhhdY9_UD5UC27n7L-0"
+
 class GetBookData {
     static var shared = GetBookData()
     //메인화면 API
@@ -107,6 +107,18 @@ class GetBookData {
     }
     //책상세 정보 리뷰 API
     func getBookDetailReviewData(BID : Int ,completion : @escaping(Bool, Any) -> Void){
+        
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Launch: 사용자 이메일을 불러올 수 없음.")
+            return
+        }
+        print(userEmail)
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+            print("Launch: 토큰을 불러올 수 없음.")
+            return 
+        }
+        
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.bookDetailReview+"\(BID)") else {
             print("Error: Cannot create URL")
@@ -116,7 +128,7 @@ class GetBookData {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
-        request.setValue("\(accessTokenHome)", forHTTPHeaderField: "access-token")
+        request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
         request.setValue("application/json", forHTTPHeaderField: "accept")
         session.dataTask(with: request) { (data,response,error) in
             guard error == nil else {

@@ -14,7 +14,7 @@
         <!--태그 더보기-->
         <scene sceneID="nvC-hf-OGh">
             <objects>
-                <viewController storyboardIdentifier="TagViewController" id="lk3-hT-9mY" customClass="TagViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TagViewController" hidesBottomBarWhenPushed="YES" id="lk3-hT-9mY" customClass="TagViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8dw-pT-NtZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -108,6 +108,22 @@ Label</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Zf-dE-lh8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2272" y="-942"/>
+        </scene>
+        <!--Tag More Button View Controller-->
+        <scene sceneID="D4Q-Sn-tBj">
+            <objects>
+                <viewController id="jyk-Aa-FBF" customClass="TagMoreButtonViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6Ss-qT-MbP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="mme-dR-ozf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="z2e-dm-if3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Eao-nR-s57" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="42" y="763"/>
         </scene>
         <!--홈-->
         <scene sceneID="dbN-Lt-57n">
@@ -304,6 +320,7 @@ Label</string>
                         <outlet property="roadMapGoButtonSecond" destination="S7G-hy-d5a" id="3qj-f0-cD6"/>
                         <segue destination="SlN-ec-z5q" kind="show" identifier="bookDetailViewSegue" id="Wun-3I-KCd"/>
                         <segue destination="lk3-hT-9mY" kind="show" identifier="bookTagViewSegue" id="GOj-gx-B2b"/>
+                        <segue destination="jyk-Aa-FBF" kind="show" identifier="tagMoreButtonSegueid" id="9jI-ed-RKs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xaG-HA-xCd" sceneMemberID="firstResponder"/>
@@ -332,7 +349,7 @@ Label</string>
         <!--도서 상세 정보-->
         <scene sceneID="iqs-g0-CiI">
             <objects>
-                <viewController storyboardIdentifier="BookDetailViewController" id="SlN-ec-z5q" customClass="BookDetailViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BookDetailViewController" hidesBottomBarWhenPushed="YES" id="SlN-ec-z5q" customClass="BookDetailViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3zK-zW-ID7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
