@@ -158,6 +158,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
             if sucess {
                 guard let bookData = data as? BookInformation else {return}
                 self.bookList = bookData.result.bookList
+                
                 if bookData.success{
                     DispatchQueue.main.async {
                         self.bookListTabelView.reloadData()
@@ -170,16 +171,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
     @objc
     func tapAddMoreTagViewButton(sender: UIButton!){
-        let deleteDecimalPoint = 230
-        if cellSize == 0 {
-            self.buttonText = "더보기 닫기 >"
-            cellSize = CGFloat(deleteDecimalPoint)
-            
-        }else {
-            self.buttonText = "태그 더보기>"
-            cellSize = 0
-            
-        }
+  
         
         self.bookListTabelView.reloadData()
         
@@ -205,14 +197,10 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         let noticeButton = UIButton(frame: CGRect(x: self.bookListTabelView.frame.width-60, y: 45, width: 50, height: 50))
         headerView.addSubview(welComeLabel)
         headerView.addSubview(noticeButton)
-        
         welComeLabel.text = "오늘\n\(user)님에게\n추천하는 책이에요!"
-     
-  
         welComeLabel.adjustsFontSizeToFitWidth = true
         welComeLabel.numberOfLines = 3
         welComeLabel.font = UIFont.systemFont(ofSize: 36)
-        
         welComeLabel.sizeToFit()
         welComeLabel.textColor = UIColor.white
         noticeButton.setImage(UIImage(systemName: "bell"), for: .normal)
@@ -240,14 +228,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         guard let cell:BookTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BookTableViewCellid", for: indexPath) as? BookTableViewCell else { return UITableViewCell()}
         cell.setBookInformation(model: bookList[indexPath.row])
         cell.cellDelegate = self
-        if indexPath.row == 0 {
-            tidArray.append(cell.TID)
-        }else if indexPath.row == 1{
-            tidArray.append(cell.TID)
-        }else if indexPath.row == 2{
-            tidArray.append(cell.TID)
-        }
-       
+   
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -255,14 +236,10 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         return bookList.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let deleteDecimalPoint = 230
-        
         if indexPath.row < 2 {
-            
-            return CGFloat(deleteDecimalPoint)
-            
+            return 230
         }else {
-            return cellSize
+            return 0
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -273,16 +250,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         }else if segue.identifier == "bookTagViewSegue"{
             guard let tagViewController = segue.destination as? TagViewController else {return}
             
-            switch sender {
-            case 0 as Int:
-                tagViewController.TID = tidArray[0]
-            case 1 as Int:
-                tagViewController.TID = tidArray[1]
-            case 2 as Int:
-                tagViewController.TID = tidArray[2]
-            default :
-                print("선택 error")
-            }
+            tagViewController.TID = self.TID
             
                 
             
@@ -291,6 +259,10 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
            
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let cell = tableView.cellForRow(at: indexPath) as? BookTableViewCell else {return}
+        self.TID = cell.TID
+        print("\(self.TID)")
         performSegue(withIdentifier: "bookTagViewSegue", sender: indexPath.row)
     }
      

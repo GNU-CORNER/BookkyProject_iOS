@@ -26,6 +26,7 @@ class TagViewController: UIViewController {
         // 13에서 안먹힌다 다른방법 연구
         // Do any additional setup after loading the view.
         //
+        
     }
     private func getTagBookData(){
         GetBookData.shared.getTagBookData(TID: self.TID){ (sucess,data) in
@@ -33,7 +34,6 @@ class TagViewController: UIViewController {
                 guard let tagBookData = data as? TagInformation else {return}
                 self.tagBookList = tagBookData.result.bookList.data
                 self.tagName = tagBookData.result.bookList.tag
-                
                 if tagBookData.success{
                     DispatchQueue.main.async {
                         

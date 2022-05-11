@@ -8,10 +8,13 @@
 import UIKit
 
 class BookDetailTagCollectionViewCell: UICollectionViewCell {
-  
+    
     
     @IBOutlet weak var tagNameLabel: UILabel!
-    
+    func setTagList(model : BookDetailDataTagData){
+        self.tagNameLabel.text = model.tag
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

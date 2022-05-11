@@ -9,7 +9,7 @@ import UIKit
 
 class WriteTextViewController: UIViewController {
     var boardTypeNumber : Int = 0
- 
+    
     
     @IBOutlet weak var boardNameButton: UIButton!
     
@@ -54,7 +54,7 @@ class WriteTextViewController: UIViewController {
         self.hotBoardGobutton.setTitle("HOT", for: .normal)
         self.QnABoardGoButton.setTitle("Q&A", for: .normal)
         self.bookMarketGoButton.setTitle("책 장터", for: .normal)
-      
+        
     }
     func setinitCommunity(){
         //보드게시판 클릭전 초기
@@ -85,7 +85,7 @@ class WriteTextViewController: UIViewController {
             self.boardTypeNumber = 1
             setDropDownMenu()
         }
-      
+        
     }
     @IBAction func tapChangeBoard(_ sender: UIButton) {
         if boardTypeStackView.isHidden == false {
@@ -104,15 +104,15 @@ class WriteTextViewController: UIViewController {
         self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
         self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
         self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
-      
+        
         
         self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-      
+        
         self.boardTypeStackView.isHidden = true
-      
+        
         self.boardNameButton.setImage(UIImage(systemName: "arrowtriangle.down"), for: .normal)
         
         if boardTypeNumber == 0{
@@ -149,7 +149,7 @@ class WriteTextViewController: UIViewController {
         writeTextButton.layer.cornerRadius = 15
         writeTextButton.layer.borderColor = UIColor(named: "primaryColor")?.cgColor
         writeTextButton.backgroundColor = UIColor(named: "primaryColor")
-      
+        
         
     }
     private func setwriteTitleTextField(){
@@ -175,7 +175,7 @@ class WriteTextViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
-       
+        
         
         
     }

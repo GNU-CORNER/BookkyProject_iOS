@@ -26,7 +26,7 @@ struct BookList : Codable{
     //    let success : Bool
     
     let tag : String
-    let TID : Int
+    let TID : Int?
     let data : [BookData]
     
 }
@@ -63,5 +63,9 @@ struct BookDetailData : Codable{
     let PUBLISH_DATE : String
     let Allah_BID : String
     let thumbnailImage :String
-    let tagName : [String]
+    let tagData : [BookDetailDataTagData]
+}
+struct BookDetailDataTagData : Codable {
+    let tag : String
+    let TID : Int
 }
