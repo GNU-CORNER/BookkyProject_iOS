@@ -212,6 +212,7 @@ extension BookDetailViewController : UITableViewDelegate,UITableViewDataSource{
         cell.setReview(model : self.bookDetailRevieList[indexPath.row])
         return cell
     }
+   
  
     
 }

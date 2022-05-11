@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-let accessTokenHome = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUyMTk2MzMyLCJVSUQiOjcwfQ.BxKDD0LsAmVE_q7eeWp1-hJhTus4N34fO0D-oCRD0aM"
+let accessTokenHome = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjUyMjQ4NTcyLCJVSUQiOjcwfQ.f1-9qQ80oPxRclyXm5czQ945nhhdY9_UD5UC27n7L-0"
 class GetBookData {
     static var shared = GetBookData()
     //메인화면 API

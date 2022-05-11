@@ -35,6 +35,11 @@ class BookDetailReviewTableViewCell: UITableViewCell {
         self.reviewStackView.layer.cornerRadius = 10
         
     }
+    //테이블뷰 셀간의 간격
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0))
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         setTableViewCellUI()
