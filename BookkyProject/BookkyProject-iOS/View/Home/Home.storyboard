@@ -103,27 +103,48 @@ Label</string>
                     </navigationItem>
                     <connections>
                         <outlet property="tagCollectionView" destination="xbJ-Kn-WC5" id="3zn-ME-V4I"/>
+                        <segue destination="SlN-ec-z5q" kind="show" identifier="tagMoreViewGoBookDetailSegue" id="y9q-dC-Lfa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Zf-dE-lh8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2272" y="-942"/>
+            <point key="canvasLocation" x="2310" y="-153"/>
         </scene>
-        <!--Tag More Button View Controller-->
+        <!--북키's pick!-->
         <scene sceneID="D4Q-Sn-tBj">
             <objects>
-                <viewController id="jyk-Aa-FBF" customClass="TagMoreButtonViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="jyk-Aa-FBF" customClass="TagMoreButtonViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Ss-qT-MbP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2oy-IV-fqH">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="mme-dR-ozf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2oy-IV-fqH" firstAttribute="leading" secondItem="mme-dR-ozf" secondAttribute="leading" id="J1I-FD-J7q"/>
+                            <constraint firstItem="2oy-IV-fqH" firstAttribute="bottom" secondItem="6Ss-qT-MbP" secondAttribute="bottom" id="SSk-46-Rox"/>
+                            <constraint firstItem="2oy-IV-fqH" firstAttribute="trailing" secondItem="mme-dR-ozf" secondAttribute="trailing" id="eQO-qc-JtH"/>
+                            <constraint firstItem="2oy-IV-fqH" firstAttribute="top" secondItem="mme-dR-ozf" secondAttribute="top" id="vvk-FP-K34"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="z2e-dm-if3"/>
+                    <navigationItem key="navigationItem" title="북키's pick!" id="kEl-A8-OT4">
+                        <barButtonItem key="rightBarButtonItem" image="square.and.arrow.up" catalog="system" id="teY-WY-eZH"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="navigationBarRightButton" destination="teY-WY-eZH" id="3aL-nD-CH5"/>
+                        <outlet property="tagMoreBookListTableView" destination="2oy-IV-fqH" id="fek-jM-doo"/>
+                        <segue destination="lk3-hT-9mY" kind="show" identifier="TagMoreBookTagViewSegue" id="JiU-fP-bEe"/>
+                        <segue destination="SlN-ec-z5q" kind="show" identifier="TagMoreBookDetailViewSegue" id="lPz-mM-zp7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Eao-nR-s57" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="42" y="763"/>
+            <point key="canvasLocation" x="42" y="867"/>
         </scene>
         <!--홈-->
         <scene sceneID="dbN-Lt-57n">
@@ -287,7 +308,7 @@ Label</string>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QHr-VF-rtX"/>
-                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="tgD-mT-aSI" firstAttribute="bottom" secondItem="QHr-VF-rtX" secondAttribute="bottom" id="C15-4i-Ae4"/>
                             <constraint firstItem="tgD-mT-aSI" firstAttribute="trailing" secondItem="QHr-VF-rtX" secondAttribute="trailing" id="WBs-Qa-DDU"/>
@@ -299,7 +320,6 @@ Label</string>
                     <navigationItem key="navigationItem" id="qJZ-WE-xsY"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="CommunityGoButton" destination="4QT-om-12i" id="4Zx-rl-VdS"/>
                         <outlet property="QnABoardGoButton" destination="ZBV-n8-xnS" id="zCA-hR-KUz"/>
                         <outlet property="QnABoardTextGoButton" destination="uEJ-oX-YVq" id="bK1-Vt-ay6"/>
                         <outlet property="boardButtonStackView" destination="fse-hj-FBg" id="tIX-g0-i7s"/>
@@ -838,9 +858,13 @@ Label</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h0y-b7-61a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2235" y="-123"/>
+            <point key="canvasLocation" x="2309" y="743"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="y9q-dC-Lfa"/>
+        <segue reference="JiU-fP-bEe"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="heart" catalog="system" width="128" height="109"/>
@@ -850,9 +874,6 @@ Label</string>
         <namedColor name="primaryColor">
             <color red="0.42399999499320984" green="0.58399999141693115" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

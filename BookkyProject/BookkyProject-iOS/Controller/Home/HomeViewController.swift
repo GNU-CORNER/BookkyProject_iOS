@@ -39,17 +39,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var QnABoardTextGoButton: UIButton!
     @IBOutlet weak var hotBoardGoButton: UIButton!
     @IBOutlet weak var hoeBoardTextGoButton: UIButton!
+
     
-    //
     @IBOutlet weak var bookListTabelView: UITableView!
-    
-   
-    
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        
         self.setBookTableView()
         
         self.bookListTabelView.alwaysBounceVertical = false //헤더 고정 풀기
@@ -59,16 +53,12 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         
         
     }
-    
     override var preferredStatusBarStyle: UIStatusBarStyle{
-        
         return .lightContent
     }
-    
     //HomeViewController에서만 navigationBar 없애기
     //HomeViewController 뷰가 나타나기전에 hidden.true 뷰가 사라지기전에 hidden.false
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         
@@ -82,9 +72,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
-    
-    
     private func setRecommendView(){
         self.communityStackView.layer.addBorder([.top,.bottom], color: UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1), width: 1.0)
         self.recommendButton.setTitle("추천하개 >", for: .normal)
@@ -114,12 +101,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.roadMapGoButtonSecond.tintColor =  UIColor.black
         self.roadMapGoButtonSecond.titleLabel?.font = UIFont.systemFont(ofSize: 24)
         
-        
     }
-    
-    
     private func setCommunityView(){
-        
         self.communityGoButton.setTitle("커뮤니티 >", for: .normal)
         self.communityGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
         self.communityGoButton.tintColor = UIColor.black
@@ -143,22 +126,18 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.hoeBoardTextGoButton.tintColor = UIColor.black
         
     }
-    
     private func setBookTableView(){
         self.bookListTabelView.dataSource = self
         self.bookListTabelView.delegate = self
         
         let cellNib = UINib(nibName: "BookTableViewCell", bundle: nil)
         self.bookListTabelView.register(cellNib, forCellReuseIdentifier: "BookTableViewCellid")
-        
-        
     }
     private func getBookData(){
         GetBookData.shared.getBookData(){ (sucess,data) in
             if sucess {
                 guard let bookData = data as? BookInformation else {return}
                 self.bookList = bookData.result.bookList
-                
                 if bookData.success{
                     DispatchQueue.main.async {
                         self.bookListTabelView.reloadData()
@@ -171,23 +150,16 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
     @objc
     func tapAddMoreTagViewButton(sender: UIButton!){
-  
         performSegue(withIdentifier: "tagMoreButtonSegueid", sender: self)
-    
-        
     }
     
     @IBAction func tapCommunityGoButton(_ sender: Any) {
-
         tabBarController?.selectedIndex = 1
     }
-    
-  
 }
 
 extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         return 180
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -219,8 +191,6 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         addMoreTagViewButton.addTarget(self, action: #selector(tapAddMoreTagViewButton), for: .touchUpInside)
         return footeriew
     }
-    
-    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 30
     }
@@ -228,11 +198,9 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         guard let cell:BookTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BookTableViewCellid", for: indexPath) as? BookTableViewCell else { return UITableViewCell()}
         cell.setBookInformation(model: bookList[indexPath.row])
         cell.cellDelegate = self
-   
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return bookList.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -245,18 +213,11 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "bookDetailViewSegue"{
             let BookDetailViewController = segue.destination as! BookDetailViewController
-            
             BookDetailViewController.BID = self.BID
         }else if segue.identifier == "bookTagViewSegue"{
             guard let tagViewController = segue.destination as? TagViewController else {return}
-            
             tagViewController.TID = self.TID
-            
-                
-            
-     
         }
-           
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -265,16 +226,12 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         print("\(self.TID)")
         performSegue(withIdentifier: "bookTagViewSegue", sender: indexPath.row)
     }
-     
-  
 }
 
 extension HomeViewController:BookCollectionViewCellDeleGate{
     func collectionView(collectionviewcell: BookCollectionViewCell?, index: Int, didTappedInTableViewCell: BookTableViewCell) {
         self.BID = collectionviewcell?.BID ?? 0
-        
         performSegue(withIdentifier: "bookDetailViewSegue", sender: self)
-
     }
 }
 

@@ -22,33 +22,36 @@ class BookTableViewCell: UITableViewCell {
     @IBOutlet weak var tagNameLabel: UILabel!
     
     @IBOutlet weak var bookCollectionView: UICollectionView!
-    var bookDataLsit : [BookData] = []
-    
+    var ViewControllernumber : Int = 0
+    var bookDataList : [BookData] = []
+    var tagMoreViewDataList : [TagMoreViewBookData] = []
     func setBookInformation(model : BookList){
         tagNameLabel.text = model.tag
-        bookDataLsit = model.data
+        bookDataList = model.data
         self.TID = model.TID ?? 0
         bookCollectionView.reloadData()
-        
+        self.ViewControllernumber = 0
     }
-    
+    func setTagMoreViewInformation(model : TagmoreViewBookList){
+        tagNameLabel.text = model.tag
+        tagMoreViewDataList = model.data
+        self.TID = model.TID ?? 0
+        bookCollectionView.reloadData()
+        self.ViewControllernumber = 1
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        setCollectionVieCell()
+        setCollectionViewCell()
         self.tagNameLabel.textColor = UIColor.white
         self.tagNameLabel.font = UIFont.systemFont(ofSize: 18)
         self.bookTableViewCell.backgroundColor = UIColor(named: "primaryColor")
-        
     }
-    
-    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
         // Configure the view for the selected state
     }
-    private func setCollectionVieCell() {
+    private func setCollectionViewCell() {
         self.bookCollectionView.backgroundColor = UIColor(named: "primaryColor")
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -66,18 +69,37 @@ class BookTableViewCell: UITableViewCell {
 }
 extension BookTableViewCell :UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bookDataLsit.count
+        if self.ViewControllernumber == 0{
+            return bookDataList.count
+        }else if self.ViewControllernumber == 1 {
+            return tagMoreViewDataList.count
+        }else{
+            return bookDataList.count
+        }
+      
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell :BookCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCollectionViewCellid", for: indexPath) as? BookCollectionViewCell else {return UICollectionViewCell()}
-        
-        cell.setBookData(model: bookDataLsit[indexPath.row])
-        return cell
+        if self.ViewControllernumber == 0 {
+            cell.setBookData(model: bookDataList[indexPath.row])
+            return cell
+        }else if self.ViewControllernumber == 1{
+            cell.setTagMoreViewBookData(model: tagMoreViewDataList[indexPath.row])
+            return cell
+        }
+       return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? BookCollectionViewCell
-        self.cellDelegate?.collectionView(collectionviewcell: cell, index: indexPath.item, didTappedInTableViewCell: self)
+        if self.ViewControllernumber == 0 {
+            let cell = collectionView.cellForItem(at: indexPath) as? BookCollectionViewCell
+            self.cellDelegate?.collectionView(collectionviewcell: cell, index: indexPath.item, didTappedInTableViewCell: self)
+        }else if self.ViewControllernumber == 1{
+            let cell = collectionView.cellForItem(at: indexPath) as? BookCollectionViewCell
+            self.cellDelegate?.collectionView(collectionviewcell: cell, index: indexPath.item, didTappedInTableViewCell: self)
+        }
+        
+        
     }
     
     

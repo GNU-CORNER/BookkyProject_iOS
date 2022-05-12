@@ -43,14 +43,14 @@ class CommunityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        boardTableView.delegate = self
-        boardTableView.dataSource = self
+        self.boardTableView.delegate = self
+        self.boardTableView.dataSource = self
         self.boardTableView.reloadData()
         SetdropDownView()
         //searchButton
-        self.searchButton.tintColor = .black
+        self.searchButton?.tintColor = .black
         //writeTextButton
-        setwriteTextButton()
+        self.setwriteTextButton()
         //초기화
         setinitCommunity()
         boardTypeColor()
@@ -65,8 +65,8 @@ class CommunityViewController: UIViewController {
     }
     func setinitCommunity(){
         //보드게시판 클릭전 초기
-        self.boardNameButton.setTitle("자유 게시판", for: .normal)
-        self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
+        self.boardNameButton?.setTitle("자유 게시판", for: .normal)
+        self.boardNameButton?.setImage(UIImage(systemName: "list.bullet"), for: .normal)
         self.boardNameButton.sizeToFit()
         self.boardNameButton.tintColor = .black
         self.freeBoardGoButton.setTitleColor(.black, for: .normal)
