@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jB3-nv-H12">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vXY-Wr-ejo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -11,35 +11,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="G3Q-dH-hF2">
-            <objects>
-                <navigationController storyboardIdentifier="InitialResearch" automaticallyAdjustsScrollViewInsets="NO" id="jB3-nv-H12" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qo9-sy-KCh">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="tertiaryLabelColor"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="vXY-Wr-ejo" kind="relationship" relationship="rootViewController" id="35M-Do-t0g"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="F9U-It-8zA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="17" y="328"/>
-        </scene>
-        <!--View Controller-->
+        <!--Initial Research View Controller-->
         <scene sceneID="FRk-bA-Ofo">
             <objects>
-                <viewController id="vXY-Wr-ejo" customClass="ViewController" customModule="Bookky_Research" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Research" hidesBottomBarWhenPushed="YES" id="vXY-Wr-ejo" customClass="InitialResearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LeD-f9-Cfz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YcU-2u-Nvj">
-                                <rect key="frame" x="25" y="108" width="364" height="724"/>
+                                <rect key="frame" x="25" y="64" width="364" height="768"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJj-0y-Ovx">
                                         <rect key="frame" x="0.0" y="0.0" width="364" height="129"/>
@@ -53,8 +34,8 @@
                                         <color key="textColor" name="primaryColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="BYc-F4-cvq">
-                                        <rect key="frame" x="0.0" y="259" width="364" height="168"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" axis="vertical" alignment="top" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="BYc-F4-cvq">
+                                        <rect key="frame" x="0.0" y="249" width="364" height="168"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="한 가지를 골라주세요." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkK-hz-joG">
                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="29"/>
@@ -71,12 +52,19 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="p9K-WG-Cyp"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="아니요 처음입니다.">
                                                             <color key="titleColor" name="primaryColor"/>
                                                         </state>
+                                                        <state key="selected">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="answerNoButtonSelected:" destination="vXY-Wr-ejo" eventType="touchUpInside" id="xna-0D-Udn"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhD-bX-Ue2">
                                                         <rect key="frame" x="0.0" y="61" width="364" height="45"/>
@@ -84,12 +72,16 @@
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="f1R-mJ-mw4"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="20"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="네 해봤습니다.">
                                                             <color key="titleColor" name="primaryColor"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="answerYesButtonSelected:" destination="vXY-Wr-ejo" eventType="touchUpInside" id="jJd-q1-kz0"/>
+                                                        </connections>
                                                     </button>
                                                 </subviews>
                                             </stackView>
@@ -102,8 +94,8 @@
                                             <constraint firstAttribute="trailing" secondItem="MV5-cA-npA" secondAttribute="trailing" id="xPJ-FN-hkA"/>
                                         </constraints>
                                     </stackView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upg-MQ-ifQ">
-                                        <rect key="frame" x="0.0" y="679" width="364" height="45"/>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Upg-MQ-ifQ">
+                                        <rect key="frame" x="0.0" y="723" width="364" height="45"/>
                                         <color key="backgroundColor" name="lightGrayColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="RRW-g0-hix"/>
@@ -123,7 +115,7 @@
                                     <constraint firstItem="dJj-0y-Ovx" firstAttribute="leading" secondItem="YcU-2u-Nvj" secondAttribute="leading" id="8bA-Am-541"/>
                                     <constraint firstItem="Upg-MQ-ifQ" firstAttribute="leading" secondItem="YcU-2u-Nvj" secondAttribute="leading" id="Ba7-1r-P5C"/>
                                     <constraint firstAttribute="trailing" secondItem="Upg-MQ-ifQ" secondAttribute="trailing" id="Mq9-VP-odh"/>
-                                    <constraint firstItem="BYc-F4-cvq" firstAttribute="top" relation="lessThanOrEqual" secondItem="dJj-0y-Ovx" secondAttribute="bottom" priority="999" constant="130" id="Whh-lp-7w7"/>
+                                    <constraint firstItem="BYc-F4-cvq" firstAttribute="top" relation="lessThanOrEqual" secondItem="dJj-0y-Ovx" secondAttribute="bottom" priority="999" constant="120" id="Whh-lp-7w7"/>
                                     <constraint firstItem="dJj-0y-Ovx" firstAttribute="top" secondItem="YcU-2u-Nvj" secondAttribute="top" id="bzJ-le-oq2"/>
                                     <constraint firstAttribute="trailing" secondItem="BYc-F4-cvq" secondAttribute="trailing" id="e9a-Ze-XLw"/>
                                     <constraint firstItem="BYc-F4-cvq" firstAttribute="leading" secondItem="YcU-2u-Nvj" secondAttribute="leading" id="tKz-y8-9ng"/>
@@ -141,6 +133,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="bNL-qt-Z5z"/>
+                    <connections>
+                        <outlet property="answerNOButton" destination="omt-dd-ZFD" id="Yv9-tv-cKS"/>
+                        <outlet property="answerYESButton" destination="dhD-bX-Ue2" id="fvj-Mv-25O"/>
+                        <outlet property="nextButton" destination="Upg-MQ-ifQ" id="C8J-CM-IBN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fNa-Xa-86E" sceneMemberID="firstResponder"/>
             </objects>
@@ -149,13 +146,13 @@
         <!--Research View Controller-->
         <scene sceneID="rbh-as-ctU">
             <objects>
-                <viewController id="e7f-6q-qMJ" customClass="ResearchViewController" customModule="Bookky_Research" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="e7f-6q-qMJ" customClass="ResearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gRS-qn-lKt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBP-0L-aDj">
-                                <rect key="frame" x="25" y="787" width="364" height="45"/>
+                                <rect key="frame" x="25" y="767" width="364" height="45"/>
                                 <color key="backgroundColor" name="primaryColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="iD5-2x-4dM"/>
@@ -166,7 +163,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vXL-N6-Azz">
-                                <rect key="frame" x="25" y="297" width="364" height="450"/>
+                                <rect key="frame" x="25" y="253" width="364" height="474"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Y9t-IG-iwW">
                                     <size key="itemSize" width="82" height="82"/>
@@ -175,7 +172,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tagsCell" id="JrB-2a-HuK" customClass="TagsCollectionViewCell" customModule="Bookky_Research" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tagsCell" id="JrB-2a-HuK" customClass="TagsCollectionViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wv6-dn-Jix">
@@ -207,7 +204,7 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m3O-Qp-8fH">
-                                <rect key="frame" x="25" y="108" width="364" height="129"/>
+                                <rect key="frame" x="25" y="64" width="364" height="129"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="129" id="Ohx-dK-ve9"/>
                                 </constraints>
@@ -236,6 +233,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="lv5-BZ-4j7"/>
                     <connections>
+                        <outlet property="submitButton" destination="YBP-0L-aDj" id="spi-Jt-880"/>
                         <outlet property="tagsCollectionView" destination="vXL-N6-Azz" id="ye9-MD-Wig"/>
                     </connections>
                 </viewController>
@@ -246,16 +244,13 @@
     </scenes>
     <resources>
         <namedColor name="lightGrayColor">
-            <color red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.96100002527236938" green="0.96100002527236938" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="primaryColor">
             <color red="0.42399999499320984" green="0.58399999141693115" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="tertiaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -12,10 +12,11 @@ class ResearchViewController: UIViewController, UICollectionViewDelegate, UIColl
     var tagsArray: [String] = ["React", "WEB", "JavaScript","Python","Machine Learning","C++","Java","AI","Angular","DB","Node.js","Android","Swift","Firebase","Network","C#","Unity","Flutter","Go"]
 
     @IBOutlet weak var tagsCollectionView: UICollectionView!
+    @IBOutlet weak var submitButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.submitButton.layer.cornerRadius = 8.0
         self.tagsCollectionView.dataSource = self
         self.tagsCollectionView.delegate = self
         self.tagsCollectionView.allowsMultipleSelection = true

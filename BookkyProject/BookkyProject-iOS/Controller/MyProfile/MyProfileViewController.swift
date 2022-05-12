@@ -43,10 +43,15 @@ class MyProfileViewController: UIViewController {
         setCollectionViewDelegate()
         setCollectionViewDataSource()
         registerNibCollectionViewCell()
+    
+        
     }
     
     // MARK: - View Will Appear
     override func viewWillAppear(_ animated: Bool) {
+        // navigation color 기본값 복원
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "Accent Color")
+        
         // - [x] UserDefaults에 저장되어 있는 사용자 이메일 가져오기
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
             print("Launch: 사용자 이메일을 불러올 수 없음.")
