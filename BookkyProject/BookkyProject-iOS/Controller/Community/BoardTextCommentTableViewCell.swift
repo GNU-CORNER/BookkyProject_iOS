@@ -23,11 +23,10 @@ class BoardTextCommentTableViewCell: UITableViewCell {
         self.userCommentContentsLabel.text = model.comment
         self.commentCreateAtLabel.text = model.updateAt
         self.commentLikeThatCntLabel.text = "공감(\(likeCount))"
+        self.userNameLabel.text = model.nickname
         
     }
-    func userComment(model :WriteTextDetailCommentuserdata ){
-        self.userNameLabel.text = model.nickname
-    }
+
     private func BoardTextCommentTableViewCellUI(){
         self.userNameLabel.font = UIFont.boldSystemFont(ofSize: 12)
         self.userCommentContentsLabel.font = UIFont.systemFont(ofSize: 12)

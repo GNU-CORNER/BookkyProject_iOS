@@ -23,7 +23,7 @@ class BoardTextDetailViewController: UIViewController {
     var PID : Int = 0
     var boardTypeNumber : Int = 0
     var writeTextDetailcommentData : [WriteTextDetailCommentdata]? = []
-    var writeTextDetailCommentuserdata : [WriteTextDetailCommentuserdata]? = []
+ 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.bookDetailCommentTableView.dataSource = self
@@ -31,7 +31,7 @@ class BoardTextDetailViewController: UIViewController {
         self.NavigationBarTitleLabel.title = "자유 게시판"
         getBoardTextDetailData()
         setBoardTextDetailUI()
-        
+        print("\(self.PID)")
     }
     func setBoardTextDetailUI(){
         self.textDetailTitleLabel.font = UIFont.systemFont(ofSize: 20)
@@ -47,29 +47,33 @@ class BoardTextDetailViewController: UIViewController {
         self.textDetailCreateDateLabel.text = model.createAt
         self.textDetailViewsLabel.text = "\(model.views)"
         self.textDetailContentsLabel.text = model.contents
+        self.textDetailUserNickname.text = model.nickname
         self.textDetailContentsLabel.numberOfLines = 0
         let likeCount =  model.like?.count ?? 0
         self.likeThatButton.setTitle("좋아요(\(likeCount))", for: .normal)
         self.likeThatButton.tintColor = .black
-        self.commentButton.setTitle("댓글(\(self.writeTextDetailcommentData?.count ?? 0))", for: .normal)
+        
+        
         self.commentButton.tintColor = .black
     }
-    func setBoardTextDetailUserData(model:WriteTextDetailPostuserdata ){
-        self.textDetailUserNickname.text = model.nickname
+    func setCommentCount(model: WriteTextDetailData){
+        self.commentButton.setTitle("댓글(\(model.commentCnt ?? 0))", for: .normal)
+        //대댓글수 까지 포함
     }
     private func getBoardTextDetailData(){
         CommunityAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
                 guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
                 let writeTextDetailData = communityGetDetailList.result.postdata
-                let writeTextDetailUserData = communityGetDetailList.result.postuserdata
                 self.writeTextDetailcommentData = communityGetDetailList.result.commentdata
-                self.writeTextDetailCommentuserdata = communityGetDetailList.result.commentuserdata
+                let commnetCount = communityGetDetailList.result
+                //                print("\(self.writeTextDetailcommentData)")
                 if communityGetDetailList.success{
                     DispatchQueue.main.async {
                         self.setBoardTextDetailData(model: writeTextDetailData)
-                        self.setBoardTextDetailUserData(model: writeTextDetailUserData)
+                        self.setCommentCount(model: commnetCount)
                         self.bookDetailCommentTableView.reloadData()
+                        
                     }
                 }else{
                     print("통신오류")
@@ -89,7 +93,7 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell : BoardTextCommentTableViewCell = bookDetailCommentTableView.dequeueReusableCell(withIdentifier: "TextDetailCommentTableViewCellId", for: indexPath)as? BoardTextCommentTableViewCell else {return UITableViewCell()}
         cell.setComment(model: self.writeTextDetailcommentData![indexPath.row])
-        cell.userComment(model: self.writeTextDetailCommentuserdata![indexPath.row])
+      
         return cell
     }
     
