@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - TextField Delegate
+// MARK: - TextField Extension
 extension UITextField {
     
     func addLeftPadding() {

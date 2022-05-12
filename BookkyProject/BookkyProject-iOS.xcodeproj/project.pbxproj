@@ -38,6 +38,10 @@
 		686AE6C227FC1F9200B77245 /* EmailAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */; };
 		686AE6C427FC6D3700B77245 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686AE6C327FC6D3700B77245 /* Account.swift */; };
 		686B21302805498000384408 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686B212F2805498000384408 /* KeychainManager.swift */; };
+		688DEDA9282C0452002F647A /* InitialResearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688DEDA8282C0452002F647A /* InitialResearch.storyboard */; };
+		688DEDAC282C0580002F647A /* ResearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDAB282C0580002F647A /* ResearchViewController.swift */; };
+		688DEDAE282C05AC002F647A /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDAD282C05AC002F647A /* TagsCollectionViewCell.swift */; };
+		688DEDB0282CA3D5002F647A /* InitialResearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDAF282CA3D5002F647A /* InitialResearchViewController.swift */; };
 		68B21B052829269C00707C5A /* MyPostsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */; };
 		68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */; };
 		68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B21B08282A2D4C00707C5A /* MyProfileModel.swift */; };
@@ -133,6 +137,10 @@
 		686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthModel.swift; sourceTree = "<group>"; };
 		686AE6C327FC6D3700B77245 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		686B212F2805498000384408 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainManager.swift; path = "BookkyProject-iOS/SerVice/KeychainManager.swift"; sourceTree = SOURCE_ROOT; };
+		688DEDA8282C0452002F647A /* InitialResearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InitialResearch.storyboard; sourceTree = "<group>"; };
+		688DEDAB282C0580002F647A /* ResearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchViewController.swift; sourceTree = "<group>"; };
+		688DEDAD282C05AC002F647A /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
+		688DEDAF282CA3D5002F647A /* InitialResearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialResearchViewController.swift; sourceTree = "<group>"; };
 		68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyReviewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B08282A2D4C00707C5A /* MyProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileModel.swift; sourceTree = "<group>"; };
@@ -211,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				6852E56A27F2EE1300CAEF02 /* Login.storyboard */,
+				688DEDA8282C0452002F647A /* InitialResearch.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -218,6 +227,7 @@
 		6852E56C27F2EE6400CAEF02 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				688DEDAA282C054D002F647A /* InitialResearch */,
 				6852E56D27F2EE8900CAEF02 /* LoginVC.swift */,
 				6852E56F27F3079700CAEF02 /* SignupVC.swift */,
 				6852E57327F307BB00CAEF02 /* SocialSignupVC.swift */,
@@ -342,6 +352,16 @@
 				68B21B08282A2D4C00707C5A /* MyProfileModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		688DEDAA282C054D002F647A /* InitialResearch */ = {
+			isa = PBXGroup;
+			children = (
+				688DEDAF282CA3D5002F647A /* InitialResearchViewController.swift */,
+				688DEDAB282C0580002F647A /* ResearchViewController.swift */,
+				688DEDAD282C05AC002F647A /* TagsCollectionViewCell.swift */,
+			);
+			path = InitialResearch;
 			sourceTree = "<group>";
 		};
 		68B21B012829265A00707C5A /* MyProfile */ = {
@@ -570,6 +590,7 @@
 				68169249282B906C0066946A /* MyBooksMoreView.storyboard in Resources */,
 				6816924C282B91B80066946A /* MyPostsMoreView.storyboard in Resources */,
 				68C8629427DF61D3004B4F73 /* Home.storyboard in Resources */,
+				688DEDA9282C0452002F647A /* InitialResearch.storyboard in Resources */,
 				6816924E282B925A0066946A /* MyReviewsMoreView.storyboard in Resources */,
 				F877021428008C72002EA1F5 /* BookCollectionViewCell.xib in Resources */,
 				6852E56B27F2EE1300CAEF02 /* Login.storyboard in Resources */,
@@ -636,11 +657,14 @@
 				F80756DC2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift in Sources */,
 				F87B810928016BEF00E2FB7A /* HomeDataForMat.swift in Sources */,
 				F87B810C28016C3D00E2FB7A /* HomeGetDataSerVice.swift in Sources */,
+				688DEDB0282CA3D5002F647A /* InitialResearchViewController.swift in Sources */,
 				F8E68A7D282960320046760A /* BookDetailReviewTableViewCell.swift in Sources */,
 				F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */,
 				F874319A28030012003EA8C0 /* ExtensionUikit.swift in Sources */,
 				683674C4282215DE00CB618D /* MyPostCollectionViewCell.swift in Sources */,
 				68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */,
+				688DEDAE282C05AC002F647A /* TagsCollectionViewCell.swift in Sources */,
+				688DEDAC282C0580002F647A /* ResearchViewController.swift in Sources */,
 				686B21302805498000384408 /* KeychainManager.swift in Sources */,
 				F85406CF2800284A0027C096 /* testData.swift in Sources */,
 				6852E57727F35EC600CAEF02 /* FindPasswordVC.swift in Sources */,
