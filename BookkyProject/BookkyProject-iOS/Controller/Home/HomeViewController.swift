@@ -9,27 +9,21 @@ import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate {
     let user = "황랑귀"
-
+    
     var buttonText = "태그 더보기>"
     var bookList : [BookList] = []
-    //
     var BID : Int = 0
-    //추천하게 button&Label
-    var cellSize : CGFloat = 0
     var TID : Int = 0
-    var tidArray : [Int] = []
+    // MARK: - 추천하개 UI
     @IBOutlet weak var recommendButton: UIButton!
     @IBOutlet weak var recommendExplainLabel: UILabel!
-    
     @IBOutlet weak var bookynatorButtonStackView: UIStackView!
     @IBOutlet weak var bookynatorGoButtonFirst: UIButton!
     @IBOutlet weak var bookynatorGoButtonSecond: UIButton!
-    
     @IBOutlet weak var roadMapButtonStackView: UIStackView!
     @IBOutlet weak var roadMapGoButtonFirst: UIButton!
     @IBOutlet weak var roadMapGoButtonSecond: UIButton!
-    //
-    //커뮤니티 button&Label
+    // MARK: - 커뮤니티 button&Label
     @IBOutlet weak var communityStackView: UIStackView!
     @IBOutlet weak var communityGoButton: UIButton!
     @IBOutlet weak var boardButtonStackView: UIStackView!
@@ -39,25 +33,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var QnABoardTextGoButton: UIButton!
     @IBOutlet weak var hotBoardGoButton: UIButton!
     @IBOutlet weak var hoeBoardTextGoButton: UIButton!
-    
-    //
-    @IBOutlet weak var bookListTabelView: UITableView!
-    
-   
-    
+    // MARK: - 도서리스트 테이블
+    @IBOutlet weak var bookListTableView: UITableView!
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
-        
         self.setBookTableView()
-        
-        self.bookListTabelView.alwaysBounceVertical = false //헤더 고정 풀기
+        self.bookListTableView.alwaysBounceVertical = false //헤더 고정 풀기
         self.setRecommendView()
         self.setCommunityView()
         self.getBookData()
-        
-        
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle{
@@ -82,9 +66,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
-    
-    
+    // MARK: - 추천하개뷰 Set
     private func setRecommendView(){
         self.communityStackView.layer.addBorder([.top,.bottom], color: UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1), width: 1.0)
         self.recommendButton.setTitle("추천하개 >", for: .normal)
@@ -113,11 +95,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.roadMapGoButtonSecond.setTitle("♨️도그맵 보기", for: .normal)
         self.roadMapGoButtonSecond.tintColor =  UIColor.black
         self.roadMapGoButtonSecond.titleLabel?.font = UIFont.systemFont(ofSize: 24)
-        
-        
     }
-    
-    
+    // MARK: - 커뮤니티뷰 SET
     private func setCommunityView(){
         
         self.communityGoButton.setTitle("커뮤니티 >", for: .normal)
@@ -145,11 +124,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
     
     private func setBookTableView(){
-        self.bookListTabelView.dataSource = self
-        self.bookListTabelView.delegate = self
-        
+        self.bookListTableView.dataSource = self
+        self.bookListTableView.delegate = self
         let cellNib = UINib(nibName: "BookTableViewCell", bundle: nil)
-        self.bookListTabelView.register(cellNib, forCellReuseIdentifier: "BookTableViewCellid")
+        self.bookListTableView.register(cellNib, forCellReuseIdentifier: "BookTableViewCellid")
         
         
     }
@@ -161,7 +139,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                 
                 if bookData.success{
                     DispatchQueue.main.async {
-                        self.bookListTabelView.reloadData()
+                        self.bookListTableView.reloadData()
                     }
                 }else {
                     print("통신 오류")
@@ -171,30 +149,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
     @objc
     func tapAddMoreTagViewButton(sender: UIButton!){
-  
         performSegue(withIdentifier: "tagMoreButtonSegueid", sender: self)
-    
-        
     }
-    
     @IBAction func tapCommunityGoButton(_ sender: Any) {
-
         tabBarController?.selectedIndex = 1
     }
-    
-  
 }
 
 extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         return 180
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 45, width: self.bookListTabelView.frame.width, height: 180))
+        let headerView = UIView(frame: CGRect(x: 0, y: 45, width: self.bookListTableView.frame.width, height: 180))
         headerView.backgroundColor = UIColor(named: "primaryColor")
-        let welComeLabel = UILabel(frame: CGRect(x: self.bookListTabelView.frame.width*(1/15), y: 45, width: self.bookListTabelView.frame.width*(2/3), height: 180))
-        let noticeButton = UIButton(frame: CGRect(x: self.bookListTabelView.frame.width-60, y: 45, width: 50, height: 50))
+        let welComeLabel = UILabel(frame: CGRect(x: self.bookListTableView.frame.width*(1/15), y: 45, width: self.bookListTableView.frame.width*(2/3), height: 180))
+        let noticeButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-60, y: 45, width: 50, height: 50))
         headerView.addSubview(welComeLabel)
         headerView.addSubview(noticeButton)
         welComeLabel.text = "오늘\n\(user)님에게\n추천하는 책이에요!"
@@ -209,8 +179,8 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footeriew = UIView(frame: CGRect(x: 0, y: 0, width: self.bookListTabelView.frame.width, height: 30))
-        let addMoreTagViewButton = UIButton(frame: CGRect(x: self.bookListTabelView.frame.width-80, y: 0, width: 80, height: 30))
+        let footeriew = UIView(frame: CGRect(x: 0, y: 0, width: self.bookListTableView.frame.width, height: 30))
+        let addMoreTagViewButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-80, y: 0, width: 80, height: 30))
         footeriew.addSubview(addMoreTagViewButton)
         addMoreTagViewButton.setTitle(buttonText, for: .normal)
         addMoreTagViewButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
@@ -228,7 +198,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         guard let cell:BookTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BookTableViewCellid", for: indexPath) as? BookTableViewCell else { return UITableViewCell()}
         cell.setBookInformation(model: bookList[indexPath.row])
         cell.cellDelegate = self
-   
+        
         return cell
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -245,18 +215,12 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "bookDetailViewSegue"{
             let BookDetailViewController = segue.destination as! BookDetailViewController
-            
             BookDetailViewController.BID = self.BID
         }else if segue.identifier == "bookTagViewSegue"{
             guard let tagViewController = segue.destination as? TagViewController else {return}
-            
             tagViewController.TID = self.TID
-            
-                
-            
-     
         }
-           
+        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -265,8 +229,8 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         print("\(self.TID)")
         performSegue(withIdentifier: "bookTagViewSegue", sender: indexPath.row)
     }
-     
-  
+    
+    
 }
 
 extension HomeViewController:BookCollectionViewCellDeleGate{
@@ -274,7 +238,7 @@ extension HomeViewController:BookCollectionViewCellDeleGate{
         self.BID = collectionviewcell?.BID ?? 0
         
         performSegue(withIdentifier: "bookDetailViewSegue", sender: self)
-
+        
     }
 }
 
