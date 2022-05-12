@@ -7,20 +7,33 @@
 
 import UIKit
 
-class ResearchViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ResearchViewController: UIViewController {
     
     var tagsArray: [String] = ["React", "WEB", "JavaScript","Python","Machine Learning","C++","Java","AI","Angular","DB","Node.js","Android","Swift","Firebase","Network","C#","Unity","Flutter","Go"]
 
     @IBOutlet weak var tagsCollectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
+    var selectedTagsCnt: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.submitButton.layer.cornerRadius = 8.0
+        
         self.tagsCollectionView.dataSource = self
         self.tagsCollectionView.delegate = self
-        self.tagsCollectionView.allowsMultipleSelection = true
+        setDefaultView()
     }
+    
+    private func setDefaultView() {
+        self.submitButton.layer.cornerRadius = 8.0
+        self.tagsCollectionView.allowsMultipleSelection = true
+        self.submitButton.setTitle("제출", for: .normal)
+        self.navigationController?.navigationBar.topItem?.title = ""
+    }
+    
+}
+
+extension ResearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return tagsArray.count
@@ -34,10 +47,14 @@ class ResearchViewController: UIViewController, UICollectionViewDelegate, UIColl
         }
         cell.tagNameLabel.text = tagsArray[indexPath.row]
         if cell.isSelected {
-            cell.backgroundColor = UIColor(named: "primaryColor")
+            cell.layer.backgroundColor = UIColor(named: "primaryColor")?.cgColor
+            cell.tagNameLabel.textColor = .white
         } else {
-            cell.backgroundColor = UIColor(named: "grayColor")
+            cell.layer.backgroundColor = UIColor(named: "lightGrayColor")?.cgColor
+            cell.tagNameLabel.textColor = .black
         }
+
+        cell.layer.cornerRadius = 80 / 2
         return cell
     }
     
@@ -45,20 +62,28 @@ class ResearchViewController: UIViewController, UICollectionViewDelegate, UIColl
         return CGSize(width: 80, height: 80)
     }
     
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "tagsCell", for: indexPath) as? TagsCollectionViewCell
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell else { return }
+        cell.layer.backgroundColor = UIColor(named: "primaryColor")?.cgColor
+        cell.tagNameLabel.textColor = .white
+
+        self.selectedTagsCnt += 1
+        self.submitButton.setTitle("제출 (\(self.selectedTagsCnt)개 선택)", for: .normal)
+        print(cell.isSelected)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell
         else {
             return
         }
-
-        if cell.isSelected {
-            print(cell.isSelected)
-            self.tagsCollectionView.reloadData()
-            cell.isSelected = false
-        } else {
-            self.tagsCollectionView.reloadData()
-        }
-        print(indexPath.row)
-        print("그래서 바뀜?\(cell.isSelected)")
+        cell.layer.backgroundColor = UIColor(named: "lightGrayColor")?.cgColor
+        cell.tagNameLabel.textColor = .black
+    
+        self.selectedTagsCnt -= 1
+        self.submitButton.setTitle("제출 (\(self.selectedTagsCnt)개 선택)", for: .normal)
+        print(cell.isSelected)
     }
+    
 }

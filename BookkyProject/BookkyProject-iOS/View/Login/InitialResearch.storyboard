@@ -14,7 +14,7 @@
         <!--Initial Research View Controller-->
         <scene sceneID="FRk-bA-Ofo">
             <objects>
-                <viewController storyboardIdentifier="Research" hidesBottomBarWhenPushed="YES" id="vXY-Wr-ejo" customClass="InitialResearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Research" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="vXY-Wr-ejo" customClass="InitialResearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LeD-f9-Cfz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,13 +146,13 @@
         <!--Research View Controller-->
         <scene sceneID="rbh-as-ctU">
             <objects>
-                <viewController id="e7f-6q-qMJ" customClass="ResearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" id="e7f-6q-qMJ" customClass="ResearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gRS-qn-lKt">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBP-0L-aDj">
-                                <rect key="frame" x="25" y="767" width="364" height="45"/>
+                                <rect key="frame" x="25" y="787" width="364" height="45"/>
                                 <color key="backgroundColor" name="primaryColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="iD5-2x-4dM"/>
@@ -163,7 +163,7 @@
                                 <state key="normal" title="Button"/>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vXL-N6-Azz">
-                                <rect key="frame" x="25" y="253" width="364" height="474"/>
+                                <rect key="frame" x="25" y="253" width="364" height="494"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Y9t-IG-iwW">
                                     <size key="itemSize" width="82" height="82"/>

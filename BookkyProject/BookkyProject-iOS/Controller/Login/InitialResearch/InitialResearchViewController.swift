@@ -54,6 +54,8 @@ class InitialResearchViewController: UIViewController {
         self.isanswerYESButtonSelected = false
         
         self.nextButton.isEnabled = true
+        self.nextButton.layer.backgroundColor = UIColor(named: "primaryColor")?.cgColor
+        self.nextButton.setTitleColor(UIColor(named: "White Color"), for: .normal)
     }
 }
 
