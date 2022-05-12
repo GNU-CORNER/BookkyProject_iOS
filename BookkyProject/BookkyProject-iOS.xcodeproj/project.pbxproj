@@ -42,6 +42,9 @@
 		688DEDAC282C0580002F647A /* ResearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDAB282C0580002F647A /* ResearchViewController.swift */; };
 		688DEDAE282C05AC002F647A /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDAD282C05AC002F647A /* TagsCollectionViewCell.swift */; };
 		688DEDB0282CA3D5002F647A /* InitialResearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDAF282CA3D5002F647A /* InitialResearchViewController.swift */; };
+		688DEDB3282D3349002F647A /* MyBooksMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDB2282D3349002F647A /* MyBooksMoreViewController.swift */; };
+		688DEDB5282D335F002F647A /* MyPostsMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDB4282D335F002F647A /* MyPostsMoreViewController.swift */; };
+		688DEDB7282D336A002F647A /* MyReviewsMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDB6282D336A002F647A /* MyReviewsMoreViewController.swift */; };
 		68B21B052829269C00707C5A /* MyPostsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */; };
 		68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */; };
 		68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B21B08282A2D4C00707C5A /* MyProfileModel.swift */; };
@@ -141,6 +144,9 @@
 		688DEDAB282C0580002F647A /* ResearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResearchViewController.swift; sourceTree = "<group>"; };
 		688DEDAD282C05AC002F647A /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		688DEDAF282CA3D5002F647A /* InitialResearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialResearchViewController.swift; sourceTree = "<group>"; };
+		688DEDB2282D3349002F647A /* MyBooksMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksMoreViewController.swift; sourceTree = "<group>"; };
+		688DEDB4282D335F002F647A /* MyPostsMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsMoreViewController.swift; sourceTree = "<group>"; };
+		688DEDB6282D336A002F647A /* MyReviewsMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsMoreViewController.swift; sourceTree = "<group>"; };
 		68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyReviewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B08282A2D4C00707C5A /* MyProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileModel.swift; sourceTree = "<group>"; };
@@ -364,6 +370,16 @@
 			path = InitialResearch;
 			sourceTree = "<group>";
 		};
+		688DEDB1282D32E9002F647A /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				688DEDB2282D3349002F647A /* MyBooksMoreViewController.swift */,
+				688DEDB4282D335F002F647A /* MyPostsMoreViewController.swift */,
+				688DEDB6282D336A002F647A /* MyReviewsMoreViewController.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		68B21B012829265A00707C5A /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +440,7 @@
 		68C8628D27DF0CF4004B4F73 /* MyProfile */ = {
 			isa = PBXGroup;
 			children = (
+				688DEDB1282D32E9002F647A /* DetailView */,
 				68683D7527DE40F4008EF3CF /* MyProfileViewController.swift */,
 				683674BD282215B500CB618D /* MyTagsCollectionViewCell.swift */,
 				683674BF282215C200CB618D /* MyBooksCollectionViewCell.swift */,
@@ -621,6 +638,7 @@
 			files = (
 				683674C2282215D500CB618D /* MyReviewsCollectionViewCell.swift in Sources */,
 				68169244282A85450066946A /* MyProfileAPI.swift in Sources */,
+				688DEDB7282D336A002F647A /* MyReviewsMoreViewController.swift in Sources */,
 				F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */,
 				F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */,
 				F8E68A75282914E10046760A /* BoardTextCommentTableViewCell.swift in Sources */,
@@ -630,6 +648,7 @@
 				68FBE65727FD50E8003DBFB7 /* SignupModel.swift in Sources */,
 				6852E56E27F2EE8900CAEF02 /* LoginVC.swift in Sources */,
 				6852E57927F372CC00CAEF02 /* NewPasswordVC.swift in Sources */,
+				688DEDB5282D335F002F647A /* MyPostsMoreViewController.swift in Sources */,
 				F8731D81282AAC4C00FB64ED /* BoardTextDetailViewController.swift in Sources */,
 				6852E57027F3079700CAEF02 /* SignupVC.swift in Sources */,
 				686AE6C427FC6D3700B77245 /* Account.swift in Sources */,
@@ -641,6 +660,7 @@
 				683674C0282215C200CB618D /* MyBooksCollectionViewCell.swift in Sources */,
 				F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */,
 				F8E386A7282BE6AA006F9BDD /* TagMoreButtonViewController.swift in Sources */,
+				688DEDB3282D3349002F647A /* MyBooksMoreViewController.swift in Sources */,
 				68169247282B8B530066946A /* RedirectView.swift in Sources */,
 				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
