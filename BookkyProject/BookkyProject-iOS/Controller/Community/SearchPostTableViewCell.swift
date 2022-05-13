@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+import UIKit
 class SearchPostTableViewCell: UITableViewCell {
 
     @IBOutlet weak var SearchTableViewCell: SearchPostTableViewCell!
