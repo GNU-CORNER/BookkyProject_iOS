@@ -79,12 +79,13 @@ class CommunityAPI {
             print("Launch: 사용자 이메일을 불러올 수 없음.")
             return
         }
-        
-        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
-              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
-                  print("Launch: 토큰을 불러올 수 없음.")
-                  return
-              }
+      
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
+//              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue)
+        else {
+            print("Launch: 토큰을 불러올 수 없음.")
+            return
+        }
         let httpBody : [String:Any] = ["title":textTitle,"contents":textContent]
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityWritePostURL+"\(CommunityBoardNumber)") else {
