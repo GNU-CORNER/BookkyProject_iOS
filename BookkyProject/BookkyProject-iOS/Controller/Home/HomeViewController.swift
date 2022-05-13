@@ -236,7 +236,6 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
 extension HomeViewController:BookCollectionViewCellDeleGate{
     func collectionView(collectionviewcell: BookCollectionViewCell?, index: Int, didTappedInTableViewCell: BookTableViewCell) {
         self.BID = collectionviewcell?.BID ?? 0
-        
         performSegue(withIdentifier: "bookDetailViewSegue", sender: self)
         
     }
