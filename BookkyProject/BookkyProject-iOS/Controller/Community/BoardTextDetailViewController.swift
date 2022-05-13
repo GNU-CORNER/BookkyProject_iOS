@@ -83,6 +83,7 @@ class BoardTextDetailViewController: UIViewController {
         }
         
     }
+   
     
 }
 extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSource {

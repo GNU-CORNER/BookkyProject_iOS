@@ -55,12 +55,13 @@
 		68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65827FDB1EF003DBFB7 /* UITextField.swift */; };
 		68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */; };
 		F80756DC2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */; };
-		F8260583282E691C006DB702 /* QnABoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */; };
-		F8260584282E691C006DB702 /* QnABoardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */; };
 		F8260579282E52E1006DB702 /* SearchPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260577282E52E1006DB702 /* SearchPostTableViewCell.swift */; };
 		F826057A282E52E1006DB702 /* SearchPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8260578282E52E1006DB702 /* SearchPostTableViewCell.xib */; };
 		F826057E282E5B94006DB702 /* WritePostBookSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F826057D282E5B94006DB702 /* WritePostBookSearchViewController.swift */; };
 		F8260580282E6290006DB702 /* WritePostBookSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F826057F282E6290006DB702 /* WritePostBookSearchTableViewCell.swift */; };
+		F8260583282E691C006DB702 /* QnABoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */; };
+		F8260584282E691C006DB702 /* QnABoardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */; };
+		F8260587282E840F006DB702 /* BookWriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */; };
 		F85406CF2800284A0027C096 /* testData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85406CE2800284A0027C096 /* testData.swift */; };
 		F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */; };
 		F8731D81282AAC4C00FB64ED /* BoardTextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */; };
@@ -76,10 +77,7 @@
 		F8886F2C2821328800044737 /* WritePostDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8886F2B2821328800044737 /* WritePostDataFormat.swift */; };
 		F8886F2E28214BB500044737 /* WriteGetListDataFomat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8886F2D28214BB500044737 /* WriteGetListDataFomat.swift */; };
 		F88D683E282D254400E23344 /* TagMoreViewBookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D683D282D254400E23344 /* TagMoreViewBookList.swift */; };
-		F88D6840282D449600E23344 /* AddBookTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D683F282D449600E23344 /* AddBookTableViewCell.swift */; };
 		F88D6842282D68E600E23344 /* SearchPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D6841282D68E600E23344 /* SearchPostViewController.swift */; };
-		F88D6842282D68E600E23344 /* SearchPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D6841282D68E600E23344 /* SearchPostViewController.swift */; };
-		F88D6844282D6E0500E23344 /* SearchPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D6843282D6E0500E23344 /* SearchPostTableViewCell.swift */; };
 		F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88EF53327FD86A400634696 /* BoardTableViewCell.swift */; };
 		F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */; };
 		F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */; };
@@ -165,12 +163,13 @@
 		68FBE65827FDB1EF003DBFB7 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModel.swift; sourceTree = "<group>"; };
 		F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
-		F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnABoardTableViewCell.swift; sourceTree = "<group>"; };
-		F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QnABoardTableViewCell.xib; sourceTree = "<group>"; };
 		F8260577282E52E1006DB702 /* SearchPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostTableViewCell.swift; sourceTree = "<group>"; };
 		F8260578282E52E1006DB702 /* SearchPostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPostTableViewCell.xib; sourceTree = "<group>"; };
 		F826057D282E5B94006DB702 /* WritePostBookSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostBookSearchViewController.swift; sourceTree = "<group>"; };
 		F826057F282E6290006DB702 /* WritePostBookSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostBookSearchTableViewCell.swift; sourceTree = "<group>"; };
+		F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnABoardTableViewCell.swift; sourceTree = "<group>"; };
+		F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QnABoardTableViewCell.xib; sourceTree = "<group>"; };
+		F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookWriteReviewViewController.swift; sourceTree = "<group>"; };
 		F85406CE2800284A0027C096 /* testData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testData.swift; sourceTree = "<group>"; };
 		F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBookDetailReviewDataFormat.swift; sourceTree = "<group>"; };
 		F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextDetailViewController.swift; sourceTree = "<group>"; };
@@ -186,8 +185,6 @@
 		F8886F2B2821328800044737 /* WritePostDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostDataFormat.swift; sourceTree = "<group>"; };
 		F8886F2D28214BB500044737 /* WriteGetListDataFomat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteGetListDataFomat.swift; sourceTree = "<group>"; };
 		F88D683D282D254400E23344 /* TagMoreViewBookList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMoreViewBookList.swift; sourceTree = "<group>"; };
-		F88D683F282D449600E23344 /* AddBookTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookTableViewCell.swift; sourceTree = "<group>"; };
-		F88D6841282D68E600E23344 /* SearchPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostViewController.swift; sourceTree = "<group>"; };
 		F88D6841282D68E600E23344 /* SearchPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostViewController.swift; sourceTree = "<group>"; };
 		F88D6843282D6E0500E23344 /* SearchPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostTableViewCell.swift; sourceTree = "<group>"; };
 		F88EF53327FD86A400634696 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
@@ -411,6 +408,7 @@
 				F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */,
 				F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */,
 				F8E386A6282BE6AA006F9BDD /* TagMoreButtonViewController.swift */,
+				F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -423,13 +421,10 @@
 				F88EF53327FD86A400634696 /* BoardTableViewCell.swift */,
 				F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */,
 				F8E68A74282914E10046760A /* BoardTextCommentTableViewCell.swift */,
-				F88D683F282D449600E23344 /* AddBookTableViewCell.swift */,
-				F88D6841282D68E600E23344 /* SearchPostViewController.swift */,
 				F8260577282E52E1006DB702 /* SearchPostTableViewCell.swift */,
 				F8260578282E52E1006DB702 /* SearchPostTableViewCell.xib */,
 				F88D6841282D68E600E23344 /* SearchPostViewController.swift */,
 				F88D6843282D6E0500E23344 /* SearchPostTableViewCell.swift */,
-				F88D683F282D449600E23344 /* AddBookTableViewCell.swift */,
 				F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */,
 				F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */,
 				F826057D282E5B94006DB702 /* WritePostBookSearchViewController.swift */,
@@ -682,6 +677,7 @@
 				F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */,
 				F8E386A7282BE6AA006F9BDD /* TagMoreButtonViewController.swift in Sources */,
 				68169247282B8B530066946A /* RedirectView.swift in Sources */,
+				F8260587282E840F006DB702 /* BookWriteReviewViewController.swift in Sources */,
 				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
 				68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */,

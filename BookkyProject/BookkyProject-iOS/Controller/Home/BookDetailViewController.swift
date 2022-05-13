@@ -22,6 +22,9 @@ class BookDetailViewController: UIViewController {
     var bookDetailTagList : [BookDetailDataTagData] = []
     //네이버
     var bookDetailRevieList  : [ReviewData] = []
+    var bookImage : URL?  = nil
+    var bookName : String = ""
+    var AUTHOR : String = ""
     @IBOutlet weak var naverGoButton: UIButton!
     //도서정보
     @IBOutlet weak var bookInformationLabel: UILabel!
@@ -122,6 +125,11 @@ class BookDetailViewController: UIViewController {
         self.detailBookName.text = model.TITLE
         self.detailBookAuthor.text = model.AUTHOR
         self.bookDetailTagList = model.tagData
+        
+        self.bookImage = URL(string: "\(model.thumbnailImage)")
+        self.bookName = model.TITLE
+        self.AUTHOR = model.AUTHOR
+        
         self.publisherLabel.text = "출판사 : " + model.PUBLISHER
         self.authorLabel.text = "저자 : " + model.AUTHOR
         self.priceLabel.text = "정가 : " + model.PRICE
@@ -172,6 +180,16 @@ class BookDetailViewController: UIViewController {
         }else if bookIndexLabel.numberOfLines == 0 {
             bookIndexLabel.numberOfLines = 4
             self.tapViewMoreBookIntroduction.setTitle("펼쳐보기>", for: .normal)
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "writeReViewSegue" {
+            let BookWriteReViewViewController = segue.destination as! BookWriteReviewViewController
+            BookWriteReViewViewController.url = self.bookImage
+            BookWriteReViewViewController.bookName = self.bookName
+            BookWriteReViewViewController.bookAuthor = self.AUTHOR
+           
+            
         }
     }
 }
