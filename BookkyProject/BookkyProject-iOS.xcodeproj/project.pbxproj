@@ -378,7 +378,7 @@
 				688DEDB2282D3349002F647A /* MyBooksMoreViewController.swift */,
 				688DEDB4282D335F002F647A /* MyPostsMoreViewController.swift */,
 				688DEDB6282D336A002F647A /* MyReviewsMoreViewController.swift */,
-				688DEDBC282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift */,
+				688DEDBE282E79AA002F647A /* CollectionViewCell */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -400,6 +400,14 @@
 				683674BF282215C200CB618D /* MyBooksCollectionViewCell.swift */,
 				683674C3282215DE00CB618D /* MyPostCollectionViewCell.swift */,
 				683674C1282215D500CB618D /* MyReviewsCollectionViewCell.swift */,
+			);
+			path = CollectionViewCell;
+			sourceTree = "<group>";
+		};
+		688DEDBE282E79AA002F647A /* CollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				688DEDBC282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift */,
 			);
 			path = CollectionViewCell;
 			sourceTree = "<group>";

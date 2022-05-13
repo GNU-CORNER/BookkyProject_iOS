@@ -94,6 +94,12 @@ class MyProfileViewController: UIViewController {
                 self.myReviewsArray = (myprofileData.result?.userReviewList)!
                 DispatchQueue.main.async {
                     self.setUserNameLabel((myprofileData.result?.userData.nickname)!)
+                    if let userThumbnailImageString = myprofileData.result?.userData.userThumbnail {
+                        self.setDefaultUserImage(imageName: userThumbnailImageString)
+                    } else {
+                        self.setDefaultUserImage(imageName: "북키프사")
+                    }
+                    
                     self.myTagsCollectionView.reloadData()
                     self.myBooksCollectionView.reloadData()
                     self.myPostCollectionView.reloadData()
@@ -157,8 +163,8 @@ class MyProfileViewController: UIViewController {
         userImageView.layer.cornerRadius = self.userImageView.frame.width / 2
     }
     
-    private func setDefaultUserImage() {
-        userImageView.image = UIImage(named: "북키프사")
+    private func setDefaultUserImage(imageName: String) {
+        userImageView.image = UIImage(named: imageName)
     }
     
     private func setUserNameLabel(_ userName:String) {
@@ -167,7 +173,7 @@ class MyProfileViewController: UIViewController {
     
     private func setDefaultMyProfileView() {
         setUserImageViewCornerRadius()
-        setDefaultUserImage()
+        setDefaultUserImage(imageName: "북키프사")
         setUserNameLabel(userName)
         
     }
