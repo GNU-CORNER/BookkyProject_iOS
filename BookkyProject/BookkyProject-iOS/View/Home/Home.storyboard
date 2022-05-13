@@ -323,7 +323,7 @@ Label</string>
                         <outlet property="QnABoardGoButton" destination="ZBV-n8-xnS" id="zCA-hR-KUz"/>
                         <outlet property="QnABoardTextGoButton" destination="uEJ-oX-YVq" id="bK1-Vt-ay6"/>
                         <outlet property="boardButtonStackView" destination="fse-hj-FBg" id="tIX-g0-i7s"/>
-                        <outlet property="bookListTabelView" destination="tgD-mT-aSI" id="1Fb-Hl-jKV"/>
+                        <outlet property="bookListTableView" destination="tgD-mT-aSI" id="taF-En-Ceg"/>
                         <outlet property="bookynatorButtonStackView" destination="yov-gU-1Yt" id="7fh-Yc-MxG"/>
                         <outlet property="bookynatorGoButtonFirst" destination="AQW-Uu-wSd" id="Vqk-5E-Edv"/>
                         <outlet property="bookynatorGoButtonSecond" destination="Qdo-8Q-qcH" id="0xl-rC-l2P"/>
@@ -333,7 +333,7 @@ Label</string>
                         <outlet property="freeBoardTextGoButton" destination="dfz-BD-VkC" id="HRc-Kt-cUF"/>
                         <outlet property="hoeBoardTextGoButton" destination="tij-TK-Bwn" id="Zn1-dD-t6a"/>
                         <outlet property="hotBoardGoButton" destination="tcg-vS-omW" id="Tgz-aD-6db"/>
-                        <outlet property="recommendButton" destination="4QT-om-12i" id="ND5-y9-GIv"/>
+                        <outlet property="recommendButton" destination="4QT-om-12i" id="R1E-vC-3lP"/>
                         <outlet property="recommendExplainLabel" destination="emZ-Cu-qhU" id="cmZ-CK-UUW"/>
                         <outlet property="roadMapButtonStackView" destination="kMU-nR-F3V" id="wP0-cy-Gdp"/>
                         <outlet property="roadMapGoButtonFirst" destination="LV9-DF-Ecv" id="ubc-mi-9k5"/>
