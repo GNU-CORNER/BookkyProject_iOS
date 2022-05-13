@@ -41,7 +41,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.bookListTableView.alwaysBounceVertical = false //헤더 고정 풀기
         self.setRecommendView()
         self.setCommunityView()
-        self.getBookData()
+        getBookData()
     }
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
@@ -50,6 +50,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     //HomeViewController 뷰가 나타나기전에 hidden.true 뷰가 사라지기전에 hidden.false
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getBookData()
         navigationController?.setNavigationBarHidden(true, animated: animated)
         
     }
@@ -130,6 +131,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                 self.bookList = bookData.result.bookList
                 if bookData.success{
                     DispatchQueue.main.async {
+                        
                         self.bookListTableView.reloadData()
                     }
                 }else {

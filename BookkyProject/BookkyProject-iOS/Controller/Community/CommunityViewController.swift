@@ -94,7 +94,7 @@ class CommunityViewController: UIViewController {
         
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        
+        SetQnACell()
       
     }
     
@@ -135,6 +135,10 @@ class CommunityViewController: UIViewController {
             setDropDownMenu()
         }else if sender == self.QnABoardGoButton{
             self.boardTypeNumber = 2
+            self.currentPage = 1
+            self.postListBookMarket = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
             setDropDownMenu()
         }else if sender == self.hotBoardGobutton{
             self.boardTypeNumber = 3
@@ -204,6 +208,11 @@ class CommunityViewController: UIViewController {
         self.boardNameButton.setTitle(boardName, for: .normal)
         
     }
+    private func SetQnACell(){
+        let cellNib = UINib(nibName: "QnABoardTableViewCell", bundle: nil)
+        self.boardTableView.register(cellNib, forCellReuseIdentifier: "QnATableVIewCellid")
+    }
+   
     private func communityGetWriteList(){
         CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
             if success{
@@ -263,7 +272,9 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
             return postListFree.count
         }else if self.boardTypeNumber == 1 {
             return postListBookMarket.count
-        }else {
+        }else if self.boardTypeNumber == 2 {
+            return 10
+        }else{
             return postListFree.count
         }
       
@@ -271,22 +282,24 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = boardTableView.dequeueReusableCell(withIdentifier: "boadrTableViewCellid", for: indexPath) as? BoardTableViewCell else { return UITableViewCell()}
-        cell.subtittleLabel.numberOfLines = 2
-        cell.subtittleLabel.font = UIFont.systemFont(ofSize: 15)
+        guard let QnACell = boardTableView.dequeueReusableCell(withIdentifier: "QnATableVIewCellid", for: indexPath) as? QnABoardTableViewCell else { return UITableViewCell()}
         if boardTypeNumber == 0 {
             cell.setBoardTableViewPostList(model:postListFree[indexPath.row])
         }else if boardTypeNumber == 1{
             cell.setBoardTableViewPostList(model:postListBookMarket[indexPath.row])
+        }else if boardTypeNumber == 2{
+            QnACell.titleLabel.text  = "테스트 제목"
+            QnACell.contentsLabel.text = "테스트 내용입니다 .테스트 내용입니다 . 테스트 내용입니다 테스트 내용입니다 .테스트 내용입니다 . 테스트 내용입니다 "
+            QnACell.commentLabel.text = "1"
+            QnACell.likeCntLabel.text = "2"
+            return QnACell
         }
-//            else if boardTypeNumber == 2{
-//            cell.setBoardTableViewPostList(model:postList[indexPath.row])
-//
-//        }
         //        else if boardTypeNumber == 4{
         //            cell.tittleLabel.text = myTextBoard.objectArray[indexPath.row].title
         //            cell.subtittleLabel.text = myTextBoard.objectArray[indexPath.row].subtitle
         //        }
         return cell
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
