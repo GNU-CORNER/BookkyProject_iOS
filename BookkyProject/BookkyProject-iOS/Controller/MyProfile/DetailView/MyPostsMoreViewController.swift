@@ -54,12 +54,13 @@ extension MyPostsMoreViewController: UICollectionViewDelegate, UICollectionViewD
         cell.myPostsCommentsLabel.text = "2"
         cell.myPostsLikeImageView.image = UIImage(named: "likeThat")
         cell.myPostsCommentsImageView.image = UIImage(named: "comment")
+        cell.layer.cornerRadius = 0
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let width = collectionView.frame.width - 40
+        let width = collectionView.frame.width
         return CGSize(width: width, height: 72)
     }
     

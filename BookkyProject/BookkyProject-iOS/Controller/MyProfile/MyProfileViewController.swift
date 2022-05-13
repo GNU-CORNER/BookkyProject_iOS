@@ -142,7 +142,6 @@ class MyProfileViewController: UIViewController {
                             } else if statuscode == 403 {
                                 // 기간이 지난 토큰입니다.
                                 // 로그인 화면 리다이렉트
-//                                self.redirectLoginView()
                                 RedirectView.redirectLoginView(previousView: self)
                             }
                         }
@@ -185,28 +184,8 @@ class MyProfileViewController: UIViewController {
         self.myReviewsCollectionView.register(UINib(nibName: "MyReviewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyReviewsCollectionViewCell")
     }
     
-    // MARK: - Redirect Login View
-    // 임시, 새로 시나리오 짤 것...
-//    func redirectLoginView() {
-//        //스토리보드의 파일 찾기
-//        let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
-//
-//        // 스토리보드에서 지정해준 ViewController의 ID
-//        DispatchQueue.main.async {
-//            guard let vc = storyboard?.instantiateViewController(identifier: "LoginNavigation") else {
-//                return
-//            }
-//            // 화면 전환방식 선택 (default : .modal)
-//            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-//
-//
-//            // 화면 전환!
-//            self.present(vc, animated: true)
-//        }
-//    }
 
     @IBAction func loginTestButton(_ sender: Any) {
-//        redirectLoginView()
         RedirectView.redirectLoginView(previousView: self)
     }
 
