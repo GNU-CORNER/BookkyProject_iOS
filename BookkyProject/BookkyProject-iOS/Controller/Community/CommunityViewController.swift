@@ -15,7 +15,8 @@ class CommunityViewController: UIViewController {
     let bookMarketBoard = BookMarket()
     let myTextBoard = Mytext()
     var PID : Int = 0
-    var postList : [PostListData] = []
+    var postListFree : [PostListData] = []
+    var postListBookMarket : [PostListData] = []
     // 좋아요개수 와 댓글개수
    
     var currentPage = 1
@@ -39,7 +40,7 @@ class CommunityViewController: UIViewController {
     var moreScroll : Bool = false
     var totalTextCount : Int = 0
     var currentTextCount : Int = 0
-   
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -94,11 +95,13 @@ class CommunityViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         
+      
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+       
     }
 //    override func viewDidAppear(_ animated: Bool) {
 //        super.viewDidAppear(animated)
@@ -118,16 +121,21 @@ class CommunityViewController: UIViewController {
     @IBAction func tapGoBoard(_ sender: UIButton) {
         if sender == self.freeBoardGoButton{
             self.boardTypeNumber = 0
+            self.currentPage = 1
+            self.postListFree = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
             setDropDownMenu()
-            communityGetWriteList()
         }else if sender == self.bookMarketGoButton{
             self.boardTypeNumber = 1
+            self.currentPage = 1
+            self.postListBookMarket = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
             setDropDownMenu()
-            communityGetWriteList()
         }else if sender == self.QnABoardGoButton{
             self.boardTypeNumber = 2
             setDropDownMenu()
-            communityGetWriteList()
         }else if sender == self.hotBoardGobutton{
             self.boardTypeNumber = 3
             setDropDownMenu()
@@ -135,6 +143,7 @@ class CommunityViewController: UIViewController {
             self.boardTypeNumber = 4
             setDropDownMenu()
         }
+        communityGetWriteList()
         self.boardTableView.reloadData()
     }
     
@@ -191,10 +200,6 @@ class CommunityViewController: UIViewController {
             self.myTextGoButton.setTitleColor(.black, for: .normal)
             self.myTextGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "내글 보기"
-        }else{
-            self.freeBoardGoButton.setTitleColor(.black, for: .normal)
-            self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            boardName = "자유 게시판"
         }
         self.boardNameButton.setTitle(boardName, for: .normal)
         
@@ -206,12 +211,16 @@ class CommunityViewController: UIViewController {
               
                 print("\(communityGetWriteList.result.postList.count)get받아오는 개수")
                 self.getPageDataCount = communityGetWriteList.result.postList.count
-                self.postList.append(contentsOf: communityGetWriteList.result.postList)
+                if self.boardTypeNumber == 0{
+
+                    self.postListFree.append(contentsOf: communityGetWriteList.result.postList)
+                }else if self.boardTypeNumber == 1 {
+                    self.postListBookMarket.append(contentsOf: communityGetWriteList.result.postList)
+                }
                 self.totalTextCount = communityGetWriteList.result.total_size
                 self.currentTextCount+=self.getPageDataCount
                 if communityGetWriteList.success{
                     DispatchQueue.main.async {
-                      
                         self.boardTableView.reloadData()
                     }
                 }else{
@@ -224,9 +233,7 @@ class CommunityViewController: UIViewController {
     private func beginfetch(){
         moreScroll = true
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-            print("\(self.totalTextCount)")
             self.currentPage+=1
-            print("\(self.currentPage)currentPage")
             self.communityGetWriteList()
             self.moreScroll = false
             self.boardTableView.reloadData()
@@ -252,25 +259,29 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         return footerView
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postList.count
+        if self.boardTypeNumber == 0{
+            return postListFree.count
+        }else if self.boardTypeNumber == 1 {
+            return postListBookMarket.count
+        }else {
+            return postListFree.count
+        }
+      
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = boardTableView.dequeueReusableCell(withIdentifier: "boadrTableViewCellid", for: indexPath) as? BoardTableViewCell else { return UITableViewCell()}
-        cell.setBoardTableViewPostList(model:postList[indexPath.row])
-        
         cell.subtittleLabel.numberOfLines = 2
         cell.subtittleLabel.font = UIFont.systemFont(ofSize: 15)
         if boardTypeNumber == 0 {
-            cell.setBoardTableViewPostList(model:postList[indexPath.row])
-         
+            cell.setBoardTableViewPostList(model:postListFree[indexPath.row])
         }else if boardTypeNumber == 1{
-            cell.setBoardTableViewPostList(model:postList[indexPath.row])
-          
-        }else if boardTypeNumber == 2{
-            cell.setBoardTableViewPostList(model:postList[indexPath.row])
-          
+            cell.setBoardTableViewPostList(model:postListBookMarket[indexPath.row])
         }
+//            else if boardTypeNumber == 2{
+//            cell.setBoardTableViewPostList(model:postList[indexPath.row])
+//
+//        }
         //        else if boardTypeNumber == 4{
         //            cell.tittleLabel.text = myTextBoard.objectArray[indexPath.row].title
         //            cell.subtittleLabel.text = myTextBoard.objectArray[indexPath.row].subtitle
@@ -289,7 +300,6 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let totalScrollSize = scrollView.contentSize.height - scrollView.bounds.height
         let scrollSize = scrollView.contentOffset.y+50
-       
         if currentTextCount < totalTextCount  {
             if  scrollSize > totalScrollSize{
                 if !moreScroll {

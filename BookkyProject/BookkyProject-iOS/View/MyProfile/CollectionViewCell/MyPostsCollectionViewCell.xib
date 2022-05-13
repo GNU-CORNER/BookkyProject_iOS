@@ -70,24 +70,20 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내글본문" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gME-JK-mNW">
-                        <rect key="frame" x="10" y="29" width="340" height="33"/>
-                        <constraints>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="360" id="FxH-Ht-N4P"/>
-                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="39" id="Tve-CO-IQC"/>
-                        </constraints>
+                        <rect key="frame" x="10" y="31" width="340" height="33"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gME-JK-mNW" firstAttribute="top" secondItem="lJh-ZI-eLl" secondAttribute="bottom" constant="5" id="3UP-Wf-I9Y"/>
+                    <constraint firstItem="gME-JK-mNW" firstAttribute="bottom" secondItem="4Ym-pt-OKb" secondAttribute="bottomMargin" id="CJQ-pp-1ur"/>
                     <constraint firstItem="lJh-ZI-eLl" firstAttribute="top" secondItem="4Ym-pt-OKb" secondAttribute="top" constant="10" id="TWI-Q0-CX9"/>
-                    <constraint firstAttribute="bottom" secondItem="gME-JK-mNW" secondAttribute="bottom" constant="10" id="UBd-DZ-t0p"/>
+                    <constraint firstItem="gME-JK-mNW" firstAttribute="top" secondItem="lJh-ZI-eLl" secondAttribute="bottom" constant="7" id="UR1-vU-y31"/>
                     <constraint firstAttribute="trailing" secondItem="lJh-ZI-eLl" secondAttribute="trailing" constant="10" id="VD6-pI-2lr"/>
-                    <constraint firstItem="gME-JK-mNW" firstAttribute="leading" secondItem="4Ym-pt-OKb" secondAttribute="leading" constant="10" id="dMD-QK-E5d"/>
+                    <constraint firstItem="gME-JK-mNW" firstAttribute="leading" secondItem="lJh-ZI-eLl" secondAttribute="leading" id="hsf-f8-5RY"/>
                     <constraint firstItem="lJh-ZI-eLl" firstAttribute="leading" secondItem="4Ym-pt-OKb" secondAttribute="leading" constant="10" id="iFB-WF-iRJ"/>
-                    <constraint firstAttribute="trailing" secondItem="gME-JK-mNW" secondAttribute="trailing" constant="10" id="uye-p3-Ng0"/>
+                    <constraint firstItem="gME-JK-mNW" firstAttribute="trailing" secondItem="lJh-ZI-eLl" secondAttribute="trailing" id="raL-f4-W8P"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="172" height="114"/>
