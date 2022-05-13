@@ -16,6 +16,7 @@ class SearchPostViewController: UIViewController {
         setNavigationBar()
         setSearchBar()
         setTableView()
+        seSearchTableViewCell()
     }
     private func setSearchBar(){
         let searchController = UISearchController(searchResultsController: nil)
@@ -31,13 +32,18 @@ class SearchPostViewController: UIViewController {
         self.searchPostTableView.delegate = self
         self.searchPostTableView.dataSource = self
     }
+    private func seSearchTableViewCell(){
+        let cellNib = UINib(nibName: "SearchPostTableViewCell", bundle: nil)
+        self.searchPostTableView.register(cellNib, forCellReuseIdentifier: "searchTableViewCellNib")
+    }
+   
 }
 extension SearchPostViewController : UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = searchPostTableView.dequeueReusableCell(withIdentifier: "SearchPostTableViewCellid", for: indexPath) as? SearchPostTableViewCell else {return UITableViewCell()}
+        guard let cell = searchPostTableView.dequeueReusableCell(withIdentifier: "searchTableViewCellNib", for: indexPath) as? SearchPostTableViewCell else {return UITableViewCell()}
         cell.postTitleLabel.text = "위글 위글위글 위글위글 위글위글 위글위글 위글위글 위글"
         cell.postContentsLabel.text = "테스트테스트테스트테스트테스트\n테스트테스트테스트"
         cell.likeThatImage.image = UIImage(named: "likeThat")
