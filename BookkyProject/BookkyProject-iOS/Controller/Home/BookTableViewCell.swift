@@ -8,7 +8,6 @@
 import UIKit
 protocol BookCollectionViewCellDeleGate : AnyObject {
     func collectionView(collectionviewcell: BookCollectionViewCell?, index: Int, didTappedInTableViewCell: BookTableViewCell)
-    
 }
 
 class BookTableViewCell: UITableViewCell {

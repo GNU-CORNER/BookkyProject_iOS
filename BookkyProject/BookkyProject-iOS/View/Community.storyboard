@@ -475,22 +475,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5K-Yv-zX8">
-                                <rect key="frame" x="15" y="90.5" width="384" height="34"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목 또는 태그" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="00O-r2-Als">
-                                        <rect key="frame" x="0.0" y="0.0" width="363.5" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OWP-us-W5W">
-                                        <rect key="frame" x="363.5" y="0.0" width="20.5" height="34"/>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="magnifyingglass" catalog="system"/>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 추가하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzw-ny-20f">
                                 <rect key="frame" x="168" y="50" width="78" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -504,7 +488,7 @@
                                 <state key="normal" image="clear" catalog="system"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="R0r-RQ-IXZ">
-                                <rect key="frame" x="0.0" y="134.5" width="414" height="673.5"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="736"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addBookTableViewCellid" rowHeight="68" id="Zcn-wJ-O49" customClass="AddBookTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
@@ -563,13 +547,10 @@
                         <constraints>
                             <constraint firstItem="R0r-RQ-IXZ" firstAttribute="leading" secondItem="HdA-FE-bTf" secondAttribute="leading" id="9MR-Vp-FvG"/>
                             <constraint firstItem="Tzw-ny-20f" firstAttribute="centerX" secondItem="3iQ-c4-Yfq" secondAttribute="centerX" id="JJh-KI-ebs"/>
-                            <constraint firstItem="R0r-RQ-IXZ" firstAttribute="top" secondItem="C5K-Yv-zX8" secondAttribute="bottom" constant="10" id="KuA-XK-oTs"/>
-                            <constraint firstItem="C5K-Yv-zX8" firstAttribute="leading" secondItem="HdA-FE-bTf" secondAttribute="leading" constant="15" id="Pp9-7P-whA"/>
-                            <constraint firstItem="C5K-Yv-zX8" firstAttribute="top" secondItem="Tzw-ny-20f" secondAttribute="bottom" constant="20" id="czS-3c-nIy"/>
+                            <constraint firstItem="R0r-RQ-IXZ" firstAttribute="top" secondItem="k58-L5-vXh" secondAttribute="bottom" id="LpU-yr-WHR"/>
                             <constraint firstItem="Tzw-ny-20f" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="50" id="ddC-EX-E8f"/>
                             <constraint firstItem="HdA-FE-bTf" firstAttribute="bottom" secondItem="R0r-RQ-IXZ" secondAttribute="bottom" id="fko-H0-W65"/>
                             <constraint firstItem="HdA-FE-bTf" firstAttribute="trailing" secondItem="R0r-RQ-IXZ" secondAttribute="trailing" id="gQm-24-Iqa"/>
-                            <constraint firstItem="HdA-FE-bTf" firstAttribute="trailing" secondItem="C5K-Yv-zX8" secondAttribute="trailing" constant="15" id="jaS-bb-Lq3"/>
                             <constraint firstItem="k58-L5-vXh" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="50" id="tMZ-U7-j1m"/>
                             <constraint firstItem="HdA-FE-bTf" firstAttribute="trailing" secondItem="k58-L5-vXh" secondAttribute="trailing" constant="15" id="yzP-Ss-thX"/>
                         </constraints>
