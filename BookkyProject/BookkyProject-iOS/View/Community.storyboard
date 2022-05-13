@@ -212,9 +212,9 @@
                                         <connections>
                                             <outlet property="commentCountLabel" destination="PPk-eV-oOd" id="4Qg-U7-tlM"/>
                                             <outlet property="commentImageView" destination="3Eq-zS-wbB" id="fe0-Sh-BSu"/>
+                                            <outlet property="contentsLabel" destination="n0y-DA-Utc" id="Zfe-Cj-9P5"/>
                                             <outlet property="likeThatCountLabel" destination="TM4-Da-Tdz" id="YBm-jg-BfV"/>
                                             <outlet property="likeThatImageView" destination="uym-cj-x4J" id="wbk-nf-v3k"/>
-                                            <outlet property="subtittleLabel" destination="n0y-DA-Utc" id="6Hu-bq-DMk"/>
                                             <outlet property="tableViewCell" destination="Kru-H5-HVP" id="tpd-02-jaz"/>
                                             <outlet property="tittleLabel" destination="VJC-IZ-Sd9" id="MIX-sv-F1G"/>
                                         </connections>

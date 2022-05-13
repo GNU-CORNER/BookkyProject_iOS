@@ -11,7 +11,7 @@ class BoardTableViewCell: UITableViewCell {
     var PID : Int = 0
     @IBOutlet weak var tableViewCell: UIView!
     @IBOutlet weak var tittleLabel: UILabel!
-    @IBOutlet weak var subtittleLabel: UILabel!
+    @IBOutlet weak var contentsLabel: UILabel!
     
     @IBOutlet weak var likeThatImageView: UIImageView!
     @IBOutlet weak var likeThatCountLabel: UILabel!
@@ -28,13 +28,16 @@ class BoardTableViewCell: UITableViewCell {
     
     func setBoardTableViewPostList(model :PostListData){
         self.tittleLabel.text = model.title
-        self.subtittleLabel.text = model.contents
+        self.contentsLabel.text = model.contents
         self.PID = model.PID
         self.likeThatCountLabel.text = "\(model.likeCnt)"
         self.commentCountLabel.text = "\(model.commentCnt)"
         
     }
     func setBoardTableViewCellUI(){
+        self.contentsLabel.numberOfLines = 2
+        self.contentsLabel.font = UIFont.systemFont(ofSize: 13)
+        self.contentsLabel.textColor = UIColor(named: "grayColor")
         self.likeThatImageView.image = UIImage(named: "likeThat")
         self.commentImageView.image = UIImage(named: "comment")
         self.likeThatCountLabel.textColor = UIColor(named: "PrimaryOrangeColor")
