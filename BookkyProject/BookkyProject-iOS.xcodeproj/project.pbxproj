@@ -48,6 +48,8 @@
 		688DEDBD282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDBC282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift */; };
 		688DEDC3282E8A12002F647A /* MyReviewsMoreCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688DEDC2282E8A12002F647A /* MyReviewsMoreCollectionViewCell.xib */; };
 		688DEDC5282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDC4282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift */; };
+		688DEDC7282E9C60002F647A /* MyProfileUpdateView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688DEDC6282E9C60002F647A /* MyProfileUpdateView.storyboard */; };
+		688DEDC9282E9C95002F647A /* MyProfileUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDC8282E9C95002F647A /* MyProfileUpdateViewController.swift */; };
 		68B21B052829269C00707C5A /* MyPostsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */; };
 		68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */; };
 		68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B21B08282A2D4C00707C5A /* MyProfileModel.swift */; };
@@ -153,6 +155,8 @@
 		688DEDBC282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksMoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		688DEDC2282E8A12002F647A /* MyReviewsMoreCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyReviewsMoreCollectionViewCell.xib; sourceTree = "<group>"; };
 		688DEDC4282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsMoreCollectionViewCell.swift; sourceTree = "<group>"; };
+		688DEDC6282E9C60002F647A /* MyProfileUpdateView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfileUpdateView.storyboard; sourceTree = "<group>"; };
+		688DEDC8282E9C95002F647A /* MyProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileUpdateViewController.swift; sourceTree = "<group>"; };
 		68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyReviewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B08282A2D4C00707C5A /* MyProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileModel.swift; sourceTree = "<group>"; };
@@ -379,6 +383,7 @@
 		688DEDB1282D32E9002F647A /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				688DEDC8282E9C95002F647A /* MyProfileUpdateViewController.swift */,
 				688DEDB2282D3349002F647A /* MyBooksMoreViewController.swift */,
 				688DEDB4282D335F002F647A /* MyPostsMoreViewController.swift */,
 				688DEDB6282D336A002F647A /* MyReviewsMoreViewController.swift */,
@@ -390,6 +395,7 @@
 		688DEDB8282E1F43002F647A /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
+				688DEDC6282E9C60002F647A /* MyProfileUpdateView.storyboard */,
 				68169248282B906C0066946A /* MyBooksMoreView.storyboard */,
 				6816924B282B91B80066946A /* MyPostsMoreView.storyboard */,
 				6816924D282B925A0066946A /* MyReviewsMoreView.storyboard */,
@@ -642,6 +648,7 @@
 				68C8629C27DF6605004B4F73 /* MyProfile.storyboard in Resources */,
 				68B21B052829269C00707C5A /* MyPostsCollectionViewCell.xib in Resources */,
 				688DEDC3282E8A12002F647A /* MyReviewsMoreCollectionViewCell.xib in Resources */,
+				688DEDC7282E9C60002F647A /* MyProfileUpdateView.storyboard in Resources */,
 				68683D4627DDF5EF008EF3CF /* Assets.xcassets in Resources */,
 				68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */,
 				68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */,
@@ -737,6 +744,7 @@
 				F8E68A352828C4450046760A /* WriteTextDetailDataFormat.swift in Sources */,
 				6852E57427F307BB00CAEF02 /* SocialSignupVC.swift in Sources */,
 				68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */,
+				688DEDC9282E9C95002F647A /* MyProfileUpdateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
