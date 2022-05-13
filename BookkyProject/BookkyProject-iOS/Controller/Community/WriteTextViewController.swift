@@ -120,17 +120,17 @@ class WriteTextViewController: UIViewController {
             self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "자유 게시판"
         }else if boardTypeNumber == 1{
-            self.hotBoardGobutton.setTitleColor(.black, for: .normal)
-            self.hotBoardGobutton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            boardName = "H🔥t 게시판"
+            self.bookMarketGoButton.setTitleColor(.black, for: .normal)
+            self.bookMarketGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            boardName = "책 장터 게시판"
         }else if boardTypeNumber == 2{
             self.QnABoardGoButton.setTitleColor(.black, for: .normal)
             self.QnABoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "Q&A 게시판"
         }else if boardTypeNumber == 3 {
-            self.bookMarketGoButton.setTitleColor(.black, for: .normal)
-            self.bookMarketGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            boardName = "책 장터 게시판"
+            self.hotBoardGobutton.setTitleColor(.black, for: .normal)
+            self.hotBoardGobutton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            boardName = "H🔥t 게시판"
         }else{
             self.freeBoardGoButton.setTitleColor(.black, for: .normal)
             self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)

@@ -69,6 +69,8 @@
 		F8886F2A2821309300044737 /* CommunityDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8886F292821309300044737 /* CommunityDataSerVice.swift */; };
 		F8886F2C2821328800044737 /* WritePostDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8886F2B2821328800044737 /* WritePostDataFormat.swift */; };
 		F8886F2E28214BB500044737 /* WriteGetListDataFomat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8886F2D28214BB500044737 /* WriteGetListDataFomat.swift */; };
+		F88D6842282D68E600E23344 /* SearchPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D6841282D68E600E23344 /* SearchPostViewController.swift */; };
+		F88D6844282D6E0500E23344 /* SearchPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D6843282D6E0500E23344 /* SearchPostTableViewCell.swift */; };
 		F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88EF53327FD86A400634696 /* BoardTableViewCell.swift */; };
 		F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */; };
 		F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */; };
@@ -168,6 +170,8 @@
 		F8886F292821309300044737 /* CommunityDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityDataSerVice.swift; path = "BookkyProject-iOS/SerVice/CommunityDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
 		F8886F2B2821328800044737 /* WritePostDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostDataFormat.swift; sourceTree = "<group>"; };
 		F8886F2D28214BB500044737 /* WriteGetListDataFomat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteGetListDataFomat.swift; sourceTree = "<group>"; };
+		F88D6841282D68E600E23344 /* SearchPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostViewController.swift; sourceTree = "<group>"; };
+		F88D6843282D6E0500E23344 /* SearchPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPostTableViewCell.swift; sourceTree = "<group>"; };
 		F88EF53327FD86A400634696 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 		F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionReusableViewHeader.swift; sourceTree = "<group>"; };
@@ -401,6 +405,8 @@
 				F8FE3FFB281FCA200014E060 /* WriteTextViewController.swift */,
 				F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */,
 				F8E68A74282914E10046760A /* BoardTextCommentTableViewCell.swift */,
+				F88D6841282D68E600E23344 /* SearchPostViewController.swift */,
+				F88D6843282D6E0500E23344 /* SearchPostTableViewCell.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -619,6 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F88D6842282D68E600E23344 /* SearchPostViewController.swift in Sources */,
 				683674C2282215D500CB618D /* MyReviewsCollectionViewCell.swift in Sources */,
 				68169244282A85450066946A /* MyProfileAPI.swift in Sources */,
 				F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */,
@@ -641,6 +648,7 @@
 				683674C0282215C200CB618D /* MyBooksCollectionViewCell.swift in Sources */,
 				F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */,
 				F8E386A7282BE6AA006F9BDD /* TagMoreButtonViewController.swift in Sources */,
+				F88D6844282D6E0500E23344 /* SearchPostTableViewCell.swift in Sources */,
 				68169247282B8B530066946A /* RedirectView.swift in Sources */,
 				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,

@@ -510,21 +510,21 @@ Label</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리뷰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibl-cB-EKP">
-                                                <rect key="frame" x="30" y="520" width="35" height="20.5"/>
+                                                <rect key="frame" x="30" y="520" width="364" height="20.5"/>
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="5" trailing="8"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="목차" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tID-RB-2zP">
-                                                <rect key="frame" x="20" y="370" width="29.5" height="20.5"/>
+                                                <rect key="frame" x="20" y="370" width="374" height="20.5"/>
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="5" trailing="8"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZT5-V5-Tlt">
-                                                <rect key="frame" x="332" y="334" width="62" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZT5-V5-Tlt">
+                                                <rect key="frame" x="20" y="334" width="374" height="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="펼쳐보기&gt;"/>
@@ -532,8 +532,8 @@ Label</string>
                                                     <action selector="tapMoreBookIntroduction:" destination="SlN-ec-z5q" eventType="touchUpInside" id="zLf-m6-oeU"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhx-4y-Iyc">
-                                                <rect key="frame" x="332" y="440" width="62" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhx-4y-Iyc">
+                                                <rect key="frame" x="20" y="440" width="374" height="30"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="펼쳐보기&gt;"/>
@@ -688,7 +688,6 @@ Label</string>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="J5B-GE-n6d" firstAttribute="top" secondItem="EzR-dh-vTE" secondAttribute="bottom" constant="20" id="2eg-ee-qbo"/>
-                                            <constraint firstAttribute="trailing" secondItem="tID-RB-2zP" secondAttribute="trailing" constant="364.5" id="6q8-q4-1k0"/>
                                             <constraint firstAttribute="trailing" secondItem="ZT5-V5-Tlt" secondAttribute="trailing" constant="20" id="6rj-qZ-Lo4"/>
                                             <constraint firstItem="oLk-yc-laX" firstAttribute="top" secondItem="O03-SN-uL6" secondAttribute="bottom" constant="50" id="7H8-HF-h2c"/>
                                             <constraint firstItem="tID-RB-2zP" firstAttribute="top" secondItem="ZT5-V5-Tlt" secondAttribute="bottom" constant="6" id="AsM-C3-kE2"/>
@@ -705,8 +704,9 @@ Label</string>
                                             <constraint firstItem="O03-SN-uL6" firstAttribute="top" secondItem="0KB-aq-LdD" secondAttribute="bottom" constant="5" id="V9j-Mi-GoQ"/>
                                             <constraint firstItem="Rtj-hO-8c6" firstAttribute="top" secondItem="iHx-XL-aF8" secondAttribute="bottom" constant="5" id="VgR-Wg-hr7"/>
                                             <constraint firstItem="wjG-5N-eKh" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="30" id="X9K-ZZ-5ub"/>
+                                            <constraint firstAttribute="trailing" secondItem="tID-RB-2zP" secondAttribute="trailing" constant="20" id="XB9-zI-0s1"/>
                                             <constraint firstItem="ROM-14-Too" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="30" id="Yff-Vz-qvO"/>
-                                            <constraint firstAttribute="trailing" secondItem="Ibl-cB-EKP" secondAttribute="trailing" constant="349" id="Ylt-fU-LUX"/>
+                                            <constraint firstAttribute="trailing" secondItem="Ibl-cB-EKP" secondAttribute="trailing" constant="20" id="Ylt-fU-LUX"/>
                                             <constraint firstItem="iHx-XL-aF8" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="30" id="Z91-4h-V1q"/>
                                             <constraint firstItem="J5B-GE-n6d" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="aFL-WW-174"/>
                                             <constraint firstAttribute="trailing" secondItem="mRR-9v-GX7" secondAttribute="trailing" constant="20" id="e8o-WT-22U"/>
@@ -716,10 +716,11 @@ Label</string>
                                             <constraint firstItem="ROM-14-Too" firstAttribute="top" secondItem="tID-RB-2zP" secondAttribute="bottom" constant="14" id="hlt-e4-p8d"/>
                                             <constraint firstAttribute="trailing" secondItem="rhx-4y-Iyc" secondAttribute="trailing" constant="20" id="i60-cZ-i1c"/>
                                             <constraint firstItem="wjG-5N-eKh" firstAttribute="top" secondItem="J5B-GE-n6d" secondAttribute="bottom" constant="15" id="jEo-l5-bJp"/>
+                                            <constraint firstItem="rhx-4y-Iyc" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="m41-oL-51z"/>
                                             <constraint firstItem="O03-SN-uL6" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="30" id="n4i-l8-pLJ"/>
                                             <constraint firstItem="mRR-9v-GX7" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="oCY-YN-jxa"/>
                                             <constraint firstItem="EzR-dh-vTE" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="tJm-1H-taa"/>
-                                            <constraint firstItem="ZT5-V5-Tlt" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="332" id="u93-z1-rYc"/>
+                                            <constraint firstItem="ZT5-V5-Tlt" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="u93-z1-rYc"/>
                                             <constraint firstAttribute="bottom" secondItem="mRR-9v-GX7" secondAttribute="bottom" id="vsU-Xe-chS"/>
                                             <constraint firstItem="0KB-aq-LdD" firstAttribute="top" secondItem="Rtj-hO-8c6" secondAttribute="bottom" constant="5" id="w9u-dS-nDZ"/>
                                             <constraint firstItem="EzR-dh-vTE" firstAttribute="top" secondItem="AaO-8P-Zih" secondAttribute="top" constant="10" id="wN1-R6-hjd"/>
