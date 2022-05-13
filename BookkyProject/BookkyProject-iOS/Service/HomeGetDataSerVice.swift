@@ -12,6 +12,16 @@ class GetBookData {
     static var shared = GetBookData()
     //메인화면 API
     func getBookData(completion: @escaping(Bool,Any)->Void){
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Launch: 사용자 이메일을 불러올 수 없음.")
+            return
+        }
+        print(userEmail)
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)else {
+            print("Launch: AccessToken토큰을 불러올 수 없음.")
+            return
+        }
+        
         let session = URLSession(configuration: .default)
         guard let url = URL(string: BookkyURL.baseURL+BookkyURL.HomeURL) else{
             print("Error: Cannot Create URL")
@@ -20,6 +30,7 @@ class GetBookData {
         
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
+        request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
         request.setValue("application/json", forHTTPHeaderField: "accept")
         session.dataTask(with: request) { (data,response,error) in
             guard error == nil else {
@@ -113,21 +124,21 @@ class GetBookData {
             return
         }
         print(userEmail)
-        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
-              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
-            print("Launch: 토큰을 불러올 수 없음.")
-            return 
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)else {
+            print("Launch: AccessToken토큰을 불러올 수 없음.")
+            return
         }
-        
+//        guard let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+//            print("Launch: RefreshToken 토큰을 불러올 수 없음.")
+//            return
+//        }
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.bookDetailReview+"\(BID)") else {
             print("Error: Cannot create URL")
             return
         }
-        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
         request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
         request.setValue("application/json", forHTTPHeaderField: "accept")
         session.dataTask(with: request) { (data,response,error) in
@@ -150,6 +161,46 @@ class GetBookData {
             }
         }.resume()
     }
-    
+    // tagMoreView Api
+    func getTagMoreViewBookData(completion: @escaping(Bool,Any)->Void){
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Launch: 사용자 이메일을 불러올 수 없음.")
+            return
+        }
+        print(userEmail)
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)else {
+            print("Launch: AccessToken토큰을 불러올 수 없음.")
+            return
+        }
+        let session = URLSession(configuration: .default)
+        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.tagMoreViewURL) else{
+            print("Error: Cannot Create URL")
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
+        request.setValue("application/json", forHTTPHeaderField: "accept")
+        session.dataTask(with: request) { (data,response,error) in
+            guard error == nil else {
+                print("Error: error.")
+                return
+            }
+            //            print("\(error)")
+            guard let  data = data , let response = response as? HTTPURLResponse, (200..<300) ~= response.statusCode else {
+                print("\(String(describing: error))")
+                return
+            }
+            do {
+                let bookData = try JSONDecoder().decode(TagMoreViewBookInformation.self, from: data)
+                completion(true,bookData)
+                //                debugPrint("\(bookData)")
+            }catch(let err) {
+                print("Decoding Error")
+                print(err.localizedDescription)
+            }
+        }.resume()
+    }
 }
 

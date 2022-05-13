@@ -343,6 +343,9 @@
                                         <color key="tintColor" red="0.50196081400000003" green="0.50196087359999997" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="book.fill" catalog="system"/>
+                                        <connections>
+                                            <segue destination="2SY-oQ-t05" kind="presentation" id="EFA-Bq-MpU"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SDr-dN-2zg">
                                         <rect key="frame" x="116.5" y="0.0" width="24.5" height="30"/>
@@ -463,6 +466,100 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7e9-pR-Fbd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2669.5652173913045" y="10.714285714285714"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="IUO-bs-QJo">
+            <objects>
+                <viewController id="2SY-oQ-t05" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3iQ-c4-Yfq">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 추가하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzw-ny-20f">
+                                <rect key="frame" x="168" y="50" width="78" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k58-L5-vXh">
+                                <rect key="frame" x="379.5" y="50" width="19.5" height="22"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="clear" catalog="system"/>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="R0r-RQ-IXZ">
+                                <rect key="frame" x="0.0" y="72" width="414" height="736"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addBookTableViewCellid" rowHeight="68" id="Zcn-wJ-O49" customClass="AddBookTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="68"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zcn-wJ-O49" id="eLA-3B-hav">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="1S3-xO-aYf">
+                                                    <rect key="frame" x="20" y="5" width="374" height="58"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="msO-bP-6Ba">
+                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="58"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="60" id="lIV-GG-lG1"/>
+                                                                <constraint firstAttribute="width" constant="45" id="lR7-qY-szq"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="CjY-Pu-I2E" userLabel=".">
+                                                            <rect key="frame" x="55" y="0.0" width="319" height="58"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAH-ha-nPg">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="319" height="33.5"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k5e-hC-DG9">
+                                                                    <rect key="frame" x="0.0" y="37.5" width="319" height="20.5"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="20.5" id="krJ-rc-rhF"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1S3-xO-aYf" firstAttribute="leading" secondItem="eLA-3B-hav" secondAttribute="leading" constant="20" id="GDq-ZS-F9F"/>
+                                                <constraint firstItem="1S3-xO-aYf" firstAttribute="top" secondItem="eLA-3B-hav" secondAttribute="top" constant="5" id="LJg-Y3-JFI"/>
+                                                <constraint firstAttribute="bottom" secondItem="1S3-xO-aYf" secondAttribute="bottom" constant="5" id="nwc-63-hXS"/>
+                                                <constraint firstAttribute="trailing" secondItem="1S3-xO-aYf" secondAttribute="trailing" constant="20" id="vdF-dE-Gfg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="HdA-FE-bTf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="R0r-RQ-IXZ" firstAttribute="leading" secondItem="HdA-FE-bTf" secondAttribute="leading" id="9MR-Vp-FvG"/>
+                            <constraint firstItem="Tzw-ny-20f" firstAttribute="centerX" secondItem="3iQ-c4-Yfq" secondAttribute="centerX" id="JJh-KI-ebs"/>
+                            <constraint firstItem="R0r-RQ-IXZ" firstAttribute="top" secondItem="k58-L5-vXh" secondAttribute="bottom" id="LpU-yr-WHR"/>
+                            <constraint firstItem="Tzw-ny-20f" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="50" id="ddC-EX-E8f"/>
+                            <constraint firstItem="HdA-FE-bTf" firstAttribute="bottom" secondItem="R0r-RQ-IXZ" secondAttribute="bottom" id="fko-H0-W65"/>
+                            <constraint firstItem="HdA-FE-bTf" firstAttribute="trailing" secondItem="R0r-RQ-IXZ" secondAttribute="trailing" id="gQm-24-Iqa"/>
+                            <constraint firstItem="k58-L5-vXh" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="50" id="tMZ-U7-j1m"/>
+                            <constraint firstItem="HdA-FE-bTf" firstAttribute="trailing" secondItem="k58-L5-vXh" secondAttribute="trailing" constant="15" id="yzP-Ss-thX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="2G0-E2-p3e"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="umQ-ae-P4j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3534.7826086956525" y="161.38392857142856"/>
         </scene>
         <!--Title-->
         <scene sceneID="Xkf-ea-Nlx">
@@ -702,6 +799,7 @@
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="camera" catalog="system" width="128" height="94"/>
+        <image name="clear" catalog="system" width="128" height="114"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
