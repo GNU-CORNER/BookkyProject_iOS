@@ -501,31 +501,34 @@
             </objects>
             <point key="canvasLocation" x="2829" y="481"/>
         </scene>
-        <!--View Controller-->
+        <!--Write Post Book Search View Controller-->
         <scene sceneID="IUO-bs-QJo">
             <objects>
-                <viewController id="2SY-oQ-t05" sceneMemberID="viewController">
+                <viewController id="2SY-oQ-t05" customClass="WritePostBookSearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3iQ-c4-Yfq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 추가하기" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tzw-ny-20f">
-                                <rect key="frame" x="168" y="50" width="78" height="20.5"/>
+                                <rect key="frame" x="168" y="20" width="78" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k58-L5-vXh">
-                                <rect key="frame" x="379.5" y="50" width="19.5" height="22"/>
+                                <rect key="frame" x="379.5" y="20" width="19.5" height="22"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="clear" catalog="system"/>
+                                <connections>
+                                    <action selector="tapCancelViewButton:" destination="2SY-oQ-t05" eventType="touchUpInside" id="M54-m6-BaC"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="R0r-RQ-IXZ">
-                                <rect key="frame" x="0.0" y="72" width="414" height="736"/>
+                                <rect key="frame" x="0.0" y="128" width="414" height="680"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="addBookTableViewCellid" rowHeight="68" id="Zcn-wJ-O49" customClass="AddBookTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WritePostBookSearchTableViewCellid" rowHeight="68" id="Zcn-wJ-O49" customClass="WritePostBookSearchTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="414" height="68"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zcn-wJ-O49" id="eLA-3B-hav">
@@ -572,24 +575,39 @@
                                                 <constraint firstAttribute="trailing" secondItem="1S3-xO-aYf" secondAttribute="trailing" constant="20" id="vdF-dE-Gfg"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="bookAuthorNPublisher" destination="k5e-hC-DG9" id="vIY-bd-gs1"/>
+                                            <outlet property="bookImage" destination="msO-bP-6Ba" id="rxX-IT-ia2"/>
+                                            <outlet property="bookNameLabel" destination="NAH-ha-nPg" id="aYu-Tb-LZC"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <searchBar contentMode="redraw" placeholder="제목 또는 태그" translatesAutoresizingMaskIntoConstraints="NO" id="csm-pA-qry">
+                                <rect key="frame" x="0.0" y="72" width="414" height="51"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HdA-FE-bTf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="R0r-RQ-IXZ" firstAttribute="leading" secondItem="HdA-FE-bTf" secondAttribute="leading" id="9MR-Vp-FvG"/>
                             <constraint firstItem="Tzw-ny-20f" firstAttribute="centerX" secondItem="3iQ-c4-Yfq" secondAttribute="centerX" id="JJh-KI-ebs"/>
-                            <constraint firstItem="R0r-RQ-IXZ" firstAttribute="top" secondItem="k58-L5-vXh" secondAttribute="bottom" id="LpU-yr-WHR"/>
-                            <constraint firstItem="Tzw-ny-20f" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="50" id="ddC-EX-E8f"/>
+                            <constraint firstItem="csm-pA-qry" firstAttribute="top" secondItem="k58-L5-vXh" secondAttribute="bottom" constant="30" id="Lao-HU-qxc"/>
+                            <constraint firstItem="csm-pA-qry" firstAttribute="trailing" secondItem="HdA-FE-bTf" secondAttribute="trailing" id="QfL-tx-NCx"/>
+                            <constraint firstItem="Tzw-ny-20f" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="20" id="ddC-EX-E8f"/>
+                            <constraint firstItem="csm-pA-qry" firstAttribute="leading" secondItem="HdA-FE-bTf" secondAttribute="leading" id="eLH-r9-cfJ"/>
+                            <constraint firstItem="R0r-RQ-IXZ" firstAttribute="top" secondItem="csm-pA-qry" secondAttribute="bottom" constant="5" id="eMO-NF-rHh"/>
                             <constraint firstItem="HdA-FE-bTf" firstAttribute="bottom" secondItem="R0r-RQ-IXZ" secondAttribute="bottom" id="fko-H0-W65"/>
                             <constraint firstItem="HdA-FE-bTf" firstAttribute="trailing" secondItem="R0r-RQ-IXZ" secondAttribute="trailing" id="gQm-24-Iqa"/>
-                            <constraint firstItem="k58-L5-vXh" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="50" id="tMZ-U7-j1m"/>
+                            <constraint firstItem="k58-L5-vXh" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="20" id="tMZ-U7-j1m"/>
                             <constraint firstItem="HdA-FE-bTf" firstAttribute="trailing" secondItem="k58-L5-vXh" secondAttribute="trailing" constant="15" id="yzP-Ss-thX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2G0-E2-p3e"/>
+                    <connections>
+                        <outlet property="bookSearchTableView" destination="R0r-RQ-IXZ" id="wY9-Fl-txt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umQ-ae-P4j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
