@@ -9,7 +9,15 @@ import UIKit
 
 class MyProfileViewController: UIViewController {
     
-    var myTagsArray = ["iOS", "Swift", "Xcode", "UIUX", "Python", "Django", "iPhone"]
+    var myTagsArray: [UserTagList] = [
+        UserTagList(tag: "iOS", tid: 0),
+        UserTagList(tag: "Swift", tid: 0),
+        UserTagList(tag: "Xcode", tid: 0),
+        UserTagList(tag: "UIUX", tid: 0),
+        UserTagList(tag: "Python", tid: 0),
+        UserTagList(tag: "Django", tid: 0),
+        UserTagList(tag: "iPhone", tid: 0)
+    ]
     var myBooksArray: [FavoriteBookList] = [
         FavoriteBookList(bid: 0, title: "책제목 테스트입니다1", author: "", thumbnailImage: "", rating: 0),
         FavoriteBookList(bid: 0, title: "책제목 테스트입니다2", author: "", thumbnailImage: "", rating: 0),
@@ -221,7 +229,7 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             else {
                 return UICollectionViewCell()
             }
-            myTagsCell.tagNameLabel.text = "#\(myTagsArray[indexPath.row])"
+            myTagsCell.tagNameLabel.text = "#\(myTagsArray[indexPath.row].tag)"
             return myTagsCell
             
         } else if collectionView == self.myBooksCollectionView {

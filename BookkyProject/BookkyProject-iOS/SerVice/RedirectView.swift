@@ -15,7 +15,7 @@ class RedirectView {
         let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
 
         // 스토리보드에서 지정해준 ViewController의 ID
-//        DispatchQueue.main.async {
+        DispatchQueue.main.async {
             guard let vc = storyboard?.instantiateViewController(identifier: "LoginNavigation") else {
                 return
             }
@@ -25,7 +25,7 @@ class RedirectView {
 
             // 화면 전환!
             previousView.present(vc, animated: true)
-//        }
+        }
     }
     
 }
