@@ -12,7 +12,7 @@ class MyProfileUpdateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.topItem?.title = "프로필 수정"
+        self.navigationController?.title = "프로필 수정"
     }
     
 

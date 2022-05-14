@@ -108,7 +108,7 @@ class MyProfileViewController: UIViewController {
                 
             } else {
                 print("request MyProfile: false")
-                if statuscode == 403 {
+                if statuscode == 401 {
                     // 새로 AT 갱신할 것.
                     print(statuscode)
                     if let errorMessage = myprofileData.errorMessage {
