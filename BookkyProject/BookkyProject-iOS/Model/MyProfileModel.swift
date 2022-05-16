@@ -42,7 +42,18 @@ struct FavoriteBookList: Codable {
 struct MyprofileUserData: Codable {
     let userThumbnail: String?
     let nickname: String
-    let userTagList: [String]
+    let userTagList: [UserTagList]
+}
+
+// MARK: - UserTagList
+struct UserTagList: Codable {
+    let tag: String
+    let tid: Int
+
+    enum CodingKeys: String, CodingKey {
+        case tag
+        case tid = "TID"
+    }
 }
 
 // MARK: - UserPostList

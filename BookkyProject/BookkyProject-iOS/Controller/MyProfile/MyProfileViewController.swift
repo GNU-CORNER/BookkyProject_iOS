@@ -9,7 +9,15 @@ import UIKit
 
 class MyProfileViewController: UIViewController {
     
-    var myTagsArray = ["iOS", "Swift", "Xcode", "UIUX", "Python", "Django", "iPhone"]
+    var myTagsArray: [UserTagList] = [
+        UserTagList(tag: "iOS", tid: 0),
+        UserTagList(tag: "Swift", tid: 0),
+        UserTagList(tag: "Xcode", tid: 0),
+        UserTagList(tag: "UIUX", tid: 0),
+        UserTagList(tag: "Python", tid: 0),
+        UserTagList(tag: "Django", tid: 0),
+        UserTagList(tag: "iPhone", tid: 0)
+    ]
     var myBooksArray: [FavoriteBookList] = [
         FavoriteBookList(bid: 0, title: "책제목 테스트입니다1", author: "", thumbnailImage: "", rating: 0),
         FavoriteBookList(bid: 0, title: "책제목 테스트입니다2", author: "", thumbnailImage: "", rating: 0),
@@ -86,6 +94,12 @@ class MyProfileViewController: UIViewController {
                 self.myReviewsArray = (myprofileData.result?.userReviewList)!
                 DispatchQueue.main.async {
                     self.setUserNameLabel((myprofileData.result?.userData.nickname)!)
+                    if let userThumbnailImageString = myprofileData.result?.userData.userThumbnail {
+                        self.setDefaultUserImage(imageName: userThumbnailImageString)
+                    } else {
+                        self.setDefaultUserImage(imageName: "북키프사")
+                    }
+                    
                     self.myTagsCollectionView.reloadData()
                     self.myBooksCollectionView.reloadData()
                     self.myPostCollectionView.reloadData()
@@ -94,8 +108,9 @@ class MyProfileViewController: UIViewController {
                 
             } else {
                 print("request MyProfile: false")
-                if statuscode == 403 {
+                if statuscode == 401 {
                     // 새로 AT 갱신할 것.
+                    // 만료된 토큰입니다. RefreshToken의 기간이 지남
                     print(statuscode)
                     if let errorMessage = myprofileData.errorMessage {
                         print("request MyProfile false의 이유: \(errorMessage)")
@@ -123,13 +138,16 @@ class MyProfileViewController: UIViewController {
                             }
                         } else {
                             if statuscode == 400 {
-                                // 유효한 토큰입니다.
+                                // 유효한 토큰입니다. AccessToken의 만료기간이 남음
                                 print(tokens.errorMessage)
                             } else if statuscode == 403 {
-                                // 기간이 지난 토큰입니다.
+                                // 유효하지 않은 토큰입니다. RefreshToken의 형식이 잘못됨
                                 // 로그인 화면 리다이렉트
-//                                self.redirectLoginView()
                                 RedirectView.redirectLoginView(previousView: self)
+                            } else if statuscode == 404 {
+                                // RefreshTokenStorage와의 연결이 끊김
+                            } else if statuscode == 405 {
+                                // POST가 아닌 방식으로 접근 했을 경우
                             }
                         }
                     }
@@ -149,8 +167,8 @@ class MyProfileViewController: UIViewController {
         userImageView.layer.cornerRadius = self.userImageView.frame.width / 2
     }
     
-    private func setDefaultUserImage() {
-        userImageView.image = UIImage(named: "북키프사")
+    private func setDefaultUserImage(imageName: String) {
+        userImageView.image = UIImage(named: imageName)
     }
     
     private func setUserNameLabel(_ userName:String) {
@@ -159,7 +177,7 @@ class MyProfileViewController: UIViewController {
     
     private func setDefaultMyProfileView() {
         setUserImageViewCornerRadius()
-        setDefaultUserImage()
+        setDefaultUserImage(imageName: "북키프사")
         setUserNameLabel(userName)
         
     }
@@ -171,28 +189,8 @@ class MyProfileViewController: UIViewController {
         self.myReviewsCollectionView.register(UINib(nibName: "MyReviewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyReviewsCollectionViewCell")
     }
     
-    // MARK: - Redirect Login View
-    // 임시, 새로 시나리오 짤 것...
-//    func redirectLoginView() {
-//        //스토리보드의 파일 찾기
-//        let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
-//
-//        // 스토리보드에서 지정해준 ViewController의 ID
-//        DispatchQueue.main.async {
-//            guard let vc = storyboard?.instantiateViewController(identifier: "LoginNavigation") else {
-//                return
-//            }
-//            // 화면 전환방식 선택 (default : .modal)
-//            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
-//
-//
-//            // 화면 전환!
-//            self.present(vc, animated: true)
-//        }
-//    }
 
     @IBAction func loginTestButton(_ sender: Any) {
-//        redirectLoginView()
         RedirectView.redirectLoginView(previousView: self)
     }
 
@@ -221,7 +219,7 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             else {
                 return UICollectionViewCell()
             }
-            myTagsCell.tagNameLabel.text = "#\(myTagsArray[indexPath.row])"
+            myTagsCell.tagNameLabel.text = "#\(myTagsArray[indexPath.row].tag)"
             return myTagsCell
             
         } else if collectionView == self.myBooksCollectionView {

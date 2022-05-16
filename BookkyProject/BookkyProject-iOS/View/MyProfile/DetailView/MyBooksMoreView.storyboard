@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Books More View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MyBooksMore" hidesBottomBarWhenPushed="YES" id="Y6W-OH-hqX" customClass="MyBooksMoreViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Qn-4S-pPE">
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kEY-BM-i4d">
+                                    <size key="itemSize" width="82" height="125"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyBooksMoreCell" id="Q1r-Pl-Rjl" customClass="MyBooksMoreCollectionViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="20" y="0.0" width="82" height="125"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Zff-Zv-MFd">
+                                            <rect key="frame" x="0.0" y="0.0" width="82" height="125"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2jY-Pa-6Wc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="82" height="104"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="82" id="U44-iL-VaV"/>
+                                                        <constraint firstAttribute="height" constant="100" id="lxS-lg-bHA"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MV3-Vp-opv">
+                                                    <rect key="frame" x="0.0" y="104" width="82" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="8Mw-eo-CzS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="MV3-Vp-opv" secondAttribute="trailing" id="1A2-rU-ccQ"/>
+                                                <constraint firstItem="MV3-Vp-opv" firstAttribute="top" secondItem="2jY-Pa-6Wc" secondAttribute="bottom" id="2A7-PB-erh"/>
+                                                <constraint firstAttribute="bottom" secondItem="MV3-Vp-opv" secondAttribute="bottom" id="8af-iZ-jHO"/>
+                                                <constraint firstItem="MV3-Vp-opv" firstAttribute="leading" secondItem="Zff-Zv-MFd" secondAttribute="leading" id="DU3-Kb-0Yk"/>
+                                                <constraint firstItem="2jY-Pa-6Wc" firstAttribute="leading" secondItem="Zff-Zv-MFd" secondAttribute="leading" id="N4a-td-te8"/>
+                                                <constraint firstAttribute="trailing" secondItem="2jY-Pa-6Wc" secondAttribute="trailing" id="Nmu-Uh-JKN"/>
+                                                <constraint firstItem="2jY-Pa-6Wc" firstAttribute="top" secondItem="Zff-Zv-MFd" secondAttribute="top" id="YJK-1G-DmP"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="82" height="125"/>
+                                        <connections>
+                                            <outlet property="bookThumbnailImageView" destination="2jY-Pa-6Wc" id="SdR-WT-gXA"/>
+                                            <outlet property="booksTitleLabel" destination="MV3-Vp-opv" id="stD-LK-Tim"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7Qn-4S-pPE" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="PAm-dl-hCJ"/>
+                            <constraint firstAttribute="bottom" secondItem="7Qn-4S-pPE" secondAttribute="bottom" id="lbz-cc-SeO"/>
+                            <constraint firstItem="7Qn-4S-pPE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="u5S-uF-Hpc"/>
+                            <constraint firstItem="7Qn-4S-pPE" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="z72-YP-NRi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myBooksMoreCollectionView" destination="7Qn-4S-pPE" id="4Hc-TF-XTU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="80.357142857142847"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

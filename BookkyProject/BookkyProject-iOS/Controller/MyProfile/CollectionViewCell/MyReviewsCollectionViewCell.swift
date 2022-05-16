@@ -21,7 +21,7 @@ class MyReviewsCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         self.layer.cornerRadius = 8
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor(named: "F9F9F9")?.cgColor
+        self.layer.borderColor = UIColor(named: "lightGrayColor")?.cgColor
         self.myReviewsBookDescriptionLabel.textColor = UIColor(named: "grayColor")
         self.myReviewsLikeLabel.textAlignment = .left
         self.myReviewsLikeLabel.textColor = UIColor(named: "PrimaryOrangeColor")
