@@ -110,6 +110,7 @@ class MyProfileViewController: UIViewController {
                 print("request MyProfile: false")
                 if statuscode == 401 {
                     // 새로 AT 갱신할 것.
+                    // 만료된 토큰입니다. RefreshToken의 기간이 지남
                     print(statuscode)
                     if let errorMessage = myprofileData.errorMessage {
                         print("request MyProfile false의 이유: \(errorMessage)")
@@ -137,12 +138,16 @@ class MyProfileViewController: UIViewController {
                             }
                         } else {
                             if statuscode == 400 {
-                                // 유효한 토큰입니다.
+                                // 유효한 토큰입니다. AccessToken의 만료기간이 남음
                                 print(tokens.errorMessage)
                             } else if statuscode == 403 {
-                                // 기간이 지난 토큰입니다.
+                                // 유효하지 않은 토큰입니다. RefreshToken의 형식이 잘못됨
                                 // 로그인 화면 리다이렉트
                                 RedirectView.redirectLoginView(previousView: self)
+                            } else if statuscode == 404 {
+                                // RefreshTokenStorage와의 연결이 끊김
+                            } else if statuscode == 405 {
+                                // POST가 아닌 방식으로 접근 했을 경우
                             }
                         }
                     }
