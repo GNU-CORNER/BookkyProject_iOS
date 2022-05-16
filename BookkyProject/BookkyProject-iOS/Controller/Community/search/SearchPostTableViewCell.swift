@@ -10,8 +10,6 @@ import UIKit
 
 import UIKit
 class SearchPostTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var SearchTableViewCell: SearchPostTableViewCell!
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var postContentsLabel: UILabel!
     @IBOutlet weak var likeThatImage: UIImageView!

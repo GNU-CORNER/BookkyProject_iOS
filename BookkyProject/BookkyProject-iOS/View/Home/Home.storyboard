@@ -531,7 +531,7 @@ Label</string>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="리뷰" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ibl-cB-EKP">
-                                                <rect key="frame" x="30" y="485" width="35" height="20.5"/>
+                                                <rect key="frame" x="30" y="485" width="364" height="20.5"/>
                                                 <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="5" trailing="8"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -554,7 +554,7 @@ Label</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhx-4y-Iyc">
-                                                <rect key="frame" x="332" y="440" width="62" height="30.5"/>
+                                                <rect key="frame" x="20" y="440" width="374" height="30.5"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="펼쳐보기&gt;"/>
@@ -865,7 +865,7 @@ Label</string>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="y9q-dC-Lfa"/>
-        <segue reference="JiU-fP-bEe"/>
+        <segue reference="GOj-gx-B2b"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ellipsis" catalog="system" width="128" height="37"/>

@@ -88,7 +88,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="commentImage" destination="Wie-TJ-AdO" id="3RN-qC-8EO"/>
+                <outlet property="commentImage" destination="Wie-TJ-AdO" id="O9h-yC-Z3c"/>
                 <outlet property="commentLabel" destination="KYy-Ib-eZ2" id="IgW-HL-RWy"/>
                 <outlet property="likThatCountLabel" destination="PSu-vu-8xZ" id="rQe-6o-hwW"/>
                 <outlet property="likeThatImage" destination="NgF-Pb-E7X" id="rfd-1q-vHB"/>

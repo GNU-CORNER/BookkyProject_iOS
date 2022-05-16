@@ -43,7 +43,7 @@ extension SearchPostViewController : UITableViewDelegate,UITableViewDataSource {
         return 3
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = searchPostTableView.dequeueReusableCell(withIdentifier: "searchTableViewCellNib", for: indexPath) as? SearchPostTableViewCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchTableViewCellNib", for: indexPath) as? SearchPostTableViewCell else {return UITableViewCell()}
         cell.postTitleLabel.text = "위글 위글위글 위글위글 위글위글 위글위글 위글위글 위글"
         cell.postContentsLabel.text = "테스트테스트테스트테스트테스트\n테스트테스트테스트"
         cell.likeThatImage.image = UIImage(named: "likeThat")

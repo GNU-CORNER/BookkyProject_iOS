@@ -24,6 +24,7 @@ class CommunityViewController: UIViewController {
     
     @IBOutlet var communityView: UIView!
     @IBOutlet weak var boardNameButton: UIButton!
+    @IBOutlet weak var boardNameLabel: UILabel!
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var writeTextButton: UIButton!
     @IBOutlet weak var freeBoardGoButton: UIButton!
@@ -66,7 +67,7 @@ class CommunityViewController: UIViewController {
     }
     func setinitCommunity(){
         //보드게시판 클릭전 초기
-        self.boardNameButton?.setTitle("자유 게시판", for: .normal)
+        self.boardNameLabel?.text = "자유 게시판"
         self.boardNameButton?.setImage(UIImage(systemName: "list.bullet"), for: .normal)
         self.boardNameButton.sizeToFit()
         self.boardNameButton.tintColor = .black
@@ -205,7 +206,7 @@ class CommunityViewController: UIViewController {
             self.myTextGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "내글 보기"
         }
-        self.boardNameButton.setTitle(boardName, for: .normal)
+        self.boardNameLabel.text = boardName
         
     }
     private func SetQnACell(){
@@ -254,6 +255,10 @@ class CommunityViewController: UIViewController {
             guard let boardTextDetailViewController = segue.destination as? BoardTextDetailViewController else {return}
             boardTextDetailViewController.PID = self.PID
             boardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
+        }else if segue.identifier == "QnAboardTextDetailSegueId"{
+            guard let QnABoardTextDetailViewController = segue.destination as? QnABoardTextDetailViewController else {return}
+            QnABoardTextDetailViewController.PID = self.PID
+            QnABoardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
         }
     }
     
@@ -304,9 +309,18 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return}
-        self.PID = cell.PID
-        performSegue(withIdentifier: "boardTextDetailSegueId", sender: indexPath.row)
+      
+        print("\(self.boardTypeNumber)boardTypeNumber")
+        if self.boardTypeNumber == 2 {
+            guard let QnACell = tableView.cellForRow(at: indexPath) as? QnABoardTableViewCell else {return}
+            self.PID = QnACell.PID
+            performSegue(withIdentifier: "QnAboardTextDetailSegueId", sender: indexPath.row)
+            print("QNa")
+        }else {
+            guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return}
+            self.PID = cell.PID
+            performSegue(withIdentifier: "boardTextDetailSegueId", sender: indexPath.row)
+        }
     }
     //무한스크롤
     //스크롤 될때마다 
