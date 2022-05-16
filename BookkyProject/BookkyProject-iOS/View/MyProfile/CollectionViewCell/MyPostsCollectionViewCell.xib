@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -81,13 +81,13 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gME-JK-mNW" firstAttribute="top" secondItem="lJh-ZI-eLl" secondAttribute="bottom" constant="5" id="3UP-Wf-I9Y"/>
+                    <constraint firstItem="gME-JK-mNW" firstAttribute="bottom" secondItem="4Ym-pt-OKb" secondAttribute="bottomMargin" id="CJQ-pp-1ur"/>
                     <constraint firstItem="lJh-ZI-eLl" firstAttribute="top" secondItem="4Ym-pt-OKb" secondAttribute="top" constant="10" id="TWI-Q0-CX9"/>
                     <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="gME-JK-mNW" secondAttribute="bottom" priority="750" constant="10" id="UBd-DZ-t0p"/>
                     <constraint firstAttribute="trailing" secondItem="lJh-ZI-eLl" secondAttribute="trailing" constant="10" id="VD6-pI-2lr"/>
-                    <constraint firstItem="gME-JK-mNW" firstAttribute="leading" secondItem="4Ym-pt-OKb" secondAttribute="leading" constant="10" id="dMD-QK-E5d"/>
+                    <constraint firstItem="gME-JK-mNW" firstAttribute="leading" secondItem="lJh-ZI-eLl" secondAttribute="leading" id="hsf-f8-5RY"/>
                     <constraint firstItem="lJh-ZI-eLl" firstAttribute="leading" secondItem="4Ym-pt-OKb" secondAttribute="leading" constant="10" id="iFB-WF-iRJ"/>
-                    <constraint firstAttribute="trailing" secondItem="gME-JK-mNW" secondAttribute="trailing" constant="10" id="uye-p3-Ng0"/>
+                    <constraint firstItem="gME-JK-mNW" firstAttribute="trailing" secondItem="lJh-ZI-eLl" secondAttribute="trailing" id="raL-f4-W8P"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="172" height="114"/>

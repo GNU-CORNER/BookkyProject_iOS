@@ -12,7 +12,7 @@
         <!--추천받개-->
         <scene sceneID="TDd-Sa-gtD">
             <objects>
-                <viewController storyboardIdentifier="Recommend" id="hT6-e9-Gxo" customClass="CommunityViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Recommend" id="hT6-e9-Gxo" customClass="RecommendViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uGw-ga-XtH">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
