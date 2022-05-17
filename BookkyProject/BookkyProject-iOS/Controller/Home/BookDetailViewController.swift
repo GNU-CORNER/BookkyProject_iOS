@@ -17,11 +17,14 @@ class BookDetailViewController: UIViewController {
     //    @IBOutlet weak var detailBookTagListView: UICollectionView!
     @IBOutlet weak var bookDetailImage: UIImageView!
     var BID = 0
-//    let
+    //    let
     
     var bookDetailTagList : [BookDetailDataTagData] = []
     //네이버
     var bookDetailRevieList  : [ReviewData] = []
+    var bookImage : URL?  = nil
+    var bookName : String = ""
+    var AUTHOR : String = ""
     @IBOutlet weak var naverGoButton: UIButton!
     //도서정보
     @IBOutlet weak var bookInformationLabel: UILabel!
@@ -45,6 +48,7 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var tapViewMoreBookIndex: UIButton!
     //리뷰 테이블뷰
     @IBOutlet weak var bookDetailCommentTableView: UITableView!
+    @IBOutlet weak var bookDetailScrollView: UIScrollView!
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -66,18 +70,18 @@ class BookDetailViewController: UIViewController {
         
         self.bookExplainContent.font =  UIFont.systemFont(ofSize: 12)
         self.bookIndexLabel.font = UIFont.systemFont(ofSize: 12)
+        print(self.bookDetailScrollView.frame.size)
+        self.bookExplainContent.numberOfLines = 5
+        self.bookIndexLabel.numberOfLines = 5
         
-        self.bookExplainContent.numberOfLines = 4
-        self.bookIndexLabel.numberOfLines = 4
-       
         
     }
     private func getBookDetailData(){
-       
+        
         GetBookData.shared.getDetailBookData(BID: self.BID){ (sucess,data) in
             if sucess {
                 guard let bookDetailData = data as? BookDetailInformation else {return}
-              
+                
                 let DetailData = bookDetailData.result.bookList
                 if bookDetailData.success{
                     DispatchQueue.main.async {
@@ -122,6 +126,11 @@ class BookDetailViewController: UIViewController {
         self.detailBookName.text = model.TITLE
         self.detailBookAuthor.text = model.AUTHOR
         self.bookDetailTagList = model.tagData
+        
+        self.bookImage = URL(string: "\(model.thumbnailImage)")
+        self.bookName = model.TITLE
+        self.AUTHOR = model.AUTHOR
+        
         self.publisherLabel.text = "출판사 : " + model.PUBLISHER
         self.authorLabel.text = "저자 : " + model.AUTHOR
         self.priceLabel.text = "정가 : " + model.PRICE
@@ -143,7 +152,10 @@ class BookDetailViewController: UIViewController {
         }
         
         self.bookIndexLabel.text = bookIndexString
-        
+        self.bookExplainContent.frame.size.height = 150
+        self.bookIndexLabel.frame.size.height = 150
+        print("\(self.bookExplainContent.frame.height)")
+        print("\(self.bookIndexLabel.frame.height)")
         
     }
     
@@ -151,27 +163,41 @@ class BookDetailViewController: UIViewController {
         self.detailBookName.font = UIFont.boldSystemFont(ofSize: 18)
         self.detailBookAuthor.font = UIFont.systemFont(ofSize: 13)
     }
-  
+    
     
     @IBAction func tapMoreBookIntroduction(_ sender: UIButton) {
-        if bookExplainContent.numberOfLines == 4{
+        if bookExplainContent.numberOfLines == 5{
+            print("펼쳐보기")
+            bookExplainContent.frame.size.height = 100
             bookExplainContent.numberOfLines = 0
             self.tapViewMoreBookIntroduction.setTitle("펼쳐보기 닫기>", for: .normal)
         }else if bookExplainContent.numberOfLines == 0 {
-            bookExplainContent.numberOfLines = 4
+            print("펼쳐 닫기")
+            bookExplainContent.numberOfLines = 5
             self.tapViewMoreBookIntroduction.setTitle("펼쳐보기>", for: .normal)
         }
-        
-        
+        print("\(self.bookExplainContent.frame.size)")
     }
     
     @IBAction func tapMoreBookIndex(_ sender: UIButton) {
-        if bookIndexLabel.numberOfLines == 4{
+        if bookIndexLabel.numberOfLines == 5{
             bookIndexLabel.numberOfLines = 0
-            self.tapViewMoreBookIntroduction.setTitle("펼쳐보기 닫기>", for: .normal)
+            self.tapViewMoreBookIndex.setTitle("펼쳐보기 닫기>", for: .normal)
         }else if bookIndexLabel.numberOfLines == 0 {
-            bookIndexLabel.numberOfLines = 4
-            self.tapViewMoreBookIntroduction.setTitle("펼쳐보기>", for: .normal)
+            bookIndexLabel.numberOfLines = 5
+            
+            self.tapViewMoreBookIndex.setTitle("펼쳐보기>", for: .normal)
+        }
+        print("\(self.bookIndexLabel.frame.size)")
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "writeReViewSegue" {
+            let BookWriteReViewViewController = segue.destination as! BookWriteReviewViewController
+            BookWriteReViewViewController.url = self.bookImage
+            BookWriteReViewViewController.bookName = self.bookName
+            BookWriteReViewViewController.bookAuthor = self.AUTHOR
+            
+            
         }
     }
 }
@@ -183,7 +209,7 @@ extension BookDetailViewController : UICollectionViewDataSource,UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookDetailTagCollectionViewCellid", for: indexPath) as? BookDetailTagCollectionViewCell else {return UICollectionViewCell()}
-//        cell.tagNameLabel.text = "# "+self.bookDetailTagList[indexPath.row]
+        //        cell.tagNameLabel.text = "# "+self.bookDetailTagList[indexPath.row]
         cell.setTagList(model: bookDetailTagList[indexPath.row])
         return cell
     }
@@ -191,14 +217,12 @@ extension BookDetailViewController : UICollectionViewDataSource,UICollectionView
 }
 extension BookDetailViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookDetailTagCollectionViewCellid", for: indexPath) as? BookDetailTagCollectionViewCell else {
+        guard let cell = detailBookTagListCollectionView.dequeueReusableCell(withReuseIdentifier: "BookDetailTagCollectionViewCellid", for: indexPath) as? BookDetailTagCollectionViewCell else {
             return .zero
         }
-//        cell.tagNameLabel.text = self.bookDetailTagList[indexPath.row]
+        cell.tagNameLabel.text = bookDetailTagList[indexPath.row].tag
         cell.tagNameLabel.sizeToFit()
-        
-        let cellWidth = cell.tagNameLabel.frame.width + 25
-        
+        let cellWidth = cell.tagNameLabel.frame.width + 20
         return CGSize(width: cellWidth, height: 30)
     }
 }
@@ -212,7 +236,7 @@ extension BookDetailViewController : UITableViewDelegate,UITableViewDataSource{
         cell.setReview(model : self.bookDetailRevieList[indexPath.row])
         return cell
     }
-   
- 
+    
+    
     
 }

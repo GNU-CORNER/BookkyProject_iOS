@@ -14,6 +14,6 @@ class MyTagsCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         self.layer.cornerRadius = 8
         self.tagNameLabel.textColor = UIColor(named: "primaryColor")
-        self.backgroundColor = UIColor(named: "F9F9F9")
+        self.backgroundColor = UIColor(named: "lightGrayColor")
     }
 }

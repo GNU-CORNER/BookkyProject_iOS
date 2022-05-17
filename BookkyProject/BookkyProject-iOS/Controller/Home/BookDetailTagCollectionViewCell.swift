@@ -26,6 +26,8 @@ class BookDetailTagCollectionViewCell: UICollectionViewCell {
         self.tagNameLabel.layer.borderWidth = 1
         self.tagNameLabel.layer.cornerRadius = 10
         self.tagNameLabel.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
+        self.tagNameLabel.adjustsFontSizeToFitWidth = true
+        self.tagNameLabel.sizeToFit()
     }
     
 }
