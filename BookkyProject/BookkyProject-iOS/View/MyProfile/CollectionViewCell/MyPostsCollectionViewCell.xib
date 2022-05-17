@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,19 +69,20 @@
                             </stackView>
                         </subviews>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내글본문" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gME-JK-mNW">
-                        <rect key="frame" x="10" y="29" width="340" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gME-JK-mNW">
+                        <rect key="frame" x="10" y="32" width="340" height="15"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="360" id="FxH-Ht-N4P"/>
                             <constraint firstAttribute="height" constant="15" id="Tve-CO-IQC"/>
                         </constraints>
+                        <string key="text">내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. ㅍ</string>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="gME-JK-mNW" firstAttribute="bottom" secondItem="4Ym-pt-OKb" secondAttribute="bottomMargin" id="CJQ-pp-1ur"/>
+                    <constraint firstItem="gME-JK-mNW" firstAttribute="top" secondItem="lJh-ZI-eLl" secondAttribute="bottom" constant="8" symbolic="YES" id="B0n-ne-gbu"/>
                     <constraint firstItem="lJh-ZI-eLl" firstAttribute="top" secondItem="4Ym-pt-OKb" secondAttribute="top" constant="10" id="TWI-Q0-CX9"/>
                     <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="gME-JK-mNW" secondAttribute="bottom" priority="750" constant="10" id="UBd-DZ-t0p"/>
                     <constraint firstAttribute="trailing" secondItem="lJh-ZI-eLl" secondAttribute="trailing" constant="10" id="VD6-pI-2lr"/>
