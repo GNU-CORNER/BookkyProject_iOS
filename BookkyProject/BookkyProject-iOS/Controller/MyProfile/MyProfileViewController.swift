@@ -52,11 +52,11 @@ class MyProfileViewController: UIViewController {
         setCollectionViewDataSource()
         registerNibCollectionViewCell()
     
-        
     }
     
     // MARK: - View Will Appear
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.title = "내 정보"
         // navigation color 기본값 복원
         self.navigationController?.navigationBar.tintColor = UIColor(named: "Accent Color")
         
@@ -179,6 +179,8 @@ class MyProfileViewController: UIViewController {
         setUserImageViewCornerRadius()
         setDefaultUserImage(imageName: "북키프사")
         setUserNameLabel(userName)
+//        self.navigationController?.navigationBar.topItem?.title = ""
+//        self.navigationItem.title = "내 정보"
         
     }
     
