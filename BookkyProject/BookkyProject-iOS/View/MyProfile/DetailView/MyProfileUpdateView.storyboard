@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Profile Update View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MyProfileUpdateView" hidesBottomBarWhenPushed="YES" id="Y6W-OH-hqX" customClass="MyProfileUpdateViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="g7M-rZ-slj">
+                                <rect key="frame" x="25" y="144" width="364" height="232"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ae-PL-BlD">
+                                        <rect key="frame" x="118" y="0.0" width="128" height="128"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="북키프사" translatesAutoresizingMaskIntoConstraints="NO" id="Urb-vT-q2a">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="128" id="jMm-wX-wGP"/>
+                                                    <constraint firstAttribute="width" constant="128" id="pah-DB-UQo"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSj-Kf-ZI7">
+                                                <rect key="frame" x="107" y="101" width="21" height="27"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal">
+                                                    <imageReference key="image" image="camera.circle.fill" catalog="system" symbolScale="large"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="UpdateMyprofileImage:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dWi-WE-4m1"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="Urb-vT-q2a" firstAttribute="top" secondItem="2ae-PL-BlD" secondAttribute="top" id="8Cx-47-qdD"/>
+                                            <constraint firstAttribute="trailing" secondItem="Urb-vT-q2a" secondAttribute="trailing" id="9c3-ES-DPB"/>
+                                            <constraint firstAttribute="trailing" secondItem="aSj-Kf-ZI7" secondAttribute="trailing" id="N0O-ye-bgQ"/>
+                                            <constraint firstItem="Urb-vT-q2a" firstAttribute="leading" secondItem="2ae-PL-BlD" secondAttribute="leading" id="TM5-si-Fn7"/>
+                                            <constraint firstAttribute="bottom" secondItem="aSj-Kf-ZI7" secondAttribute="bottom" id="zv1-oh-PYz"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="RFu-sZ-fu3">
+                                        <rect key="frame" x="0.0" y="158" width="364" height="74"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KSk-td-4YO">
+                                                <rect key="frame" x="0.0" y="0.0" width="364" height="41"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="41" id="TPy-JI-2bP"/>
+                                                </constraints>
+                                                <color key="textColor" name="primaryColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 사진과 닉네임을 입력해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Wf-T1Q">
+                                                <rect key="frame" x="70" y="56" width="224" height="18"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="18" id="Dt1-Om-gEZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="KSk-td-4YO" firstAttribute="top" secondItem="RFu-sZ-fu3" secondAttribute="top" id="Gax-9t-wex"/>
+                                            <constraint firstAttribute="trailing" secondItem="KSk-td-4YO" secondAttribute="trailing" id="i3m-ct-aTF"/>
+                                            <constraint firstItem="KSk-td-4YO" firstAttribute="leading" secondItem="RFu-sZ-fu3" secondAttribute="leading" id="nLE-mT-XO8"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="RFu-sZ-fu3" firstAttribute="leading" secondItem="g7M-rZ-slj" secondAttribute="leading" id="1jK-hp-UBw"/>
+                                    <constraint firstAttribute="trailing" secondItem="RFu-sZ-fu3" secondAttribute="trailing" id="OO5-sv-abQ"/>
+                                    <constraint firstAttribute="height" constant="232" id="odf-o7-1ZJ"/>
+                                </constraints>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PLT-Za-Mz8">
+                                <rect key="frame" x="25" y="787" width="364" height="45"/>
+                                <color key="backgroundColor" name="PrimaryColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="pbv-LD-fqA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="완료"/>
+                                <connections>
+                                    <action selector="updateMyprofile:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="uwX-fQ-ian"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="g7M-rZ-slj" secondAttribute="trailing" constant="25" id="5yc-cx-rWe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="g7M-rZ-slj" secondAttribute="bottom" priority="750" constant="486" id="E8p-HK-53c"/>
+                            <constraint firstItem="PLT-Za-Mz8" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="25" id="GAT-S7-cy9"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="PLT-Za-Mz8" secondAttribute="bottom" constant="30" id="QZX-mk-Y4I"/>
+                            <constraint firstItem="g7M-rZ-slj" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="100" id="W9l-Z0-JLm"/>
+                            <constraint firstItem="g7M-rZ-slj" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="25" id="ZDu-kU-SIl"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="PLT-Za-Mz8" secondAttribute="trailing" constant="25" id="kzO-vd-2LL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myprofileImageUpdateButton" destination="aSj-Kf-ZI7" id="L7T-dH-Yln"/>
+                        <outlet property="myprofileImageView" destination="Urb-vT-q2a" id="Mrh-P9-6jp"/>
+                        <outlet property="myprofileNicknameTextField" destination="KSk-td-4YO" id="s9e-hf-GMd"/>
+                        <outlet property="myprofileNoticeLabel" destination="9LJ-Wf-T1Q" id="WLt-Pt-WV9"/>
+                        <outlet property="myprofileUpdateCompleteButton" destination="PLT-Za-Mz8" id="CER-T6-vte"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="131.8840579710145" y="109.82142857142857"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="camera.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="북키프사" width="365" height="370"/>
+        <namedColor name="PrimaryColor">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="primaryColor">
+            <color red="0.42399999499320984" green="0.58399999141693115" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
