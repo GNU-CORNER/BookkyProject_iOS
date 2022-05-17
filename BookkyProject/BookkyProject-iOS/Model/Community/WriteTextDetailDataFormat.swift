@@ -42,3 +42,11 @@ struct ChildComment : Codable{
     let nickname : String
     let thumbnail : String?
 }
+struct CommentData{
+    let comment : String
+    let updateAt : String
+    let like : [Int]?
+    let nickname : String
+    let thumbnail : String?
+}
+

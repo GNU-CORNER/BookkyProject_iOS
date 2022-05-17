@@ -16,6 +16,7 @@ class QnABoardTableViewCell: UITableViewCell {
     @IBOutlet weak var commentImage: UIImageView!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var replyCommetLabel: UILabel!
+    var PID : Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

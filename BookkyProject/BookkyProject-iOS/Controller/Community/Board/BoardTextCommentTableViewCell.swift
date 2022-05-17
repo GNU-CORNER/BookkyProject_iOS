@@ -15,16 +15,27 @@ class BoardTextCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentLikeThatCntLabel: UILabel!
     //cnt->count
     @IBOutlet weak var commentFunctionButton: UIButton!
+    @IBOutlet weak var commentStackView: UIStackView!
+    var childCommentData : [ChildComment] = []
     
     func setComment(model: WriteTextDetailCommentdata ){
         let likeCount = model.like?.count ?? 0
-        
-        
         self.userCommentContentsLabel.text = model.comment
         self.commentCreateAtLabel.text = model.updateAt
         self.commentLikeThatCntLabel.text = "공감(\(likeCount))"
         self.userNameLabel.text = model.nickname
-        
+        self.childCommentData = model.childComment ?? []
+       
+       
+    
+    }
+    func setChildComment(model:ChildComment ){
+        let likeCount = model.like?.count ?? 0
+        self.userCommentContentsLabel.text = model.comment
+        self.commentCreateAtLabel.text = model.updateAt
+        self.commentLikeThatCntLabel.text = "공감(\(likeCount))"
+        self.userNameLabel.text = model.nickname
+        print("\(model)")
     }
 
     private func BoardTextCommentTableViewCellUI(){
@@ -38,12 +49,14 @@ class BoardTextCommentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         BoardTextCommentTableViewCellUI()
+       
+       
     }
-    
+ 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
     }
-    
 }
+

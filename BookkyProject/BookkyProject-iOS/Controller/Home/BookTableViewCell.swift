@@ -64,7 +64,6 @@ class BookTableViewCell: UITableViewCell {
         let cellNib = UINib(nibName: "BookCollectionViewCell", bundle: nil)
         self.bookCollectionView?.register(cellNib, forCellWithReuseIdentifier: "bookCollectionViewCellid")
     }
-    
 }
 extension BookTableViewCell :UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
