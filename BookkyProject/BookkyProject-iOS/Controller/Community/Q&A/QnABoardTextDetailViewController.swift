@@ -58,7 +58,12 @@ class QnABoardTextDetailViewController: UIViewController {
         
     }
    
-
+    @IBAction func tapGoCommentView(_ sender: Any) {
+        guard let CommentViewConroller  = self.storyboard?.instantiateViewController(withIdentifier: "QnACommentViewController")as? QnACommentViewController else {return}
+        self.navigationController?.pushViewController(CommentViewConroller, animated: true)
+    }
+    
+    
 }
 extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
