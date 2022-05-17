@@ -69,6 +69,7 @@
 		F8260580282E6290006DB702 /* WritePostBookSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F826057F282E6290006DB702 /* WritePostBookSearchTableViewCell.swift */; };
 		F8260583282E691C006DB702 /* QnABoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */; };
 		F8260584282E691C006DB702 /* QnABoardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */; };
+		F8260587282E840F006DB702 /* BookWriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */; };
 		F85406CF2800284A0027C096 /* testData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F85406CE2800284A0027C096 /* testData.swift */; };
 		F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */; };
 		F8731D81282AAC4C00FB64ED /* BoardTextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */; };
@@ -184,6 +185,7 @@
 		F826057F282E6290006DB702 /* WritePostBookSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostBookSearchTableViewCell.swift; sourceTree = "<group>"; };
 		F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnABoardTableViewCell.swift; sourceTree = "<group>"; };
 		F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QnABoardTableViewCell.xib; sourceTree = "<group>"; };
+		F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookWriteReviewViewController.swift; sourceTree = "<group>"; };
 		F85406CE2800284A0027C096 /* testData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testData.swift; sourceTree = "<group>"; };
 		F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBookDetailReviewDataFormat.swift; sourceTree = "<group>"; };
 		F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextDetailViewController.swift; sourceTree = "<group>"; };
@@ -472,6 +474,7 @@
 				F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */,
 				F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */,
 				F8E386A6282BE6AA006F9BDD /* TagMoreButtonViewController.swift */,
+				F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -743,6 +746,7 @@
 				F8E386A7282BE6AA006F9BDD /* TagMoreButtonViewController.swift in Sources */,
 				688DEDB3282D3349002F647A /* MyBooksMoreViewController.swift in Sources */,
 				68169247282B8B530066946A /* RedirectView.swift in Sources */,
+				F8260587282E840F006DB702 /* BookWriteReviewViewController.swift in Sources */,
 				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
 				68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */,
