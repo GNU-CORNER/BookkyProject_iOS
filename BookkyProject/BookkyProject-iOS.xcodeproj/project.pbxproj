@@ -24,6 +24,13 @@
 		6852E57927F372CC00CAEF02 /* NewPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6852E57827F372CC00CAEF02 /* NewPasswordVC.swift */; };
 		6860BE2828336E2D00C7399E /* SettingsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6860BE2728336E2C00C7399E /* SettingsView.storyboard */; };
 		6860BE2A28336E5100C7399E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860BE2928336E5100C7399E /* SettingsViewController.swift */; };
+		6860BE302833CC0400C7399E /* SearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860BE2F2833CC0400C7399E /* SearchTableViewController.swift */; };
+		6860BE322833D24400C7399E /* SearchDefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860BE312833D24400C7399E /* SearchDefaultTableViewCell.swift */; };
+		6860BE352833D25800C7399E /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860BE332833D25800C7399E /* SearchResultTableViewCell.swift */; };
+		6860BE362833D25800C7399E /* SearchResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6860BE342833D25800C7399E /* SearchResultTableViewCell.xib */; };
+		6860BE382833D27500C7399E /* SearchDefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6860BE372833D27500C7399E /* SearchDefaultTableViewCell.xib */; };
+		6860BE3B283408F100C7399E /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860BE3A283408F100C7399E /* SearchModel.swift */; };
+		6860BE3D2834701200C7399E /* SearchTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6860BE3C2834701200C7399E /* SearchTagCollectionViewCell.xib */; };
 		68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */; };
 		68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */; };
 		68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68683D4227DDF5EE008EF3CF /* Main.storyboard */; };
@@ -144,6 +151,13 @@
 		6852E57827F372CC00CAEF02 /* NewPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordVC.swift; sourceTree = "<group>"; };
 		6860BE2728336E2C00C7399E /* SettingsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsView.storyboard; sourceTree = "<group>"; };
 		6860BE2928336E5100C7399E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		6860BE2F2833CC0400C7399E /* SearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewController.swift; sourceTree = "<group>"; };
+		6860BE312833D24400C7399E /* SearchDefaultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDefaultTableViewCell.swift; sourceTree = "<group>"; };
+		6860BE332833D25800C7399E /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		6860BE342833D25800C7399E /* SearchResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultTableViewCell.xib; sourceTree = "<group>"; };
+		6860BE372833D27500C7399E /* SearchDefaultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchDefaultTableViewCell.xib; sourceTree = "<group>"; };
+		6860BE3A283408F100C7399E /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		6860BE3C2834701200C7399E /* SearchTagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTagCollectionViewCell.xib; sourceTree = "<group>"; };
 		68683D3927DDF5EE008EF3CF /* BookkyProject-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BookkyProject-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -297,6 +311,14 @@
 			path = extension;
 			sourceTree = "<group>";
 		};
+		6860BE39283407CA00C7399E /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				6860BE3A283408F100C7399E /* SearchModel.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		68683D3027DDF5EE008EF3CF = {
 			isa = PBXGroup;
 			children = (
@@ -396,6 +418,7 @@
 		686AE6BE27FC1F5100B77245 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6860BE39283407CA00C7399E /* Search */,
 				F8886F282821305300044737 /* Community */,
 				F8886F272821304100044737 /* Home */,
 				686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */,
@@ -522,6 +545,12 @@
 			isa = PBXGroup;
 			children = (
 				68683D7327DE40E8008EF3CF /* SearchViewController.swift */,
+				6860BE2F2833CC0400C7399E /* SearchTableViewController.swift */,
+				6860BE312833D24400C7399E /* SearchDefaultTableViewCell.swift */,
+				6860BE332833D25800C7399E /* SearchResultTableViewCell.swift */,
+				6860BE342833D25800C7399E /* SearchResultTableViewCell.xib */,
+				6860BE372833D27500C7399E /* SearchDefaultTableViewCell.xib */,
+				6860BE3C2834701200C7399E /* SearchTagCollectionViewCell.xib */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -728,6 +757,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6860BE362833D25800C7399E /* SearchResultTableViewCell.xib in Resources */,
+				6860BE3D2834701200C7399E /* SearchTagCollectionViewCell.xib in Resources */,
 				68683D4927DDF5EF008EF3CF /* LaunchScreen.storyboard in Resources */,
 				68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */,
 				F87702102800893A002EA1F5 /* BookTableViewCell.xib in Resources */,
@@ -739,6 +770,7 @@
 				6860BE2828336E2D00C7399E /* SettingsView.storyboard in Resources */,
 				68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */,
 				68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */,
+				6860BE382833D27500C7399E /* SearchDefaultTableViewCell.xib in Resources */,
 				68C8629627DF6481004B4F73 /* Community.storyboard in Resources */,
 				68169249282B906C0066946A /* MyBooksMoreView.storyboard in Resources */,
 				6816924C282B91B80066946A /* MyPostsMoreView.storyboard in Resources */,
@@ -782,6 +814,7 @@
 				68169244282A85450066946A /* MyProfileAPI.swift in Sources */,
 				688DEDB7282D336A002F647A /* MyReviewsMoreViewController.swift in Sources */,
 				F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */,
+				6860BE302833CC0400C7399E /* SearchTableViewController.swift in Sources */,
 				F8260583282E691C006DB702 /* QnABoardTableViewCell.swift in Sources */,
 				F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */,
 				F88D683E282D254400E23344 /* TagMoreViewBookList.swift in Sources */,
@@ -832,11 +865,13 @@
 				F8E68A7D282960320046760A /* BookDetailReviewTableViewCell.swift in Sources */,
 				F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */,
 				F874319A28030012003EA8C0 /* ExtensionUikit.swift in Sources */,
+				6860BE352833D25800C7399E /* SearchResultTableViewCell.swift in Sources */,
 				683674C4282215DE00CB618D /* MyPostCollectionViewCell.swift in Sources */,
 				68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */,
 				688DEDAE282C05AC002F647A /* TagsCollectionViewCell.swift in Sources */,
 				688DEDAC282C0580002F647A /* ResearchViewController.swift in Sources */,
 				686B21302805498000384408 /* KeychainManager.swift in Sources */,
+				6860BE3B283408F100C7399E /* SearchModel.swift in Sources */,
 				F85406CF2800284A0027C096 /* testData.swift in Sources */,
 				688DEDC5282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift in Sources */,
 				6852E57727F35EC600CAEF02 /* FindPasswordVC.swift in Sources */,
@@ -848,6 +883,7 @@
 				F8C10A882832B89600D311F6 /* SearchPostTableViewCell.swift in Sources */,
 				F8260580282E6290006DB702 /* WritePostBookSearchTableViewCell.swift in Sources */,
 				68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */,
+				6860BE322833D24400C7399E /* SearchDefaultTableViewCell.swift in Sources */,
 				688DEDC9282E9C95002F647A /* MyProfileUpdateViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
