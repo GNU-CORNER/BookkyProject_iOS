@@ -217,6 +217,14 @@ extension BookDetailViewController : UICollectionViewDataSource,UICollectionView
         cell.setTagList(model: bookDetailTagList[indexPath.row])
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath)as? BookDetailTagCollectionViewCell else {return}
+        guard let tagViewController = self.storyboard?.instantiateViewController(withIdentifier: "TagViewController")as? TagViewController else {return}
+        self.navigationController?.pushViewController(tagViewController, animated: true)
+        tagViewController.TID = cell.TID
+        
+    }
+    
 }
 extension BookDetailViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

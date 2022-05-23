@@ -9,11 +9,11 @@ import UIKit
 
 class BookDetailTagCollectionViewCell: UICollectionViewCell {
     
-    
+    var TID : Int = 0
     @IBOutlet weak var tagNameLabel: UILabel!
     func setTagList(model : BookDetailDataTagData){
         self.tagNameLabel.text = model.tag
-        
+        self.TID = model.TID
     }
     override func awakeFromNib() {
         super.awakeFromNib()

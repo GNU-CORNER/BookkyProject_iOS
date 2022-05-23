@@ -486,14 +486,9 @@
 				68683D4027DDF5EE008EF3CF /* HomeViewController.swift */,
 				F877020D2800893A002EA1F5 /* BookTableViewCell.swift */,
 				F877021128008C72002EA1F5 /* BookCollectionViewCell.swift */,
-				F8F6623B280588A5000135B8 /* BookDetailViewController.swift */,
-				F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */,
-				F8E68A7C282960320046760A /* BookDetailReviewTableViewCell.swift */,
-				F88808DD281D6BDA007CE79C /* TagViewController.swift */,
-				F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */,
-				F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */,
 				F8E386A6282BE6AA006F9BDD /* TagMoreButtonViewController.swift */,
-				F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */,
+				F88784F5283B88D700A0D46A /* TagBookList */,
+				F88784F4283B88B700A0D46A /* BookDetail */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -543,6 +538,27 @@
 				F8C11E82281FE45E000D1689 /* ButtonPadding.swift */,
 			);
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		F88784F4283B88B700A0D46A /* BookDetail */ = {
+			isa = PBXGroup;
+			children = (
+				F8F6623B280588A5000135B8 /* BookDetailViewController.swift */,
+				F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */,
+				F8E68A7C282960320046760A /* BookDetailReviewTableViewCell.swift */,
+				F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */,
+			);
+			path = BookDetail;
+			sourceTree = "<group>";
+		};
+		F88784F5283B88D700A0D46A /* TagBookList */ = {
+			isa = PBXGroup;
+			children = (
+				F88808DD281D6BDA007CE79C /* TagViewController.swift */,
+				F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */,
+				F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */,
+			);
+			path = TagBookList;
 			sourceTree = "<group>";
 		};
 		F8886F272821304100044737 /* Home */ = {
