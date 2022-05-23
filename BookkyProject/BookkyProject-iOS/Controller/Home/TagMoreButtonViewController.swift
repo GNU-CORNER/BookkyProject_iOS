@@ -8,7 +8,7 @@
 import UIKit
 
 class TagMoreButtonViewController: UIViewController,UICollectionViewDelegate{
-    var user = "황랑귀"
+    var userName = "북키"
     var buttonText = "태그 더보기>"
     var bookList : [TagmoreViewBookList] = []
     var BID : Int = 0
@@ -48,7 +48,7 @@ class TagMoreButtonViewController: UIViewController,UICollectionViewDelegate{
             if sucess {
                 guard let bookData = data as? TagMoreViewBookInformation else {return}
                 self.bookList = bookData.result.bookList
-                self.user = bookData.result.nickname
+                self.userName = bookData.result.nickname
                 if bookData.success{
                     DispatchQueue.main.async {
                         self.tagMoreBookListTableView.reloadData()
@@ -72,12 +72,13 @@ extension TagMoreButtonViewController : UITableViewDelegate,UITableViewDataSourc
         headerView.backgroundColor = UIColor(named: "primaryColor")
         let welComeLabel = UILabel(frame: CGRect(x: self.tagMoreBookListTableView.frame.width*(1/15), y: 0, width: self.tagMoreBookListTableView.frame.width*(2/3), height: 120))
         headerView.addSubview(welComeLabel)
-        welComeLabel.text = "북키가\n\(self.user)님에게\n추천하는 책이에요!"
+        welComeLabel.text = "북키가\n\(self.userName)님에게\n추천하는 책이에요!"
         welComeLabel.adjustsFontSizeToFitWidth = true
         welComeLabel.numberOfLines = 3
         welComeLabel.font = UIFont.systemFont(ofSize: 24)
         welComeLabel.sizeToFit()
         welComeLabel.textColor = UIColor.white
+        welComeLabel.asColr(targetString: userName, color: .black)
         return headerView
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

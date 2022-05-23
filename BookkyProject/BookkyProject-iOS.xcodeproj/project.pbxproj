@@ -320,7 +320,7 @@
 		68683D3B27DDF5EE008EF3CF /* BookkyProject-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				F87431982802FFEE003EA8C0 /* New Group */,
+				F87431982802FFEE003EA8C0 /* ExtensionUI */,
 				686AE6B927FC01B600B77245 /* Service */,
 				686AE6BE27FC1F5100B77245 /* Model */,
 				68683D6D27DDFCD8008EF3CF /* View */,
@@ -531,13 +531,13 @@
 			path = MyProfile;
 			sourceTree = "<group>";
 		};
-		F87431982802FFEE003EA8C0 /* New Group */ = {
+		F87431982802FFEE003EA8C0 /* ExtensionUI */ = {
 			isa = PBXGroup;
 			children = (
 				F874319928030012003EA8C0 /* ExtensionUikit.swift */,
 				F8C11E82281FE45E000D1689 /* ButtonPadding.swift */,
 			);
-			path = "New Group";
+			path = ExtensionUI;
 			sourceTree = "<group>";
 		};
 		F88784F4283B88B700A0D46A /* BookDetail */ = {

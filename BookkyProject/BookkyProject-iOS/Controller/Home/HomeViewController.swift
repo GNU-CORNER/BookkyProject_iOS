@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate {
-    let user = "황랑귀"
+    var userName = "북키"
     
     var buttonText = "태그 더보기>"
     var bookList : [BookList] = []
@@ -130,6 +130,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                 self.bookList = bookData.result.bookList
                 if bookData.success{
                     DispatchQueue.main.async {
+                        self.userName = bookData.result.userData.nickname
                         self.bookListTableView.reloadData()
                     }
                 }else {
@@ -158,12 +159,13 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         let noticeButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-60, y: 45, width: 50, height: 50))
         headerView.addSubview(welComeLabel)
         headerView.addSubview(noticeButton)
-        welComeLabel.text = "오늘\n\(user)님에게\n추천하는 책이에요!"
+        welComeLabel.textColor = UIColor.white
+        welComeLabel.text = "오늘\n\(userName)님에게\n추천하는 책이에요!"
+        welComeLabel.asColr(targetString: userName, color: .black)
         welComeLabel.adjustsFontSizeToFitWidth = true
         welComeLabel.numberOfLines = 3
         welComeLabel.font = UIFont.systemFont(ofSize: 36)
         welComeLabel.sizeToFit()
-        welComeLabel.textColor = UIColor.white
         noticeButton.setImage(UIImage(systemName: "bell"), for: .normal)
         noticeButton.tintColor = UIColor.black
         return headerView
