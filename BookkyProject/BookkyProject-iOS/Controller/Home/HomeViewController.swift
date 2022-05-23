@@ -38,7 +38,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setBookTableView()
-        self.bookListTableView.alwaysBounceVertical = false //헤더 고정 풀기
         self.setRecommendView()
         self.setCommunityView()
         getBookData()
@@ -131,7 +130,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                 self.bookList = bookData.result.bookList
                 if bookData.success{
                     DispatchQueue.main.async {
-                        
                         self.bookListTableView.reloadData()
                     }
                 }else {

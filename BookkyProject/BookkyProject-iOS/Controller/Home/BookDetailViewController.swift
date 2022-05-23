@@ -62,18 +62,35 @@ class BookDetailViewController: UIViewController {
         self.setBookDetailUI()
         self.getBookDetailData()
         self.setColletioView()
+        
+        
+        
+    }
+    private func setBookDetailUI(){
+        self.detailBookName.font = UIFont.boldSystemFont(ofSize: 18)
+        self.detailBookAuthor.font = UIFont.systemFont(ofSize: 13)
+        
+        //Label Bottom Line
         self.bookInformationLabel.layer.addBorder([.bottom], color: UIColor(named: "primaryColor") ?? UIColor.blue, width : 2.5)
         self.bookExplainTitleLabel.layer.addBorder([.bottom], color: UIColor(named: "primaryColor") ?? UIColor.blue, width : 2.5)
         self.indexTitleLabel.layer.addBorder([.bottom], color: UIColor(named: "primaryColor") ?? UIColor.blue, width : 2.5)
         self.reviewTitleLabel.layer.addBorder([.bottom], color: UIColor(named: "primaryColor") ?? UIColor.blue, width : 2.5)
+        //네이버 버튼 수정 필요
         self.naverGoButton.backgroundColor = UIColor(red: 3/255, green: 199/255, blue: 107/255, alpha: 1)
-        
         self.bookExplainContent.font =  UIFont.systemFont(ofSize: 12)
         self.bookIndexLabel.font = UIFont.systemFont(ofSize: 12)
-        print(self.bookDetailScrollView.frame.size)
+        
         self.bookExplainContent.numberOfLines = 5
         self.bookIndexLabel.numberOfLines = 5
+        self.tapViewMoreBookIntroduction.setTitle("펼쳐보기 >", for: .normal)
+        self.tapViewMoreBookIntroduction.tintColor = UIColor(red: 70/255, green: 70/255, blue: 70/255, alpha: 1)
+        self.tapViewMoreBookIntroduction.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+        self.tapViewMoreBookIndex.setTitle("펼쳐보기 >", for: .normal)
+        self.tapViewMoreBookIndex.tintColor = UIColor(red: 70/255, green: 70/255, blue: 70/255, alpha: 1)
+        self.tapViewMoreBookIndex.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         
+    }
+    private func setAddMoreButtonUI(){
         
     }
     private func getBookDetailData(){
@@ -158,13 +175,6 @@ class BookDetailViewController: UIViewController {
         print("\(self.bookIndexLabel.frame.height)")
         
     }
-    
-    private func setBookDetailUI(){
-        self.detailBookName.font = UIFont.boldSystemFont(ofSize: 18)
-        self.detailBookAuthor.font = UIFont.systemFont(ofSize: 13)
-    }
-    
-    
     @IBAction func tapMoreBookIntroduction(_ sender: UIButton) {
         if bookExplainContent.numberOfLines == 5{
             print("펼쳐보기")
@@ -185,7 +195,6 @@ class BookDetailViewController: UIViewController {
             self.tapViewMoreBookIndex.setTitle("펼쳐보기 닫기>", for: .normal)
         }else if bookIndexLabel.numberOfLines == 0 {
             bookIndexLabel.numberOfLines = 5
-            
             self.tapViewMoreBookIndex.setTitle("펼쳐보기>", for: .normal)
         }
         print("\(self.bookIndexLabel.frame.size)")
@@ -196,24 +205,18 @@ class BookDetailViewController: UIViewController {
             BookWriteReViewViewController.url = self.bookImage
             BookWriteReViewViewController.bookName = self.bookName
             BookWriteReViewViewController.bookAuthor = self.AUTHOR
-            
-            
         }
     }
 }
 extension BookDetailViewController : UICollectionViewDataSource,UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
         return self.bookDetailTagList.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookDetailTagCollectionViewCellid", for: indexPath) as? BookDetailTagCollectionViewCell else {return UICollectionViewCell()}
-        //        cell.tagNameLabel.text = "# "+self.bookDetailTagList[indexPath.row]
         cell.setTagList(model: bookDetailTagList[indexPath.row])
         return cell
     }
-    
 }
 extension BookDetailViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -230,13 +233,9 @@ extension BookDetailViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.bookDetailRevieList.count
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell : BookDetailReviewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "bookDetailCommentTableViewcellid")as? BookDetailReviewTableViewCell else {return UITableViewCell()}
         cell.setReview(model : self.bookDetailRevieList[indexPath.row])
         return cell
     }
-    
-    
-    
 }
