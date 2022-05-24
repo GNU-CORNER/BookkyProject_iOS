@@ -18,7 +18,7 @@ class CommunityViewController: UIViewController {
     var postListFree : [PostListData] = []
     var postListBookMarket : [PostListData] = []
     // 좋아요개수 와 댓글개수
-   
+    
     var currentPage = 1
     var getPageDataCount : Int = 0
     
@@ -41,7 +41,7 @@ class CommunityViewController: UIViewController {
     var moreScroll : Bool = false
     var totalTextCount : Int = 0
     var currentTextCount : Int = 0
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -57,6 +57,7 @@ class CommunityViewController: UIViewController {
         setinitCommunity()
         boardTypeColor()
         communityGetWriteList()
+        print("\(self.boardTypeNumber)boardTypeNumber")
     }
     func SetdropDownView(){
         self.freeBoardGoButton.setTitle("자유", for: .normal)
@@ -95,20 +96,24 @@ class CommunityViewController: UIViewController {
         
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        if self.boardTypeNumber == 2 {
+            self.boardNameLabel.text = "Q&A 게시판"
+            setDropDownMenu()
+        }
         SetQnACell()
-      
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
-       
+        
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//
-//
-//    }
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        super.viewDidAppear(animated)
+    //
+    //
+    //    }
     
     private func boardTypeColor() {
         self.freeBoardGoButton.tintColor = UIColor(named: "grayColor")
@@ -213,16 +218,16 @@ class CommunityViewController: UIViewController {
         let cellNib = UINib(nibName: "QnABoardTableViewCell", bundle: nil)
         self.boardTableView.register(cellNib, forCellReuseIdentifier: "QnATableVIewCellid")
     }
-   
-    private func communityGetWriteList(){
+    
+    func communityGetWriteList(){
         CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
             if success{
                 guard let communityGetWriteList = data as? WriteListInformation else {return}
-              
+                
                 print("\(communityGetWriteList.result.postList.count)get받아오는 개수")
                 self.getPageDataCount = communityGetWriteList.result.postList.count
                 if self.boardTypeNumber == 0{
-
+                    
                     self.postListFree.append(contentsOf: communityGetWriteList.result.postList)
                 }else if self.boardTypeNumber == 1 {
                     self.postListBookMarket.append(contentsOf: communityGetWriteList.result.postList)
@@ -231,6 +236,7 @@ class CommunityViewController: UIViewController {
                 self.currentTextCount+=self.getPageDataCount
                 if communityGetWriteList.success{
                     DispatchQueue.main.async {
+                        
                         self.boardTableView.reloadData()
                     }
                 }else{
@@ -282,7 +288,7 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         }else{
             return postListFree.count
         }
-      
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -309,7 +315,7 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-      
+        
         print("\(self.boardTypeNumber)boardTypeNumber")
         if self.boardTypeNumber == 2 {
             guard let QnACell = tableView.cellForRow(at: indexPath) as? QnABoardTableViewCell else {return}
@@ -337,7 +343,7 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
             }
             
         }
-       
+        
     }
     
 }
