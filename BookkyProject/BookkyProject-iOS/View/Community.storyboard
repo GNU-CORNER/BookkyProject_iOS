@@ -532,7 +532,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="R0r-RQ-IXZ">
-                                <rect key="frame" x="0.0" y="128" width="414" height="680"/>
+                                <rect key="frame" x="0.0" y="42" width="414" height="766"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WritePostBookSearchTableViewCellid" rowHeight="68" id="Zcn-wJ-O49" customClass="WritePostBookSearchTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
@@ -590,35 +590,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" placeholder="제목 또는 태그" translatesAutoresizingMaskIntoConstraints="NO" id="csm-pA-qry">
-                                <rect key="frame" x="0.0" y="72" width="414" height="51"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HdA-FE-bTf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="R0r-RQ-IXZ" firstAttribute="leading" secondItem="HdA-FE-bTf" secondAttribute="leading" id="9MR-Vp-FvG"/>
                             <constraint firstItem="Tzw-ny-20f" firstAttribute="centerX" secondItem="3iQ-c4-Yfq" secondAttribute="centerX" id="JJh-KI-ebs"/>
-                            <constraint firstItem="csm-pA-qry" firstAttribute="top" secondItem="k58-L5-vXh" secondAttribute="bottom" constant="30" id="Lao-HU-qxc"/>
-                            <constraint firstItem="csm-pA-qry" firstAttribute="trailing" secondItem="HdA-FE-bTf" secondAttribute="trailing" id="QfL-tx-NCx"/>
                             <constraint firstItem="Tzw-ny-20f" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="20" id="ddC-EX-E8f"/>
-                            <constraint firstItem="csm-pA-qry" firstAttribute="leading" secondItem="HdA-FE-bTf" secondAttribute="leading" id="eLH-r9-cfJ"/>
-                            <constraint firstItem="R0r-RQ-IXZ" firstAttribute="top" secondItem="csm-pA-qry" secondAttribute="bottom" constant="5" id="eMO-NF-rHh"/>
+                            <constraint firstItem="R0r-RQ-IXZ" firstAttribute="top" secondItem="k58-L5-vXh" secondAttribute="bottom" id="dvG-NG-hSb"/>
                             <constraint firstItem="HdA-FE-bTf" firstAttribute="bottom" secondItem="R0r-RQ-IXZ" secondAttribute="bottom" id="fko-H0-W65"/>
                             <constraint firstItem="HdA-FE-bTf" firstAttribute="trailing" secondItem="R0r-RQ-IXZ" secondAttribute="trailing" id="gQm-24-Iqa"/>
                             <constraint firstItem="k58-L5-vXh" firstAttribute="top" secondItem="HdA-FE-bTf" secondAttribute="top" constant="20" id="tMZ-U7-j1m"/>
                             <constraint firstItem="HdA-FE-bTf" firstAttribute="trailing" secondItem="k58-L5-vXh" secondAttribute="trailing" constant="15" id="yzP-Ss-thX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="2G0-E2-p3e"/>
                     <connections>
                         <outlet property="bookSearchTableView" destination="R0r-RQ-IXZ" id="wY9-Fl-txt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="umQ-ae-P4j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3534.7826086956525" y="161.38392857142856"/>
+            <point key="canvasLocation" x="3796" y="481"/>
         </scene>
         <!--Title-->
         <scene sceneID="Xkf-ea-Nlx">
