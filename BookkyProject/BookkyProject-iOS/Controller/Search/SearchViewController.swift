@@ -29,7 +29,7 @@ class SearchViewController: UIViewController, UISearchControllerDelegate, UISear
 
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("\(searchBar.text)")
+        print("\(String(describing: searchBar.text))")
         SearchModel.didSearch = true
         searchTableView.tableView.reloadData()
     }
