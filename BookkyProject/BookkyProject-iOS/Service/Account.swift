@@ -38,6 +38,7 @@ class Account {
             }
             do {
                 let decodedData: SignupModel = try JSONDecoder().decode(SignupModel.self, from: data)
+                print(response.statusCode)
                 completion(true, decodedData)
             } catch {
                 print("Error: Email Sender Decode Error. \(String(describing: error))")
@@ -109,7 +110,7 @@ class Account {
         session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 print("Error: error.")
-                print(error)
+                print(error!)
                 return
             }
             guard let data = data, let response = response as? HTTPURLResponse/*, (200..<300) ~= response.statusCode */else {

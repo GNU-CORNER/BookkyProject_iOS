@@ -59,11 +59,3 @@ class InitialResearchViewController: UIViewController {
     }
 }
 
-// MARK: - Button Extension
-extension UIButton {
-    
-    func addLeftPadding() {
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 13, height: self.frame.height))
-    }
-    
-}
