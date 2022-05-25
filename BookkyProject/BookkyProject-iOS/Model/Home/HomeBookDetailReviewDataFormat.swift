@@ -18,7 +18,7 @@ struct ReviewDataList : Codable {
 }
 struct ReviewData : Codable {
     let RID : Int
-    let BID : Int
+    let TBID : Int
     let UID : Int
     let contents : String
     let views : Int

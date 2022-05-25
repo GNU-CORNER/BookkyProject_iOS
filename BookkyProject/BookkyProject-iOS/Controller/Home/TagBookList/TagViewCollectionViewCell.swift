@@ -13,7 +13,7 @@ class TagViewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bookNameLabel: UILabel!
     func setTagBookList(model: TagBookData){
         bookNameLabel.text = model.TITLE
-        self.BID = model.BID
+        self.BID = model.TBID
         let url = URL(string: "\(model.thumbnailImage)")
         let data = try! Data(contentsOf: url!)
         bookImageView.image = UIImage(data: data)

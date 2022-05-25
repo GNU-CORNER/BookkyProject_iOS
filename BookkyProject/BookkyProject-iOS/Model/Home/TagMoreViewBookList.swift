@@ -17,11 +17,11 @@ struct TagMoreViewBookListData : Codable {
 }
 struct TagmoreViewBookList : Codable {
     let tag : String
-    let TID : Int?
+    let TMID : Int?
     let data : [TagMoreViewBookData]
 }
 struct TagMoreViewBookData : Codable {
-    let BID : Int
+    let TBID : Int
     let TITLE : String
     let AUTHOR: String
     let thumbnailImage : String

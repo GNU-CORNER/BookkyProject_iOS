@@ -27,14 +27,14 @@ class BookTableViewCell: UITableViewCell {
     func setBookInformation(model : BookList){
         tagNameLabel.text = model.tag
         bookDataList = model.data
-        self.TID = model.TID ?? 0
+        self.TID = model.TMID ?? 0
         bookCollectionView.reloadData()
         self.ViewControllernumber = 0
     }
     func setTagMoreViewInformation(model : TagmoreViewBookList){
         tagNameLabel.text = model.tag
         tagMoreViewDataList = model.data
-        self.TID = model.TID ?? 0
+        self.TID = model.TMID ?? 0
         bookCollectionView.reloadData()
         self.ViewControllernumber = 1
     }

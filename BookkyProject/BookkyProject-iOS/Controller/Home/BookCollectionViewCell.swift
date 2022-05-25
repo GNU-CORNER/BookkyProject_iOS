@@ -14,7 +14,7 @@ class BookCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var bookNameLabel: UILabel!
     
     func setBookData(model: BookData){
-        BID = model.BID
+        BID = model.TBID
         bookNameLabel.text = model.TITLE
         
         let url = URL(string: "\(model.thumbnailImage)")
@@ -23,7 +23,7 @@ class BookCollectionViewCell: UICollectionViewCell {
         
     }
     func setTagMoreViewBookData(model : TagMoreViewBookData){
-        BID = model.BID
+        BID = model.TBID
         self.bookNameLabel.text = model.TITLE
         
         let url = URL(string: "\(model.thumbnailImage)")
