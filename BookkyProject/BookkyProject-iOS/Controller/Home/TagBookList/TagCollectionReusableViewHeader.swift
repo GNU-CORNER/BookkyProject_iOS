@@ -15,6 +15,7 @@ class TagCollectionReusableViewHeader: UICollectionReusableView {
         super.awakeFromNib()
         tagNameLabel.numberOfLines = 2
         tagNameLabel.textColor = UIColor.white
+        
         tagNameLabel.font = UIFont.systemFont(ofSize: 30)
         
     }

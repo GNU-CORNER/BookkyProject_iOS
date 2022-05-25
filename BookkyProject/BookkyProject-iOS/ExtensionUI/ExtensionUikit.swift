@@ -38,6 +38,23 @@ open class CustomLabel : UILabel {
             attributedString.addAttribute(NSAttributedString.Key.kern, value: self.characterSpacing, range: NSRange(location: 0, length: attributedString.length))
             self.attributedText = attributedString
         }
-
+        
+    }
+}
+// font 크기변경
+extension UILabel {
+    func asFont(targetString : String , font:UIFont){
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttribute(.font, value: font, range: range)
+        attributedText = attributedString
+    }
+    func asColr(targetString : String , color : UIColor){
+        let fullText = text ?? ""
+        let attributedString = NSMutableAttributedString(string: fullText)
+        let range = (fullText as NSString).range(of: targetString)
+        attributedString.addAttributes([.font: font as Any, .foregroundColor: color as Any], range: range)
+        attributedText = attributedString
     }
 }

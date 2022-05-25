@@ -62,6 +62,7 @@ extension TagViewController : UICollectionViewDelegate,UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "tagCollectionViewHedaerId", for: indexPath)as! TagCollectionReusableViewHeader
         headerView.tagNameLabel.text = "\(self.tagName)과\n관련된 책이에요!"
+        headerView.tagNameLabel.asColr(targetString: self.tagName, color: .black)
         return headerView
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

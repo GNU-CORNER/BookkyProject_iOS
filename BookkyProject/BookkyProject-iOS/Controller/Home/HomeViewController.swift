@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController, UICollectionViewDelegate {
-    let user = "황랑귀"
+    var userName = "사용자"
     
     var buttonText = "태그 더보기>"
     var bookList : [BookList] = []
@@ -35,29 +35,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var hoeBoardTextGoButton: UIButton!
     // MARK: - 도서리스트 테이블
     @IBOutlet weak var bookListTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setBookTableView()
         self.setRecommendView()
         self.setCommunityView()
         getBookData()
+        statusBarView?.backgroundColor = UIColor(named:"primaryColor")
+        
     }
-    override var preferredStatusBarStyle: UIStatusBarStyle{
-        return .lightContent
-    }
-    //HomeViewController에서만 navigationBar 없애기
-    //HomeViewController 뷰가 나타나기전에 hidden.true 뷰가 사라지기전에 hidden.false
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getBookData()
         navigationController?.setNavigationBarHidden(true, animated: animated)
         
     }
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        guard let vc = storyboard?.instantiateViewController(withIdentifier: "BookDetailViewController")as? BookDetailViewController else {return}
-    //        vc.getBookDeatilData()
-    //    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
@@ -106,7 +99,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.freeBoardTextGoButton.setTitle("카카오 공채 떳던데 보신분 있으 신가요 ?", for: .normal)
         self.freeBoardTextGoButton.tintColor = UIColor.black
         
-        self.QnABoardGoButton.setTitle("QnA 게시판", for: .normal)
+        self.QnABoardGoButton.setTitle("Q&A 게시판", for: .normal)
         self.QnABoardGoButton.tintColor = UIColor.black
         self.QnABoardTextGoButton.setTitle("함수를 썻는데 너무이상해요함수를 썻는데 너무 이상해요  ", for: .normal)
         self.QnABoardTextGoButton.tintColor = UIColor.black
@@ -130,6 +123,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                 self.bookList = bookData.result.bookList
                 if bookData.success{
                     DispatchQueue.main.async {
+                        self.userName = bookData.result.userData.nickname
                         self.bookListTableView.reloadData()
                     }
                 }else {
@@ -142,28 +136,45 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     func tapAddMoreTagViewButton(sender: UIButton!){
         performSegue(withIdentifier: "tagMoreButtonSegueid", sender: self)
     }
-    @IBAction func tapCommunityGoButton(_ sender: Any) {
+    @IBAction func tapCommunityGoButton(_ sender: UIButton) {
         tabBarController?.selectedIndex = 1
     }
+    @IBAction func tapGoRecommandButton(_ sender: UIButton) {
+        tabBarController?.selectedIndex = 2
+    }
+    @IBAction func tapGoFreeBoardButton(_ sender: UIButton) {
+        tabBarController?.selectedIndex = 1
+    }
+    @IBAction func tapGoQnABoardButton(_ sender: UIButton) {
+        
+        tabBarController?.selectedIndex = 1
+        let navigationController = tabBarController?.viewControllers![1] as! UINavigationController
+        let communityViewController = navigationController.topViewController as! CommunityViewController
+        communityViewController.boardTypeNumber = 2
+        
+        
+    }
 }
+
 
 extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 180
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView(frame: CGRect(x: 0, y: 45, width: self.bookListTableView.frame.width, height: 180))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.bookListTableView.frame.width, height: 180))
         headerView.backgroundColor = UIColor(named: "primaryColor")
-        let welComeLabel = UILabel(frame: CGRect(x: self.bookListTableView.frame.width*(1/15), y: 45, width: self.bookListTableView.frame.width*(2/3), height: 180))
-        let noticeButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-60, y: 45, width: 50, height: 50))
+        let welComeLabel = UILabel(frame: CGRect(x: self.bookListTableView.frame.width*(1/15), y: 25, width: self.bookListTableView.frame.width*(2/3), height: 180))
+        let noticeButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-60, y: 0, width: 50, height: 50))
         headerView.addSubview(welComeLabel)
         headerView.addSubview(noticeButton)
-        welComeLabel.text = "오늘\n\(user)님에게\n추천하는 책이에요!"
+        welComeLabel.textColor = UIColor.white
+        welComeLabel.text = "오늘\n\(userName)님에게\n추천하는 책이에요!"
+        welComeLabel.asColr(targetString: userName, color: .black)
         welComeLabel.adjustsFontSizeToFitWidth = true
         welComeLabel.numberOfLines = 3
         welComeLabel.font = UIFont.systemFont(ofSize: 36)
         welComeLabel.sizeToFit()
-        welComeLabel.textColor = UIColor.white
         noticeButton.setImage(UIImage(systemName: "bell"), for: .normal)
         noticeButton.tintColor = UIColor.black
         return headerView

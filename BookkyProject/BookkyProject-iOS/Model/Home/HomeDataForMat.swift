@@ -13,22 +13,17 @@ struct BookInformation : Codable {
 }
 struct ResultData : Codable {
     let bookList : [BookList]
-    let communityList : [Int]
-//    let userData : UserData
+    let userData : HomeUserData
 }
-//struct UserData : Codable{
-//    let UID : Int
-//    let tag_array : [Int]
-//    let nickname : String
-//    let thumbnail : String
-//}
+struct HomeUserData : Codable{
+    let UID  : Int
+    let nickname : String
+    let thumbnail : String?
+}
 struct BookList : Codable{
-    //    let success : Bool
-    
     let tag : String
     let TID : Int?
     let data : [BookData]
-    
 }
 struct BookData : Codable{
     let BID : Int

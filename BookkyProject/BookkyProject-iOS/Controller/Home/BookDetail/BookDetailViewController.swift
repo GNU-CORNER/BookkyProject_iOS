@@ -49,22 +49,18 @@ class BookDetailViewController: UIViewController {
     //리뷰 테이블뷰
     @IBOutlet weak var bookDetailCommentTableView: UITableView!
     @IBOutlet weak var bookDetailScrollView: UIScrollView!
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         //리뷰 테이블뷰
         self.bookDetailCommentTableView.delegate = self
         self.bookDetailCommentTableView.dataSource = self
         getBookDetailReViewData()
-        
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
         self.setBookDetailUI()
         self.getBookDetailData()
         self.setColletioView()
-        
-        
-        
     }
     private func setBookDetailUI(){
         self.detailBookName.font = UIFont.boldSystemFont(ofSize: 18)
@@ -116,8 +112,15 @@ class BookDetailViewController: UIViewController {
             if success {
                 guard let bookDetailReviewData = data as? BookDetailReviewInformation else {return}
                 self.bookDetailRevieList = bookDetailReviewData.result.reviewList
+                let tableViewCellCount = self.bookDetailRevieList.count
                 if bookDetailReviewData.success{
                     DispatchQueue.main.async {
+                        if self.bookDetailRevieList.count != 0{
+                            self.tableViewHeight.constant = CGFloat(100*tableViewCellCount)
+                        }else {
+                            self.tableViewHeight.constant = 100
+                        }
+                        
                         self.bookDetailCommentTableView.reloadData()
                     }
                 }else {
@@ -217,6 +220,14 @@ extension BookDetailViewController : UICollectionViewDataSource,UICollectionView
         cell.setTagList(model: bookDetailTagList[indexPath.row])
         return cell
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath)as? BookDetailTagCollectionViewCell else {return}
+        guard let tagViewController = self.storyboard?.instantiateViewController(withIdentifier: "TagViewController")as? TagViewController else {return}
+        self.navigationController?.pushViewController(tagViewController, animated: true)
+        tagViewController.TID = cell.TID
+        
+    }
+    
 }
 extension BookDetailViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Pqk-K7-kaG">
-                        <rect key="frame" x="0.0" y="31" width="400" height="149"/>
+                        <rect key="frame" x="0.0" y="25.333333333333332" width="400" height="154.66666666666666"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g7W-Uo-MXb">
@@ -29,8 +29,8 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqQ-WU-yqo">
-                        <rect key="frame" x="20" y="0.0" width="42" height="26"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqQ-WU-yqo">
+                        <rect key="frame" x="20" y="0.0" width="360" height="20.333333333333332"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -40,9 +40,9 @@
                     <constraint firstItem="dqQ-WU-yqo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ASo-YZ-IIn"/>
                     <constraint firstItem="Pqk-K7-kaG" firstAttribute="top" secondItem="dqQ-WU-yqo" secondAttribute="bottom" constant="5" id="Coi-e2-Q5c"/>
                     <constraint firstItem="dqQ-WU-yqo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Idy-jv-qaC"/>
-                    <constraint firstItem="Pqk-K7-kaG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="20" id="JsG-g6-RNs"/>
                     <constraint firstAttribute="bottom" secondItem="Pqk-K7-kaG" secondAttribute="bottom" id="M4V-7T-5aM"/>
                     <constraint firstAttribute="trailing" secondItem="Pqk-K7-kaG" secondAttribute="trailing" id="QRr-0e-ImI"/>
+                    <constraint firstAttribute="trailing" secondItem="dqQ-WU-yqo" secondAttribute="trailing" constant="20" id="Rd3-tP-LeP"/>
                     <constraint firstItem="Pqk-K7-kaG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="mOE-4y-ZWo"/>
                 </constraints>
             </tableViewCellContentView>
