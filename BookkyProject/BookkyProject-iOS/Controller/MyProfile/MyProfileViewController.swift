@@ -10,28 +10,28 @@ import UIKit
 class MyProfileViewController: UIViewController {
     
     var myTagsArray: [UserTagList] = [
-        UserTagList(tag: "iOS", tid: 0),
-        UserTagList(tag: "Swift", tid: 0),
-        UserTagList(tag: "Xcode", tid: 0),
-        UserTagList(tag: "UIUX", tid: 0),
-        UserTagList(tag: "Python", tid: 0),
-        UserTagList(tag: "Django", tid: 0),
-        UserTagList(tag: "iPhone", tid: 0)
+        UserTagList(tag: "iOS", tmid: 0),
+        UserTagList(tag: "Swift", tmid: 0),
+        UserTagList(tag: "Xcode", tmid: 0),
+        UserTagList(tag: "UIUX", tmid: 0),
+        UserTagList(tag: "Python", tmid: 0),
+        UserTagList(tag: "Django", tmid: 0),
+        UserTagList(tag: "iPhone", tmid: 0)
     ]
     var myBooksArray: [FavoriteBookList] = [
-        FavoriteBookList(bid: 0, title: "책제목 테스트입니다1", author: "", thumbnailImage: "", rating: 0),
-        FavoriteBookList(bid: 0, title: "책제목 테스트입니다2", author: "", thumbnailImage: "", rating: 0),
-        FavoriteBookList(bid: 0, title: "책제목 테스트입니다3", author: "", thumbnailImage: "", rating: 0),
-        FavoriteBookList(bid: 0, title: "책제목 테스트입니다4", author: "", thumbnailImage: "", rating: 0),
-        FavoriteBookList(bid: 0, title: "책제목 테스트입니다5", author: "", thumbnailImage: "", rating: 0)
+        FavoriteBookList(tbid: 0, title: "책제목 테스트입니다1", author: "", thumbnailImage: "", rating: 0),
+        FavoriteBookList(tbid: 0, title: "책제목 테스트입니다2", author: "", thumbnailImage: "", rating: 0),
+        FavoriteBookList(tbid: 0, title: "책제목 테스트입니다3", author: "", thumbnailImage: "", rating: 0),
+        FavoriteBookList(tbid: 0, title: "책제목 테스트입니다4", author: "", thumbnailImage: "", rating: 0),
+        FavoriteBookList(tbid: 0, title: "책제목 테스트입니다5", author: "", thumbnailImage: "", rating: 0)
     ]
     var myPostArray: [UserPostList] = [
         UserPostList(title: "리뷰리뷰립류테스트1", contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", communityType: 0, pid: 0, commentCnt: 0, likeCnt: 0),
         UserPostList(title: "립뷰뷰븁뷰뷰테스트2", contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", communityType: 0, pid: 0, commentCnt: 0, likeCnt: 0)
     ]
     var myReviewsArray: [UserReviewList] = [
-        UserReviewList(rid: 0, bid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "리뷰리뷰립류테스트1", thumbnail: ""),
-        UserReviewList(rid: 0, bid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "립뷰뷰븁뷰뷰테스트2", thumbnail: "")
+        UserReviewList(rid: 0, tbid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "리뷰리뷰립류테스트1", thumbnail: ""),
+        UserReviewList(rid: 0, tbid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "립뷰뷰븁뷰뷰테스트2", thumbnail: "")
     ]
     
     @IBOutlet weak var userImageView: UIImageView!

@@ -22,22 +22,6 @@ struct MyprofileResult: Codable {
     let userReviewList: [UserReviewList]
 }
 
-// MARK: - FavoriteBookList
-struct FavoriteBookList: Codable {
-    let bid: Int
-    let title, author: String
-    let thumbnailImage: String
-    let rating: Double
-
-    enum CodingKeys: String, CodingKey {
-        case bid = "BID"
-        case title = "TITLE"
-        case author = "AUTHOR"
-        case thumbnailImage
-        case rating = "RATING"
-    }
-}
-
 // MARK: - UserData
 struct MyprofileUserData: Codable {
     let userThumbnail: String?
@@ -45,14 +29,30 @@ struct MyprofileUserData: Codable {
     let userTagList: [UserTagList]
 }
 
+// MARK: - FavoriteBookList
+struct FavoriteBookList: Codable {
+    let tbid: Int
+    let title, author: String
+    let thumbnailImage: String
+    let rating: Double
+
+    enum CodingKeys: String, CodingKey {
+        case tbid = "TBID"
+        case title = "TITLE"
+        case author = "AUTHOR"
+        case thumbnailImage
+        case rating = "RATING"
+    }
+}
+
 // MARK: - UserTagList
 struct UserTagList: Codable {
     let tag: String
-    let tid: Int
+    let tmid: Int
 
     enum CodingKeys: String, CodingKey {
         case tag
-        case tid = "TID"
+        case tmid  = "TMID"
     }
 }
 
@@ -70,7 +70,7 @@ struct UserPostList: Codable {
 
 // MARK: - UserReviewList
 struct UserReviewList: Codable {
-    let rid, bid, uid: Int
+    let rid, tbid, uid: Int
     let contents: String
     let views: Int
     let createAt: String
@@ -82,7 +82,7 @@ struct UserReviewList: Codable {
 
     enum CodingKeys: String, CodingKey {
         case rid = "RID"
-        case bid = "BID"
+        case tbid = "TBID"
         case uid = "UID"
         case contents, views, createAt, rating, likeCnt, isLiked, isAccessible, nickname
         case author = "AUTHOR"

@@ -10,13 +10,13 @@ import UIKit
 class SearchResultTableViewCell: UITableViewCell {
     
     var myTagsArray: [UserTagList] = [
-        UserTagList(tag: "iOS", tid: 0),
-        UserTagList(tag: "Swift", tid: 0),
-        UserTagList(tag: "Xcode", tid: 0),
-        UserTagList(tag: "UIUX", tid: 0),
-        UserTagList(tag: "Python", tid: 0),
-        UserTagList(tag: "Django", tid: 0),
-        UserTagList(tag: "iPhone", tid: 0)
+        UserTagList(tag: "iOS", tmid: 0),
+        UserTagList(tag: "Swift", tmid: 0),
+        UserTagList(tag: "Xcode", tmid: 0),
+        UserTagList(tag: "UIUX", tmid: 0),
+        UserTagList(tag: "Python", tmid: 0),
+        UserTagList(tag: "Django", tmid: 0),
+        UserTagList(tag: "iPhone", tmid: 0)
     ]
 
     @IBOutlet weak var searchResultBookImageView: UIImageView!
