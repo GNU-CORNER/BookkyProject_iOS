@@ -19,7 +19,7 @@ struct TagBookList : Codable{
     let data : [TagBookData]
 }
 struct TagBookData : Codable{
-    let BID : Int
+    let TBID : Int
     let TITLE : String
     let AUTHOR : String
     let thumbnailImage : String

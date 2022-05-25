@@ -22,11 +22,11 @@ struct HomeUserData : Codable{
 }
 struct BookList : Codable{
     let tag : String
-    let TID : Int?
+    let TMID : Int?
     let data : [BookData]
 }
 struct BookData : Codable{
-    let BID : Int
+    let TBID : Int
     let TITLE : String
     let AUTHOR: String
     let thumbnailImage : String
@@ -45,7 +45,7 @@ struct BookDetailBookList : Codable {
     let isFavorite : Bool
 }
 struct BookDetailData : Codable{
-    let BID : Int
+    let TBID : Int
     let SUBTITLE : String?
     let TITLE : String
     let AUTHOR : String
@@ -62,5 +62,5 @@ struct BookDetailData : Codable{
 }
 struct BookDetailDataTagData : Codable {
     let tag : String
-    let TID : Int
+    let TMID : Int
 }

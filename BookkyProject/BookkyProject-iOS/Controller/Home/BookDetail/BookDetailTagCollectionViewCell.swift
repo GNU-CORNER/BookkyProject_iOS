@@ -13,7 +13,7 @@ class BookDetailTagCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var tagNameLabel: UILabel!
     func setTagList(model : BookDetailDataTagData){
         self.tagNameLabel.text = model.tag
-        self.TID = model.TID
+        self.TID = model.TMID
     }
     override func awakeFromNib() {
         super.awakeFromNib()
