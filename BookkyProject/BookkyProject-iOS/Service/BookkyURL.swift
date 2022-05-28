@@ -12,8 +12,9 @@ class BookkyURL {
     static let signupURL = "/user/signup"
     static let signinURL = "/user/signin"
     static let refreshURL = "/auth/refresh"
-    
+    //MyProfile
     static let myprofilePath = "/myprofile"
+    static let favoriteBookPath = "/user/favoritebook/"
     //Home
     static let HomeURL = "/home"
     static let tagURL = "/books/tag/"

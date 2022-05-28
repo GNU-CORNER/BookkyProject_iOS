@@ -88,22 +88,33 @@ class MyProfileViewController: UIViewController {
             guard let myprofileData = data as? MyprofileModel else { return }
             if success {
                 print("잘 되었따.")
-                self.myTagsArray = (myprofileData.result?.userData.userTagList)!
-                self.myBooksArray = (myprofileData.result?.favoriteBookList)!
-                self.myPostArray = (myprofileData.result?.userPostList)!
+                self.myTagsArray = (myprofileData.result?.userData?.userTagList)!
+                self.myBooksArray = (myprofileData.result?.favoriteBookList)!.reversed()
+                self.myPostArray = (myprofileData.result?.userPostList)!.reversed()
                 self.myReviewsArray = (myprofileData.result?.userReviewList)!
                 DispatchQueue.main.async {
-                    self.setUserNameLabel((myprofileData.result?.userData.nickname)!)
-                    if let userThumbnailImageString = myprofileData.result?.userData.userThumbnail {
-                        self.setDefaultUserImage(imageName: userThumbnailImageString)
-                    } else {
-                        self.setDefaultUserImage(imageName: "북키프사")
-                    }
-                    
+                    self.setUserNameLabel((myprofileData.result?.userData?.nickname)!)
                     self.myTagsCollectionView.reloadData()
                     self.myBooksCollectionView.reloadData()
                     self.myPostCollectionView.reloadData()
                     self.myReviewsCollectionView.reloadData()
+                    
+                    /// load user thumbnail image
+                    guard let userThumbnailImageString = myprofileData.result?.userData?.userThumbnail
+                    else {
+                        self.setDefaultUserImage(imageName: "북키프사")
+                        return
+                    }
+                    
+                    if let userThumbnailImageURL = URL(string: userThumbnailImageString) {
+                        do {
+                            let userThumbnailData = try Data(contentsOf: userThumbnailImageURL)
+                            self.userImageView.image = UIImage(data: userThumbnailData)
+                        } catch {
+                            print(error)
+                        }
+                    }
+                    
                 }
                 
             } else {
@@ -208,9 +219,17 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
         } else if collectionView == self.myBooksCollectionView {
             return myBooksArray.count
         } else if collectionView == self.myPostCollectionView {
-            return myPostArray.count
+            if myPostArray.count >= 2 {
+                return 2
+            } else {
+                return myPostArray.count
+            }
         } else {
-            return myReviewsArray.count
+            if myReviewsArray.count >= 2 {
+                return 2
+            } else {
+                return myReviewsArray.count
+            }
         }
     }
     

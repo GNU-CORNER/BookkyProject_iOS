@@ -16,10 +16,10 @@ struct MyprofileModel: Codable {
 
 // MARK: - Result
 struct MyprofileResult: Codable {
-    let userData: MyprofileUserData
-    let favoriteBookList: [FavoriteBookList]
-    let userPostList: [UserPostList]
-    let userReviewList: [UserReviewList]
+    let userData: MyprofileUserData?
+    let favoriteBookList: [FavoriteBookList]?
+    let userPostList: [UserPostList]?
+    let userReviewList: [UserReviewList]?
 }
 
 // MARK: - UserData
@@ -32,9 +32,10 @@ struct MyprofileUserData: Codable {
 // MARK: - FavoriteBookList
 struct FavoriteBookList: Codable {
     let tbid: Int
-    let title, author: String
+    let title: String
+    let author: String?
     let thumbnailImage: String
-    let rating: Double
+    let rating: Double?
 
     enum CodingKeys: String, CodingKey {
         case tbid = "TBID"
