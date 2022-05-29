@@ -15,6 +15,7 @@ class MyProfileAPI {
         let session = URLSession(configuration: URLSessionConfiguration.default)
         guard let myprofileURL = URL(string: BookkyURL.baseURL + BookkyURL.myprofilePath) else {
             print("Error: Cannot create URL")
+            
             return
         }
         var request = URLRequest(url: myprofileURL)
@@ -24,11 +25,11 @@ class MyProfileAPI {
         
         session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
-                print("Error: Email Sender. \(String(describing: error))")
+                print("Error: myprofile Sender. \(String(describing: error))")
                 return
             }
             guard let data = data, let response = response as? HTTPURLResponse else {
-                print("Error: Email Sender Http Request Failed. \(String(describing: error))")
+                print("Error: myprofile Http Request Failed. \(String(describing: error))")
                 return
             }
             do {
@@ -36,7 +37,7 @@ class MyProfileAPI {
                 print("myprofile: 통신 완료. response.")
                 completionHandler(decodedData.success, decodedData, response.statusCode)
             } catch {
-                print("Error: Email Sender Decode Error. \(String(describing: error))")
+                print("Error: myprofile Decode Error. \(String(describing: error))")
             }
         }.resume()
 
@@ -45,9 +46,10 @@ class MyProfileAPI {
     func favoriteBooks(accessToken: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
         let session = URLSession(configuration: URLSessionConfiguration.default)
         guard let myprofileURL = URL(string: BookkyURL.baseURL + BookkyURL.favoriteBookPath + "0") else {
-            print("Error: Cannot create URL")
+            print("My Favorite Books: Cannot create URL")
             return
         }
+        print("\(BookkyURL.baseURL + BookkyURL.favoriteBookPath)")
         var request = URLRequest(url: myprofileURL)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -55,21 +57,59 @@ class MyProfileAPI {
         
         session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
-                print("Error: Email Sender. \(String(describing: error))")
+                print("My Favorite Books: \(String(describing: error))")
                 return
             }
             guard let data = data, let response = response as? HTTPURLResponse else {
-                print("Error: Email Sender Http Request Failed. \(String(describing: error))")
+                print("My Favorite Books: Http Request Failed. \(String(describing: error))")
                 return
             }
             do {
                 let decodedData: MyprofileModel = try JSONDecoder().decode(MyprofileModel.self, from: data)
-                print("myprofile: 통신 완료. response.")
+                print("v: 통신 완료.")
                 completionHandler(decodedData.success, decodedData, response.statusCode)
             } catch {
-                print("Error: Email Sender Decode Error. \(String(describing: error))")
+                print("My Favorite Books: Decode Error. \(String(describing: error))")
             }
         }.resume()
+    }
+    
+    func myReviews(accessToken: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        guard let myprofileURL = URL(string: BookkyURL.baseURL + BookkyURL.myReviewsPath) else {
+            print("Cannot create URL")
+            return
+        }
+        print("\(myprofileURL)")
+        var request = URLRequest(url: myprofileURL)
+        print("\(myprofileURL)")
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(accessToken, forHTTPHeaderField: "access-token")
+        print("오호")
+        session.dataTask(with: request) { (data, response, error) in
+            print(1)
+            guard error == nil else {
+                print("My Reviews: \(error.debugDescription)")
+                return
+            }
+            print(2)
+            guard let myReviewsData = data, let myReviewsReseponse = response as? HTTPURLResponse else {
+                print("My Reviews: Http Request Failed. \(error.debugDescription)")
+                return
+            }
+            print(3)
+            do {
+                let decodedMyReiviewData: MyprofileModel = try JSONDecoder().decode(MyprofileModel.self, from: myReviewsData)
+                print("My Reviews: 통신 완료")
+                completionHandler(decodedMyReiviewData.success, decodedMyReiviewData, myReviewsReseponse.statusCode)
+            } catch {
+                print(myReviewsReseponse.statusCode)
+                print(myReviewsData)
+                print("My Reviews: Decode Error.")
+            }
+        }.resume()
+        print(4)
     }
     
 }

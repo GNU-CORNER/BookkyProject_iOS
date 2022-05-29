@@ -60,25 +60,17 @@ class MyProfileViewController: UIViewController {
         // navigation color 기본값 복원
         self.navigationController?.navigationBar.tintColor = UIColor(named: "Accent Color")
         
-        // - [x] UserDefaults에 저장되어 있는 사용자 이메일 가져오기
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
-            print("Launch: 사용자 이메일을 불러올 수 없음.")
-//            redirectLoginView()
+            print("MyProfile: 사용자 이메일을 불러올 수 없음.")
             RedirectView.redirectLoginView(previousView: self)
             return
         }
-
-        // - [x] 사용자 이메일로 KeyChain에 저장되어 있는 AT, RT를 가져오기
-        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
-            print("Launch: 토큰을 불러올 수 없음.")
-//            redirectLoginView()
+        guard let acessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+            print("MyProfile: 토큰을 불러올 수 없음.")
             RedirectView.redirectLoginView(previousView: self)
             return
         }
-        print("view will appear")
-        self.requestMyprofile(accessToken: previousAccessToken)
-        
-                
+        self.requestMyprofile(accessToken: acessToken)
     }
     
     // MARK: - Request MyProfile
@@ -91,7 +83,7 @@ class MyProfileViewController: UIViewController {
                 self.myTagsArray = (myprofileData.result?.userData?.userTagList)!
                 self.myBooksArray = (myprofileData.result?.favoriteBookList)!.reversed()
                 self.myPostArray = (myprofileData.result?.userPostList)!.reversed()
-                self.myReviewsArray = (myprofileData.result?.userReviewList)!
+                self.myReviewsArray = (myprofileData.result?.userReviewList)!.reversed()
                 DispatchQueue.main.async {
                     self.setUserNameLabel((myprofileData.result?.userData?.nickname)!)
                     self.myTagsCollectionView.reloadData()
