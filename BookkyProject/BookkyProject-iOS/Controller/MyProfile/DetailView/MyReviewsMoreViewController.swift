@@ -47,13 +47,11 @@ class MyReviewsMoreViewController: UIViewController {
     }
 
     private func requestMyReivews(accessToken: String) {
-        print("hihihih")
         MyProfileAPI.shared.myReviews(accessToken: accessToken) { (success, data, statuscode) in
-            guard let myReviewData = data as? MyprofileModel else { return }
             if success {
-                if let myReviews = myReviewData.result?.reviewList {
-                    self.myReviewsMoreArray = myReviews
-                    print(myReviews)
+                guard let myReviewData = data as? MyprofileModel else { return }
+                if let myReviewsList = myReviewData.result?.reviewList {
+                    self.myReviewsMoreArray = myReviewsList
                 }
                 DispatchQueue.main.async {
                     self.myReviewsMoreCollectionView.reloadData()

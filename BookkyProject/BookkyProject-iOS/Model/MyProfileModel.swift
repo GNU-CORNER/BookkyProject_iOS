@@ -20,6 +20,8 @@ struct MyprofileResult: Codable {
     let favoriteBookList: [FavoriteBookList]?
     let userPostList: [UserPostList]?
     let userReviewList: [UserReviewList]?
+    /// myprofile detail
+    let communityList: [UserPostList]?
     let reviewList: [UserReviewList]?
 }
 
@@ -91,5 +93,3 @@ struct UserReviewList: Codable {
         case bookTitle, thumbnail
     }
 }
-
-

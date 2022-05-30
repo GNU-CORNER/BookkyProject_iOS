@@ -77,39 +77,62 @@ class MyProfileAPI {
     func myReviews(accessToken: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
         let session = URLSession(configuration: URLSessionConfiguration.default)
         guard let myprofileURL = URL(string: BookkyURL.baseURL + BookkyURL.myReviewsPath) else {
-            print("Cannot create URL")
+            print("My Reviews: Cannot create URL")
             return
         }
-        print("\(myprofileURL)")
         var request = URLRequest(url: myprofileURL)
-        print("\(myprofileURL)")
+
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue(accessToken, forHTTPHeaderField: "access-token")
-        print("오호")
         session.dataTask(with: request) { (data, response, error) in
-            print(1)
             guard error == nil else {
                 print("My Reviews: \(error.debugDescription)")
                 return
             }
-            print(2)
             guard let myReviewsData = data, let myReviewsReseponse = response as? HTTPURLResponse else {
                 print("My Reviews: Http Request Failed. \(error.debugDescription)")
                 return
             }
-            print(3)
             do {
                 let decodedMyReiviewData: MyprofileModel = try JSONDecoder().decode(MyprofileModel.self, from: myReviewsData)
                 print("My Reviews: 통신 완료")
                 completionHandler(decodedMyReiviewData.success, decodedMyReiviewData, myReviewsReseponse.statusCode)
             } catch {
                 print(myReviewsReseponse.statusCode)
-                print(myReviewsData)
                 print("My Reviews: Decode Error.")
             }
         }.resume()
-        print(4)
+    }
+    
+    func myPosts(accessToken: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        guard let myPostsURL = URL(string: BookkyURL.baseURL + BookkyURL.myPostsPath) else {
+            print("My Posts: Cannot Create URL.")
+            return
+        }
+        var request = URLRequest(url: myPostsURL)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(accessToken, forHTTPHeaderField: "access-token")
+        session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                print("My Posts: \(error.debugDescription)")
+                return
+            }
+            guard let myPostsData = data, let myPostsResponse = response as? HTTPURLResponse else {
+                print("My Posts: Http Request failed.")
+                return
+            }
+            do {
+                let decodedMyPostsData: MyprofileModel = try JSONDecoder().decode(MyprofileModel.self, from: myPostsData)
+                print("My Posts: 통신 완료")
+                completionHandler(decodedMyPostsData.success, decodedMyPostsData, myPostsResponse.statusCode)
+            } catch {
+                print(myPostsResponse.statusCode)
+                print("My Posts: Decode Error.")
+            }
+        }.resume()
     }
     
 }

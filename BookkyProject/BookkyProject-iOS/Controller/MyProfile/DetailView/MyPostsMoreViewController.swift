@@ -10,6 +10,7 @@ import UIKit
 class MyPostsMoreViewController: UIViewController {
 
     @IBOutlet weak var myPostsMoreCollectionView: UICollectionView!
+    var myPostsMoreArray: [UserPostList] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,40 @@ class MyPostsMoreViewController: UIViewController {
         self.myPostsMoreCollectionView.dataSource = self
         setDefaultView()
         registerMyPostsCellNib()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("My Reviews: 사용자 이메일을 불러올 수 없음.")
+            RedirectView.redirectLoginView(previousView: self)
+            return
+        }
+        guard let accessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+            print("My Reivews: 사용자 토큰을 불러올 수 없음.")
+            RedirectView.redirectLoginView(previousView: self)
+            return
+        }
+        self.requestMyPosts(accessToken: accessToken)
+    }
+    
+    private func requestMyPosts(accessToken: String) {
+        MyProfileAPI.shared.myPosts(accessToken: accessToken) { (success, data, statuscode) in
+            if success {
+                guard let myPostsData = data as? MyprofileModel else {
+                    // 예외처리
+                    return
+                }
+                if let myPostsList = myPostsData.result?.communityList {
+                    self.myPostsMoreArray = myPostsList
+                    print(myPostsList)
+                }
+                DispatchQueue.main.async {
+                    self.myPostsMoreCollectionView.reloadData()
+                }
+            } else {
+
+            }
+        }
     }
     
     private func setDefaultView() {
@@ -40,18 +75,17 @@ class MyPostsMoreViewController: UIViewController {
 extension MyPostsMoreViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return myPostsMoreArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyPostsCollectionViewCell", for: indexPath) as? MyPostCollectionViewCell
-        else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyPostsCollectionViewCell", for: indexPath) as? MyPostCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.myPostsTitleLabel.text = "안녕"
-        cell.myPostsDescriptionLabel.text = "안녕 본문"
-        cell.myPostsLikeLabel.text = "2"
-        cell.myPostsCommentsLabel.text = "2"
+        cell.myPostsTitleLabel.text = myPostsMoreArray[indexPath.row].title
+        cell.myPostsDescriptionLabel.text = myPostsMoreArray[indexPath.row].contents
+        cell.myPostsLikeLabel.text = String(myPostsMoreArray[indexPath.row].likeCnt)
+        cell.myPostsCommentsLabel.text = String(myPostsMoreArray[indexPath.row].commentCnt)
         cell.myPostsLikeImageView.image = UIImage(named: "likeThat")
         cell.myPostsCommentsImageView.image = UIImage(named: "comment")
         cell.layer.cornerRadius = 0
