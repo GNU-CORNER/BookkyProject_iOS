@@ -75,6 +75,7 @@ class Account {
                 }
                 return
             }
+            print( response.debugDescription )
             do {
                 let decodedData: SignupModel = try JSONDecoder().decode(SignupModel.self, from: data)
 //                print(decodedData)
@@ -113,7 +114,7 @@ class Account {
                 print(error!)
                 return
             }
-            guard let data = data, let response = response as? HTTPURLResponse/*, (200..<300) ~= response.statusCode */else {
+            guard let data = data, let response = response as? HTTPURLResponse else {
                 if let response = response as? HTTPURLResponse {
                     print("Error: Email Sender Http Request Failed.")
                     print( response.statusCode )
@@ -123,51 +124,11 @@ class Account {
             do {
                 let decodedData: RefreshModel = try JSONDecoder().decode(RefreshModel.self, from: data)
                 print("Account-refreshAuth: response 받아옴")
-                print(response.statusCode)
-                print(decodedData)
                 completion(decodedData.success, decodedData, response.statusCode)
             } catch {
                 print("Error: Email Sender Decode Error. \(String(describing: error))")
             }
         }.resume()
-    }
-    
-    func requestRefreshAuth() {
-        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
-            print("Launch: 사용자 이메일을 불러올 수 없음.")
-            return
-        }
-
-        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
-              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
-            print("Launch: 토큰을 불러올 수 없음.")
-            return 
-        }
-
-        print("갱신요청")
-        Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data, statuscode) in
-            print(success)
-            guard let tokens = data as? RefreshModel else { return }
-            if success {
-
-                if let newAccessToken = tokens.result?.accessToken {
-                    let statusUpdateAccessToken = KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
-                    print(statusUpdateAccessToken)
-                    print(newAccessToken)
-                    if !statusUpdateAccessToken {
-                        print("Launch: 새로운 토큰 제대로 저장이 안되었어요~~~~")
-                    }
-                }
-            } else {
-                if statuscode == 400 {
-                    // 유효한 토큰입니다.
-                    print(tokens.errorMessage)
-                } else if statuscode == 403 {
-                    // 기간이 지난 토큰입니다.
-                    print(tokens.errorMessage)
-                }
-            }
-        }
     }
     
     func duplicateNicknameCheck(nickname: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
@@ -177,11 +138,6 @@ class Account {
             print("Duplicate Nickname Check: Cannot Create URL.")
             return
         }
-//        guard let encodedNickname = nickname.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
-//            print("Duplicate Nickname Check: Cannot Encode Nickname.")
-//            return
-//        }
-//        print("\(encodedNickname)")
         nicknameCheckComponet.queryItems = [
             URLQueryItem(name: "nickname", value: nickname)
         ]
@@ -208,6 +164,49 @@ class Account {
                 print("Duplicate Nickname Check: Decode Error.")
             }
         }.resume()
+    }
+    
+}
+
+
+extension Account {
+    
+    func requestRefreshAuth() {
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Launch: 사용자 이메일을 불러올 수 없음.")
+            return
+        }
+
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+            print("Launch: 토큰을 불러올 수 없음.")
+            return
+        }
+
+        print("갱신요청")
+        Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data, statuscode) in
+            print(success)
+            guard let tokens = data as? RefreshModel else { return }
+            if success {
+
+                if let newAccessToken = tokens.result?.accessToken {
+                    let statusUpdateAccessToken = KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
+                    print(statusUpdateAccessToken)
+                    print(newAccessToken)
+                    if !statusUpdateAccessToken {
+                        print("Launch: 새로운 토큰 제대로 저장이 안되었어요~~~~")
+                    }
+                }
+            } else {
+                if statuscode == 400 {
+                    // 유효한 토큰입니다.
+                    print(tokens.errorMessage)
+                } else if statuscode == 403 {
+                    // 기간이 지난 토큰입니다.
+                    print(tokens.errorMessage)
+                }
+            }
+        }
     }
     
 }

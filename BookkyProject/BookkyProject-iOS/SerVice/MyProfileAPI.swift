@@ -135,7 +135,43 @@ class MyProfileAPI {
         }.resume()
     }
     
-    func update() {
+    func myProfileUpdate(accessToken: String, nickname: String, thumbnailString: String, completionHandler: @escaping(Any, Int) -> Void) {
+        let session = URLSession(configuration: URLSessionConfiguration.default)
+        let encodedThumbnail = "data:image/png;base64," + thumbnailString
         
+        let myProfileUpdateUpdateHttpBody: [String:String] = [
+            "nickname":nickname,
+            "images":encodedThumbnail
+        ]
+        guard let myProfileUpdateURL = URL(string: BookkyURL.baseURL + BookkyURL.myprofileUpdatePath) else {
+            print("MyProrile Update: Cannot Create URL.")
+            return
+        }
+        var request = URLRequest(url: myProfileUpdateURL)
+        request.httpMethod = "PUT"
+        let boundary = UUID().uuidString
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.setValue(accessToken, forHTTPHeaderField: "access-token")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: myProfileUpdateUpdateHttpBody, options: [])
+        
+        session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                print("My Profile Update: Error \(error.debugDescription)")
+                return
+            }
+            guard let data = data, let response = response as? HTTPURLResponse else {
+                print("My Profile Update: HTTP Request Failed.")
+                return
+            }
+            print("\(response.statusCode)")
+            print("\(response.description)")
+            do {
+                let decodedData: MyProfileUpdateUserData = try JSONDecoder().decode(MyProfileUpdateUserData.self, from: data)
+                print("My Profile Update: Success!")
+                completionHandler(decodedData, response.statusCode)
+            } catch {
+                print("My Profile Update: Decode Error.")
+            }
+        }.resume()
     }
 }

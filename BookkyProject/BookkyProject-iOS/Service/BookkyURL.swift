@@ -16,6 +16,7 @@ class BookkyURL {
     static let refreshURL = "/auth/refresh"
     //MyProfile
     static let myprofilePath = "/myprofile"
+    static let myprofileUpdatePath = "/user/myprofile"
     static let favoriteBookPath = "/user/favoritebook/"
     static let myPostsPath = "/user/mypost"
     static let myReviewsPath = "/user/myreview"
