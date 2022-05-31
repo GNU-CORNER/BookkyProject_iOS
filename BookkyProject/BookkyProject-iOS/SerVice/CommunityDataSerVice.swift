@@ -62,7 +62,7 @@ class CommunityAPI {
             return
         }
         let session = URLSession(configuration: .default)
-        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityTextDetail+"\(CommunityBoardNumber)/"+"\(PID)?mode=1") else {
+        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityTextDetail+"\(CommunityBoardNumber)/"+"\(PID)") else {
             print("Error : Cannot create URL")
             return
         }

@@ -21,20 +21,19 @@ class BoardTextDetailViewController: UIViewController {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var bookDetailCommentTableView: UITableView!
     @IBOutlet weak var secondLineStackView: UIStackView!
-    var replyContents: String = ""
+    var CommentContents: String = ""
     var PID : Int = 0
     var boardTypeNumber : Int = 0
     var writeTextDetailcommentData : [WriteTextDetailCommentdata] = []
     var commentCnt : Int =  0
-    var totalCommnet : [Any] = []
-    // 0 : 댓글 1 : 대댓글
-    var commentSection : Int = 0
-    var replyCommentNickName : String = ""
     @IBOutlet weak var postDetailView: UIView!
     //댓글달기
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var writeCommentButton: UIButton!
     @IBOutlet weak var CommentFooterView: UIView!
+    var tableViewfooterHeight :CGFloat = 0
+    var section : String = ""
+    var replyCommentContents : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableViewCell()
@@ -43,7 +42,7 @@ class BoardTextDetailViewController: UIViewController {
         getBoardTextDetailData()
         setBoardTextDetailUI()
         print("\(self.PID)")
-        
+       
         footerViewUISet()
         secondLineStackView.setCustomSpacing(5, after: self.textDetailViewsImage)
     }
@@ -60,6 +59,7 @@ class BoardTextDetailViewController: UIViewController {
     func setTableViewCell(){
         self.bookDetailCommentTableView.dataSource = self
         self.bookDetailCommentTableView.delegate = self
+        self.bookDetailCommentTableView.register(UINib(nibName: "CommentHeaderTableViewCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "CommentHeaderid")
         let cellNib = UINib(nibName: "BoardTextCommentTableViewCell", bundle: nil)
         self.bookDetailCommentTableView.register(cellNib, forCellReuseIdentifier: "BoardTextCommentTableViewCellid")
         let cellreplyNib = UINib(nibName: "CommunityReplyCommentTableViewCell", bundle: nil)
@@ -86,7 +86,6 @@ class BoardTextDetailViewController: UIViewController {
         self.likeThatButton.tintColor = .black
         let textCount = self.textDetailContentsLabel.text?.count ?? 0
         self.postDetailView.frame.size.height = 200+CGFloat((textCount/60)*20)
-        
         self.commentButton.tintColor = .black
     }
     func setCommentCount(model: WriteTextDetailData){
@@ -99,9 +98,8 @@ class BoardTextDetailViewController: UIViewController {
             if success{
                 guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
                 let writeTextDetailData = communityGetDetailList.result.postdata
-                self.writeTextDetailcommentData.append(contentsOf: communityGetDetailList.result.commentdata!)
-                
                 let commnetCount = communityGetDetailList.result
+                self.writeTextDetailcommentData = communityGetDetailList.result.commentdata ?? []
                 if communityGetDetailList.success{
                     DispatchQueue.main.async {
                         self.setBoardTextDetailData(model: writeTextDetailData)
@@ -115,8 +113,8 @@ class BoardTextDetailViewController: UIViewController {
         }
     }
     @IBAction func tapWriteComment(_ sender: UIButton) {
-        self.replyContents = self.commentTextView.text
-        self.postCommentWriteData(commnet: self.replyContents, parentID: 0, communityBoardNumber: self.boardTypeNumber, PID: self.PID)
+        self.CommentContents = self.commentTextView.text
+        self.postCommentWriteData(commnet: self.CommentContents, parentID: 0, communityBoardNumber: self.boardTypeNumber, PID: self.PID)
         self.writeTextDetailcommentData = []
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
             self.getBoardTextDetailData()
@@ -127,29 +125,24 @@ class BoardTextDetailViewController: UIViewController {
             
         }
     }
-    //    @objc func tapWrtieComment(sender: AnyObject){
-    //        print("버튼클릭")
-    //        self.postCommentWriteData(commnet: self.replyContents, parentID: 0, communityBoardNumber: self.boardTypeNumber, PID: self.PID)
-    //        self.writeTextDetailcommentData = []
-    //
-    //        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-    //            self.getBoardTextDetailData()
-    //        })
-    //
-    //
-    //
-    //    }
-    //    @objc func writeCommentTextField(textField : UITextField){
-    //        self.replyContents = "\(textField.text ?? "")"
-    //
-    //    }
-    @objc
-    func tapAddCommetFunction(_ sender : UIButton){
-        let contentView = sender.superview
-        let cell = contentView?.superview?.superview as! UITableViewCell
-        let indexPath = self.bookDetailCommentTableView.indexPath(for: cell)
-        self.commentTextView.text = self.writeTextDetailcommentData[indexPath?.row ?? 0].nickname
-        self.writeCommentButton.setTitle("대댓글 달기", for: .normal)
+    @objc func replyCommentText(_ textField: UITextField){
+        self.replyCommentContents = textField.text ?? ""
+    }
+    @objc func tapWriteReplyComment(_ sender: Any){
+        print("\(self.replyCommentContents)")
+    }
+    //대댓글 작성뷰 버튼 액션
+    @objc func tapAddCommetFunction(_ sender : Any){
+        let section : String = (sender as! CustomButton).section as? String ?? ""
+        self.section = section
+        if self.tableViewfooterHeight == 50 {
+            self.tableViewfooterHeight = 0
+            
+        }else if self.tableViewfooterHeight == 0 {
+            self.tableViewfooterHeight = 50
+            
+        }
+        self.bookDetailCommentTableView.reloadData()
     }
     
     private func postCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , PID : Int){
@@ -181,49 +174,74 @@ class BoardTextDetailViewController: UIViewController {
 }
 
 extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return self.writeTextDetailcommentData.count
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section !=  self.writeTextDetailcommentData.count+1{
+            let replyCommentFooterView = UIView(frame: CGRect(x: 25, y: 10, width: self.bookDetailCommentTableView.frame.width, height: 35))
+            let textView = UITextField(frame: CGRect(x: 25, y: 10, width: self.bookDetailCommentTableView.frame.width-100, height: 35))
+            replyCommentFooterView.addSubview(textView)
+            let writeReplyButton = CustomButton(frame:CGRect(x: self.bookDetailCommentTableView.frame.width-70, y: 10, width: 50, height: 30))
+            replyCommentFooterView.addSubview(writeReplyButton)
+//            textView.delegate = self
+//            textView.text = "내용을 입력해주세요"
+            textView.placeholder = "내용을 입력해주세요"
+            textView.textColor = UIColor.lightGray
+            textView.layer.borderWidth = 2
+            textView.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1)
+            textView.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
+            textView.layer.cornerRadius = 8
+            writeReplyButton.setTitle("대댓글 달기", for: .normal)
+            writeReplyButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+            writeReplyButton.tintColor = .white
+            writeReplyButton.layer.borderColor = UIColor(named: "PrimaryBlueColor")?.cgColor
+            writeReplyButton.layer.borderWidth = 1
+            writeReplyButton.layer.backgroundColor = UIColor(named: "PrimaryBlueColor")?.cgColor
+            writeReplyButton.layer.cornerRadius = 15
+//            writeReplyButton.section =
+            textView.addTarget(self, action: #selector(replyCommentText), for: .editingChanged)
+            writeReplyButton.addTarget(self, action: #selector(tapWriteReplyComment), for: .touchUpInside)
+            return replyCommentFooterView
+        }
+        return self.CommentFooterView
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if self.section == String(section) {
+           return self.tableViewfooterHeight
+        }
+        return 0
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            //            return postDetailView
-        }
-        return UIView()
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CommentHeaderid") as! CommentHeaderTableViewCell
+        headerView.userNameLabel.text = self.writeTextDetailcommentData[section].nickname
+        headerView.contentsLabel.text = self.writeTextDetailcommentData[section].comment
+        headerView.createDateLabel.text = self.writeTextDetailcommentData[section].updateAt
+        let likeCnt = self.writeTextDetailcommentData[section].like?.count ?? 0
+        headerView.likeCntLabel.text = "\(likeCnt)"
+        headerView.layer.addBorder([.top], color: UIColor(named: "lightGrayColor") ?? UIColor.gray, width : 1)
+        headerView.addFunctionButton.section = "\(section)"
+        headerView.addFunctionButton.addTarget(self, action: #selector(tapAddCommetFunction), for: .touchUpInside)
+        
+        return headerView
     }
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == 0 {
-            return self.CommentFooterView
-        }
-        return UIView()
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.writeTextDetailcommentData.count
     }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.writeTextDetailcommentData[section].childComment?.count ?? 0
+    }
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-            if self.writeTextDetailcommentData[indexPath.row].reply == 0 {
-                guard let cell  = bookDetailCommentTableView.dequeueReusableCell(withIdentifier: "BoardTextCommentTableViewCellid", for: indexPath)as? BoardTextCommentTableViewCell else {return UITableViewCell()}
-                cell.setComment(model: self.writeTextDetailcommentData[indexPath.row])
-                cell.commentFunctionButton.addTarget(self, action: #selector(tapAddCommetFunction(_:)), for: .touchUpInside)
-                
-                return cell
-            }else if self.writeTextDetailcommentData[indexPath.row].reply == 1 {
-                guard let cell  = bookDetailCommentTableView.dequeueReusableCell(withIdentifier: "BoardTextCommentReplyTableViewCellid", for: indexPath)as? CommunityReplyCommentTableViewCell else {return UITableViewCell()}
-                cell.setComment(model: self.writeTextDetailcommentData[indexPath.row])
-                //            cell.addMoreFunction.addTarget(self, action: #selector(tapAddCommetFunction), for: .touchUpInside)
-                //            print("\(indexPath)")
-                return cell
-            }
-            
-        }
-        return UITableViewCell()
+//        guard let cell  = bookDetailCommentTableView.dequeueReusableCell(withIdentifier: "BoardTextCommentTableViewCellid", for: indexPath)as? BoardTextCommentTableViewCell else {return UITableViewCell()}
+//        cell.setComment(model: self.writeTextDetailcommentData[indexPath.section])
+//        return cell
+        guard let replycell  = bookDetailCommentTableView.dequeueReusableCell(withIdentifier: "BoardTextCommentReplyTableViewCellid", for: indexPath)as? CommunityReplyCommentTableViewCell else {return UITableViewCell()}
+        replycell.setComment(model: (self.writeTextDetailcommentData[indexPath.section].childComment?[indexPath.row])!)
+        //            cell.addMoreFunction.addTarget(self, action: #selector(tapAddCommetFunction), for: .touchUpInside)
+        //            print("\(indexPath)")
+        return replycell
+        
     }
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        let height = tableView.estimatedRowHeight
-    //        return CGFloat(height)
-    //
-    //    }
 }
-
-
 extension BoardTextDetailViewController : UITextViewDelegate{
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
@@ -237,5 +255,12 @@ extension BoardTextDetailViewController : UITextViewDelegate{
             textView.textColor = UIColor.lightGray
         }
     }
+}
+class CustomButton : UIButton {
+    var section : String = ""
+    convenience init(section: String) {
+            self.init()
+            self.section = section
+        }
 }
 

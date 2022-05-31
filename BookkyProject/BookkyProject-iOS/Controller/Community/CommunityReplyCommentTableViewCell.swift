@@ -21,7 +21,7 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         // Initialization code
         BoardTextReplyCommentTableViewCellUI()
     }
-    func setComment(model: WriteTextDetailCommentdata ){
+    func setComment(model: ChildComment ){
         let likeCount = model.like?.count ?? 0
         self.userReplyCommentContentsLabel.text = model.comment
         self.replyCommentCreateAtLabel.text = model.updateAt

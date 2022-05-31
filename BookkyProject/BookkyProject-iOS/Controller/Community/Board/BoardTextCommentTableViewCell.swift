@@ -15,8 +15,6 @@ class BoardTextCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentLikeThatCntLabel: UILabel!
     //cnt->count
     @IBOutlet weak var commentFunctionButton: UIButton!
-    @IBOutlet weak var commentStackView: UIStackView!
-    
     @IBOutlet weak var TableViewCellContentView: UIView!
     var nickName : String = ""
     func setComment(model: WriteTextDetailCommentdata ){
