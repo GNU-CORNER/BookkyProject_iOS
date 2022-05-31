@@ -170,4 +170,44 @@ class Account {
         }
     }
     
+    func duplicateNicknameCheck(nickname: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
+        let session = URLSession(configuration: .default)
+        guard var nicknameCheckComponet = URLComponents(string: BookkyURL.baseURL + BookkyURL.nicknameCheckPath) else {
+            // - [ ] 닉네임 URL 생성 안되는 것 예외처리
+            print("Duplicate Nickname Check: Cannot Create URL.")
+            return
+        }
+//        guard let encodedNickname = nickname.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+//            print("Duplicate Nickname Check: Cannot Encode Nickname.")
+//            return
+//        }
+//        print("\(encodedNickname)")
+        nicknameCheckComponet.queryItems = [
+            URLQueryItem(name: "nickname", value: nickname)
+        ]
+        guard let nicknameCheckURL = nicknameCheckComponet.url else {
+            return
+        }
+        var request = URLRequest(url: nicknameCheckURL)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+
+        session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                print("Duplicate Nickname Check: Sender Error. \(error.debugDescription)")
+                return
+            }
+            guard let nicknameCheckData = data, let response = response as? HTTPURLResponse else {
+                print("Duplicate Nickname Check: HTTP Request Failed.")
+                return
+            }
+            do {
+                let decodedNicknameCheckData: MyprofileModel = try JSONDecoder().decode(MyprofileModel.self, from: nicknameCheckData)
+                completionHandler(decodedNicknameCheckData.success, decodedNicknameCheckData, response.statusCode)
+            } catch {
+                print("Duplicate Nickname Check: Decode Error.")
+            }
+        }.resume()
+    }
+    
 }

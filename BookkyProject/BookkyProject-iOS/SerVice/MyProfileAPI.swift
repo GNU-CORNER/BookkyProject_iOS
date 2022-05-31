@@ -135,4 +135,7 @@ class MyProfileAPI {
         }.resume()
     }
     
+    func update() {
+        
+    }
 }

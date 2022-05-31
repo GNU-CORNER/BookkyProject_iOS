@@ -12,6 +12,7 @@
 		68169249282B906C0066946A /* MyBooksMoreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68169248282B906C0066946A /* MyBooksMoreView.storyboard */; };
 		6816924C282B91B80066946A /* MyPostsMoreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6816924B282B91B80066946A /* MyPostsMoreView.storyboard */; };
 		6816924E282B925A0066946A /* MyReviewsMoreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6816924D282B925A0066946A /* MyReviewsMoreView.storyboard */; };
+		68307C3B2846004500109FBD /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68307C3A2846004500109FBD /* CameraHandler.swift */; };
 		683674BE282215B500CB618D /* MyTagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683674BD282215B500CB618D /* MyTagsCollectionViewCell.swift */; };
 		683674C0282215C200CB618D /* MyBooksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683674BF282215C200CB618D /* MyBooksCollectionViewCell.swift */; };
 		683674C2282215D500CB618D /* MyReviewsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683674C1282215D500CB618D /* MyReviewsCollectionViewCell.swift */; };
@@ -140,6 +141,7 @@
 		68169248282B906C0066946A /* MyBooksMoreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyBooksMoreView.storyboard; sourceTree = "<group>"; };
 		6816924B282B91B80066946A /* MyPostsMoreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPostsMoreView.storyboard; sourceTree = "<group>"; };
 		6816924D282B925A0066946A /* MyReviewsMoreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyReviewsMoreView.storyboard; sourceTree = "<group>"; };
+		68307C3A2846004500109FBD /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraHandler.swift; path = "BookkyProject-iOS/SerVice/CameraHandler.swift"; sourceTree = SOURCE_ROOT; };
 		683674BD282215B500CB618D /* MyTagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		683674BF282215C200CB618D /* MyBooksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksCollectionViewCell.swift; sourceTree = "<group>"; };
 		683674C1282215D500CB618D /* MyReviewsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				68169243282A85450066946A /* MyProfileAPI.swift */,
 				68169246282B8B530066946A /* RedirectView.swift */,
 				F8886F292821309300044737 /* CommunityDataSerVice.swift */,
+				68307C3A2846004500109FBD /* CameraHandler.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -861,6 +864,7 @@
 				F8E386A7282BE6AA006F9BDD /* TagMoreButtonViewController.swift in Sources */,
 				688DEDB3282D3349002F647A /* MyBooksMoreViewController.swift in Sources */,
 				68169247282B8B530066946A /* RedirectView.swift in Sources */,
+				68307C3B2846004500109FBD /* CameraHandler.swift in Sources */,
 				F8C10A8E2832C04F00D311F6 /* QnAWriteAnswerViewController.swift in Sources */,
 				F8260587282E840F006DB702 /* BookWriteReviewViewController.swift in Sources */,
 				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,

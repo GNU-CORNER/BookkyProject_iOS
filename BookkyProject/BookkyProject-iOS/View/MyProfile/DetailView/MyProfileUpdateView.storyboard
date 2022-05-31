@@ -25,7 +25,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ae-PL-BlD">
                                         <rect key="frame" x="118" y="0.0" width="128" height="128"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="북키프사" translatesAutoresizingMaskIntoConstraints="NO" id="Urb-vT-q2a">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="북키프사" translatesAutoresizingMaskIntoConstraints="NO" id="Urb-vT-q2a">
                                                 <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="128" id="jMm-wX-wGP"/>
@@ -40,7 +40,7 @@
                                                     <imageReference key="image" image="camera.circle.fill" catalog="system" symbolScale="large"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="UpdateMyprofileImage:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="dWi-WE-4m1"/>
+                                                    <action selector="pickMyProfileImage:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="D9C-bZ-Pyj"/>
                                                 </connections>
                                             </button>
                                         </subviews>
