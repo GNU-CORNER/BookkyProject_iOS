@@ -26,7 +26,7 @@ class BoardTableViewCell: UITableViewCell {
         
     }
     
-    func setBoardTableViewPostList(model :PostListData){
+    func setBoardPostList(model :PostListData){
         self.tittleLabel.text = model.title
         self.contentsLabel.text = model.contents
         self.PID = model.PID
@@ -34,6 +34,7 @@ class BoardTableViewCell: UITableViewCell {
         self.commentCountLabel.text = "\(model.commentCnt)"
         
     }
+    
     func setBoardTableViewCellUI(){
         self.contentsLabel.numberOfLines = 2
         self.contentsLabel.font = UIFont.systemFont(ofSize: 13)

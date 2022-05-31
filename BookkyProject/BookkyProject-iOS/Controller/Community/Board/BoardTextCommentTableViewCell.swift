@@ -16,27 +16,18 @@ class BoardTextCommentTableViewCell: UITableViewCell {
     //cnt->count
     @IBOutlet weak var commentFunctionButton: UIButton!
     @IBOutlet weak var commentStackView: UIStackView!
-    var childCommentData : [ChildComment] = []
     
+    @IBOutlet weak var TableViewCellContentView: UIView!
+    var nickName : String = ""
     func setComment(model: WriteTextDetailCommentdata ){
         let likeCount = model.like?.count ?? 0
         self.userCommentContentsLabel.text = model.comment
         self.commentCreateAtLabel.text = model.updateAt
         self.commentLikeThatCntLabel.text = "공감(\(likeCount))"
         self.userNameLabel.text = model.nickname
-        self.childCommentData = model.childComment ?? []
-       
-       
+        self.nickName = model.nickname
+    }
     
-    }
-    func setChildComment(model:ChildComment ){
-        let likeCount = model.like?.count ?? 0
-        self.userCommentContentsLabel.text = model.comment
-        self.commentCreateAtLabel.text = model.updateAt
-        self.commentLikeThatCntLabel.text = "공감(\(likeCount))"
-        self.userNameLabel.text = model.nickname
-        print("\(model)")
-    }
 
     private func BoardTextCommentTableViewCellUI(){
         self.userNameLabel.font = UIFont.boldSystemFont(ofSize: 12)
@@ -44,7 +35,12 @@ class BoardTextCommentTableViewCell: UITableViewCell {
         self.commentCreateAtLabel.font = UIFont.systemFont(ofSize: 10)
         self.commentCreateAtLabel.textColor  = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1)
         self.commentLikeThatCntLabel.font = UIFont.systemFont(ofSize: 10)
+        self.TableViewCellContentView.layer.addBorder([.top], color: UIColor(named: "lightGrayColor") ?? UIColor.gray, width: 1)
         
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
     }
     override func awakeFromNib() {
         super.awakeFromNib()

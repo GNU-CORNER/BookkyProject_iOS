@@ -249,7 +249,7 @@ Label</string>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <connections>
-                                                                        <action selector="tapGoFreeBoardButton:" destination="FD7-T1-M0R" eventType="touchUpInside" id="oCA-Pk-Hr8"/>
+                                                                        <action selector="tapGoFreeBoardButton:" destination="FD7-T1-M0R" eventType="touchUpInside" id="TsK-YK-2Hp"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfz-BD-VkC">
@@ -270,7 +270,7 @@ Label</string>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <connections>
-                                                                        <action selector="tapGoQnABoardButton:" destination="FD7-T1-M0R" eventType="touchUpInside" id="m3H-F6-5HO"/>
+                                                                        <action selector="tapGoQnABoardButton:" destination="FD7-T1-M0R" eventType="touchUpInside" id="hqV-Km-E9Z"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEJ-oX-YVq">
@@ -1081,7 +1081,7 @@ Label</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lPz-mM-zp7"/>
+        <segue reference="y9q-dC-Lfa"/>
         <segue reference="JiU-fP-bEe"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -24,5 +24,6 @@ class BookkyURL {
     static let communityPostListGetURL =  "/community/postlist/"
     static let communityWritePostURL = "/community/writepost/"
     static let communityTextDetail = "/community/postdetail/"
+    static let communityCommetPostURL = "/community/writecomment/"
     
 }

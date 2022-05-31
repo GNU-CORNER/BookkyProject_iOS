@@ -26,3 +26,23 @@ struct PostListData : Codable{
     let PID : Int
 
 }
+//Q&A DataFormat형식 다름
+struct WriteListQnAInformation: Codable {
+    let success : Bool
+    let result : TypeResultQnAList
+    let errorMessage : String
+}
+struct TypeResultQnAList : Codable{
+    let postList : [PostQnAListData]
+    let total_size : Int
+}
+struct PostQnAListData : Codable{
+    
+    let title : String
+    let contents : String
+    let commentCnt : Int
+    let likeCnt : Int
+    let replyCnt : Int
+    let PID : Int
+
+}

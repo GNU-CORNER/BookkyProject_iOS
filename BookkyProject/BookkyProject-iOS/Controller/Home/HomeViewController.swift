@@ -142,18 +142,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     @IBAction func tapGoRecommandButton(_ sender: UIButton) {
         tabBarController?.selectedIndex = 2
     }
-    @IBAction func tapGoFreeBoardButton(_ sender: UIButton) {
-        tabBarController?.selectedIndex = 1
-    }
-    @IBAction func tapGoQnABoardButton(_ sender: UIButton) {
+    
+    @IBAction func tapGoFreeBoardButton(_ sender: Any) {
         
-        tabBarController?.selectedIndex = 1
         let navigationController = tabBarController?.viewControllers![1] as! UINavigationController
-        let communityViewController = navigationController.topViewController as! CommunityViewController
-        communityViewController.boardTypeNumber = 2
-        
-        
+        guard let communityViewController = navigationController.topViewController as? CommunityViewController else {return}
+        communityViewController.boardTypeNumber = 0
+        tabBarController?.selectedIndex = 1
     }
+    @IBAction func tapGoQnABoardButton(_ sender: Any) {
+        let navigationController = tabBarController?.viewControllers![1] as! UINavigationController
+        guard let communityViewController = navigationController.topViewController as? CommunityViewController else {return}
+        communityViewController.boardTypeNumber = 2
+        tabBarController?.selectedIndex = 1 // 이동하는 함수 TabBar
+    }
+    
+    
 }
 
 

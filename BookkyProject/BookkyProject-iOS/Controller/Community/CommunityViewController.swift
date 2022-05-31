@@ -8,15 +8,13 @@
 import UIKit
 
 class CommunityViewController: UIViewController {
+//    var homeBoardSelect : Int = 0
     var boardTypeNumber : Int = 0
-    let freeBoard = Free()
-    let QnABoard = QnA()
-    let HotBoard = Hot()
-    let bookMarketBoard = BookMarket()
-    let myTextBoard = Mytext()
     var PID : Int = 0
     var postListFree : [PostListData] = []
     var postListBookMarket : [PostListData] = []
+    var postListQnA : [PostQnAListData] = []
+    var myPostList : [PostListData] = []
     // 좋아요개수 와 댓글개수
     
     var currentPage = 1
@@ -47,7 +45,7 @@ class CommunityViewController: UIViewController {
         
         self.boardTableView.delegate = self
         self.boardTableView.dataSource = self
-        self.boardTableView.reloadData()
+        self.SetQnACell()
         SetdropDownView()
         //searchButton
         self.searchButton?.tintColor = .black
@@ -56,7 +54,6 @@ class CommunityViewController: UIViewController {
         //초기화
         setinitCommunity()
         boardTypeColor()
-        communityGetWriteList()
         print("\(self.boardTypeNumber)boardTypeNumber")
     }
     func SetdropDownView(){
@@ -96,11 +93,22 @@ class CommunityViewController: UIViewController {
         
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        setDropDownMenu()
+        self.postListFree = []
+        self.postListQnA = []
+        self.postListBookMarket = []
         if self.boardTypeNumber == 2 {
             self.boardNameLabel.text = "Q&A 게시판"
-            setDropDownMenu()
+            communityGetWriteQnAList()
+        }else if self.boardTypeNumber == 1 {
+            self.boardNameLabel.text = "책 장터 게시판"
+            communityGetWriteList()
+        }else{
+            self.boardNameLabel.text = "자유 게시판"
+            communityGetWriteList()
         }
-        SetQnACell()
+        
+        print("\(self.boardTypeNumber)boardTypeNumber")
         
     }
     
@@ -132,6 +140,7 @@ class CommunityViewController: UIViewController {
             self.totalTextCount = 0
             self.currentTextCount = 0
             setDropDownMenu()
+            communityGetWriteList()
         }else if sender == self.bookMarketGoButton{
             self.boardTypeNumber = 1
             self.currentPage = 1
@@ -139,6 +148,7 @@ class CommunityViewController: UIViewController {
             self.totalTextCount = 0
             self.currentTextCount = 0
             setDropDownMenu()
+            communityGetWriteList()
         }else if sender == self.QnABoardGoButton{
             self.boardTypeNumber = 2
             self.currentPage = 1
@@ -146,6 +156,7 @@ class CommunityViewController: UIViewController {
             self.totalTextCount = 0
             self.currentTextCount = 0
             setDropDownMenu()
+            communityGetWriteQnAList()
         }else if sender == self.hotBoardGobutton{
             self.boardTypeNumber = 3
             setDropDownMenu()
@@ -153,7 +164,7 @@ class CommunityViewController: UIViewController {
             self.boardTypeNumber = 4
             setDropDownMenu()
         }
-        communityGetWriteList()
+        
         self.boardTableView.reloadData()
     }
     
@@ -223,20 +234,38 @@ class CommunityViewController: UIViewController {
         CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
             if success{
                 guard let communityGetWriteList = data as? WriteListInformation else {return}
-                
-                print("\(communityGetWriteList.result.postList.count)get받아오는 개수")
-                self.getPageDataCount = communityGetWriteList.result.postList.count
                 if self.boardTypeNumber == 0{
-                    
                     self.postListFree.append(contentsOf: communityGetWriteList.result.postList)
-                }else if self.boardTypeNumber == 1 {
+                }else if self.boardTypeNumber == 1  {
                     self.postListBookMarket.append(contentsOf: communityGetWriteList.result.postList)
                 }
+                self.getPageDataCount = communityGetWriteList.result.postList.count
                 self.totalTextCount = communityGetWriteList.result.total_size
                 self.currentTextCount+=self.getPageDataCount
+                print("\(communityGetWriteList.result.postList.count)get받아오는 개수")
                 if communityGetWriteList.success{
                     DispatchQueue.main.async {
                         
+                        self.boardTableView.reloadData()
+                    }
+                }else{
+                    print("통신오류")
+                }
+                
+            }
+        }
+    }
+    func communityGetWriteQnAList(){
+        CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
+            if success{
+                guard let communityGetWriteQnAList = data as? WriteListQnAInformation else {return}
+                self.postListQnA = communityGetWriteQnAList.result.postList
+                self.getPageDataCount = communityGetWriteQnAList.result.postList.count
+                self.totalTextCount = communityGetWriteQnAList.result.total_size
+                self.currentTextCount+=self.getPageDataCount
+                print("\(communityGetWriteQnAList.result.postList.count)get받아오는 개수")
+                if communityGetWriteQnAList.success{
+                    DispatchQueue.main.async {
                         self.boardTableView.reloadData()
                     }
                 }else{
@@ -250,7 +279,11 @@ class CommunityViewController: UIViewController {
         moreScroll = true
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
             self.currentPage+=1
-            self.communityGetWriteList()
+            if self.boardTypeNumber == 2 {
+                self.communityGetWriteQnAList()
+            }else {
+                self.communityGetWriteList()
+            }
             self.moreScroll = false
             self.boardTableView.reloadData()
             
@@ -261,11 +294,13 @@ class CommunityViewController: UIViewController {
             guard let boardTextDetailViewController = segue.destination as? BoardTextDetailViewController else {return}
             boardTextDetailViewController.PID = self.PID
             boardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
+            print("\(self.boardTypeNumber)")
         }else if segue.identifier == "QnAboardTextDetailSegueId"{
             guard let QnABoardTextDetailViewController = segue.destination as? QnABoardTextDetailViewController else {return}
             QnABoardTextDetailViewController.PID = self.PID
             QnABoardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
         }
+        print("\(self.PID)PID")
     }
     
 }
@@ -284,7 +319,7 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         }else if self.boardTypeNumber == 1 {
             return postListBookMarket.count
         }else if self.boardTypeNumber == 2 {
-            return 10
+            return postListQnA.count
         }else{
             return postListFree.count
         }
@@ -295,14 +330,11 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         guard let cell = boardTableView.dequeueReusableCell(withIdentifier: "boadrTableViewCellid", for: indexPath) as? BoardTableViewCell else { return UITableViewCell()}
         guard let QnACell = boardTableView.dequeueReusableCell(withIdentifier: "QnATableVIewCellid", for: indexPath) as? QnABoardTableViewCell else { return UITableViewCell()}
         if boardTypeNumber == 0 {
-            cell.setBoardTableViewPostList(model:postListFree[indexPath.row])
+            cell.setBoardPostList(model:postListFree[indexPath.row])
         }else if boardTypeNumber == 1{
-            cell.setBoardTableViewPostList(model:postListBookMarket[indexPath.row])
+            cell.setBoardPostList(model:postListBookMarket[indexPath.row])
         }else if boardTypeNumber == 2{
-            QnACell.titleLabel.text  = "테스트 제목"
-            QnACell.contentsLabel.text = "테스트 내용입니다 .테스트 내용입니다 . 테스트 내용입니다 테스트 내용입니다 .테스트 내용입니다 . 테스트 내용입니다 "
-            QnACell.commentLabel.text = "1"
-            QnACell.likeCntLabel.text = "2"
+            QnACell.setBoardPostQnAList(model: postListQnA[indexPath.row])
             return QnACell
         }
         //        else if boardTypeNumber == 4{
@@ -321,7 +353,6 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
             guard let QnACell = tableView.cellForRow(at: indexPath) as? QnABoardTableViewCell else {return}
             self.PID = QnACell.PID
             performSegue(withIdentifier: "QnAboardTextDetailSegueId", sender: indexPath.row)
-            print("QNa")
         }else {
             guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return}
             self.PID = cell.PID
@@ -329,7 +360,7 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         }
     }
     //무한스크롤
-    //스크롤 될때마다 
+    //스크롤 될때마다
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let totalScrollSize = scrollView.contentSize.height - scrollView.bounds.height
         let scrollSize = scrollView.contentOffset.y+50

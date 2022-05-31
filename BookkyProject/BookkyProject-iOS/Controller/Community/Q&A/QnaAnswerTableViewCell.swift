@@ -22,7 +22,15 @@ class QnaAnswerTableViewCell: UITableViewCell {
         super.awakeFromNib()
         setUI()
     }
-    
+    func setReplyData(model :WriteTextDetailQnAReplyData ){
+        self.userNameLabel.text = model.nickname
+        self.createDataLabel.text = model.createAt
+        self.contentsLabel.text = model.contents
+        self.likeCntLabel.setTitle("좋아요(\(model.like?.count ?? 0))", for: .normal)
+        self.choiceAnswerLabel.text = " "
+        self.commentButton.setTitle("댓글(\(model.commentCnt ?? 0))", for:.normal)
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

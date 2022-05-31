@@ -7,8 +7,3 @@
 
 import Foundation
 
-struct WritePostData : Codable {
-    let title : String
-    let contents : String
-//    let BID : Int
-}

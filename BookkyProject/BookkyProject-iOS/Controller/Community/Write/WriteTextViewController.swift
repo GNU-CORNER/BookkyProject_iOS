@@ -187,15 +187,15 @@ class WriteTextViewController: UIViewController {
     @IBAction func postTextContent(_ sender: UIButton) {
         let textTitle = writeTitleTextField.text ?? ""
         let textContent = writeContentTextView.text ?? ""
-        communityPostWriteData(textTitle: textTitle, textContetnt: textContent, boardTypeNumber: boardTypeNumber)
+        communityPostWriteData(textTitle: textTitle, textContetnt: textContent, boardTypeNumber: boardTypeNumber,parentQPID: 0)
         
         self.navigationController?.popViewController(animated: true)
         let communityViewController = storyboard?.instantiateViewController(withIdentifier: "CommunityViewController") as! CommunityViewController
         communityViewController.boardTableView?.reloadData()
         
     }
-    private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int){
-        CommunityAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber){(success,data)in
+    private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int , parentQPID : Int){
+        CommunityAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber , parentQPID : parentQPID ){(success,data)in
             if success {
                 print("post통신 성공")
             }else {

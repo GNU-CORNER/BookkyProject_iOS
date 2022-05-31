@@ -22,7 +22,15 @@ class QnABoardTableViewCell: UITableViewCell {
         // Initialization code
         setQnABoardTableViewCellUI()
     }
-
+    func setBoardPostQnAList(model : PostQnAListData){
+        self.titleLabel.text = model.title
+        self.contentsLabel.text = model.contents
+        self.likeCntLabel.text = "\(model.likeCnt)"
+        self.commentLabel.text = "\(model.commentCnt)"
+        self.replyCommetLabel.text = "\(model.replyCnt)\n답글"
+        self.PID = model.PID
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

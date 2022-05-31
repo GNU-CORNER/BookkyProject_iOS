@@ -33,8 +33,14 @@ class CommunityAPI {
                 return
             }
             do {
-                let CommunityWriteList = try JSONDecoder().decode(WriteListInformation.self, from: data)
-                completion(true,CommunityWriteList)
+                if CommunityBoardNumber == 2 {
+                    let CommunityWriteList = try JSONDecoder().decode(WriteListQnAInformation.self, from: data)
+                    completion(true,CommunityWriteList)
+                }else {
+                    let CommunityWriteList = try JSONDecoder().decode(WriteListInformation.self, from: data)
+                    completion(true,CommunityWriteList)
+                }
+                
             }
             
             catch(let err){
@@ -50,17 +56,20 @@ class CommunityAPI {
             return
         }
         guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
-//              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue)
+                //              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue)
         else {
             print("Launch: 토큰을 불러올 수 없음.")
             return
         }
         let session = URLSession(configuration: .default)
-        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityTextDetail+"\(CommunityBoardNumber)/"+"\(PID)") else {
+        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityTextDetail+"\(CommunityBoardNumber)/"+"\(PID)?mode=1") else {
             print("Error : Cannot create URL")
             return
         }
-        
+//        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityTextDetail+"\(CommunityBoardNumber)/"+"\(PID)") else {
+//            print("Error : Cannot create URL")
+//            return
+//        }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
@@ -76,8 +85,14 @@ class CommunityAPI {
                 return
             }
             do {
-                let CommunityTextDetail = try JSONDecoder().decode(WriteTextDetailInformation.self, from: data)
-                completion(true,CommunityTextDetail)
+                if CommunityBoardNumber == 2 {
+                    let CommunityTextQnADetail = try JSONDecoder().decode(WriteTextDetailQnAInformation.self, from: data)
+                    completion(true,CommunityTextQnADetail)
+                }else {
+                    let CommunityTextDetail = try JSONDecoder().decode(WriteTextDetailInformation.self, from: data)
+                    completion(true,CommunityTextDetail)
+                }
+                
             }
             
             catch(let err){
@@ -87,21 +102,57 @@ class CommunityAPI {
         }.resume()
         
     }
-    func postCommunityWrite(textTitle : String , textContent : String ,CommunityBoardNumber : Int,completionHandler : @escaping(Bool, Any) -> Void){
+    func postCommunityWrite(textTitle : String , textContent : String ,CommunityBoardNumber : Int ,parentQPID : Int,completionHandler : @escaping(Bool, Any) -> Void){
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
             print("Launch: 사용자 이메일을 불러올 수 없음.")
             return
         }
-      
+        
         guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
-//              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue)
+                //              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue)
         else {
             print("Launch: 토큰을 불러올 수 없음.")
             return
         }
-        let httpBody : [String:Any] = ["title":textTitle,"contents":textContent]
+        let httpBody : [String:Any] = ["title":textTitle,"contents":textContent ,"parentQPID":parentQPID,"Images":""]
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityWritePostURL+"\(CommunityBoardNumber)") else {
+            print("Error: Cannot create URL")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
+        request.setValue("application/json", forHTTPHeaderField: "accept")
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: httpBody, options: [])
+        session.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                print("Error: Community Write sender. \(String(describing: error))")
+                return
+            }
+            DispatchQueue.main.async {
+                let outputStr = String(data: data!, encoding: String.Encoding.utf8)
+                print("result: \(outputStr!)")
+            }
+        }.resume()
+    }
+    func postCommunityCommentWrite(comment : String , parentID : Int ,CommunityBoardNumber : Int ,PID : Int,completionHandler : @escaping(Bool, Any) -> Void){
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Launch: 사용자 이메일을 불러올 수 없음.")
+            return
+        }
+        
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
+                //              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue)
+        else {
+            print("Launch: 토큰을 불러올 수 없음.")
+            return
+        }
+        let httpBody : [String:Any] = ["comment":comment,"parentID":0 ,"PID":PID]
+        let session = URLSession(configuration: .default)
+        guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityCommetPostURL+"\(CommunityBoardNumber)") else {
             print("Error: Cannot create URL")
             return
         }
