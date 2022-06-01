@@ -62,12 +62,12 @@ class MyProfileViewController: UIViewController {
         
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
             print("MyProfile: 사용자 이메일을 불러올 수 없음.")
-            RedirectView.redirectLoginView(previousView: self)
+            RedirectView.loginView(previousView: self)
             return
         }
         guard let acessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
             print("MyProfile: 토큰을 불러올 수 없음.")
-            RedirectView.redirectLoginView(previousView: self)
+            RedirectView.loginView(previousView: self)
             return
         }
         self.requestMyprofile(accessToken: acessToken)
@@ -154,7 +154,7 @@ class MyProfileViewController: UIViewController {
                             } else if statuscode == 403 {
                                 // 유효하지 않은 토큰입니다. RefreshToken의 형식이 잘못됨
                                 // 로그인 화면 리다이렉트
-                                RedirectView.redirectLoginView(previousView: self)
+                                RedirectView.loginView(previousView: self)
                             } else if statuscode == 404 {
                                 // RefreshTokenStorage와의 연결이 끊김
                             } else if statuscode == 405 {
@@ -204,7 +204,7 @@ class MyProfileViewController: UIViewController {
     
 
     @IBAction func loginTestButton(_ sender: Any) {
-        RedirectView.redirectLoginView(previousView: self)
+        RedirectView.loginView(previousView: self)
     }
 
 }

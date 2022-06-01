@@ -58,9 +58,9 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
 //        self.myprofileUpdateCompleteButton.backgroundColor = UIColor(named: "primaryColor")
 //    }
     
-    private func requestDuplicateNicknameCheck() {
-        
-    }
+//    private func requestDuplicateNicknameCheck() {
+//
+//    }
 
     @IBAction func pickMyProfileImage(_ sender: Any) {
         CameraHandler.shared.actionSheetAlert(vc: self)

@@ -163,8 +163,8 @@ class MyProfileAPI {
                 print("My Profile Update: HTTP Request Failed.")
                 return
             }
-            print("\(response.statusCode)")
-            print("\(response.description)")
+//            print("\(response.statusCode)")
+//            print("\(response.description)")
             do {
                 let decodedData: MyProfileUpdateUserData = try JSONDecoder().decode(MyProfileUpdateUserData.self, from: data)
                 print("My Profile Update: Success!")

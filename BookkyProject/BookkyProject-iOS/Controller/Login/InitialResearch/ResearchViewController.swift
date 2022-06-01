@@ -9,7 +9,8 @@ import UIKit
 
 class ResearchViewController: UIViewController {
     
-    var tagsArray: [String] = ["React", "WEB", "JavaScript","Python","Machine Learning","C++","Java","AI","Angular","DB","Node.js","Android","Swift","Firebase","Network","C#","Unity","Flutter","Go"]
+    var tagsArray: [Tag] = []
+    var didSelectItemArray: Dictionary = [Int:String]()
 
     @IBOutlet weak var tagsCollectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
@@ -21,6 +22,23 @@ class ResearchViewController: UIViewController {
         self.tagsCollectionView.dataSource = self
         self.tagsCollectionView.delegate = self
         setDefaultView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // - [] tag 불러오기
+        UserTagHandler.shared.tags { (success, data, statuscode) in
+            if success {
+                guard let tagsData = data as? TagsModel else {
+                    return
+                }
+                self.tagsArray = tagsData.result.tag
+                DispatchQueue.main.async {
+                    self.tagsCollectionView.reloadData()
+                }
+            } else {
+                print("\(statuscode)")
+            }
+        }
     }
     
     private func setDefaultView() {
@@ -45,7 +63,7 @@ extension ResearchViewController: UICollectionViewDelegate, UICollectionViewData
             return UICollectionViewCell()
             
         }
-        cell.tagNameLabel.text = tagsArray[indexPath.row]
+        cell.tagNameLabel.text = tagsArray[indexPath.row].nameTag
         if cell.isSelected {
             cell.layer.backgroundColor = UIColor(named: "primaryColor")?.cgColor
             cell.tagNameLabel.textColor = .white
@@ -64,7 +82,9 @@ extension ResearchViewController: UICollectionViewDelegate, UICollectionViewData
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell else {
+            return
+        }
         cell.layer.backgroundColor = UIColor(named: "primaryColor")?.cgColor
         cell.tagNameLabel.textColor = .white
 
@@ -74,8 +94,7 @@ extension ResearchViewController: UICollectionViewDelegate, UICollectionViewData
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell
-        else {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell else {
             return
         }
         cell.layer.backgroundColor = UIColor(named: "lightGrayColor")?.cgColor

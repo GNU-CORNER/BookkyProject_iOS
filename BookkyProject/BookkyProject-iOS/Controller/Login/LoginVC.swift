@@ -79,7 +79,10 @@ class LoginVC: UIViewController {
                             print("Login : RT 저장이 안되었따.")
                         }
                     }
-                    
+                    // - [x] 사용자가 처음 로그인하는지 확인
+                    if UserDefaults.standard.bool(forKey: UserDefaultsModel.launchBefore.rawValue) {
+                        RedirectView.initialResearchView(presentView: self)
+                    }
                 }
             } else {
                 print(statuscode)

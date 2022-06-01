@@ -32,4 +32,6 @@ class BookkyURL {
     static let communityTextDetail = "/community/postdetail/"
     
     static let nicknameCheckPath = "/user/nickname"
+    
+    static let tagsPath = "/tags"
 }

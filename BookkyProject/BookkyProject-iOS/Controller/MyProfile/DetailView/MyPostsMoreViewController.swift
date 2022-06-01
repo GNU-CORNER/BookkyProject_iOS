@@ -24,12 +24,12 @@ class MyPostsMoreViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
             print("My Reviews: 사용자 이메일을 불러올 수 없음.")
-            RedirectView.redirectLoginView(previousView: self)
+            RedirectView.loginView(previousView: self)
             return
         }
         guard let accessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
             print("My Reivews: 사용자 토큰을 불러올 수 없음.")
-            RedirectView.redirectLoginView(previousView: self)
+            RedirectView.loginView(previousView: self)
             return
         }
         self.requestMyPosts(accessToken: accessToken)
