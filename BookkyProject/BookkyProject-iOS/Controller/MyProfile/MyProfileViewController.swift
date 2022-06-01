@@ -10,28 +10,28 @@ import UIKit
 class MyProfileViewController: UIViewController {
     
     var myTagsArray: [UserTagList] = [
-        UserTagList(tag: "iOS", tmid: 0),
+        UserTagList(tag: "iOS", tmid: 0)/*,
         UserTagList(tag: "Swift", tmid: 0),
         UserTagList(tag: "Xcode", tmid: 0),
         UserTagList(tag: "UIUX", tmid: 0),
         UserTagList(tag: "Python", tmid: 0),
         UserTagList(tag: "Django", tmid: 0),
-        UserTagList(tag: "iPhone", tmid: 0)
+        UserTagList(tag: "iPhone", tmid: 0)*/
     ]
     var myBooksArray: [FavoriteBookList] = [
-        FavoriteBookList(tbid: 0, title: "책제목 테스트입니다1", author: "", thumbnailImage: "", rating: 0),
+        FavoriteBookList(tbid: 0, title: "책제목 테스트입니다1", author: "", thumbnailImage: "", rating: 0)/*,
         FavoriteBookList(tbid: 0, title: "책제목 테스트입니다2", author: "", thumbnailImage: "", rating: 0),
         FavoriteBookList(tbid: 0, title: "책제목 테스트입니다3", author: "", thumbnailImage: "", rating: 0),
         FavoriteBookList(tbid: 0, title: "책제목 테스트입니다4", author: "", thumbnailImage: "", rating: 0),
-        FavoriteBookList(tbid: 0, title: "책제목 테스트입니다5", author: "", thumbnailImage: "", rating: 0)
+        FavoriteBookList(tbid: 0, title: "책제목 테스트입니다5", author: "", thumbnailImage: "", rating: 0)*/
     ]
     var myPostArray: [UserPostList] = [
-        UserPostList(title: "리뷰리뷰립류테스트1", contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", communityType: 0, pid: 0, commentCnt: 0, likeCnt: 0),
-        UserPostList(title: "립뷰뷰븁뷰뷰테스트2", contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", communityType: 0, pid: 0, commentCnt: 0, likeCnt: 0)
+        UserPostList(title: "리뷰리뷰립류테스트1", contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", communityType: 0, pid: 0, commentCnt: 0, likeCnt: 0)/*,
+        UserPostList(title: "립뷰뷰븁뷰뷰테스트2", contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~.안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~", communityType: 0, pid: 0, commentCnt: 0, likeCnt: 0)*/
     ]
     var myReviewsArray: [UserReviewList] = [
-        UserReviewList(rid: 0, tbid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "리뷰리뷰립류테스트1", thumbnail: ""),
-        UserReviewList(rid: 0, tbid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "립뷰뷰븁뷰뷰테스트2", thumbnail: "")
+        UserReviewList(rid: 0, tbid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "리뷰리뷰립류테스트1", thumbnail: "")/*,
+        UserReviewList(rid: 0, tbid: 0, uid: 0, contents: "안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..안녕하세요. 테스트입니다. 테스트 게시물 설명글 입니다만~..", views: 0, createAt: "", rating: 0, likeCnt: 0, isLiked: false, isAccessible: false, nickname: "", author: "", bookTitle: "립뷰뷰븁뷰뷰테스트2", thumbnail: "")*/
     ]
     
     @IBOutlet weak var userImageView: UIImageView!
@@ -73,6 +73,14 @@ class MyProfileViewController: UIViewController {
         self.requestMyprofile(accessToken: acessToken)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let myprofileUpdateVC = segue.destination as? MyProfileUpdateViewController else {
+            return
+        }
+        myprofileUpdateVC.thumbnailImageRecived = userImageView.image
+        myprofileUpdateVC.nicknameTextRecived = userName
+    }
+    
     // MARK: - Request MyProfile
     private func requestMyprofile(accessToken: String) {
         print("request MyProfile: 통신 요청")
@@ -85,15 +93,15 @@ class MyProfileViewController: UIViewController {
                 self.myPostArray = (myprofileData.result?.userPostList)!.reversed()
                 self.myReviewsArray = (myprofileData.result?.userReviewList)!.reversed()
                 DispatchQueue.main.async {
-                    self.setUserNameLabel((myprofileData.result?.userData?.nickname)!)
+                    self.userName = (myprofileData.result?.userData?.nickname)!
+                    self.setUserNameLabel(self.userName)
                     self.myTagsCollectionView.reloadData()
                     self.myBooksCollectionView.reloadData()
                     self.myPostCollectionView.reloadData()
                     self.myReviewsCollectionView.reloadData()
                     
                     /// load user thumbnail image
-                    guard let userThumbnailImageString = myprofileData.result?.userData?.userThumbnail
-                    else {
+                    guard let userThumbnailImageString = myprofileData.result?.userData?.userThumbnail else {
                         self.setDefaultUserImage(imageName: "북키프사")
                         return
                     }
@@ -190,7 +198,7 @@ class MyProfileViewController: UIViewController {
     private func registerNibCollectionViewCell() {
         
         self.myPostCollectionView.register(UINib(nibName: "MyPostsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyPostsCollectionViewCell")
-        
+
         self.myReviewsCollectionView.register(UINib(nibName: "MyReviewsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MyReviewsCollectionViewCell")
     }
     

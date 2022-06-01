@@ -15,6 +15,9 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var myprofileNoticeLabel: UILabel!
     @IBOutlet weak var myprofileUpdateCompleteButton: UIButton!
     
+    var thumbnailImageRecived: UIImage!
+    var nicknameTextRecived: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,6 +34,8 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
 //        guard let accessToken = KeychainManager.shared.read(userEmail: email, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
 //            return
 //        }
+        self.myprofileImageView.image = thumbnailImageRecived
+        self.myprofileNicknameTextField.text = nicknameTextRecived
     }
     
     private func accessToken() {
@@ -68,8 +73,6 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
     
     
     @IBAction func myProfileWillUpdate(_ sender: Any) {
-        // - [] 닉네임 형식 검사
-        
         // - [x] 이미지, 닉네임 가져오기
         guard let userNickname = self.myprofileNicknameTextField.text else {
             return
@@ -77,6 +80,8 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
         guard let userThumbnail = self.myprofileImageView.image?.imageToPNGString() else {
             return
         }
+        // - [ ] 닉네임 형식 검사
+
         // - [x] 닉네임 중복 검사
         Account.shared.duplicateNicknameCheck(nickname: userNickname) { (success, data, statuscode) in
             if success {
@@ -89,11 +94,10 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
                     return
                 }
                 MyProfileAPI.shared.myProfileUpdate(accessToken: accessToken, nickname: userNickname, thumbnailString: userThumbnail) { (data, statuscode) in
-                    // - [ ] redirect myprofile
                     print("프로필 수정에 성공했습니다.")
                     let alert = UIAlertController(title: "프로필을 수정했습니다.", message: nil, preferredStyle: .alert)
                     let check = UIAlertAction(title: "확인", style: .cancel) { (_) in
-                        
+                        // - [ ] redirect myprofile
                     }
                     alert.addAction(check)
                     DispatchQueue.main.async {
