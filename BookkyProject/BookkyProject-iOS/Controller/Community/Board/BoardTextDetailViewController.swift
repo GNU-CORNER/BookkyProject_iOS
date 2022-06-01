@@ -21,19 +21,24 @@ class BoardTextDetailViewController: UIViewController {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var bookDetailCommentTableView: UITableView!
     @IBOutlet weak var secondLineStackView: UIStackView!
-    var CommentContents: String = ""
-    var PID : Int = 0
-    var boardTypeNumber : Int = 0
-    var writeTextDetailcommentData : [WriteTextDetailCommentdata] = []
-    var commentCnt : Int =  0
     @IBOutlet weak var postDetailView: UIView!
-    //댓글달기
+    // MARK: - 댓글 View
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var writeCommentButton: UIButton!
     @IBOutlet weak var CommentFooterView: UIView!
-    var tableViewfooterHeight :CGFloat = 0
-    var section : String = ""
-    var replyCommentContents : String = ""
+    
+    var writeTextDetailcommentData : [WriteTextDetailCommentdata] = [] // 글상세정보 댓글 데이터를 위함
+    var PID : Int = 0 // POST ID
+    var boardTypeNumber : Int = 0 // 게시판 번호
+    var commentCnt : Int =  0 // 댓글 갯수
+    // MARK: - 대댓글 을 위한 변수
+    var section : Int = 0 //선택한 댓글에 대한 섹션
+    var replyparentID : Int = 0  // 대댓글 작성을 위한 댓글의 CID
+    var tableViewfooterHeight :CGFloat = 0 // footerView 높이(대댓글 작성 View)
+    var replytextField : UITextField! // 대댓글 텍스트 필드
+    var CommentContents: String = "" // 댓글 작성내용
+    var replyCommentContents : String = "" //대댓글 작성 내용
+    var replyCommentFooterView : UIView! //대댓글 View
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableViewCell()
@@ -41,7 +46,7 @@ class BoardTextDetailViewController: UIViewController {
         setNavigationUI()
         getBoardTextDetailData()
         setBoardTextDetailUI()
-        print("\(self.PID)")
+        print("\(self.PID)PID")
        
         footerViewUISet()
         secondLineStackView.setCustomSpacing(5, after: self.textDetailViewsImage)
@@ -56,15 +61,7 @@ class BoardTextDetailViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
     }
-    func setTableViewCell(){
-        self.bookDetailCommentTableView.dataSource = self
-        self.bookDetailCommentTableView.delegate = self
-        self.bookDetailCommentTableView.register(UINib(nibName: "CommentHeaderTableViewCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "CommentHeaderid")
-        let cellNib = UINib(nibName: "BoardTextCommentTableViewCell", bundle: nil)
-        self.bookDetailCommentTableView.register(cellNib, forCellReuseIdentifier: "BoardTextCommentTableViewCellid")
-        let cellreplyNib = UINib(nibName: "CommunityReplyCommentTableViewCell", bundle: nil)
-        self.bookDetailCommentTableView.register(cellreplyNib, forCellReuseIdentifier: "BoardTextCommentReplyTableViewCellid")
-    }
+   
     func setBoardTextDetailUI(){
         self.textDetailTitleLabel.font = UIFont.systemFont(ofSize: 20)
         self.textDetailCreateDateLabel.font = UIFont.systemFont(ofSize: 11)
@@ -74,6 +71,17 @@ class BoardTextDetailViewController: UIViewController {
         self.textDetailUserNickname.font = UIFont.systemFont(ofSize: 14)
         
     }
+    // protocol 및 xib파일 register
+    func setTableViewCell(){
+        self.bookDetailCommentTableView.dataSource = self
+        self.bookDetailCommentTableView.delegate = self
+        self.bookDetailCommentTableView.register(UINib(nibName: "CommentHeaderTableViewCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "CommentHeaderid")
+        let cellNib = UINib(nibName: "BoardTextCommentTableViewCell", bundle: nil)
+        self.bookDetailCommentTableView.register(cellNib, forCellReuseIdentifier: "BoardTextCommentTableViewCellid")
+        let cellreplyNib = UINib(nibName: "CommunityReplyCommentTableViewCell", bundle: nil)
+        self.bookDetailCommentTableView.register(cellreplyNib, forCellReuseIdentifier: "BoardTextCommentReplyTableViewCellid")
+    }
+    
     func setBoardTextDetailData(model :WriteTextDetailPostData ){
         self.textDetailTitleLabel.text = model.title
         self.textDetailCreateDateLabel.text = model.createAt
@@ -100,6 +108,7 @@ class BoardTextDetailViewController: UIViewController {
                 let writeTextDetailData = communityGetDetailList.result.postdata
                 let commnetCount = communityGetDetailList.result
                 self.writeTextDetailcommentData = communityGetDetailList.result.commentdata ?? []
+//                print("\(self.writeTextDetailcommentData )")
                 if communityGetDetailList.success{
                     DispatchQueue.main.async {
                         self.setBoardTextDetailData(model: writeTextDetailData)
@@ -112,39 +121,81 @@ class BoardTextDetailViewController: UIViewController {
             }
         }
     }
+    //댓글작성 버튼 클릭
     @IBAction func tapWriteComment(_ sender: UIButton) {
         self.CommentContents = self.commentTextView.text
         self.postCommentWriteData(commnet: self.CommentContents, parentID: 0, communityBoardNumber: self.boardTypeNumber, PID: self.PID)
         self.writeTextDetailcommentData = []
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+        replyCommentComplete()
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
             self.getBoardTextDetailData()
         })
         self.commentTextView.text = nil
-        if self.writeCommentButton.titleLabel?.text == "대댓글 달기"{
-            self.writeCommentButton.setTitle("댓글 달기", for: .normal)
-            
-        }
     }
+    //대댓글 작성 TextField
     @objc func replyCommentText(_ textField: UITextField){
         self.replyCommentContents = textField.text ?? ""
     }
+    //대댓글 작성 버튼
     @objc func tapWriteReplyComment(_ sender: Any){
-        print("\(self.replyCommentContents)")
+        self.tableViewfooterHeight = 0
+        self.postCommentWriteData(commnet: self.replyCommentContents, parentID: self.replyparentID, communityBoardNumber: self.boardTypeNumber, PID: self.PID)
+        replyCommentComplete()
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+            self.getBoardTextDetailData()
+        })
+       
+        
     }
-    //대댓글 작성뷰 버튼 액션
-    @objc func tapAddCommetFunction(_ sender : Any){
-        let section : String = (sender as! CustomButton).section as? String ?? ""
-        self.section = section
-        if self.tableViewfooterHeight == 50 {
-            self.tableViewfooterHeight = 0
-            
-        }else if self.tableViewfooterHeight == 0 {
-            self.tableViewfooterHeight = 50
-            
+    // 글작성 완료 alert ,동기 비동기 문제로 대댓글 작성칸이 사라지지 않아 추가를 함!
+    func replyCommentComplete(){
+        let alert = UIAlertController(title: "글작성이 완료 되었습니다.", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "확인", style: .cancel)
+        alert.addAction(cancel)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
         }
-        self.bookDetailCommentTableView.reloadData()
     }
-    
+    private func replyCommentActionsheet(){
+        let alert = UIAlertController(title: "대댓글 메뉴", message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let report = UIAlertAction(title: "신고", style: .destructive)
+        let delete = UIAlertAction(title: "대댓글 삭제", style: .destructive)
+        let update = UIAlertAction(title: "대댓글 수정", style: .default)
+        alert.addAction(cancel)
+        alert.addAction(report)
+        alert.addAction(delete)
+        alert.addAction(update)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    //대댓글 작성뷰 버튼 액션 '...'버튼
+    @objc func tapAddCommetFunction(_ sender : Any){
+        let alert = UIAlertController(title: "댓글 메뉴", message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let report = UIAlertAction(title: "신고", style: .destructive)
+        let delete = UIAlertAction(title: "댓글 삭제", style: .destructive)
+        let update = UIAlertAction(title: "댓글 수정", style: .default)
+        let writeComment = UIAlertAction(title: "대댓글 작성", style: .default){(_) in
+            let section : Int = (sender as! CustomButton).section
+            let parentID : Int = (sender as! CustomButton).parentID
+            self.replyparentID = parentID
+            self.section = section
+            self.tableViewfooterHeight = 50
+            self.getBoardTextDetailData()
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(report)
+        alert.addAction(delete)
+        alert.addAction(update)
+        alert.addAction(writeComment)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+        
+    }
     private func postCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , PID : Int){
         CommunityAPI.shared.postCommunityCommentWrite(comment: commnet, parentID: parentID, CommunityBoardNumber: communityBoardNumber, PID: PID) {(succes,data) in
             if succes{
@@ -176,20 +227,17 @@ class BoardTextDetailViewController: UIViewController {
 extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section !=  self.writeTextDetailcommentData.count+1{
-            let replyCommentFooterView = UIView(frame: CGRect(x: 25, y: 10, width: self.bookDetailCommentTableView.frame.width, height: 35))
-            let textView = UITextField(frame: CGRect(x: 25, y: 10, width: self.bookDetailCommentTableView.frame.width-100, height: 35))
-            replyCommentFooterView.addSubview(textView)
-            let writeReplyButton = CustomButton(frame:CGRect(x: self.bookDetailCommentTableView.frame.width-70, y: 10, width: 50, height: 30))
-            replyCommentFooterView.addSubview(writeReplyButton)
+            self.replyCommentFooterView = UIView(frame: CGRect(x: 25, y: 10, width: self.bookDetailCommentTableView.frame.width, height: 35))
+            self.replytextField = UITextField(frame: CGRect(x: 30, y: 10, width: self.bookDetailCommentTableView.frame.width-100, height: 30))
+            let writeReplyButton = UIButton(frame:CGRect(x: self.bookDetailCommentTableView.frame.width-70, y: 10, width: 50, height: 30))
 //            textView.delegate = self
 //            textView.text = "내용을 입력해주세요"
-//            textView.textColor = UIColor.lightGray
-            textView.placeholder = "내용을 입력해주세요"
-
-            textView.layer.borderWidth = 2
-            textView.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1)
-            textView.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
-            textView.layer.cornerRadius = 8
+            self.replytextField.placeholder = "내용을 입력해주세요"
+            self.replytextField.layer.borderWidth = 2
+            self.replytextField.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1)
+            self.replytextField.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
+            self.replytextField.layer.cornerRadius = 8
+            self.replytextField.clearButtonMode = .whileEditing
             writeReplyButton.setTitle("대댓글 달기", for: .normal)
             writeReplyButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
             writeReplyButton.tintColor = .white
@@ -197,18 +245,22 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
             writeReplyButton.layer.borderWidth = 1
             writeReplyButton.layer.backgroundColor = UIColor(named: "PrimaryBlueColor")?.cgColor
             writeReplyButton.layer.cornerRadius = 15
-//            writeReplyButton.section =
-            textView.addTarget(self, action: #selector(replyCommentText), for: .editingChanged)
+            self.replytextField.addTarget(self, action: #selector(replyCommentText), for: .editingChanged)
             writeReplyButton.addTarget(self, action: #selector(tapWriteReplyComment), for: .touchUpInside)
-            return replyCommentFooterView
+            
+            self.replyCommentFooterView.addSubview(self.replytextField)
+            self.replyCommentFooterView.addSubview(writeReplyButton)
+            return self.replyCommentFooterView
         }
         return self.CommentFooterView
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if self.section == String(section) {
+        if self.section == section {
+            print("\(self.tableViewfooterHeight)")
            return self.tableViewfooterHeight
         }
         return 0
+        
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "CommentHeaderid") as! CommentHeaderTableViewCell
@@ -218,7 +270,8 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
         let likeCnt = self.writeTextDetailcommentData[section].like?.count ?? 0
         headerView.likeCntLabel.text = "\(likeCnt)"
         headerView.layer.addBorder([.top], color: UIColor(named: "lightGrayColor") ?? UIColor.gray, width : 1)
-        headerView.addFunctionButton.section = "\(section)"
+        headerView.addFunctionButton.section = section
+        headerView.addFunctionButton.parentID = self.writeTextDetailcommentData[section].CID
         headerView.addFunctionButton.addTarget(self, action: #selector(tapAddCommetFunction), for: .touchUpInside)
         
         return headerView
@@ -232,13 +285,11 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell  = bookDetailCommentTableView.dequeueReusableCell(withIdentifier: "BoardTextCommentTableViewCellid", for: indexPath)as? BoardTextCommentTableViewCell else {return UITableViewCell()}
-//        cell.setComment(model: self.writeTextDetailcommentData[indexPath.section])
-//        return cell
         guard let replycell  = bookDetailCommentTableView.dequeueReusableCell(withIdentifier: "BoardTextCommentReplyTableViewCellid", for: indexPath)as? CommunityReplyCommentTableViewCell else {return UITableViewCell()}
         replycell.setComment(model: (self.writeTextDetailcommentData[indexPath.section].childComment?[indexPath.row])!)
-        //            cell.addMoreFunction.addTarget(self, action: #selector(tapAddCommetFunction), for: .touchUpInside)
-        //            print("\(indexPath)")
+        replycell.buttonAction = {
+            self.replyCommentActionsheet()
+        }
         return replycell
         
     }
@@ -258,10 +309,12 @@ extension BoardTextDetailViewController : UITextViewDelegate{
     }
 }
 class CustomButton : UIButton {
-    var section : String = ""
-    convenience init(section: String) {
-            self.init()
-            self.section = section
+    var section : Int = 0
+    var parentID : Int = 0
+    convenience init(section: Int,parentID : Int) {
+        self.init()
+        self.section = section
+        self.parentID = parentID
         }
 }
 

@@ -150,7 +150,7 @@ class CommunityAPI {
             print("Launch: 토큰을 불러올 수 없음.")
             return
         }
-        let httpBody : [String:Any] = ["comment":comment,"parentID":0 ,"PID":PID]
+        let httpBody : [String:Any] = ["comment":comment,"parentID":parentID ,"PID":PID]
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityCommetPostURL+"\(CommunityBoardNumber)") else {
             print("Error: Cannot create URL")

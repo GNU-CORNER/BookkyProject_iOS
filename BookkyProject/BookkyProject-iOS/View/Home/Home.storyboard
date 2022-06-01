@@ -1081,8 +1081,8 @@ Label</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="y9q-dC-Lfa"/>
-        <segue reference="JiU-fP-bEe"/>
+        <segue reference="Wun-3I-KCd"/>
+        <segue reference="GOj-gx-B2b"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clear" catalog="system" width="128" height="114"/>

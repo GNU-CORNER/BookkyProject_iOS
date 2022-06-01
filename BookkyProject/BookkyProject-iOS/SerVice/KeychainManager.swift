@@ -46,8 +46,8 @@ class KeychainManager {
         }
         guard let result = String(data: data, encoding: .utf8) else { return nil }
         print("keychain 읽기")
-        print(itemLabel)
-        print(result)
+//        print(itemLabel)
+//        print(result)
         return result
     }
     

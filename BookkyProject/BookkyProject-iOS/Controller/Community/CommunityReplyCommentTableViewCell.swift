@@ -14,8 +14,8 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var replyCommentCreateAtLabel: UILabel!
     @IBOutlet weak var replyCommentLikeCntLabel: UILabel!
     @IBOutlet weak var replyTableViewCellStackView: UIStackView!
-    
     @IBOutlet weak var addMoreFunction: UIButton!
+    var buttonAction: (()->Void)? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -47,4 +47,7 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func tapAddFunction(_ sender: UIButton) {
+        buttonAction?()
+    }
 }

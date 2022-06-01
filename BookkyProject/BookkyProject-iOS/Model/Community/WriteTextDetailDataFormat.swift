@@ -48,14 +48,17 @@ struct WriteTextDetailPostData : Codable {
 //}
 //2차원배열
 struct WriteTextDetailCommentdata : Codable{
+//    let parentID : Int
     let comment : String
     let updateAt : String
     let like : [Int]?
     let nickname : String
     let thumbnail : String?
     let childComment : [ChildComment]?
+    let CID : Int
 }
 struct ChildComment : Codable{
+//    let parentID : Int
     let comment : String
     let updateAt : String
     let like : [Int]?
