@@ -97,16 +97,19 @@ class CommunityViewController: UIViewController {
         self.postListFree = []
         self.postListQnA = []
         self.postListBookMarket = []
-        if self.boardTypeNumber == 2 {
-            self.boardNameLabel.text = "Q&A 게시판"
-            communityGetWriteQnAList()
-        }else if self.boardTypeNumber == 1 {
-            self.boardNameLabel.text = "책 장터 게시판"
-            communityGetWriteList()
-        }else{
-            self.boardNameLabel.text = "자유 게시판"
-            communityGetWriteList()
-        }
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+            if self.boardTypeNumber == 2 {
+                self.boardNameLabel.text = "Q&A 게시판"
+                self.communityGetWriteQnAList()
+            }else if self.boardTypeNumber == 1 {
+                self.boardNameLabel.text = "책 장터 게시판"
+                self.communityGetWriteList()
+            }else{
+                self.boardNameLabel.text = "자유 게시판"
+                self.communityGetWriteList()
+            }
+        })
+        
         
         print("\(self.boardTypeNumber)boardTypeNumber")
         

@@ -183,8 +183,9 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
             replyCommentFooterView.addSubview(writeReplyButton)
 //            textView.delegate = self
 //            textView.text = "내용을 입력해주세요"
+//            textView.textColor = UIColor.lightGray
             textView.placeholder = "내용을 입력해주세요"
-            textView.textColor = UIColor.lightGray
+
             textView.layer.borderWidth = 2
             textView.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1)
             textView.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
