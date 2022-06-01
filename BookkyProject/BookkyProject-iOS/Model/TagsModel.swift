@@ -10,11 +10,11 @@ import Foundation
 // MARK: - TagModel
 struct TagsModel: Codable {
     let success: Bool
-    let result: TagsResult
+    let result: TagsResult?
     let errorMessage: String
 }
 
-// MARK: - Result
+// MARK: - TagsResult
 struct TagsResult: Codable {
     let tag: [Tag]
 }
@@ -28,4 +28,15 @@ struct Tag: Codable {
         case tmid = "TMID"
         case nameTag, searchName
     }
+}
+
+// MARK: - TagsSettingModel
+struct TagsSettingModel: Codable {
+    let success: Bool
+    let result: TagsSettingResult?
+    let errorMessage: String
+}
+// MARK: - TagsSettingResult
+struct TagsSettingResult: Codable {
+    let tag: [String]
 }

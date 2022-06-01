@@ -20,6 +20,7 @@ class BookkyURL {
     static let favoriteBookPath = "/user/favoritebook/"
     static let myPostsPath = "/user/mypost"
     static let myReviewsPath = "/user/myreview"
+    static let userTagsPath = "/user/tag"
     //Home
     static let HomeURL = "/home"
     static let tagURL = "/books/tag/"

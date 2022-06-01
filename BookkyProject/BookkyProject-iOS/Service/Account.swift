@@ -10,6 +10,7 @@ import Foundation
 class Account {
     static var shared = Account()
     
+    // MARK: - Signup
     func signup(userNickName: String, userEmail: String, userPassword: String, completion: @escaping(Bool, Any) -> Void) {
         let slug = "0"
         let singupHttpBody: [String:Any] = [
@@ -46,6 +47,7 @@ class Account {
         }.resume()
     }
     
+    // MARK: - Login(Signin)
     func login(userEmail: String, userPassword: String, completion: @escaping(Bool, Any, Int) -> Void) {
         let slug = "0"
         let signInHttpBody: [String:Any] = [
@@ -86,14 +88,17 @@ class Account {
         }.resume()
     }
     
-    func logout() {
+    // MARK: - Signout
+    func signout() {
+        // - [] API 호출. 이 함수를 호출한 곳에 컴플리션 핸들러 넘겨주기 (거기서 Keychain, UserDefault 모두 초기화 해주기!)
+    }
+    
+    // MARK: - Withdrawal
+    private func Withdrawal() {
         
     }
     
-    private func userDelete() {
-        
-    }
-    
+    // MARK: - Refresh Access-Token (Auth)
     func refreshAuth(accessToken: String, refreshToken: String, completion: @escaping(Bool, Any, Int) -> Void) {
         
         let session = URLSession(configuration: .default)
@@ -131,6 +136,7 @@ class Account {
         }.resume()
     }
     
+    // MARK: - Duplicate Nickname Check
     func duplicateNicknameCheck(nickname: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
         let session = URLSession(configuration: .default)
         guard var nicknameCheckComponet = URLComponents(string: BookkyURL.baseURL + BookkyURL.nicknameCheckPath) else {

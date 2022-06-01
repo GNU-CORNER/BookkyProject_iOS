@@ -20,3 +20,16 @@ class SettingsViewController: UIViewController {
     
 
 }
+
+extension SettingsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 8 {
+            // 사용자 로그아웃
+            
+        } else if indexPath.row == 9 {
+            // 사용자 회원탈퇴
+        }
+        
+    }
+}
