@@ -22,7 +22,7 @@ class SettingsViewController: UITableViewController {
             Account.shared.requestSignout(vc: self)
         } else if indexPath.row == 9 {
             // - [] 회원탈퇴
-            
+            Account.shared.requestWithdrawal(vc: self)
         }
     }
 }

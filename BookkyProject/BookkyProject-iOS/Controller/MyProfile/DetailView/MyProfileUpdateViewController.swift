@@ -50,7 +50,12 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
         self.myprofileNicknameTextField.layer.cornerRadius = 8.0
         self.myprofileUpdateCompleteButton.backgroundColor = UIColor(named: "primaryColor")
         self.myprofileUpdateCompleteButton.layer.cornerRadius = 8.0
-//        self.myprofileUpdateCompleteButton.isEnabled = false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        /// enter 버튼을 누르면 keyboard가 내려가도록 설정
+        textField.resignFirstResponder()
+        return true
     }
     
 //    func textFieldDidBeginEditing(_ textField: UITextField) {

@@ -91,7 +91,7 @@ class Account {
     
     // MARK: - Signout
     func signout(_ accessToken: String, _ refreshToken: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
-        // - [] API 호출. 이 함수를 호출한 곳에 컴플리션 핸들러 넘겨주기 (거기서 Keychain, UserDefault 모두 초기화 해주기!)
+        // - [x] API 호출. 이 함수를 호출한 곳에 컴플리션 핸들러 넘겨주기 (거기서 Keychain, UserDefault 모두 초기화 해주기!)
         let session = URLSession(configuration: .default)
         guard let signoutURL = URL(string: BookkyURL.baseURL + BookkyURL.signoutPath) else {
             print("Signout: Cannot Create URL.")
@@ -123,8 +123,37 @@ class Account {
     }
     
     // MARK: - Withdrawal
-    private func Withdrawal() {
+    private func Withdrawal(accessToken: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
+        let session = URLSession(configuration: .default)
+        guard let withdrawalURL = URL(string: BookkyURL.baseURL + BookkyURL.userPath) else {
+            print("Withdrawal: Cannot Create URL.")
+            return
+        }
+        var request = URLRequest(url: withdrawalURL)
+        request.httpMethod = "DELETE"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(accessToken, forHTTPHeaderField: "access-token")
         
+        session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                print("Withdrawal: Error. \(error.debugDescription)")
+                return
+            }
+            guard let data = data else {
+                return
+            }
+            guard let response = response as? HTTPURLResponse else {
+                return
+            }
+            do {
+                let decodedData: SignupModel = try JSONDecoder().decode(SignupModel.self, from: data)
+                print(decodedData.errorMessage)
+                completionHandler(decodedData.success, decodedData, response.statusCode)
+            } catch {
+                print(response.statusCode)
+                print("Withdrawal: Decode Error.")
+            }
+        }.resume()
     }
     
     // MARK: - Refresh Access-Token (Auth)
@@ -261,6 +290,7 @@ extension Account {
                 let alert = UIAlertController(title: "로그아웃 되었습니다.", message: nil, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "확인", style: .default) { (_) in
                     vc.tabBarController?.selectedIndex = 0
+                    vc.navigationController?.popViewController(animated: false)
                 }
                 alert.addAction(okAction)
                 // - [] AT, RT, email 삭제하기
@@ -276,6 +306,41 @@ extension Account {
             } else {
                 print("로그아웃이 잘 안되었습니다.")
                 print("\(statuscode)")
+            }
+        }
+    }
+    
+    func requestWithdrawal(vc: UIViewController) {
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Signout: 사용자 이메일을 불러올 수 없음.")
+            return
+        }
+
+        guard let accessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+            print("Signout: 토큰을 불러올 수 없음.")
+            return
+        }
+        
+        Account.shared.Withdrawal(accessToken: accessToken) { (success, data, statuscode) in
+            if success {
+                let alert = UIAlertController(title: "회원탈퇴 되었습니다.", message: nil, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "확인", style: .default) { (_) in
+                    vc.tabBarController?.selectedIndex = 0
+                    vc.navigationController?.popViewController(animated: false)
+                }
+                alert.addAction(okAction)
+                // - [] AT, RT, email 삭제하기
+                UserDefaults.standard.removeObject(forKey: UserDefaultsModel.email.rawValue)
+                
+                if KeychainManager.shared.delete(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) && KeychainManager.shared.delete(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) {
+                    DispatchQueue.main.async {
+                        vc.present(alert, animated: true)
+                    }
+                } else {
+                    print("AT, RT 삭제가 안되었는데영..")
+                }
+            } else {
+                
             }
         }
     }
