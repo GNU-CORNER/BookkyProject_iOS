@@ -39,17 +39,19 @@ class BoardTextDetailViewController: UIViewController {
     var CommentContents: String = "" // 댓글 작성내용
     var replyCommentContents : String = "" //대댓글 작성 내용
     var replyCommentFooterView : UIView! //대댓글 View
+    //이전에 어떤 게시판인지
+    var previousBoardNumber : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableViewCell()
-        
         setNavigationUI()
         getBoardTextDetailData()
         setBoardTextDetailUI()
-        print("\(self.PID)PID")
-       
         footerViewUISet()
         secondLineStackView.setCustomSpacing(5, after: self.textDetailViewsImage)
+        print("\(self.PID)")
+        print("\(self.previousBoardNumber)pr갱")
+        print("\(self.boardTypeNumber)board갱")
     }
     func setNavigationUI(){
         if self.boardTypeNumber == 0 {
@@ -149,7 +151,7 @@ class BoardTextDetailViewController: UIViewController {
     }
     // 글작성 완료 alert ,동기 비동기 문제로 대댓글 작성칸이 사라지지 않아 추가를 함!
     func replyCommentComplete(){
-        let alert = UIAlertController(title: "글작성이 완료 되었습니다.", message: nil, preferredStyle: .alert)
+        let alert = UIAlertController(title: "작성이 완료 되었습니다.", message: nil, preferredStyle: .alert)
         let cancel = UIAlertAction(title: "확인", style: .cancel)
         alert.addAction(cancel)
         DispatchQueue.main.async {
@@ -172,14 +174,18 @@ class BoardTextDetailViewController: UIViewController {
     }
     //대댓글 작성뷰 버튼 액션 '...'버튼
     @objc func tapAddCommetFunction(_ sender : Any){
+        let section : Int = (sender as! CustomButton).section
+        let parentID : Int = (sender as! CustomButton).parentID
         let alert = UIAlertController(title: "댓글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         let report = UIAlertAction(title: "신고", style: .destructive)
-        let delete = UIAlertAction(title: "댓글 삭제", style: .destructive)
-        let update = UIAlertAction(title: "댓글 수정", style: .default)
+        let delete = UIAlertAction(title: "댓글 삭제", style: .destructive){(_) in
+            
+        }
+        let update = UIAlertAction(title: "댓글 수정", style: .default){(_)in
+            
+        }
         let writeComment = UIAlertAction(title: "대댓글 작성", style: .default){(_) in
-            let section : Int = (sender as! CustomButton).section
-            let parentID : Int = (sender as! CustomButton).parentID
             self.replyparentID = parentID
             self.section = section
             self.tableViewfooterHeight = 50
@@ -268,7 +274,7 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
         headerView.contentsLabel.text = self.writeTextDetailcommentData[section].comment
         headerView.createDateLabel.text = self.writeTextDetailcommentData[section].updateAt
         let likeCnt = self.writeTextDetailcommentData[section].like?.count ?? 0
-        headerView.likeCntLabel.text = "\(likeCnt)"
+        headerView.likeCntLabel.text = "공감(\(likeCnt))"
         headerView.layer.addBorder([.top], color: UIColor(named: "lightGrayColor") ?? UIColor.gray, width : 1)
         headerView.addFunctionButton.section = section
         headerView.addFunctionButton.parentID = self.writeTextDetailcommentData[section].CID
@@ -308,6 +314,8 @@ extension BoardTextDetailViewController : UITextViewDelegate{
         }
     }
 }
+
+
 class CustomButton : UIButton {
     var section : Int = 0
     var parentID : Int = 0
@@ -317,4 +325,3 @@ class CustomButton : UIButton {
         self.parentID = parentID
         }
 }
-

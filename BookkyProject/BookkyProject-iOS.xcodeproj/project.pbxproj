@@ -101,6 +101,7 @@
 		F88EF53427FD86A400634696 /* BoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88EF53327FD86A400634696 /* BoardTableViewCell.swift */; };
 		F89297752844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89297732844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.swift */; };
 		F89297762844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F89297742844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.xib */; };
+		F899B5CF28485D55000A03D7 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5CE28485D55000A03D7 /* CustomButton.swift */; };
 		F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */; };
 		F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */; };
 		F8B3126828327C2000E01201 /* QnABoardTextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */; };
@@ -239,6 +240,7 @@
 		F88EF53327FD86A400634696 /* BoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTableViewCell.swift; sourceTree = "<group>"; };
 		F89297732844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityReplyCommentTableViewCell.swift; sourceTree = "<group>"; };
 		F89297742844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityReplyCommentTableViewCell.xib; sourceTree = "<group>"; };
+		F899B5CE28485D55000A03D7 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionReusableViewHeader.swift; sourceTree = "<group>"; };
 		F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnABoardTextDetailViewController.swift; sourceTree = "<group>"; };
@@ -572,6 +574,23 @@
 			path = MyProfile;
 			sourceTree = "<group>";
 		};
+		F840D07F2847ACF900CB0F3C /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
+		F840D0802847AED300CB0F3C /* CommunityPostList */ = {
+			isa = PBXGroup;
+			children = (
+				F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */,
+				F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */,
+			);
+			path = CommunityPostList;
+			sourceTree = "<group>";
+		};
 		F87431982802FFEE003EA8C0 /* ExtensionUI */ = {
 			isa = PBXGroup;
 			children = (
@@ -579,6 +598,7 @@
 				F8C11E82281FE45E000D1689 /* ButtonPadding.swift */,
 				F8B5BC78283D01A500A70190 /* ExtensionStatusBar.swift */,
 				F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */,
+				F899B5CE28485D55000A03D7 /* CustomButton.swift */,
 			);
 			path = ExtensionUI;
 			sourceTree = "<group>";
@@ -629,13 +649,12 @@
 			isa = PBXGroup;
 			children = (
 				F8C10A912832C0C400D311F6 /* QnACommunity.storyboard */,
-				F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */,
-				F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */,
-				F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */,
-				F8B3126928328B8E00E01201 /* QnaAnswerTableViewCell.swift */,
-				F8B3126A28328B8E00E01201 /* QnaAnswerTableViewCell.xib */,
+				F840D0802847AED300CB0F3C /* CommunityPostList */,
+				F840D07F2847ACF900CB0F3C /* Board */,
 				F8C10A8D2832C04F00D311F6 /* QnAWriteAnswerViewController.swift */,
 				F8C10A8F2832C05D00D311F6 /* QnACommentViewController.swift */,
+				F8B3126928328B8E00E01201 /* QnaAnswerTableViewCell.swift */,
+				F8B3126A28328B8E00E01201 /* QnaAnswerTableViewCell.xib */,
 			);
 			path = "Q&A";
 			sourceTree = "<group>";
@@ -846,6 +865,7 @@
 				683674C2282215D500CB618D /* MyReviewsCollectionViewCell.swift in Sources */,
 				68169244282A85450066946A /* MyProfileAPI.swift in Sources */,
 				688DEDB7282D336A002F647A /* MyReviewsMoreViewController.swift in Sources */,
+				F899B5CF28485D55000A03D7 /* CustomButton.swift in Sources */,
 				F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */,
 				6860BE302833CC0400C7399E /* SearchTableViewController.swift in Sources */,
 				F8260583282E691C006DB702 /* QnABoardTableViewCell.swift in Sources */,

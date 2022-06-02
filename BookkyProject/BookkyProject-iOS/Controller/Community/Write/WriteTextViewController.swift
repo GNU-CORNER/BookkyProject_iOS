@@ -30,15 +30,11 @@ class WriteTextViewController: UIViewController {
     @IBOutlet weak var communityGoBackButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         setBackButton()
-        
         setWriteTitleTextField()
         setWriteTitleTextField()
-        setWriteTextButton()
+        setWriteTextButtonUI()
         setStackViewSpacing()
-        writeTextButton.sizeToFit()
         setdropDownView()
         setinitCommunity()
         boardTypeColor()
@@ -143,14 +139,13 @@ class WriteTextViewController: UIViewController {
         writeTextBottomStackView.setCustomSpacing(10, after: bookthumbnailImageAddButton)
         writeTextBottomStackView.setCustomSpacing(200, after: ImageAddButton)
     }
-    private func setWriteTextButton(){
+    
+    private func setWriteTextButtonUI(){
         writeTextButton.tintColor = .white
         writeTextButton.layer.borderWidth = 2
         writeTextButton.layer.cornerRadius = 15
         writeTextButton.layer.borderColor = UIColor(named: "primaryColor")?.cgColor
         writeTextButton.backgroundColor = UIColor(named: "primaryColor")
-        
-        
     }
     private func setwriteTitleTextField(){
         writeTitleTextField.layer.borderWidth = 1

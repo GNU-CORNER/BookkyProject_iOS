@@ -28,6 +28,13 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         self.replyCommentLikeCntLabel.text = "공감(\(likeCount))"
         self.userNameLabel.text = model.nickname
     }
+    func setQnAComment(model: QnAChildComment ){
+        let likeCount = model.like?.count ?? 0
+        self.userReplyCommentContentsLabel.text = model.comment
+        self.replyCommentCreateAtLabel.text = model.updateAt
+        self.replyCommentLikeCntLabel.text = "공감(\(likeCount))"
+        self.userNameLabel.text = model.nickname
+    }
     private func BoardTextReplyCommentTableViewCellUI(){
         self.userNameLabel.font = UIFont.boldSystemFont(ofSize: 12)
         self.userReplyCommentContentsLabel.font = UIFont.systemFont(ofSize: 12)
@@ -39,7 +46,7 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 4, left: 20, bottom: 0, right: 20))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 4, left: 20, bottom: 0, right: 10))
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

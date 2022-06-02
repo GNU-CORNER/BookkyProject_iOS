@@ -49,7 +49,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         super.viewWillAppear(animated)
         getBookData()
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        
+        self.bookListTableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -143,20 +143,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         tabBarController?.selectedIndex = 2
     }
     
-    @IBAction func tapGoFreeBoardButton(_ sender: Any) {
+    @IBAction func tapGoFreeBoardButton(_ sender: UIButton) {
         
         let navigationController = tabBarController?.viewControllers![1] as! UINavigationController
         guard let communityViewController = navigationController.topViewController as? CommunityViewController else {return}
-        communityViewController.boardTypeNumber = 0
-        tabBarController?.selectedIndex = 1
+        communityViewController.previousBoardNumber = 0
+        self.tabBarController?.selectedIndex = 1
     }
-    @IBAction func tapGoQnABoardButton(_ sender: Any) {
+    @IBAction func tapGoQnABoardButton(_ sender: UIButton) {
         let navigationController = tabBarController?.viewControllers![1] as! UINavigationController
         guard let communityViewController = navigationController.topViewController as? CommunityViewController else {return}
-        communityViewController.boardTypeNumber = 2
-        tabBarController?.selectedIndex = 1 // 이동하는 함수 TabBar
+        communityViewController.previousBoardNumber = 2
+        self.tabBarController?.selectedIndex = 1 
+        
+        
     }
     
+    @IBAction func tapGoHotBoardButton(_ sender: UIButton) {
+        let navigationController = tabBarController?.viewControllers![1] as! UINavigationController
+        guard let communityViewController = navigationController.topViewController as? CommunityViewController else {return}
+        communityViewController.previousBoardNumber = 4
+        self.tabBarController?.selectedIndex = 1
+        
+        
+    }
     
 }
 
@@ -185,8 +195,8 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footeriew = UIView(frame: CGRect(x: 0, y: 0, width: self.bookListTableView.frame.width, height: 30))
-        let addMoreTagViewButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-80, y: 0, width: 80, height: 30))
+        let footeriew = UIView(frame: CGRect(x: 0, y: 0, width: self.bookListTableView.frame.width, height: 40))
+        let addMoreTagViewButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-80, y: 0, width: 80, height: 40))
         footeriew.addSubview(addMoreTagViewButton)
         addMoreTagViewButton.setTitle(buttonText, for: .normal)
         addMoreTagViewButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
@@ -204,6 +214,9 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return bookList.count
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 40
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row < 2 {

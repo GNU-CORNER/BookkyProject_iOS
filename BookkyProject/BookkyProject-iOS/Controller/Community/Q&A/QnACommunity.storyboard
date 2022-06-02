@@ -7,6 +7,7 @@
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,9 +19,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Swa-cg-v6w">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Swa-cg-v6w">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="Une-2M-ngT">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBX-kP-sm5" customClass="AutoAddPaddingButtton" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                            <rect key="frame" x="348" y="5" width="56" height="34"/>
+                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                            <state key="normal" title="댓글 작성"/>
+                                            <connections>
+                                                <action selector="QnATapWriteComment:" destination="EVZ-ai-OFh" eventType="touchUpInside" id="qiS-8L-BQH"/>
+                                            </connections>
+                                        </button>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="댓글 작성" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Vie-c0-WHD">
+                                            <rect key="frame" x="20" y="5" width="318" height="34"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <color key="textColor" systemColor="labelColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="oBX-kP-sm5" secondAttribute="trailing" constant="10" id="0Z4-GI-oAL"/>
+                                        <constraint firstAttribute="bottom" secondItem="Vie-c0-WHD" secondAttribute="bottom" constant="5" id="5n1-L5-R8y"/>
+                                        <constraint firstItem="Vie-c0-WHD" firstAttribute="top" secondItem="Une-2M-ngT" secondAttribute="top" constant="5" id="EXf-xX-bNN"/>
+                                        <constraint firstItem="Vie-c0-WHD" firstAttribute="leading" secondItem="Une-2M-ngT" secondAttribute="leading" constant="20" id="K2y-5F-dsb"/>
+                                        <constraint firstAttribute="bottom" secondItem="oBX-kP-sm5" secondAttribute="bottom" constant="5" id="QQN-VG-nty"/>
+                                        <constraint firstItem="oBX-kP-sm5" firstAttribute="top" secondItem="Une-2M-ngT" secondAttribute="top" constant="5" id="mqd-eK-O5V"/>
+                                        <constraint firstItem="oBX-kP-sm5" firstAttribute="leading" secondItem="Vie-c0-WHD" secondAttribute="trailing" constant="10" id="ulK-mN-l6w"/>
+                                    </constraints>
+                                </view>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="sM4-bk-B1i"/>
@@ -35,11 +67,14 @@
                     <navigationItem key="navigationItem" title="댓글" id="d7r-3g-v1u"/>
                     <connections>
                         <outlet property="QnACommentTableView" destination="Swa-cg-v6w" id="Xeu-xR-Lpf"/>
+                        <outlet property="QnACommentTextView" destination="Vie-c0-WHD" id="Eky-Xt-OU2"/>
+                        <outlet property="QnAWriteCommentButton" destination="oBX-kP-sm5" id="ZYM-FD-VTZ"/>
+                        <outlet property="QnAcommentFooterView" destination="Une-2M-ngT" id="r09-KK-7AU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Oir-O3-A4g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1874" y="85"/>
+            <point key="canvasLocation" x="1873.913043478261" y="84.375"/>
         </scene>
         <!--답변쓰기-->
         <scene sceneID="dfg-fb-CaH">
@@ -56,32 +91,69 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nye-tB-FPD">
-                                <rect key="frame" x="0.0" y="84.5" width="414" height="717.5"/>
+                                <rect key="frame" x="0.0" y="411" width="414" height="401"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="EYn-MF-agn">
-                                <rect key="frame" x="20" y="817" width="374" height="30"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdK-T3-LqE">
+                                <rect key="frame" x="10" y="79.5" width="394" height="173.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Gzc-Ny-04n">
+                                <rect key="frame" x="10" y="268" width="394" height="128"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="r4Y-TP-pxV"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="NLV-pn-swY">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="XtE-gD-fZa">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="UiC-nY-5G9">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Hbp-Tf-a7C">
+                                <rect key="frame" x="20" y="827" width="374" height="35"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAJ-SI-tcL">
-                                        <rect key="frame" x="0.0" y="0.0" width="96.5" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAJ-SI-tcL">
+                                        <rect key="frame" x="0.0" y="0.0" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="daJ-jt-HNb"/>
+                                        </constraints>
                                         <color key="tintColor" red="0.50196081400000003" green="0.50196087359999997" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="book.fill" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xI2-fB-5Wd">
-                                        <rect key="frame" x="96.5" y="0.0" width="101" height="30"/>
+                                        <rect key="frame" x="45" y="0.0" width="35" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="35" id="0gl-Xu-KdQ"/>
+                                            <constraint firstAttribute="height" constant="35" id="XdO-0s-DO0"/>
+                                        </constraints>
                                         <color key="tintColor" red="0.50196081400000003" green="0.50196087359999997" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="camera" catalog="system"/>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94F-Zy-bx3" customClass="AutoAddPaddingButtton" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="197.5" y="0.0" width="176.5" height="30"/>
+                                        <rect key="frame" x="90" y="0.0" width="284" height="35"/>
                                         <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="20" bottom="10" trailing="20"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="글 작성"/>
+                                        <connections>
+                                            <action selector="tapWriteReplyComment:" destination="NL9-tW-y1t" eventType="touchUpInside" id="6kf-ON-Ra4"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -89,25 +161,36 @@
                         <viewLayoutGuide key="safeArea" id="moM-bW-RtK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="moM-bW-RtK" firstAttribute="bottom" secondItem="EYn-MF-agn" secondAttribute="bottom" constant="15" id="0Yi-kh-dVW"/>
+                            <constraint firstItem="moM-bW-RtK" firstAttribute="trailing" secondItem="mdK-T3-LqE" secondAttribute="trailing" constant="10" id="0Kt-mZ-QIb"/>
+                            <constraint firstItem="moM-bW-RtK" firstAttribute="trailing" secondItem="Hbp-Tf-a7C" secondAttribute="trailing" constant="20" id="BrB-KE-wnX"/>
+                            <constraint firstItem="mdK-T3-LqE" firstAttribute="top" secondItem="6wo-rk-CFr" secondAttribute="bottom" constant="5" id="Eal-ph-GM0"/>
+                            <constraint firstItem="moM-bW-RtK" firstAttribute="trailing" secondItem="Gzc-Ny-04n" secondAttribute="trailing" constant="10" id="INs-Mm-9Sa"/>
                             <constraint firstItem="moM-bW-RtK" firstAttribute="trailing" secondItem="nye-tB-FPD" secondAttribute="trailing" id="K1E-6n-qGJ"/>
                             <constraint firstItem="6wo-rk-CFr" firstAttribute="top" secondItem="moM-bW-RtK" secondAttribute="top" constant="10" id="LY8-Wl-e0U"/>
+                            <constraint firstItem="nye-tB-FPD" firstAttribute="top" secondItem="Gzc-Ny-04n" secondAttribute="bottom" constant="15" id="PSx-rk-71T"/>
+                            <constraint firstItem="Gzc-Ny-04n" firstAttribute="leading" secondItem="moM-bW-RtK" secondAttribute="leading" constant="10" id="Qna-NY-BNd"/>
+                            <constraint firstItem="moM-bW-RtK" firstAttribute="bottom" secondItem="Hbp-Tf-a7C" secondAttribute="bottom" id="Ucy-ym-FMo"/>
                             <constraint firstItem="6wo-rk-CFr" firstAttribute="centerX" secondItem="YoI-d6-pKy" secondAttribute="centerX" id="V8x-Ar-Bm0"/>
-                            <constraint firstItem="EYn-MF-agn" firstAttribute="top" secondItem="nye-tB-FPD" secondAttribute="bottom" constant="15" id="ZJz-Ko-aFS"/>
-                            <constraint firstItem="EYn-MF-agn" firstAttribute="leading" secondItem="moM-bW-RtK" secondAttribute="leading" constant="20" id="f3W-gg-iYR"/>
-                            <constraint firstItem="moM-bW-RtK" firstAttribute="trailing" secondItem="EYn-MF-agn" secondAttribute="trailing" constant="20" id="hhm-lc-2p3"/>
+                            <constraint firstItem="Hbp-Tf-a7C" firstAttribute="leading" secondItem="moM-bW-RtK" secondAttribute="leading" constant="20" id="XzH-QF-ywE"/>
+                            <constraint firstItem="Gzc-Ny-04n" firstAttribute="top" secondItem="mdK-T3-LqE" secondAttribute="bottom" constant="15" id="YUB-ij-dDg"/>
+                            <constraint firstItem="Hbp-Tf-a7C" firstAttribute="top" secondItem="nye-tB-FPD" secondAttribute="bottom" constant="15" id="cWZ-t6-S7O"/>
+                            <constraint firstItem="mdK-T3-LqE" firstAttribute="leading" secondItem="moM-bW-RtK" secondAttribute="leading" constant="10" id="gUs-5i-EGY"/>
                             <constraint firstItem="nye-tB-FPD" firstAttribute="leading" secondItem="moM-bW-RtK" secondAttribute="leading" id="hqL-7B-d2q"/>
-                            <constraint firstItem="nye-tB-FPD" firstAttribute="top" secondItem="6wo-rk-CFr" secondAttribute="bottom" constant="10" id="yIl-uX-Bpk"/>
+                            <constraint firstItem="Gzc-Ny-04n" firstAttribute="top" secondItem="mdK-T3-LqE" secondAttribute="top" constant="188.5" id="thM-BX-j2m"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="답변쓰기" id="ace-op-Nul"/>
                     <connections>
+                        <outlet property="addBookButton" destination="tAJ-SI-tcL" id="tHv-yA-lQN"/>
+                        <outlet property="addImageButton" destination="xI2-fB-5Wd" id="lmg-Qc-CGy"/>
+                        <outlet property="bottomStackView" destination="Hbp-Tf-a7C" id="HaX-eN-oci"/>
                         <outlet property="writeContentsTextView" destination="nye-tB-FPD" id="V5t-al-jVO"/>
+                        <outlet property="writePostButton" destination="94F-Zy-bx3" id="WhJ-6D-gkj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hTF-h8-nfW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1843" y="820"/>
+            <point key="canvasLocation" x="1842.0289855072465" y="819.64285714285711"/>
         </scene>
         <!--Q&A게시판-->
         <scene sceneID="Gdo-7T-o7D">
@@ -142,7 +225,7 @@
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="댓글(7)"/>
                                                             <connections>
-                                                                <segue destination="EVZ-ai-OFh" kind="show" id="gA8-Ek-cOL"/>
+                                                                <segue destination="EVZ-ai-OFh" kind="show" identifier="QnACommentSegue" id="gA8-Ek-cOL"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -161,7 +244,7 @@
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="답변달기"/>
                                                             <connections>
-                                                                <segue destination="NL9-tW-y1t" kind="show" id="OiN-pk-7dm"/>
+                                                                <segue destination="NL9-tW-y1t" kind="show" identifier="writePostCommentSegue" id="OiN-pk-7dm"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>

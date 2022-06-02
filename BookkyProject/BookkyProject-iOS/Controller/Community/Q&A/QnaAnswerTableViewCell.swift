@@ -17,7 +17,10 @@ class QnaAnswerTableViewCell: UITableViewCell {
     @IBOutlet weak var contentsLabel: UILabel!
     
     @IBOutlet weak var likeCntLabel: UIButton!
-    @IBOutlet weak var commentButton: UIButton!
+    
+    @IBOutlet weak var commentButton: CustomQnAButton!
+    @IBOutlet weak var addFunctionButton: UIButton!
+    var PID : Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
@@ -29,6 +32,7 @@ class QnaAnswerTableViewCell: UITableViewCell {
         self.likeCntLabel.setTitle("좋아요(\(model.like?.count ?? 0))", for: .normal)
         self.choiceAnswerLabel.text = " "
         self.commentButton.setTitle("댓글(\(model.commentCnt ?? 0))", for:.normal)
+        self.PID = model.PID
         
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -49,5 +53,6 @@ class QnaAnswerTableViewCell: UITableViewCell {
         self.likeCntLabel.tintColor = UIColor(named: "grayColor")
         self.commentButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         self.commentButton.tintColor = UIColor(named: "grayColor")
+        self.addFunctionButton.tintColor = .black
     }
 }

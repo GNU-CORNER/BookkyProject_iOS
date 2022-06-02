@@ -39,7 +39,7 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRJ-hg-K2b">
-                        <rect key="frame" x="20" y="33.5" width="353" height="28"/>
+                        <rect key="frame" x="20" y="33.5" width="363" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Ytj-RK-yr9"/>
                         </constraints>
@@ -73,7 +73,7 @@
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PWy-sJ-Jbf" secondAttribute="trailing" constant="10" id="ZFY-nS-8YD"/>
                     <constraint firstItem="ZRJ-hg-K2b" firstAttribute="top" secondItem="90K-mp-wKS" secondAttribute="bottom" constant="5" id="dnH-Ys-1UR"/>
                     <constraint firstAttribute="trailing" secondItem="90K-mp-wKS" secondAttribute="trailing" constant="20" id="oem-k1-tja"/>
-                    <constraint firstAttribute="trailing" secondItem="ZRJ-hg-K2b" secondAttribute="trailing" constant="20" id="pnI-iZ-Pzw"/>
+                    <constraint firstAttribute="trailing" secondItem="ZRJ-hg-K2b" secondAttribute="trailing" constant="10" id="pnI-iZ-Pzw"/>
                     <constraint firstItem="PWy-sJ-Jbf" firstAttribute="top" secondItem="ZRJ-hg-K2b" secondAttribute="bottom" constant="5" id="s2H-bf-VLX"/>
                     <constraint firstItem="ZRJ-hg-K2b" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ujW-Ds-ulc"/>
                     <constraint firstItem="90K-mp-wKS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="xib-d6-BWw"/>

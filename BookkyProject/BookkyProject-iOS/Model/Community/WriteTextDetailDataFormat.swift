@@ -6,19 +6,29 @@
 //
 
 import Foundation
-
-struct WriteTextDetailInformation : Codable {
-    let success : Bool
-    let result : WriteTextDetailData
-    let errorMessage :String
-}
+//1차원배열
+//struct WriteTextDetailCommentdata : Codable{
+//    let comment : String
+//    let updateAt : String
+//    let like : [Int]?
+//    let nickname : String
+//    let thumbnail : String?
+//    let isAccessible : Bool
+//    let CID : Int
+//    let reply : Int
+//}
 //1차원배열
 //struct WriteTextDetailData : Codable{
 //    let postdata : WriteTextDetailPostData
 //    let commentdata : [WriteTextDetailCommentdata]?
 //    let commentCnt : Int?
 //}
-//2차원배열
+struct WriteTextDetailInformation : Codable {
+    let success : Bool
+    let result : WriteTextDetailData
+    let errorMessage :String
+}
+
 struct WriteTextDetailData : Codable{
     let postdata : WriteTextDetailPostData
     let commentdata : [WriteTextDetailCommentdata]?
@@ -35,17 +45,7 @@ struct WriteTextDetailPostData : Codable {
     let nickname : String
     let thumbnail : String?
 }
-//1차원배열
-//struct WriteTextDetailCommentdata : Codable{
-//    let comment : String
-//    let updateAt : String
-//    let like : [Int]?
-//    let nickname : String
-//    let thumbnail : String?
-//    let isAccessible : Bool
-//    let CID : Int
-//    let reply : Int
-//}
+
 //2차원배열
 struct WriteTextDetailCommentdata : Codable{
 //    let parentID : Int
@@ -57,6 +57,7 @@ struct WriteTextDetailCommentdata : Codable{
     let childComment : [ChildComment]?
     let CID : Int
 }
+//2차원배열
 struct ChildComment : Codable{
 //    let parentID : Int
     let comment : String
@@ -65,7 +66,7 @@ struct ChildComment : Codable{
     let nickname : String
     let thumbnail : String?
 }
-//Q&A Detail
+// MARK: - Q&A Detail
 struct WriteTextDetailQnAInformation :Codable {
     let success : Bool
     let result : WriteQnATextDetailData
@@ -104,4 +105,33 @@ struct WriteTextDetailQnAReplyData : Codable{
     let commentCnt : Int?
     let isAccessible : Bool
     let TBID : Int
+}
+// MARK: -Q&A 댓글 데이터 format
+struct QnACommentDataInformation : Codable {
+    let success : Bool
+    let result : QnACommentResult
+    let errorMessage :String
+}
+struct QnACommentResult : Codable {
+    let commentdata : [QnACommentDataList]
+    let commentCnt : Int
+}
+struct QnACommentDataList : Codable {
+    let comment : String
+    let updateAt : String
+    let like : [Int]?
+    let nickname : String
+    let thumbnail : String?
+    let isAccessible: Bool
+    let CID : Int
+    let childComment : [QnAChildComment]?
+}
+struct QnAChildComment :Codable {
+    let comment : String
+    let updateAt : String
+    let like : [Int]?
+    let nickname : String
+    let thumbnail : String?
+    let isAccessible : Bool
+    let CID : Int
 }

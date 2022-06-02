@@ -30,9 +30,15 @@ class QnABoardTextDetailViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         setTableViewCell()
         setBoardTextDetailUI()
-        getBoardTextDetailQnAData()
+        print("\(self.PID)BoardPID")
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
+            self.getBoardTextDetailQnAData()
+        })
+      
+    }
     func setTableViewCell(){
         self.QnATableView.dataSource = self
         self.QnATableView.delegate = self
@@ -65,9 +71,17 @@ class QnABoardTextDetailViewController: UIViewController {
         
     }
    
-    @IBAction func tapGoCommentView(_ sender: Any) {
-        guard let CommentViewConroller  = self.storyboard?.instantiateViewController(withIdentifier: "QnACommentViewController")as? QnACommentViewController else {return}
-        self.navigationController?.pushViewController(CommentViewConroller, animated: true)
+  
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "writePostCommentSegue" {
+            guard let QnAWriteAnswerVIewController = segue.destination as? QnAWriteAnswerViewController else {return}
+            QnAWriteAnswerVIewController.PID = self.PID
+            QnAWriteAnswerVIewController.boardTypeNumber = self.boardTypeNumber
+        }else if  segue.identifier == "QnACommentSegue" {
+            guard let QnACommentViewController = segue.destination as? QnACommentViewController else {return}
+            QnACommentViewController.PID = self.PID
+            QnACommentViewController.boardTypeNumber = self.boardTypeNumber
+        }
     }
     private func setBoardTextDetailData(model :WriteTextDetailQnAPostData){
         self.QnATitleLabel.text = model.title
@@ -101,6 +115,13 @@ class QnABoardTextDetailViewController: UIViewController {
             }
         }
     }
+    @objc func tapGoCommentofReplyComment(_ sender : Any){
+        let parentID : Int = (sender as! CustomQnAButton).parentID
+        guard let QnACommentViewController = storyboard?.instantiateViewController(withIdentifier: "QnACommentViewController") as? QnACommentViewController else{return}
+        self.navigationController?.pushViewController(QnACommentViewController, animated: true)
+        QnACommentViewController.PID = parentID
+        QnACommentViewController.boardTypeNumber = self.boardTypeNumber
+    }
     
 }
 extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDelegate{
@@ -111,8 +132,17 @@ extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "QnaAnswerTableViewCellid", for: indexPath) as? QnaAnswerTableViewCell else {return UITableViewCell()}
         cell.setReplyData(model:self.QnAReplyData[indexPath.row])
+        cell.commentButton.addTarget(self, action: #selector(tapGoCommentofReplyComment) , for: .touchUpInside)
+        cell.commentButton.parentID = self.QnAReplyData[indexPath.row].PID
         return cell
     }
     
     
+}
+class CustomQnAButton : UIButton {
+    var parentID : Int = 0
+    convenience init(parentID : Int) {
+        self.init()
+        self.parentID = parentID
+        }
 }
