@@ -15,6 +15,9 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var myprofileNoticeLabel: UILabel!
     @IBOutlet weak var myprofileUpdateCompleteButton: UIButton!
     
+    var thumbnailImageRecived: UIImage!
+    var nicknameTextRecived: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -24,29 +27,100 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
         setDefaultView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+//        guard let email = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+//            return
+//        }
+//        guard let accessToken = KeychainManager.shared.read(userEmail: email, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+//            return
+//        }
+        self.myprofileImageView.image = thumbnailImageRecived
+        self.myprofileNicknameTextField.text = nicknameTextRecived
+    }
+    
+    private func accessToken() {
+        
+    }
+    
     private func setDefaultView() {
-        self.myprofileImageView.layer.cornerRadius = self.myprofileImageView.frame.width / 2
+        self.myprofileImageView.layer.cornerRadius = self.myprofileImageView.frame.height / 2
         
         self.myprofileNicknameTextField.addLeftPadding()
         self.myprofileNicknameTextField.layer.borderColor = .none
         self.myprofileNicknameTextField.layer.cornerRadius = 8.0
-        
-        self.myprofileUpdateCompleteButton.layer.cornerRadius = 8.0
-        self.myprofileUpdateCompleteButton.isEnabled = false
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.myprofileUpdateCompleteButton.isEnabled = true
         self.myprofileUpdateCompleteButton.backgroundColor = UIColor(named: "primaryColor")
+        self.myprofileUpdateCompleteButton.layer.cornerRadius = 8.0
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        /// enter 버튼을 누르면 keyboard가 내려가도록 설정
+        textField.resignFirstResponder()
+        return true
+    }
+    
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        self.myprofileUpdateCompleteButton.isEnabled = true
+//        self.myprofileUpdateCompleteButton.backgroundColor = UIColor(named: "primaryColor")
+//    }
+    
+//    private func requestDuplicateNicknameCheck() {
+//
+//    }
 
-    @IBAction func reloadMyprofileImage(_ sender: Any) {
+    @IBAction func pickMyProfileImage(_ sender: Any) {
+        CameraHandler.shared.actionSheetAlert(vc: self)
+        CameraHandler.shared.imagePickerBlock = { (image) in
+            DispatchQueue.main.async {
+                self.myprofileImageView.image = image
+            }
+        }
     }
     
-    @IBAction func updateMyprofile(_ sender: Any) {
-//        self.myprofileNicknameTextField.text
-//        self.myprofileImageView.image
-        // 닉네임 중복 검사 해야함~~
+    
+    @IBAction func myProfileWillUpdate(_ sender: Any) {
+        // - [x] 이미지, 닉네임 가져오기
+        guard let userNickname = self.myprofileNicknameTextField.text else {
+            return
+        }
+        guard let userThumbnail = self.myprofileImageView.image?.imageToPNGString() else {
+            return
+        }
+        // - [ ] 닉네임 형식 검사
+
+        // - [x] 닉네임 중복 검사
+        Account.shared.duplicateNicknameCheck(nickname: userNickname) { (success, data, statuscode) in
+            if success {
+                print("사용할 수 있는 닉네임입니다.")
+                // - [] 서버로 보내기 수정사항 보내기
+                guard let email = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+                    return
+                }
+                guard let accessToken = KeychainManager.shared.read(userEmail: email, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+                    return
+                }
+                MyProfileAPI.shared.myProfileUpdate(accessToken: accessToken, nickname: userNickname, thumbnailString: userThumbnail) { (data, statuscode) in
+                    print("프로필 수정에 성공했습니다.")
+                    let alert = UIAlertController(title: "프로필을 수정했습니다.", message: nil, preferredStyle: .alert)
+                    let check = UIAlertAction(title: "확인", style: .cancel) { (_) in
+                        // - [ ] redirect myprofile
+                    }
+                    alert.addAction(check)
+                    DispatchQueue.main.async {
+                        self.present(alert, animated: true)
+                    }
+                }
+            } else {
+                print("닉네임 중복입니다.")
+                // - [x] alert , 함수화하자...
+                let alert = UIAlertController(title: "중복된 닉네임입니다.", message: nil, preferredStyle: .alert)
+                let check = UIAlertAction(title: "확인", style: .cancel)
+                alert.addAction(check)
+                DispatchQueue.main.async {
+                    self.present(alert, animated: true)
+                }
+                return
+            }
+        }
+        
     }
 }

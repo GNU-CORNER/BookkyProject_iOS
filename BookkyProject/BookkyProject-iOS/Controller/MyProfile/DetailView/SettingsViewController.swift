@@ -7,9 +7,7 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
-
-    @IBOutlet weak var settingsTableView: UITableView!
+class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,5 +16,14 @@ class SettingsViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 8 {
+            // - [] 로그아웃
+            Account.shared.requestSignout(vc: self)
+        } else if indexPath.row == 9 {
+            // - [] 회원탈퇴
+            Account.shared.requestWithdrawal(vc: self)
+        }
+    }
 }
+

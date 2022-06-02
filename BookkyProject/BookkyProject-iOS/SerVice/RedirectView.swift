@@ -10,7 +10,7 @@ import UIKit
 
 class RedirectView {
     
-    static func redirectLoginView(previousView: UIViewController) {
+    static func loginView(previousView: UIViewController) {
         //스토리보드의 파일 찾기
         let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
 
@@ -25,6 +25,24 @@ class RedirectView {
 
             // 화면 전환!
             previousView.present(vc, animated: true)
+        }
+    }
+    
+    static func initialResearchView(presentView: UIViewController) {
+        // 스토리보드의 파일 찾기
+        let storyboard: UIStoryboard? = UIStoryboard(name: "InitialResearch", bundle: Bundle.main)
+
+        // 스토리보드에서 지정해준 ViewController의 ID
+        DispatchQueue.main.async {
+            guard let vc = storyboard?.instantiateViewController(identifier: "Research") else {
+                return
+            }
+            // 화면 전환방식 선택 (default : .modal)
+            vc.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+            
+
+            // 화면 전환!
+            presentView.present(vc, animated: true)
         }
     }
     

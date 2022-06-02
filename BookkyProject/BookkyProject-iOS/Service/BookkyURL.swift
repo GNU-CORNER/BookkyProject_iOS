@@ -8,12 +8,21 @@
 import Foundation
 
 class BookkyURL {
+    // baseURL
     static let baseURL = "http://203.255.3.144:8002/v1"
+    //sig
     static let signupURL = "/user/signup"
     static let signinURL = "/user/signin"
     static let refreshURL = "/auth/refresh"
-    
+    static let signoutPath = "/user/signout"
+    static let userPath = "/user"
+    //MyProfile
     static let myprofilePath = "/myprofile"
+    static let myprofileUpdatePath = "/user/myprofile"
+    static let favoriteBookPath = "/user/favoritebook/"
+    static let myPostsPath = "/user/mypost"
+    static let myReviewsPath = "/user/myreview"
+    static let userTagsPath = "/user/tag"
     //Home
     static let HomeURL = "/home"
     static let tagURL = "/books/tag/"
@@ -25,4 +34,7 @@ class BookkyURL {
     static let communityWritePostURL = "/community/writepost/"
     static let communityTextDetail = "/community/postdetail/"
     
+    static let nicknameCheckPath = "/user/nickname"
+    
+    static let tagsPath = "/tags"
 }

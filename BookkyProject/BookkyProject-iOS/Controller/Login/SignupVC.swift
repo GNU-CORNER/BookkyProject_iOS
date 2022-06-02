@@ -221,6 +221,7 @@ extension SignupVC {
         // - [x] 닉네임 입력했는지 확인
         // - [ ] 닉네임 공백처리 할 것
         guard let inputNickName = self.nicknameTextField?.text, self.nicknameTextField?.text != "" else {
+            // - [ ] 토스트메시지 말고 일반 아이폰 알림으로 할 것.
             showToast(message: "닉네임을 입력하세요.")
             animateTextFieldBorderColor(userTextField: self.nicknameTextField, color: UIColor.red)
             return
@@ -337,7 +338,7 @@ extension SignupVC {
     
 }
 
-// MARK: - TextField Delegate Extension.--
+// MARK: - TextField Delegate Extension.
 extension SignupVC: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

@@ -9,7 +9,8 @@ import UIKit
 
 class ResearchViewController: UIViewController {
     
-    var tagsArray: [String] = ["React", "WEB", "JavaScript","Python","Machine Learning","C++","Java","AI","Angular","DB","Node.js","Android","Swift","Firebase","Network","C#","Unity","Flutter","Go"]
+    var tagsArray: [Tag] = []
+    var didSelectItemArray: Dictionary = [Int:String]()
 
     @IBOutlet weak var tagsCollectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
@@ -21,6 +22,42 @@ class ResearchViewController: UIViewController {
         self.tagsCollectionView.dataSource = self
         self.tagsCollectionView.delegate = self
         setDefaultView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // - [] tag 불러오기
+        UserTagHandler.shared.tags { (success, data, statuscode) in
+            if success {
+                guard let tagsData = data as? TagsModel else {
+                    return
+                }
+                guard let tags = tagsData.result?.tag else { return }
+                self.tagsArray = tags
+                DispatchQueue.main.async {
+                    self.tagsCollectionView.reloadData()
+                }
+            } else {
+                print("\(statuscode)")
+            }
+        }
+    }
+    
+    @IBAction func requestUserTagsSet(_ sender: Any) {
+        // - [] 사용자가 선택한 관심분야 배열을 서버로 보내기
+        let didSelectItems = Array(didSelectItemArray.keys)
+        guard let email = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            return
+        }
+        guard let accessToken = KeychainManager.shared.read(userEmail: email, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+            return
+        }
+        UserTagHandler.shared.userTagsUpdate(didSelectItems, accessToken) { (success, data, statuscode) in
+            if success {
+                print("User Tags 수정 완료.")
+            } else {
+                print("User Tags 수정이 잘 안돼~~ 떠올려봐도~~")
+            }
+        }
     }
     
     private func setDefaultView() {
@@ -45,7 +82,7 @@ extension ResearchViewController: UICollectionViewDelegate, UICollectionViewData
             return UICollectionViewCell()
             
         }
-        cell.tagNameLabel.text = tagsArray[indexPath.row]
+        cell.tagNameLabel.text = tagsArray[indexPath.row].nameTag
         if cell.isSelected {
             cell.layer.backgroundColor = UIColor(named: "primaryColor")?.cgColor
             cell.tagNameLabel.textColor = .white
@@ -64,23 +101,26 @@ extension ResearchViewController: UICollectionViewDelegate, UICollectionViewData
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell else { return }
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell else {
+            return
+        }
         cell.layer.backgroundColor = UIColor(named: "primaryColor")?.cgColor
         cell.tagNameLabel.textColor = .white
-
+        didSelectItemArray.updateValue(tagsArray[indexPath.row].nameTag, forKey: tagsArray[indexPath.row].tmid)
+        
         self.selectedTagsCnt += 1
         self.submitButton.setTitle("제출 (\(self.selectedTagsCnt)개 선택)", for: .normal)
         print(cell.isSelected)
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell
-        else {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? TagsCollectionViewCell else {
             return
         }
         cell.layer.backgroundColor = UIColor(named: "lightGrayColor")?.cgColor
         cell.tagNameLabel.textColor = .black
-    
+        didSelectItemArray.removeValue(forKey: tagsArray[indexPath.row].tmid)
+        
         self.selectedTagsCnt -= 1
         self.submitButton.setTitle("제출 (\(self.selectedTagsCnt)개 선택)", for: .normal)
         print(cell.isSelected)
