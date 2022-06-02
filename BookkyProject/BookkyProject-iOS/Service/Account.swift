@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Account {
     static var shared = Account()
@@ -89,8 +90,36 @@ class Account {
     }
     
     // MARK: - Signout
-    func signout() {
+    func signout(_ accessToken: String, _ refreshToken: String, completionHandler: @escaping(Bool, Any, Int) -> Void) {
         // - [] API 호출. 이 함수를 호출한 곳에 컴플리션 핸들러 넘겨주기 (거기서 Keychain, UserDefault 모두 초기화 해주기!)
+        let session = URLSession(configuration: .default)
+        guard let signoutURL = URL(string: BookkyURL.baseURL + BookkyURL.signoutPath) else {
+            print("Signout: Cannot Create URL.")
+            return
+        }
+        var request = URLRequest(url: signoutURL)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue(accessToken, forHTTPHeaderField: "access-token")
+        request.setValue(refreshToken, forHTTPHeaderField: "refresh-token")
+        
+        session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                return
+            }
+            guard let data = data, let response = response as? HTTPURLResponse else {
+                print("Signup: HTTP Request failed.")
+                return
+            }
+            do {
+                let decodedData: SignupModel = try JSONDecoder().decode(SignupModel.self, from: data)
+                print(decodedData.errorMessage)
+                completionHandler(decodedData.success, decodedData, response.statusCode)
+            } catch {
+                print("\(response.statusCode)")
+                print("Signup: Decode Error.")
+            }
+        }.resume()
     }
     
     // MARK: - Withdrawal
@@ -200,7 +229,7 @@ extension Account {
                     print(statusUpdateAccessToken)
                     print(newAccessToken)
                     if !statusUpdateAccessToken {
-                        print("Launch: 새로운 토큰 제대로 저장이 안되었어요~~~~")
+                        print("Launch: 새로운 토큰 제대로 저장되지 않았습니다.")
                     }
                 }
             } else {
@@ -211,6 +240,42 @@ extension Account {
                     // 기간이 지난 토큰입니다.
                     print(tokens.errorMessage)
                 }
+            }
+        }
+    }
+    
+    func requestSignout(vc: UIViewController) {
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Signout: 사용자 이메일을 불러올 수 없음.")
+            return
+        }
+
+        guard let accessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+              let refreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+            print("Signout: 토큰을 불러올 수 없음.")
+            return
+        }
+        
+        Account.shared.signout(accessToken, refreshToken) { (success, data, statuscode) in
+            if success {
+                let alert = UIAlertController(title: "로그아웃 되었습니다.", message: nil, preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "확인", style: .default) { (_) in
+                    vc.tabBarController?.selectedIndex = 0
+                }
+                alert.addAction(okAction)
+                // - [] AT, RT, email 삭제하기
+                UserDefaults.standard.removeObject(forKey: UserDefaultsModel.email.rawValue)
+                
+                if KeychainManager.shared.delete(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) && KeychainManager.shared.delete(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) {
+                    DispatchQueue.main.async {
+                        vc.present(alert, animated: true)
+                    }
+                } else {
+                    print("AT, RT 삭제가 안되었는데영..")
+                }
+            } else {
+                print("로그아웃이 잘 안되었습니다.")
+                print("\(statuscode)")
             }
         }
     }

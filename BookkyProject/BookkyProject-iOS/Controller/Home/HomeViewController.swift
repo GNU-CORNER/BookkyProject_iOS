@@ -49,6 +49,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         super.viewWillAppear(animated)
         getBookData()
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        self.bookListTableView.reloadData()
         
     }
     override func viewWillDisappear(_ animated: Bool) {

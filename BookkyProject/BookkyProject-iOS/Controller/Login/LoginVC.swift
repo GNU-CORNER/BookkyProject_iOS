@@ -80,9 +80,13 @@ class LoginVC: UIViewController {
                         }
                     }
                     // - [x] 사용자가 처음 로그인하는지 확인
-                    if UserDefaults.standard.bool(forKey: UserDefaultsModel.launchBefore.rawValue) {
+                    if UserDefaults.standard.bool(forKey: UserDefaultsModel.launchBefore.rawValue) == false {
+                        UserDefaults.standard.set(true, forKey: UserDefaultsModel.launchBefore.rawValue)
                         RedirectView.initialResearchView(presentView: self)
-                    }
+                    } /*else if userAccount.result?.userData?.email != UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) {
+                        UserDefaults.standard.set(true, forKey: UserDefaultsModel.launchBefore.rawValue)
+                        RedirectView.initialResearchView(presentView: self)
+                    } */
                 }
             } else {
                 print(statuscode)
