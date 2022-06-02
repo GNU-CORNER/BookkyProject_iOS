@@ -497,7 +497,7 @@
                                 </subviews>
                             </stackView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="exe-B8-6et">
-                                <rect key="frame" x="172" y="133" width="70" height="144"/>
+                                <rect key="frame" x="172" y="133" width="70" height="114"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31S-2K-t7W">
                                         <rect key="frame" x="12" y="12" width="46" height="30"/>
@@ -521,14 +521,6 @@
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="tapGoBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="B1l-FQ-ZOL"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGe-dW-KRi">
-                                        <rect key="frame" x="12" y="102" width="46" height="30"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="tapGoBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="A6j-Kp-E6T"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -588,7 +580,6 @@
                         <outlet property="bookthumbnailImageAddButton" destination="d30-4R-TQK" id="ZFh-yZ-Y6r"/>
                         <outlet property="communityGoBackButton" destination="Zwq-Ry-Uzh" id="gWj-Ow-fIR"/>
                         <outlet property="freeBoardGoButton" destination="31S-2K-t7W" id="srn-ef-XMS"/>
-                        <outlet property="hotBoardGobutton" destination="uGe-dW-KRi" id="zPW-IZ-eTv"/>
                         <outlet property="writeContentTextView" destination="6DD-f5-uJi" id="YOg-CS-bPe"/>
                         <outlet property="writeTextBottomStackView" destination="dKb-dl-uVB" id="YmW-ap-0mA"/>
                         <outlet property="writeTextButton" destination="H04-As-wcp" id="EqJ-qH-nTM"/>
@@ -854,9 +845,7 @@
                             <constraint firstItem="Ona-vt-hdh" firstAttribute="top" secondItem="ANa-hA-7YE" secondAttribute="top" id="tY7-Ic-pkz"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Cuc-kd-qFW">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="RXB-jW-pic"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="Cuc-kd-qFW"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="CommentFooterView" destination="F84-e6-5bW" id="gew-ik-7Bj"/>

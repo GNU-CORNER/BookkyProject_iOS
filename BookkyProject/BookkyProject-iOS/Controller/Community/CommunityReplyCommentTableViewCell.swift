@@ -16,6 +16,8 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var replyTableViewCellStackView: UIStackView!
     @IBOutlet weak var addMoreFunction: UIButton!
     var buttonAction: (()->Void)? = nil
+    var isAccessible : Bool = false
+    var CID : Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,6 +29,8 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         self.replyCommentCreateAtLabel.text = model.updateAt
         self.replyCommentLikeCntLabel.text = "공감(\(likeCount))"
         self.userNameLabel.text = model.nickname
+        self.isAccessible = model.isAccessible
+        self.CID = model.CID
     }
     func setQnAComment(model: QnAChildComment ){
         let likeCount = model.like?.count ?? 0
@@ -34,6 +38,8 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         self.replyCommentCreateAtLabel.text = model.updateAt
         self.replyCommentLikeCntLabel.text = "공감(\(likeCount))"
         self.userNameLabel.text = model.nickname
+        self.isAccessible = model.isAccessible
+        self.CID = model.CID
     }
     private func BoardTextReplyCommentTableViewCellUI(){
         self.userNameLabel.font = UIFont.boldSystemFont(ofSize: 12)

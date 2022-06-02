@@ -24,13 +24,43 @@ class QnABoardTextDetailViewController: UIViewController {
     var PID : Int = 0
     var boardTypeNumber : Int = 0
     var QnAReplyData : [WriteTextDetailQnAReplyData] = []
+    var isAccessible : Bool = false //사용자의 글인지 아닌지 확인
+    lazy var rightButton: UIBarButtonItem = {
+        let buttonImg = UIImage(systemName: "ellipsis")
+        let barButtonItem = UIBarButtonItem(image: buttonImg, style: .plain, target: self, action: #selector(rightbarButtonAction(_:)))
+        return barButtonItem
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
         setTableViewCell()
         setBoardTextDetailUI()
+        self.navigationItem.rightBarButtonItem = self.rightButton
         print("\(self.PID)BoardPID")
+    }
+    @objc private func rightbarButtonAction(_ sender : Any){
+        let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let report = UIAlertAction(title: "신고", style: .destructive)
+        if self.isAccessible == true {
+            let delete = UIAlertAction(title: "글 삭제", style: .destructive){(_) in
+                self.deletePost(communityBoardNumber: self.boardTypeNumber, PID: self.PID)
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+            let update = UIAlertAction(title: "글 수정", style: .default)
+            alert.addAction(delete)
+            alert.addAction(update)
+            
+        }
+        alert.addAction(cancel)
+        alert.addAction(report)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -90,14 +120,26 @@ class QnABoardTextDetailViewController: UIViewController {
         self.userNameLabel.text = model.nickname
         self.QnAViewCnt.text = "\(model.views)"
         self.likeCntLButton.setTitle("좋아요(\(model.like?.count ?? 0))", for: .normal)
+        self.isAccessible = model.isAccessible
         
     }
     private func setReplyNComment(model : WriteTextDetailQnAInformation){
         self.CommetButton.setTitle("댓글(\(model.result.commentCnt ?? 0))", for: .normal)
         self.answerLabel.text = "답변(\(model.result.replyCnt))"
     }
+// MARK: - API통신
+    private func deletePost(communityBoardNumber: Int ,PID: Int){
+        CommunityDeleteAPI.shared.DeletPost(CommunityBoardNumber: communityBoardNumber, PID: PID) { (success,data) in
+            if success {
+                print("댓글쓰기 성공")
+            }else {
+                print("실패")
+            }
+        }
+        
+    }
     private func getBoardTextDetailQnAData(){
-        CommunityAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
+        CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
                 guard let communityGetDetailList = data as? WriteTextDetailQnAInformation else {return}
                 let writeTextDetailQnAData = communityGetDetailList.result.postdata
@@ -122,7 +164,42 @@ class QnABoardTextDetailViewController: UIViewController {
         QnACommentViewController.PID = parentID
         QnACommentViewController.boardTypeNumber = self.boardTypeNumber
     }
-    
+    func commentDelte(){
+        let alert = UIAlertController(title: "삭제 되었습니다.", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "확인", style: .cancel)
+        alert.addAction(cancel)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    //답글 ...버튼 액션
+    @objc func addReplyCommentFunction(_ sender : Any){
+        let parentID : Int = (sender as! CustomQnAButton).parentID
+        let isAccessible : Bool = (sender as! CustomQnAButton).isAccessible
+        let alert = UIAlertController(title: "답글 메뉴", message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let report = UIAlertAction(title: "신고", style: .destructive)
+        if isAccessible == true{
+            let delete = UIAlertAction(title: "답글 삭제", style: .destructive){(_) in
+                self.deletePost(communityBoardNumber: self.boardTypeNumber, PID: parentID)
+                self.commentDelte()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                    self.getBoardTextDetailQnAData()
+                })
+            }
+            let update = UIAlertAction(title: "답글 수정", style: .default){(_)in
+                
+            }
+            alert.addAction(delete)
+            alert.addAction(update)
+            
+        }
+        alert.addAction(cancel)
+        alert.addAction(report)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
 }
 extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -134,6 +211,9 @@ extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDe
         cell.setReplyData(model:self.QnAReplyData[indexPath.row])
         cell.commentButton.addTarget(self, action: #selector(tapGoCommentofReplyComment) , for: .touchUpInside)
         cell.commentButton.parentID = self.QnAReplyData[indexPath.row].PID
+        cell.addFunctionButton.addTarget(self, action: #selector(addReplyCommentFunction), for: .touchUpInside)
+        cell.addFunctionButton.isAccessible = cell.QnaAnswerisAccessible
+        cell.addFunctionButton.parentID = cell.PID
         return cell
     }
     
@@ -141,8 +221,10 @@ extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDe
 }
 class CustomQnAButton : UIButton {
     var parentID : Int = 0
-    convenience init(parentID : Int) {
+    var isAccessible : Bool = false
+    convenience init(parentID : Int,isAccessible : Bool) {
         self.init()
         self.parentID = parentID
+        self.isAccessible = isAccessible
         }
 }

@@ -93,7 +93,7 @@
 		F87B810928016BEF00E2FB7A /* HomeDataForMat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B810828016BEF00E2FB7A /* HomeDataForMat.swift */; };
 		F87B810C28016C3D00E2FB7A /* HomeDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F87B810B28016C3D00E2FB7A /* HomeDataSerVice.swift */; };
 		F88808DE281D6BDA007CE79C /* TagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88808DD281D6BDA007CE79C /* TagViewController.swift */; };
-		F8886F2A2821309300044737 /* CommunityDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8886F292821309300044737 /* CommunityDataSerVice.swift */; };
+		F8886F2A2821309300044737 /* CommunityGetDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8886F292821309300044737 /* CommunityGetDataSerVice.swift */; };
 		F8886F2C2821328800044737 /* WritePostDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8886F2B2821328800044737 /* WritePostDataFormat.swift */; };
 		F8886F2E28214BB500044737 /* WriteGetListDataFomat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8886F2D28214BB500044737 /* WriteGetListDataFomat.swift */; };
 		F88D683E282D254400E23344 /* TagMoreViewBookList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D683D282D254400E23344 /* TagMoreViewBookList.swift */; };
@@ -102,6 +102,8 @@
 		F89297752844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F89297732844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.swift */; };
 		F89297762844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F89297742844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.xib */; };
 		F899B5CF28485D55000A03D7 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5CE28485D55000A03D7 /* CustomButton.swift */; };
+		F899B5D12848FE5E000A03D7 /* CommunityPostDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */; };
+		F899B5D328490300000A03D7 /* CommunityDeleteDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */; };
 		F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */; };
 		F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */; };
 		F8B3126828327C2000E01201 /* QnABoardTextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */; };
@@ -231,7 +233,7 @@
 		F87B810828016BEF00E2FB7A /* HomeDataForMat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataForMat.swift; sourceTree = "<group>"; };
 		F87B810B28016C3D00E2FB7A /* HomeDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSerVice.swift; sourceTree = "<group>"; };
 		F88808DD281D6BDA007CE79C /* TagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewController.swift; sourceTree = "<group>"; };
-		F8886F292821309300044737 /* CommunityDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityDataSerVice.swift; path = "BookkyProject-iOS/SerVice/CommunityDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
+		F8886F292821309300044737 /* CommunityGetDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityGetDataSerVice.swift; path = "BookkyProject-iOS/Service/Community/CommunityGetDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
 		F8886F2B2821328800044737 /* WritePostDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostDataFormat.swift; sourceTree = "<group>"; };
 		F8886F2D28214BB500044737 /* WriteGetListDataFomat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteGetListDataFomat.swift; sourceTree = "<group>"; };
 		F88D683D282D254400E23344 /* TagMoreViewBookList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMoreViewBookList.swift; sourceTree = "<group>"; };
@@ -241,6 +243,8 @@
 		F89297732844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityReplyCommentTableViewCell.swift; sourceTree = "<group>"; };
 		F89297742844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityReplyCommentTableViewCell.xib; sourceTree = "<group>"; };
 		F899B5CE28485D55000A03D7 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityPostDataSerVice.swift; path = "BookkyProject-iOS/Service/Community/CommunityPostDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
+		F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityDeleteDataSerVice.swift; path = "BookkyProject-iOS/Service/Community/CommunityDeleteDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
 		F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionReusableViewHeader.swift; sourceTree = "<group>"; };
 		F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnABoardTextDetailViewController.swift; sourceTree = "<group>"; };
@@ -415,6 +419,7 @@
 		686AE6B927FC01B600B77245 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F899B5D428490303000A03D7 /* Community */,
 				F87B810B28016C3D00E2FB7A /* HomeDataSerVice.swift */,
 				686AE6BA27FC01DC00B77245 /* EmailAuthenticate.swift */,
 				686AE6C327FC6D3700B77245 /* Account.swift */,
@@ -422,7 +427,6 @@
 				686B212F2805498000384408 /* KeychainManager.swift */,
 				68169243282A85450066946A /* MyProfileAPI.swift */,
 				68169246282B8B530066946A /* RedirectView.swift */,
-				F8886F292821309300044737 /* CommunityDataSerVice.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -574,12 +578,14 @@
 			path = MyProfile;
 			sourceTree = "<group>";
 		};
-		F840D07F2847ACF900CB0F3C /* Board */ = {
+		F840D07F2847ACF900CB0F3C /* BoardDetail */ = {
 			isa = PBXGroup;
 			children = (
 				F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */,
+				F8B3126928328B8E00E01201 /* QnaAnswerTableViewCell.swift */,
+				F8B3126A28328B8E00E01201 /* QnaAnswerTableViewCell.xib */,
 			);
-			path = Board;
+			path = BoardDetail;
 			sourceTree = "<group>";
 		};
 		F840D0802847AED300CB0F3C /* CommunityPostList */ = {
@@ -645,16 +651,24 @@
 			path = Community;
 			sourceTree = "<group>";
 		};
+		F899B5D428490303000A03D7 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				F8886F292821309300044737 /* CommunityGetDataSerVice.swift */,
+				F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */,
+				F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
 		F8C10A862832B6B400D311F6 /* Q&A */ = {
 			isa = PBXGroup;
 			children = (
 				F8C10A912832C0C400D311F6 /* QnACommunity.storyboard */,
 				F840D0802847AED300CB0F3C /* CommunityPostList */,
-				F840D07F2847ACF900CB0F3C /* Board */,
+				F840D07F2847ACF900CB0F3C /* BoardDetail */,
 				F8C10A8D2832C04F00D311F6 /* QnAWriteAnswerViewController.swift */,
 				F8C10A8F2832C05D00D311F6 /* QnACommentViewController.swift */,
-				F8B3126928328B8E00E01201 /* QnaAnswerTableViewCell.swift */,
-				F8B3126A28328B8E00E01201 /* QnaAnswerTableViewCell.xib */,
 			);
 			path = "Q&A";
 			sourceTree = "<group>";
@@ -885,6 +899,8 @@
 				6860BE2A28336E5100C7399E /* SettingsViewController.swift in Sources */,
 				F82A862528464C8200DBBE00 /* CommentHeaderTableViewCell.swift in Sources */,
 				686AE6C427FC6D3700B77245 /* Account.swift in Sources */,
+				F899B5D328490300000A03D7 /* CommunityDeleteDataSerVice.swift in Sources */,
+				F899B5D12848FE5E000A03D7 /* CommunityPostDataSerVice.swift in Sources */,
 				68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */,
 				683674BE282215B500CB618D /* MyTagsCollectionViewCell.swift in Sources */,
 				F877021328008C72002EA1F5 /* BookCollectionViewCell.swift in Sources */,
@@ -933,7 +949,7 @@
 				F826057E282E5B94006DB702 /* WritePostBookSearchViewController.swift in Sources */,
 				F88808DE281D6BDA007CE79C /* TagViewController.swift in Sources */,
 				F8B5BC79283D01A500A70190 /* ExtensionStatusBar.swift in Sources */,
-				F8886F2A2821309300044737 /* CommunityDataSerVice.swift in Sources */,
+				F8886F2A2821309300044737 /* CommunityGetDataSerVice.swift in Sources */,
 				F8E68A352828C4450046760A /* WriteTextDetailDataFormat.swift in Sources */,
 				6852E57427F307BB00CAEF02 /* SocialSignupVC.swift in Sources */,
 				F8C10A882832B89600D311F6 /* SearchPostTableViewCell.swift in Sources */,

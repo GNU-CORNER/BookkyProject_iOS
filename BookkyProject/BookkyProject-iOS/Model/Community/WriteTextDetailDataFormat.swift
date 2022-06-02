@@ -44,6 +44,7 @@ struct WriteTextDetailPostData : Codable {
     let like : [Int]?
     let nickname : String
     let thumbnail : String?
+    let isAccessible : Bool
 }
 
 //2차원배열
@@ -56,6 +57,7 @@ struct WriteTextDetailCommentdata : Codable{
     let thumbnail : String?
     let childComment : [ChildComment]?
     let CID : Int
+    let isAccessible : Bool
 }
 //2차원배열
 struct ChildComment : Codable{
@@ -65,6 +67,8 @@ struct ChildComment : Codable{
     let like : [Int]?
     let nickname : String
     let thumbnail : String?
+    let CID: Int
+    let isAccessible : Bool
 }
 // MARK: - Q&A Detail
 struct WriteTextDetailQnAInformation :Codable {

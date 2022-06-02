@@ -19,8 +19,9 @@ class QnaAnswerTableViewCell: UITableViewCell {
     @IBOutlet weak var likeCntLabel: UIButton!
     
     @IBOutlet weak var commentButton: CustomQnAButton!
-    @IBOutlet weak var addFunctionButton: UIButton!
+    @IBOutlet weak var addFunctionButton: CustomQnAButton!
     var PID : Int = 0
+    var QnaAnswerisAccessible : Bool = false
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
@@ -33,6 +34,7 @@ class QnaAnswerTableViewCell: UITableViewCell {
         self.choiceAnswerLabel.text = " "
         self.commentButton.setTitle("댓글(\(model.commentCnt ?? 0))", for:.normal)
         self.PID = model.PID
+        self.QnaAnswerisAccessible = model.isAccessible
         
     }
     override func setSelected(_ selected: Bool, animated: Bool) {

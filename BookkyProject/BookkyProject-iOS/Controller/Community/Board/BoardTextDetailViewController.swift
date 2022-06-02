@@ -37,9 +37,16 @@ class BoardTextDetailViewController: UIViewController {
     var tableViewfooterHeight :CGFloat = 0 // footerView 높이(대댓글 작성 View)
     var replytextField : UITextField! // 대댓글 텍스트 필드
     var CommentContents: String = "" // 댓글 작성내용
-    var replyCommentContents : String = "" //대댓글 작성 내용
-    var replyCommentFooterView : UIView! //대댓글 View
-    //이전에 어떤 게시판인지
+    var replyCommentContents : String = "" // 대댓글 작성 내용
+    var replyCommentFooterView : UIView! // 대댓글 View
+    var writeisAccessible : Bool = false // 사용자의 글인지 아닌지 확인
+    var replycommentisAccessible : Bool = false // 사용자의 대댓글인지 아닌지 확인
+    var CID : Int = 0 // 댓글 ID
+    lazy var rightButton: UIBarButtonItem = {
+        let buttonImg = UIImage(systemName: "ellipsis")
+        let barButtonItem = UIBarButtonItem(image: buttonImg, style: .plain, target: self, action: #selector(rightbarButtonAction(_:)))
+        return barButtonItem
+    }()
     var previousBoardNumber : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,11 +56,33 @@ class BoardTextDetailViewController: UIViewController {
         setBoardTextDetailUI()
         footerViewUISet()
         secondLineStackView.setCustomSpacing(5, after: self.textDetailViewsImage)
-        print("\(self.PID)")
-        print("\(self.previousBoardNumber)pr갱")
-        print("\(self.boardTypeNumber)board갱")
+        self.navigationItem.rightBarButtonItem = self.rightButton
+        print("\(self.PID)PID")
     }
-    func setNavigationUI(){
+    @objc private func rightbarButtonAction(_ sender : Any){
+        let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let report = UIAlertAction(title: "신고", style: .destructive)
+        if self.writeisAccessible == true {
+            let delete = UIAlertAction(title: "글 삭제", style: .destructive){(_) in
+                self.deletePost(communityBoardNumber: self.boardTypeNumber, PID: self.PID)
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                    self.navigationController?.popViewController(animated: true)
+                })
+               
+            }
+            let update = UIAlertAction(title: "글 수정", style: .default)
+            alert.addAction(delete)
+            alert.addAction(update)
+           
+        }
+        alert.addAction(cancel)
+        alert.addAction(report)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    private func setNavigationUI(){
         if self.boardTypeNumber == 0 {
             self.NavigationBarTitleLabel.title = "자유 게시판"
         }else if self.boardTypeNumber == 1{
@@ -97,14 +126,17 @@ class BoardTextDetailViewController: UIViewController {
         let textCount = self.textDetailContentsLabel.text?.count ?? 0
         self.postDetailView.frame.size.height = 200+CGFloat((textCount/60)*20)
         self.commentButton.tintColor = .black
+        self.writeisAccessible = model.isAccessible
     }
     func setCommentCount(model: WriteTextDetailData){
         self.commentCnt = model.commentCnt ?? 0
         self.commentButton.setTitle("댓글(\(model.commentCnt ?? 0))", for: .normal)
         //대댓글수 까지 포함
     }
+// MARK: - 데이터 통신함수
+    //GET PostDetail
     private func getBoardTextDetailData(){
-        CommunityAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
+        CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
                 guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
                 let writeTextDetailData = communityGetDetailList.result.postdata
@@ -122,6 +154,40 @@ class BoardTextDetailViewController: UIViewController {
                 }
             }
         }
+    }
+    // Write 댓글,대댓글
+    private func postCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , PID : Int){
+        CommunityPostAPI.shared.postCommunityCommentWrite(comment: commnet, parentID: parentID, CommunityBoardNumber: communityBoardNumber, PID: PID) {(succes,data) in
+            if succes{
+                print("댓글 쓰기 성공")
+                
+            }else{
+                print("실패")
+            }
+        }
+    }
+    
+    //Delete Post
+    private func deletePost(communityBoardNumber: Int ,PID: Int){
+        CommunityDeleteAPI.shared.DeletPost(CommunityBoardNumber: communityBoardNumber, PID: PID) { (success,data) in
+            if success {
+                print("글 삭제 성공")
+            }else {
+                print("실패")
+            }
+        }
+        
+    }
+    //Delete Comment
+    private func deleteComment(communityBoardNumber: Int ,CID: Int){
+        CommunityDeleteAPI.shared.DeletComment(CommunityBoardNumber: communityBoardNumber, CID: CID) { (success,data) in
+            if success{
+                print("댓글 삭제 성공")
+            }else {
+                print("실패")
+            }
+        }
+        
     }
     //댓글작성 버튼 클릭
     @IBAction func tapWriteComment(_ sender: UIButton) {
@@ -158,16 +224,34 @@ class BoardTextDetailViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
+    // 삭제 완료 alert , 이유 위와 같음
+    func commentDelte(){
+        let alert = UIAlertController(title: "삭제 되었습니다.", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "확인", style: .cancel)
+        alert.addAction(cancel)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    //대댓글 ActionSheet
     private func replyCommentActionsheet(){
         let alert = UIAlertController(title: "대댓글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         let report = UIAlertAction(title: "신고", style: .destructive)
-        let delete = UIAlertAction(title: "대댓글 삭제", style: .destructive)
-        let update = UIAlertAction(title: "대댓글 수정", style: .default)
+        if self.replycommentisAccessible == true {
+            let delete = UIAlertAction(title: "대댓글 삭제", style: .destructive){(_) in
+                self.deleteComment(communityBoardNumber:self.boardTypeNumber  ,CID: self.CID)
+                self.commentDelte()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                    self.getBoardTextDetailData()
+                })
+            }
+            let update = UIAlertAction(title: "대댓글 수정", style: .default)
+            alert.addAction(delete)
+            alert.addAction(update)
+        }
         alert.addAction(cancel)
         alert.addAction(report)
-        alert.addAction(delete)
-        alert.addAction(update)
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
@@ -175,18 +259,27 @@ class BoardTextDetailViewController: UIViewController {
     //대댓글 작성뷰 버튼 액션 '...'버튼
     @objc func tapAddCommetFunction(_ sender : Any){
         let section : Int = (sender as! CustomButton).section
-        let parentID : Int = (sender as! CustomButton).parentID
+        let CID : Int = (sender as! CustomButton).CID
+        let isAccessible : Bool = (sender as! CustomButton).isAccessible
         let alert = UIAlertController(title: "댓글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
+        if isAccessible == true{
+            let delete = UIAlertAction(title: "댓글 삭제", style: .destructive){(_) in
+                self.deleteComment(communityBoardNumber:self.boardTypeNumber  ,CID: CID)
+                self.commentDelte()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                    self.getBoardTextDetailData()
+                })
+            }
+            let update = UIAlertAction(title: "댓글 수정", style: .default){(_)in
+                
+            }
+            alert.addAction(delete)
+            alert.addAction(update)
+        }
         let report = UIAlertAction(title: "신고", style: .destructive)
-        let delete = UIAlertAction(title: "댓글 삭제", style: .destructive){(_) in
-            
-        }
-        let update = UIAlertAction(title: "댓글 수정", style: .default){(_)in
-            
-        }
         let writeComment = UIAlertAction(title: "대댓글 작성", style: .default){(_) in
-            self.replyparentID = parentID
+            self.replyparentID = CID
             self.section = section
             self.tableViewfooterHeight = 50
             self.getBoardTextDetailData()
@@ -194,23 +287,12 @@ class BoardTextDetailViewController: UIViewController {
         
         alert.addAction(cancel)
         alert.addAction(report)
-        alert.addAction(delete)
-        alert.addAction(update)
+     
         alert.addAction(writeComment)
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
         
-    }
-    private func postCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , PID : Int){
-        CommunityAPI.shared.postCommunityCommentWrite(comment: commnet, parentID: parentID, CommunityBoardNumber: communityBoardNumber, PID: PID) {(succes,data) in
-            if succes{
-                print("댓글 쓰기 성공")
-                
-            }else{
-                print("실패")
-            }
-        }
     }
     private func footerViewUISet(){
         self.commentTextView.delegate = self
@@ -277,7 +359,8 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
         headerView.likeCntLabel.text = "공감(\(likeCnt))"
         headerView.layer.addBorder([.top], color: UIColor(named: "lightGrayColor") ?? UIColor.gray, width : 1)
         headerView.addFunctionButton.section = section
-        headerView.addFunctionButton.parentID = self.writeTextDetailcommentData[section].CID
+        headerView.addFunctionButton.CID = self.writeTextDetailcommentData[section].CID
+        headerView.addFunctionButton.isAccessible = self.writeTextDetailcommentData[section].isAccessible
         headerView.addFunctionButton.addTarget(self, action: #selector(tapAddCommetFunction), for: .touchUpInside)
         
         return headerView
@@ -295,6 +378,8 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
         replycell.setComment(model: (self.writeTextDetailcommentData[indexPath.section].childComment?[indexPath.row])!)
         replycell.buttonAction = {
             self.replyCommentActionsheet()
+            self.CID = replycell.CID
+            self.replycommentisAccessible = replycell.isAccessible
         }
         return replycell
         
@@ -313,15 +398,4 @@ extension BoardTextDetailViewController : UITextViewDelegate{
             textView.textColor = UIColor.lightGray
         }
     }
-}
-
-
-class CustomButton : UIButton {
-    var section : Int = 0
-    var parentID : Int = 0
-    convenience init(section: Int,parentID : Int) {
-        self.init()
-        self.section = section
-        self.parentID = parentID
-        }
 }

@@ -21,11 +21,14 @@ class QnACommentViewController: UIViewController {
     var QnACommentList : [QnACommentDataList] = []
     var section : Int = 0
     var QnAreplyparentID : Int = 0
+    var CID : Int = 0 // 댓글 ID
+    var replycommentisAccessible : Bool = false // 사용자의 대댓글인지 아닌지 확인
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableViewCell()
         getCommentData()
         QnAfooterViewUISet()
+        print("\(self.PID)")
         
     }
     private func QnAfooterViewUISet(){
@@ -53,8 +56,10 @@ class QnACommentViewController: UIViewController {
         self.QnACommentTableView.register(replyCellNib, forCellReuseIdentifier: "BoardTextCommentReplyTableViewCellid")
         self.QnACommentTableView.register(UINib(nibName: "CommentHeaderTableViewCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "CommentHeaderid")
     }
+
+// MARK: - API 통신
     private func getCommentData(){
-        CommunityAPI.shared.getCommunityQnAComment(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success , data) in
+        CommunityGetAPI.shared.getCommunityQnAComment(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success , data) in
             if success{
                 guard let communityQnAGetDetailList = data as? QnACommentDataInformation else {return}
                 self.QnACommentList = communityQnAGetDetailList.result.commentdata
@@ -71,11 +76,20 @@ class QnACommentViewController: UIViewController {
         }
     }
     private func QnApostCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , PID : Int){
-        CommunityAPI.shared.postCommunityCommentWrite(comment: commnet, parentID: parentID, CommunityBoardNumber: communityBoardNumber, PID: PID) {(succes,data) in
+        CommunityPostAPI.shared.postCommunityCommentWrite(comment: commnet, parentID: parentID, CommunityBoardNumber: communityBoardNumber, PID: PID) {(succes,data) in
             if succes{
                 print("댓글 쓰기 성공")
                 
             }else{
+                print("실패")
+            }
+        }
+    }
+    private func deleteComment(communityBoardNumber: Int ,CID: Int){
+        CommunityDeleteAPI.shared.DeletComment(CommunityBoardNumber: communityBoardNumber, CID: CID) { (success,data) in
+            if success{
+                print("댓글 삭제 성공")
+            }else {
                 print("실패")
             }
         }
@@ -104,26 +118,57 @@ class QnACommentViewController: UIViewController {
         let alert = UIAlertController(title: "대댓글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         let report = UIAlertAction(title: "신고", style: .destructive)
-        let delete = UIAlertAction(title: "대댓글 삭제", style: .destructive)
-        let update = UIAlertAction(title: "대댓글 수정", style: .default)
+        if self.replycommentisAccessible == true {
+            let delete = UIAlertAction(title: "대댓글 삭제", style: .destructive){(_) in
+                self.deleteComment(communityBoardNumber:self.boardTypeNumber  ,CID: self.CID)
+                self.commentDelte()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                    self.getCommentData()
+                })
+            }
+            let update = UIAlertAction(title: "대댓글 수정", style: .default){(_) in
+            }
+            alert.addAction(delete)
+            alert.addAction(update)
+        }
         alert.addAction(cancel)
         alert.addAction(report)
-        alert.addAction(delete)
-        alert.addAction(update)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    // 삭제 완료 alert , 이유 위와 같음
+    func commentDelte(){
+        let alert = UIAlertController(title: "삭제 되었습니다.", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "확인", style: .cancel)
+        alert.addAction(cancel)
         DispatchQueue.main.async {
             self.present(alert, animated: true)
         }
     }
     //대댓글 작성뷰 버튼 액션 '...'버튼
     @objc func QnAtapAddCommetFunction(_ sender : Any){
+        let section : Int = (sender as! CustomButton).section
+        let parentID : Int = (sender as! CustomButton).CID
+        let isAccessible : Bool = (sender as! CustomButton).isAccessible
         let alert = UIAlertController(title: "댓글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         let report = UIAlertAction(title: "신고", style: .destructive)
-        let delete = UIAlertAction(title: "댓글 삭제", style: .destructive)
-        let update = UIAlertAction(title: "댓글 수정", style: .default)
+        if isAccessible == true {
+            let delete = UIAlertAction(title: "댓글 삭제", style: .destructive){(_) in
+                self.deleteComment(communityBoardNumber:self.boardTypeNumber  ,CID: parentID)
+                self.commentDelte()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                    self.getCommentData()
+                })
+            }
+            let update = UIAlertAction(title: "댓글 수정", style: .default){(_) in
+                
+            }
+            alert.addAction(delete)
+            alert.addAction(update)
+        }
         let writeComment = UIAlertAction(title: "대댓글 작성", style: .default){(_) in
-            let section : Int = (sender as! CustomButton).section
-            let parentID : Int = (sender as! CustomButton).parentID
             self.QnAreplyparentID = parentID
             self.section = section
             self.tableViewfooterHeight = 50
@@ -132,8 +177,6 @@ class QnACommentViewController: UIViewController {
         
         alert.addAction(cancel)
         alert.addAction(report)
-        alert.addAction(delete)
-        alert.addAction(update)
         alert.addAction(writeComment)
         DispatchQueue.main.async {
             self.present(alert, animated: true)
@@ -199,7 +242,8 @@ extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
         headerView.likeCntLabel.text = "공감(\(likeCnt))"
         headerView.layer.addBorder([.top], color: UIColor(named: "lightGrayColor") ?? UIColor.gray, width : 1)
         headerView.addFunctionButton.section = section
-        headerView.addFunctionButton.parentID = self.QnACommentList[section].CID
+        headerView.addFunctionButton.CID = self.QnACommentList[section].CID
+        headerView.addFunctionButton.isAccessible = self.QnACommentList[section].isAccessible
         headerView.addFunctionButton.addTarget(self, action: #selector(QnAtapAddCommetFunction), for: .touchUpInside)
         
         return headerView
@@ -215,6 +259,8 @@ extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
         replycell.setQnAComment(model: (self.QnACommentList[indexPath.section].childComment?[indexPath.row])!)
         replycell.buttonAction = {
             self.QnAreplyCommentActionsheet()
+            self.replycommentisAccessible = replycell.isAccessible
+            self.CID = replycell.CID
         }
         return replycell
         

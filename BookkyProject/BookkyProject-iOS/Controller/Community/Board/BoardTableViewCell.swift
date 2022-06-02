@@ -10,7 +10,7 @@ import UIKit
 class BoardTableViewCell: UITableViewCell {
     var PID : Int = 0
     var communityType : Int = 0
-    
+//    var
     @IBOutlet weak var tableViewCell: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentsLabel: UILabel!

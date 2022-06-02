@@ -127,6 +127,7 @@ class CommunityViewController: UIViewController {
             setDropDownMenu()
             communityGetPostQnAList()
         }else if self.previousBoardNumber == 3 {
+            print("갱1")
             self.boardNameLabel.text = "내글 보기"
             self.boardTypeNumber = 3
             self.previousBoardNumber = 3
@@ -136,6 +137,7 @@ class CommunityViewController: UIViewController {
             self.currentTextCount = 0
             setDropDownMenu()
             communityGetPostMyList()
+            print("갱2")
         }else if self.previousBoardNumber == 4 {
             self.boardNameLabel.text = "H🔥t 게시판"
             self.boardTypeNumber = 4
@@ -284,7 +286,7 @@ class CommunityViewController: UIViewController {
     }
     
     func communityGetPostList(){
-        CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
+        CommunityGetAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
             if success{
                 guard let communityGetWriteList = data as? WriteListInformation else {return}
                 if self.boardTypeNumber == 0{
@@ -309,7 +311,7 @@ class CommunityViewController: UIViewController {
         
     }
     func communityGetPostHotList(){
-        CommunityAPI.shared.getCommunityPostListHot { (sucess,data ) in
+        CommunityGetAPI.shared.getCommunityPostListHot { (sucess,data ) in
             if sucess {
                 guard let PostHotList = data as? PostListHotInformation else {return}
                 self.hotPostList = PostHotList.result.postList
@@ -329,7 +331,7 @@ class CommunityViewController: UIViewController {
     }
     
     func communityGetPostQnAList(){
-        CommunityAPI.shared.getCommunityWriteQnAList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
+        CommunityGetAPI.shared.getCommunityWriteQnAList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
             if success{
                 guard let communityGetWriteQnAList = data as? WriteListQnAInformation else {return}
                 if self.boardTypeNumber == 2{
@@ -350,20 +352,25 @@ class CommunityViewController: UIViewController {
         }
     }
     func communityGetPostMyList(){
-        CommunityAPI.shared.getCommunityMyWriteList(CommunityBoardNumber: self.boardTypeNumber, pageCount: self.currentPage) { (success,data) in
+        CommunityGetAPI.shared.getCommunityMyWriteList(CommunityBoardNumber: self.boardTypeNumber, pageCount: self.currentPage) { (success,data) in
             if success {
+                print("갱3")
                 guard let communityGetWriteMyList = data as? PostListMyInformation else {return}
                 self.myPostList.append(contentsOf: communityGetWriteMyList.result.postList)
                 self.getPageDataCount = communityGetWriteMyList.result.postList.count
 //                self.totalTextCount = communityGetWriteMyList.result.total_size
                 self.currentTextCount+=self.getPageDataCount
+                print("갱4")
                 if communityGetWriteMyList.success{
+                    print("갱5")
                     DispatchQueue.main.async {
                         self.boardTableView.reloadData()
                     }
+                    print("갱6")
                 }else{
                     print("통신오류")
                 }
+                print("갱7")
             }
         }
     }
