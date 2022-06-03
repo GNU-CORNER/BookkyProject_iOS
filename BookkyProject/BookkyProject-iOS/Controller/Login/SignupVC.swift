@@ -183,7 +183,7 @@ extension SignupVC {
                 self.showToast(message: "해당 이메일로 인증번호를 보냈습니다.")
             }
             // - [x] 서버로 이메일 인증 요청
-            if let userEmail = self.emailTextField?.text as? String {
+            if let userEmail = self.emailTextField?.text {
                 requestEmailAuth(email: userEmail)
                 print("기다려!")
             }
@@ -196,9 +196,10 @@ extension SignupVC {
         
     }
     
+    
     // MARK: Request Email Check Code
     @IBAction func emailCodeCheckRequest(_ sender: Any) {
-        guard let emailCode: String = self.emailCheckTextField?.text as? String else {
+        guard let emailCode: String = self.emailCheckTextField?.text else {
             print("이메일 코드를 안입력했는데?")
             return
         }
@@ -206,7 +207,7 @@ extension SignupVC {
         if isValidEmailCode(codeStr: emailCode) {
             print("형식 맞음~~~!!!")
             // - [x] 서버로 이메일 코드 인증 요청
-            if let code = self.emailCheckTextField?.text as? String, let userEmail = self.emailTextField?.text as? String {
+            if let code = self.emailCheckTextField?.text , let userEmail = self.emailTextField?.text  {
                 requestEmailCodeCheck(email: userEmail, code: Int(code)!)
             }
         } else {

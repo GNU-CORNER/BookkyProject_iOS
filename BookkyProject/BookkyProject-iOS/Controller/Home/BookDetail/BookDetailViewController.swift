@@ -13,11 +13,8 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var detailBookName: UILabel!
     @IBOutlet weak var detailBookAuthor: UILabel!
     @IBOutlet weak var detailBookTagListCollectionView: UICollectionView!
-    
-    //    @IBOutlet weak var detailBookTagListView: UICollectionView!
     @IBOutlet weak var bookDetailImage: UIImageView!
     var BID = 0
-    //    let
     
     var bookDetailTagList : [BookDetailDataTagData] = []
     //네이버

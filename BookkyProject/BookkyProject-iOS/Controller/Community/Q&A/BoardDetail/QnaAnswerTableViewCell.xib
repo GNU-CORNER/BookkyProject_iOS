@@ -54,7 +54,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jav-qj-VOd">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jav-qj-VOd" customClass="CustomQnAButton" customModule="BookkyProject_iOS" customModuleProvider="target">
                                         <rect key="frame" x="42.5" y="0.0" width="19" height="25"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="ellipsis" catalog="system"/>
@@ -71,13 +71,10 @@
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQk-YB-94N">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQk-YB-94N" customClass="CustomQnAButton" customModule="BookkyProject_iOS" customModuleProvider="target">
                                 <rect key="frame" x="56" y="0.0" width="46" height="30.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="tapGoCommentView:" destination="-1" eventType="touchUpInside" id="zBo-GB-lzS"/>
-                                </connections>
                             </button>
                         </subviews>
                     </stackView>
@@ -102,9 +99,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="addFunctionButton" destination="Jav-qj-VOd" id="soX-HA-5cn"/>
                 <outlet property="addfunctionButton" destination="Jav-qj-VOd" id="Xjw-gu-6fJ"/>
                 <outlet property="choiceAnswerLabel" destination="JNF-EM-gaW" id="ywD-3P-QGp"/>
-                <outlet property="commentButton" destination="iQk-YB-94N" id="bd7-br-hR2"/>
+                <outlet property="commentButton" destination="iQk-YB-94N" id="fcq-A2-hZU"/>
                 <outlet property="contentsLabel" destination="amR-NI-SMm" id="VkJ-kV-d7x"/>
                 <outlet property="createDataLabel" destination="HWn-qi-89W" id="2QL-HK-QpD"/>
                 <outlet property="likeCntLabel" destination="IzT-bM-fgR" id="nBQ-O8-hsZ"/>

@@ -8,20 +8,18 @@
 import UIKit
 
 class CommunityViewController: UIViewController {
-    var boardTypeNumber : Int = 0
-    let freeBoard = Free()
-    let QnABoard = QnA()
-    let HotBoard = Hot()
-    let bookMarketBoard = BookMarket()
-    let myTextBoard = Mytext()
+    
+    var previousBoardNumber : Int = 0 // 현재 게시판
+    var boardTypeNumber : Int = 0 // 데이터를 받아오는 게시판 번호
     var PID : Int = 0
     var postListFree : [PostListData] = []
     var postListBookMarket : [PostListData] = []
+    var postListQnA : [PostQnAListData] = []
+    var myPostList : [PostLisyMyList] = []
+    var hotPostList : [PostListHotList] = []
     // 좋아요개수 와 댓글개수
-    
     var currentPage = 1
     var getPageDataCount : Int = 0
-    
     @IBOutlet var communityView: UIView!
     @IBOutlet weak var boardNameButton: UIButton!
     @IBOutlet weak var boardNameLabel: UILabel!
@@ -35,19 +33,19 @@ class CommunityViewController: UIViewController {
     @IBOutlet weak var boardTypeStackView: UIStackView!
     //tableView
     @IBOutlet weak var boardTableView: UITableView!
-    
     @IBOutlet weak var grayView: UIView!
-    
     var moreScroll : Bool = false
     var totalTextCount : Int = 0
     var currentTextCount : Int = 0
+    //replyCnt. -1 일반글 갯수 있으면 Q&A글
+    var replyCnt : Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.boardTableView.delegate = self
         self.boardTableView.dataSource = self
-        self.boardTableView.reloadData()
+        self.SetQnACell()
         SetdropDownView()
         //searchButton
         self.searchButton?.tintColor = .black
@@ -56,8 +54,6 @@ class CommunityViewController: UIViewController {
         //초기화
         setinitCommunity()
         boardTypeColor()
-        communityGetWriteList()
-        print("\(self.boardTypeNumber)boardTypeNumber")
     }
     func SetdropDownView(){
         self.freeBoardGoButton.setTitle("자유", for: .normal)
@@ -93,21 +89,72 @@ class CommunityViewController: UIViewController {
         self.boardTypeStackView.sizeToFit()
     }
     override func viewWillAppear(_ animated: Bool) {
-        
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-        if self.boardTypeNumber == 2 {
-            self.boardNameLabel.text = "Q&A 게시판"
-            setDropDownMenu()
-        }
-        SetQnACell()
+        setDropDownMenu()
+        self.updateTableView()
         
+    }
+    func updateTableView(){
+        if self.previousBoardNumber == 0  {
+            self.boardNameLabel.text = "자유 게시판"
+            self.boardTypeNumber = 0
+            self.previousBoardNumber = 0
+            self.currentPage = 1
+            self.postListFree = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
+            setDropDownMenu()
+            communityGetPostList()
+        }else if self.previousBoardNumber == 1 {
+            self.boardNameLabel.text = "책 장터 게시판"
+            self.boardTypeNumber = 1
+            self.previousBoardNumber = 1
+            self.currentPage = 1
+            self.postListBookMarket = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
+            setDropDownMenu()
+            communityGetPostList()
+        }else if self.previousBoardNumber == 2 {
+            self.boardNameLabel.text = "Q&A 게시판"
+            self.boardTypeNumber = 2
+            self.previousBoardNumber = 2
+            self.currentPage = 1
+            self.postListQnA = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
+            setDropDownMenu()
+            communityGetPostQnAList()
+        }else if self.previousBoardNumber == 3 {
+            print("갱1")
+            self.boardNameLabel.text = "내글 보기"
+            self.boardTypeNumber = 3
+            self.previousBoardNumber = 3
+            self.currentPage = 1
+            self.myPostList = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
+            setDropDownMenu()
+            communityGetPostMyList()
+            print("갱2")
+        }else if self.previousBoardNumber == 4 {
+            self.boardNameLabel.text = "H🔥t 게시판"
+            self.boardTypeNumber = 4
+            self.previousBoardNumber = 4
+            self.currentPage = 1
+            self.hotPostList = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
+            setDropDownMenu()
+            communityGetPostHotList()
+            
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
-        
     }
     //    override func viewDidAppear(_ animated: Bool) {
     //        super.viewDidAppear(animated)
@@ -127,33 +174,52 @@ class CommunityViewController: UIViewController {
     @IBAction func tapGoBoard(_ sender: UIButton) {
         if sender == self.freeBoardGoButton{
             self.boardTypeNumber = 0
+            self.previousBoardNumber = 0
             self.currentPage = 1
             self.postListFree = []
             self.totalTextCount = 0
             self.currentTextCount = 0
             setDropDownMenu()
+            communityGetPostList()
         }else if sender == self.bookMarketGoButton{
             self.boardTypeNumber = 1
+            self.previousBoardNumber = 1
             self.currentPage = 1
             self.postListBookMarket = []
             self.totalTextCount = 0
             self.currentTextCount = 0
             setDropDownMenu()
+            communityGetPostList()
         }else if sender == self.QnABoardGoButton{
             self.boardTypeNumber = 2
+            self.previousBoardNumber = 2
             self.currentPage = 1
-            self.postListBookMarket = []
+            self.postListQnA = []
             self.totalTextCount = 0
             self.currentTextCount = 0
             setDropDownMenu()
-        }else if sender == self.hotBoardGobutton{
-            self.boardTypeNumber = 3
-            setDropDownMenu()
+            communityGetPostQnAList()
         }else if sender == self.myTextGoButton{
-            self.boardTypeNumber = 4
+            self.boardNameLabel.text = "내글 보기"
+            self.boardTypeNumber = 3
+            self.previousBoardNumber = 3
+            self.currentPage = 1
+            self.myPostList = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
             setDropDownMenu()
+            communityGetPostMyList()
+        }else if sender == self.hotBoardGobutton{
+            self.boardTypeNumber = 4
+            self.previousBoardNumber = 4
+            self.currentPage = 1
+            self.hotPostList = []
+            self.totalTextCount = 0
+            self.currentTextCount = 0
+            setDropDownMenu()
+            communityGetPostHotList()
         }
-        communityGetWriteList()
+        
         self.boardTableView.reloadData()
     }
     
@@ -189,24 +255,24 @@ class CommunityViewController: UIViewController {
         self.grayView.isHidden = true
         self.boardNameButton.setImage(UIImage(systemName: "list.bullet"), for: .normal)
         
-        if boardTypeNumber == 0{
+        if previousBoardNumber == 0{
             self.freeBoardGoButton.setTitleColor(.black, for: .normal)
             self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "자유 게시판"
         }
-        else if boardTypeNumber == 1 {
+        else if previousBoardNumber == 1 {
             self.bookMarketGoButton.setTitleColor(.black, for: .normal)
             self.bookMarketGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "책 장터 게시판"
-        }else if boardTypeNumber == 2{
+        }else if previousBoardNumber == 2{
             self.QnABoardGoButton.setTitleColor(.black, for: .normal)
             self.QnABoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "Q&A 게시판"
-        }else if boardTypeNumber == 3{
+        }else if previousBoardNumber == 4{
             self.hotBoardGobutton.setTitleColor(.black, for: .normal)
             self.hotBoardGobutton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "H🔥t 게시판"
-        }else if boardTypeNumber == 4{
+        }else if previousBoardNumber == 3{
             self.myTextGoButton.setTitleColor(.black, for: .normal)
             self.myTextGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "내글 보기"
@@ -215,28 +281,67 @@ class CommunityViewController: UIViewController {
         
     }
     private func SetQnACell(){
-        let cellNib = UINib(nibName: "QnABoardTableViewCell", bundle: nil)
+        let cellNib = UINib(nibName: "QnABoardTableViewCell", bundle: Bundle(for: QnABoardTableViewCell.self))
         self.boardTableView.register(cellNib, forCellReuseIdentifier: "QnATableVIewCellid")
     }
     
-    func communityGetWriteList(){
-        CommunityAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
+    func communityGetPostList(){
+        CommunityGetAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
             if success{
                 guard let communityGetWriteList = data as? WriteListInformation else {return}
-                
-                print("\(communityGetWriteList.result.postList.count)get받아오는 개수")
-                self.getPageDataCount = communityGetWriteList.result.postList.count
                 if self.boardTypeNumber == 0{
-                    
                     self.postListFree.append(contentsOf: communityGetWriteList.result.postList)
-                }else if self.boardTypeNumber == 1 {
+                }else if self.boardTypeNumber == 1  {
                     self.postListBookMarket.append(contentsOf: communityGetWriteList.result.postList)
                 }
+                self.getPageDataCount = communityGetWriteList.result.postList.count
                 self.totalTextCount = communityGetWriteList.result.total_size
                 self.currentTextCount+=self.getPageDataCount
+                print("\(communityGetWriteList.result.postList.count)get받아오는 개수")
                 if communityGetWriteList.success{
                     DispatchQueue.main.async {
-                        
+                        self.boardTableView.reloadData()
+                    }
+                }else{
+                    print("통신오류")
+                }
+                
+            }
+        }
+        
+    }
+    func communityGetPostHotList(){
+        CommunityGetAPI.shared.getCommunityPostListHot { (sucess,data ) in
+            if sucess {
+                guard let PostHotList = data as? PostListHotInformation else {return}
+                self.hotPostList = PostHotList.result.postList
+                self.getPageDataCount = PostHotList.result.postList.count
+                self.totalTextCount = PostHotList.result.total_size
+                self.currentTextCount+=self.getPageDataCount
+                if PostHotList.success{
+                    DispatchQueue.main.async {
+                        self.boardTableView.reloadData()
+                    }
+                }else {
+                    print("통신 오류")
+                }
+            }
+        }
+        
+    }
+    
+    func communityGetPostQnAList(){
+        CommunityGetAPI.shared.getCommunityWriteQnAList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
+            if success{
+                guard let communityGetWriteQnAList = data as? WriteListQnAInformation else {return}
+                if self.boardTypeNumber == 2{
+                    self.postListQnA.append(contentsOf: communityGetWriteQnAList.result.postList)
+                }
+                self.getPageDataCount = communityGetWriteQnAList.result.postList.count
+                self.totalTextCount = communityGetWriteQnAList.result.total_size
+                self.currentTextCount+=self.getPageDataCount
+                if communityGetWriteQnAList.success{
+                    DispatchQueue.main.async {
                         self.boardTableView.reloadData()
                     }
                 }else{
@@ -246,11 +351,47 @@ class CommunityViewController: UIViewController {
             }
         }
     }
+    func communityGetPostMyList(){
+        CommunityGetAPI.shared.getCommunityMyWriteList(CommunityBoardNumber: self.boardTypeNumber, pageCount: self.currentPage) { (success,data) in
+            if success {
+                print("갱3")
+                guard let communityGetWriteMyList = data as? PostListMyInformation else {return}
+                self.myPostList.append(contentsOf: communityGetWriteMyList.result.postList)
+                self.getPageDataCount = communityGetWriteMyList.result.postList.count
+//                self.totalTextCount = communityGetWriteMyList.result.total_size
+                self.currentTextCount+=self.getPageDataCount
+                print("갱4")
+                if communityGetWriteMyList.success{
+                    print("갱5")
+                    DispatchQueue.main.async {
+                        self.boardTableView.reloadData()
+                    }
+                    print("갱6")
+                }else{
+                    print("통신오류")
+                }
+                print("갱7")
+            }
+        }
+    }
+   
     private func beginfetch(){
         moreScroll = true
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
             self.currentPage+=1
-            self.communityGetWriteList()
+            if self.previousBoardNumber == 0{
+                self.communityGetPostList()
+            }else if self.previousBoardNumber == 1{
+                self.communityGetPostList()
+            }else if self.previousBoardNumber == 2 {
+                self.communityGetPostQnAList()
+            }else if self.previousBoardNumber == 3{
+                self.communityGetPostMyList()
+            }else if self.previousBoardNumber == 4{
+                self.communityGetPostHotList()
+            }else {
+                self.communityGetPostList()
+            }
             self.moreScroll = false
             self.boardTableView.reloadData()
             
@@ -260,12 +401,17 @@ class CommunityViewController: UIViewController {
         if segue.identifier == "boardTextDetailSegueId"{
             guard let boardTextDetailViewController = segue.destination as? BoardTextDetailViewController else {return}
             boardTextDetailViewController.PID = self.PID
+            boardTextDetailViewController.previousBoardNumber = self.previousBoardNumber
             boardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
+            if self.previousBoardNumber == 4{
+                boardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
+            }
         }else if segue.identifier == "QnAboardTextDetailSegueId"{
             guard let QnABoardTextDetailViewController = segue.destination as? QnABoardTextDetailViewController else {return}
             QnABoardTextDetailViewController.PID = self.PID
             QnABoardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
         }
+        
     }
     
 }
@@ -279,12 +425,16 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         return footerView
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.boardTypeNumber == 0{
+        if self.previousBoardNumber == 0{
             return postListFree.count
-        }else if self.boardTypeNumber == 1 {
+        }else if self.previousBoardNumber == 1 {
             return postListBookMarket.count
-        }else if self.boardTypeNumber == 2 {
-            return 10
+        }else if self.previousBoardNumber == 2 {
+            return postListQnA.count
+        }else if self.previousBoardNumber == 3{
+            return myPostList.count
+        }else if self.previousBoardNumber == 4 {
+            return self.hotPostList.count
         }else{
             return postListFree.count
         }
@@ -294,42 +444,82 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = boardTableView.dequeueReusableCell(withIdentifier: "boadrTableViewCellid", for: indexPath) as? BoardTableViewCell else { return UITableViewCell()}
         guard let QnACell = boardTableView.dequeueReusableCell(withIdentifier: "QnATableVIewCellid", for: indexPath) as? QnABoardTableViewCell else { return UITableViewCell()}
-        if boardTypeNumber == 0 {
-            cell.setBoardTableViewPostList(model:postListFree[indexPath.row])
-        }else if boardTypeNumber == 1{
-            cell.setBoardTableViewPostList(model:postListBookMarket[indexPath.row])
-        }else if boardTypeNumber == 2{
-            QnACell.titleLabel.text  = "테스트 제목"
-            QnACell.contentsLabel.text = "테스트 내용입니다 .테스트 내용입니다 . 테스트 내용입니다 테스트 내용입니다 .테스트 내용입니다 . 테스트 내용입니다 "
-            QnACell.commentLabel.text = "1"
-            QnACell.likeCntLabel.text = "2"
+        if previousBoardNumber == 0 {
+            cell.setBoardPostList(model:postListFree[indexPath.row])
+            return cell
+        }else if previousBoardNumber == 1{
+            cell.setBoardPostList(model:postListBookMarket[indexPath.row])
+            return cell
+        }else if previousBoardNumber == 2{
+            QnACell.setBoardPostQnAList(model: postListQnA[indexPath.row])
             return QnACell
+        }else if previousBoardNumber == 3{
+            if myPostList[indexPath.row].communityType == 2{
+                QnACell.setBoardPostmyList(model: myPostList[indexPath.row])
+                return QnACell
+            }else {
+                cell.setBoardMyPostList(model: myPostList[indexPath.row])
+                return cell
+            }
+        }else if previousBoardNumber == 4{
+            if hotPostList[indexPath.row].communityType == 2{
+                QnACell.setBoardPostHotList(model: hotPostList[indexPath.row])
+                return QnACell
+            }else {
+                cell.setBoardHotPostList(model: hotPostList[indexPath.row])
+                return cell
+            }
+            
         }
-        //        else if boardTypeNumber == 4{
-        //            cell.tittleLabel.text = myTextBoard.objectArray[indexPath.row].title
-        //            cell.subtittleLabel.text = myTextBoard.objectArray[indexPath.row].subtitle
-        //        }
-        return cell
+        
+        print("셀 생성")
+        return UITableViewCell()
         
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        print("\(self.boardTypeNumber)boardTypeNumber")
-        if self.boardTypeNumber == 2 {
+        if self.previousBoardNumber == 2 {
             guard let QnACell = tableView.cellForRow(at: indexPath) as? QnABoardTableViewCell else {return}
             self.PID = QnACell.PID
             performSegue(withIdentifier: "QnAboardTextDetailSegueId", sender: indexPath.row)
-            print("QNa")
+        }else if self.previousBoardNumber == 3{
+            self.replyCnt = self.myPostList[indexPath.row].replyCnt
+            if self.replyCnt == -1 {
+                guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return }
+                self.previousBoardNumber = 3
+                self.PID = cell.PID
+                self.boardTypeNumber = cell.communityType
+                performSegue(withIdentifier: "boardTextDetailSegueId", sender: indexPath.row)
+            }else {
+                guard let QnACell = tableView.cellForRow(at: indexPath) as? QnABoardTableViewCell else {return}
+                self.previousBoardNumber = 3
+                self.PID = QnACell.PID
+                self.boardTypeNumber = QnACell.communityType
+                performSegue(withIdentifier: "QnAboardTextDetailSegueId", sender: indexPath.row)
+            }
+        }else if self.previousBoardNumber == 4{
+            self.replyCnt = self.hotPostList[indexPath.row].replyCnt
+            if self.replyCnt == -1 {
+                guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return }
+                self.previousBoardNumber = 4
+                self.PID = cell.PID
+                self.boardTypeNumber = cell.communityType
+                performSegue(withIdentifier: "boardTextDetailSegueId", sender: indexPath.row)
+            }else {
+                guard let QnACell = tableView.cellForRow(at: indexPath) as? QnABoardTableViewCell else {return}
+                self.previousBoardNumber = 4
+                self.PID = QnACell.PID
+                self.boardTypeNumber = QnACell.communityType
+                performSegue(withIdentifier: "QnAboardTextDetailSegueId", sender: indexPath.row)
+            }
         }else {
-            guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return}
+            guard let cell = tableView.cellForRow(at: indexPath) as? BoardTableViewCell else {return }
             self.PID = cell.PID
             performSegue(withIdentifier: "boardTextDetailSegueId", sender: indexPath.row)
         }
     }
     //무한스크롤
-    //스크롤 될때마다 
+    //스크롤 될때마다
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let totalScrollSize = scrollView.contentSize.height - scrollView.bounds.height
         let scrollSize = scrollView.contentOffset.y+50

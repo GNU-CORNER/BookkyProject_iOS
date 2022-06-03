@@ -18,6 +18,8 @@ class BookkyURL {
     static let userPath = "/user"
     //MyProfile
     static let myprofilePath = "/myprofile"
+// MARK: - 홈 Get
+
     static let myprofileUpdatePath = "/user/myprofile"
     static let favoriteBookPath = "/user/favoritebook/"
     static let myPostsPath = "/user/mypost"
@@ -29,12 +31,17 @@ class BookkyURL {
     static let tagMoreViewURL = "/home/tags"
     static let bookDetatilURL = "/books/detail/"
     static let bookDetailReview = "/books/reviews/"
-    //Community
+// MARK: - 커뮤니티 Get
     static let communityPostListGetURL =  "/community/postlist/"
-    static let communityWritePostURL = "/community/writepost/"
     static let communityTextDetail = "/community/postdetail/"
-    
+    static let communityQnACommentGetURL = "/community/comment/"
+    static let communityHotPostListGetURL = "/community/hotcommunity"
+// MARK: - 커뮤니티 post
+    static let communityWritePostURL = "/community/writepost/"
+    static let communityCommetPostURL = "/community/writecomment/"
+// MARK: - 커뮤니티 Delete
+    static let communityDeletePostURL = "/community/deletepost/"
+    static let communityDeleteCommentURL = "/community/deletecomment/"
     static let nicknameCheckPath = "/user/nickname"
-    
     static let tagsPath = "/tags"
 }

@@ -17,18 +17,52 @@ class QnABoardTableViewCell: UITableViewCell {
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var replyCommetLabel: UILabel!
     var PID : Int = 0
+    var communityType : Int = 0
+    var replyCnt : Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         setQnABoardTableViewCellUI()
     }
-
+    func setBoardPostQnAList(model : PostQnAListData){
+        self.titleLabel.text = model.title
+        self.contentsLabel.text = model.contents
+        self.likeCntLabel.text = "\(model.likeCnt)"
+        self.commentLabel.text = "\(model.commentCnt)"
+        self.replyCommetLabel.text = "\(model.replyCnt)\n답글"
+        self.PID = model.PID
+        
+    }
+    func setBoardPostHotList(model : PostListHotList){
+        self.titleLabel.text = model.title
+        self.contentsLabel.text = model.contents
+        self.likeCntLabel.text = "\(model.likeCnt)"
+        self.commentLabel.text = "\(model.commentCnt)"
+        self.replyCommetLabel.text = "\(model.replyCnt)\n답글"
+        self.communityType = model.communityType
+        self.replyCnt = model.replyCnt
+        self.PID = model.PID
+        
+    }
+    func setBoardPostmyList(model : PostLisyMyList){
+        self.titleLabel.text = model.title
+        self.contentsLabel.text = model.contents
+        self.likeCntLabel.text = "\(model.likeCnt)"
+        self.commentLabel.text = "\(model.commentCnt)"
+        self.replyCommetLabel.text = "\(model.replyCnt)\n답글"
+        self.communityType = model.communityType
+        self.replyCnt = model.replyCnt
+        self.PID = model.PID
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     private func setQnABoardTableViewCellUI(){
+        self.titleLabel.font = UIFont.systemFont(ofSize: 15)
+        self.contentsLabel.font = UIFont.systemFont(ofSize: 13)
         self.contentsLabel.textColor = UIColor(named: "grayColor")
         self.likeCntImage.image = UIImage(named: "likeThat")
         self.likeCntLabel.textColor = UIColor(named:"PrimaryOrangeColor")

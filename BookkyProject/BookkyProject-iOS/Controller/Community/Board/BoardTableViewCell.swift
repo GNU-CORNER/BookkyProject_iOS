@@ -9,8 +9,10 @@ import UIKit
 
 class BoardTableViewCell: UITableViewCell {
     var PID : Int = 0
+    var communityType : Int = 0
+//    var
     @IBOutlet weak var tableViewCell: UIView!
-    @IBOutlet weak var tittleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentsLabel: UILabel!
     
     @IBOutlet weak var likeThatImageView: UIImageView!
@@ -18,7 +20,7 @@ class BoardTableViewCell: UITableViewCell {
     
     @IBOutlet weak var commentImageView: UIImageView!
     @IBOutlet weak var commentCountLabel: UILabel!
-    
+    var replyCnt : Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -26,17 +28,38 @@ class BoardTableViewCell: UITableViewCell {
         
     }
     
-    func setBoardTableViewPostList(model :PostListData){
-        self.tittleLabel.text = model.title
+    func setBoardPostList(model :PostListData){
+        self.titleLabel.text = model.title
         self.contentsLabel.text = model.contents
         self.PID = model.PID
         self.likeThatCountLabel.text = "\(model.likeCnt)"
         self.commentCountLabel.text = "\(model.commentCnt)"
         
+        
     }
+    func setBoardHotPostList(model :PostListHotList){
+        self.titleLabel.text = model.title
+        self.contentsLabel.text = model.contents
+        self.PID = model.PID
+        self.likeThatCountLabel.text = "\(model.likeCnt)"
+        self.commentCountLabel.text = "\(model.commentCnt)"
+        self.communityType = model.communityType
+        self.replyCnt = model.replyCnt
+    }
+    func setBoardMyPostList(model :PostLisyMyList){
+        self.titleLabel.text = model.title
+        self.contentsLabel.text = model.contents
+        self.PID = model.PID
+        self.likeThatCountLabel.text = "\(model.likeCnt)"
+        self.commentCountLabel.text = "\(model.commentCnt)"
+        self.communityType = model.communityType
+        self.replyCnt = model.replyCnt
+    }
+    
     func setBoardTableViewCellUI(){
-        self.contentsLabel.numberOfLines = 2
+        self.titleLabel.font = UIFont.systemFont(ofSize: 15)
         self.contentsLabel.font = UIFont.systemFont(ofSize: 13)
+        self.contentsLabel.numberOfLines = 2
         self.contentsLabel.textColor = UIColor(named: "grayColor")
         self.likeThatImageView.image = UIImage(named: "likeThat")
         self.commentImageView.image = UIImage(named: "comment")

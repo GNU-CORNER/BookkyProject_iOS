@@ -154,7 +154,7 @@ Label</string>
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tgD-mT-aSI">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="500" bounces="NO" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tgD-mT-aSI">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" name="primaryColor"/>
@@ -249,7 +249,7 @@ Label</string>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <connections>
-                                                                        <action selector="tapGoFreeBoardButton:" destination="FD7-T1-M0R" eventType="touchUpInside" id="oCA-Pk-Hr8"/>
+                                                                        <action selector="tapGoFreeBoardButton:" destination="FD7-T1-M0R" eventType="touchUpInside" id="TsK-YK-2Hp"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfz-BD-VkC">
@@ -270,7 +270,7 @@ Label</string>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" title="Button"/>
                                                                     <connections>
-                                                                        <action selector="tapGoQnABoardButton:" destination="FD7-T1-M0R" eventType="touchUpInside" id="m3H-F6-5HO"/>
+                                                                        <action selector="tapGoQnABoardButton:" destination="FD7-T1-M0R" eventType="touchUpInside" id="hqV-Km-E9Z"/>
                                                                     </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uEJ-oX-YVq">
@@ -287,6 +287,9 @@ Label</string>
                                                                     <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
                                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                                     <state key="normal" title="Button"/>
+                                                                    <connections>
+                                                                        <action selector="tapGoHotBoardButton:" destination="FD7-T1-M0R" eventType="touchUpInside" id="BBf-5d-8XM"/>
+                                                                    </connections>
                                                                 </button>
                                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tij-TK-Bwn">
                                                                     <rect key="frame" x="51" y="0.0" width="46" height="30"/>
@@ -579,10 +582,10 @@ Label</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zcf-jv-rud">
-                                                        <rect key="frame" x="20" y="219" width="374" height="96"/>
+                                                        <rect key="frame" x="20" y="219" width="374" height="120.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="749" text="내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35B-HJ-9e1" customClass="CustomLabel" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="61"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="85.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -593,7 +596,7 @@ Label</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hys-Yo-Kag">
-                                                                <rect key="frame" x="0.0" y="66" width="374" height="30"/>
+                                                                <rect key="frame" x="0.0" y="90.5" width="374" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="l3V-Ja-pkO"/>
                                                                 </constraints>
@@ -611,7 +614,7 @@ Label</string>
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="목차" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tID-RB-2zP">
-                                                        <rect key="frame" x="20" y="330" width="29.5" height="30"/>
+                                                        <rect key="frame" x="20" y="354.5" width="29.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="sLD-R2-Bt3"/>
                                                         </constraints>
@@ -621,10 +624,10 @@ Label</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Uax-f4-X8K">
-                                                        <rect key="frame" x="20" y="370" width="374" height="109.5"/>
+                                                        <rect key="frame" x="20" y="394.5" width="374" height="85"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="내용없음" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROM-14-Too" customClass="CustomLabel" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="78.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="54"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -635,7 +638,7 @@ Label</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FU-Tl-f3u">
-                                                                <rect key="frame" x="0.0" y="79.5" width="374" height="30"/>
+                                                                <rect key="frame" x="0.0" y="55" width="374" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="XWT-yk-mgO"/>
                                                                 </constraints>
@@ -1081,8 +1084,8 @@ Label</string>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="lPz-mM-zp7"/>
-        <segue reference="JiU-fP-bEe"/>
+        <segue reference="Wun-3I-KCd"/>
+        <segue reference="GOj-gx-B2b"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="clear" catalog="system" width="128" height="114"/>

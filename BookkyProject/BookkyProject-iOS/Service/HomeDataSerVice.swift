@@ -21,7 +21,7 @@ class GetBookData {
             print("Launch: AccessToken토큰을 불러올 수 없음.")
             return
         }
-        
+        print("token\n\(previousAccessToken)")
         let session = URLSession(configuration: .default)
         guard let url = URL(string: BookkyURL.baseURL+BookkyURL.HomeURL) else{
             print("Error: Cannot Create URL")

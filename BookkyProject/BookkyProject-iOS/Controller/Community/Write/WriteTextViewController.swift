@@ -14,7 +14,6 @@ class WriteTextViewController: UIViewController {
     @IBOutlet weak var boardNameButton: UIButton!
     
     @IBOutlet weak var freeBoardGoButton: UIButton!
-    @IBOutlet weak var hotBoardGobutton: UIButton!
     @IBOutlet weak var QnABoardGoButton: UIButton!
     @IBOutlet weak var bookMarketGoButton: UIButton!
     
@@ -30,15 +29,11 @@ class WriteTextViewController: UIViewController {
     @IBOutlet weak var communityGoBackButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         setBackButton()
-        
         setWriteTitleTextField()
         setWriteTitleTextField()
-        setWriteTextButton()
+        setWriteTextButtonUI()
         setStackViewSpacing()
-        writeTextButton.sizeToFit()
         setdropDownView()
         setinitCommunity()
         boardTypeColor()
@@ -51,7 +46,6 @@ class WriteTextViewController: UIViewController {
     }
     func setdropDownView(){
         self.freeBoardGoButton.setTitle("자유", for: .normal)
-        self.hotBoardGobutton.setTitle("HOT", for: .normal)
         self.QnABoardGoButton.setTitle("Q&A", for: .normal)
         self.bookMarketGoButton.setTitle("책 장터", for: .normal)
         
@@ -66,7 +60,6 @@ class WriteTextViewController: UIViewController {
     }
     private func boardTypeColor() {
         self.freeBoardGoButton.tintColor = UIColor(named: "grayColor")
-        self.hotBoardGobutton.tintColor = UIColor(named: "grayColor")
         self.QnABoardGoButton.tintColor = UIColor(named: "grayColor")
         self.bookMarketGoButton.tintColor = UIColor(named: "grayColor")
     }
@@ -75,17 +68,13 @@ class WriteTextViewController: UIViewController {
         if sender == self.freeBoardGoButton{
             self.boardTypeNumber = 0
             setDropDownMenu()
-        }else if sender == self.hotBoardGobutton{
-            self.boardTypeNumber = 3
+        }else if sender == self.bookMarketGoButton{
+            self.boardTypeNumber = 1
             setDropDownMenu()
         }else if sender == self.QnABoardGoButton{
             self.boardTypeNumber = 2
             setDropDownMenu()
-        }else if sender == self.bookMarketGoButton{
-            self.boardTypeNumber = 1
-            setDropDownMenu()
         }
-        
     }
     @IBAction func tapChangeBoard(_ sender: UIButton) {
         if boardTypeStackView.isHidden == false {
@@ -101,13 +90,11 @@ class WriteTextViewController: UIViewController {
     func setDropDownMenu(){
         var boardName : String = "자유 게시판"
         self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
-        self.hotBoardGobutton.setTitleColor(.gray, for: .normal)
         self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
         self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
         
         
         self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        self.hotBoardGobutton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         
@@ -127,10 +114,6 @@ class WriteTextViewController: UIViewController {
             self.QnABoardGoButton.setTitleColor(.black, for: .normal)
             self.QnABoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
             boardName = "Q&A 게시판"
-        }else if boardTypeNumber == 3 {
-            self.hotBoardGobutton.setTitleColor(.black, for: .normal)
-            self.hotBoardGobutton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            boardName = "H🔥t 게시판"
         }else{
             self.freeBoardGoButton.setTitleColor(.black, for: .normal)
             self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
@@ -143,14 +126,13 @@ class WriteTextViewController: UIViewController {
         writeTextBottomStackView.setCustomSpacing(10, after: bookthumbnailImageAddButton)
         writeTextBottomStackView.setCustomSpacing(200, after: ImageAddButton)
     }
-    private func setWriteTextButton(){
+    
+    private func setWriteTextButtonUI(){
         writeTextButton.tintColor = .white
         writeTextButton.layer.borderWidth = 2
         writeTextButton.layer.cornerRadius = 15
         writeTextButton.layer.borderColor = UIColor(named: "primaryColor")?.cgColor
         writeTextButton.backgroundColor = UIColor(named: "primaryColor")
-        
-        
     }
     private func setwriteTitleTextField(){
         writeTitleTextField.layer.borderWidth = 1
@@ -187,15 +169,16 @@ class WriteTextViewController: UIViewController {
     @IBAction func postTextContent(_ sender: UIButton) {
         let textTitle = writeTitleTextField.text ?? ""
         let textContent = writeContentTextView.text ?? ""
-        communityPostWriteData(textTitle: textTitle, textContetnt: textContent, boardTypeNumber: boardTypeNumber)
+        communityPostWriteData(textTitle: textTitle, textContetnt: textContent, boardTypeNumber: boardTypeNumber,parentQPID: 0)
         
-        self.navigationController?.popViewController(animated: true)
-        let communityViewController = storyboard?.instantiateViewController(withIdentifier: "CommunityViewController") as! CommunityViewController
-        communityViewController.boardTableView?.reloadData()
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+            self.navigationController?.popViewController(animated: true)
+        })
+        
         
     }
-    private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int){
-        CommunityAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber){(success,data)in
+    private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int , parentQPID : Int){
+        CommunityPostAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber , parentQPID : parentQPID ){(success,data)in
             if success {
                 print("post통신 성공")
             }else {
