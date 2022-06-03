@@ -39,10 +39,13 @@ class BookkyURL {
 // MARK: - 커뮤니티 post
     static let communityWritePostURL = "/community/writepost/"
     static let communityCommetPostURL = "/community/writecomment/"
+    static let communityLikePost = "/community/like/"   //좋아요
 // MARK: - 커뮤니티 Delete
     static let communityDeletePostURL = "/community/deletepost/"
     static let communityDeleteCommentURL = "/community/deletecomment/"
-    static let communitySearchPostURL = "/community/search?keyword="
     static let nicknameCheckPath = "/user/nickname"
     static let tagsPath = "/tags"
+// MARK: - 커뮤니티 Search
+static let communitySearchPostURL = "/community/search?keyword="
+static let communitySearchBookURL = "/community/post/book?keyword="
 }

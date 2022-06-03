@@ -26,3 +26,20 @@ struct PostSearchData : Codable {
     let replyCnt : Int
  
 }
+// MARK: - 커뮤니티 글작성 책검색
+struct BookSearchInformation : Codable{
+    let success : Bool
+    let result : BookSearchData
+    let errorMessage : String
+}
+struct BookSearchData : Codable{
+    let searchData : [BookSearchDataList]
+    let total : Int
+}
+struct BookSearchDataList : Codable{
+    let TBID : Int
+    let TITLE : String
+    let AUTHOR : String
+    let thumbnailImage : String
+    let PUBLISHER : String
+}

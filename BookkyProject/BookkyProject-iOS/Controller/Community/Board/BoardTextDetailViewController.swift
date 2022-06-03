@@ -26,7 +26,12 @@ class BoardTextDetailViewController: UIViewController {
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var writeCommentButton: UIButton!
     @IBOutlet weak var CommentFooterView: UIView!
-    
+    // MARK: - 추가한 책 View
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var bookNameLabel: UILabel!
+    @IBOutlet weak var bookAPLabel: UILabel!
+    @IBOutlet weak var userImageViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var bookViewHeight: NSLayoutConstraint!
     var writeTextDetailcommentData : [WriteTextDetailCommentdata] = [] // 글상세정보 댓글 데이터를 위함
     var PID : Int = 0 // POST ID
     var boardTypeNumber : Int = 0 // 게시판 번호
@@ -41,7 +46,11 @@ class BoardTextDetailViewController: UIViewController {
     var replyCommentFooterView : UIView! // 대댓글 View
     var writeisAccessible : Bool = false // 사용자의 글인지 아닌지 확인
     var replycommentisAccessible : Bool = false // 사용자의 대댓글인지 아닌지 확인
+    var bookdata : PostDetailBookData?
     var CID : Int = 0 // 댓글 ID
+    var ImageArray : [String] = []
+    @IBOutlet weak var DetailBookView: UIView!
+    @IBOutlet weak var ImageCollectionView: UICollectionView!
     lazy var rightButton: UIBarButtonItem = {
         let buttonImg = UIImage(systemName: "ellipsis")
         let barButtonItem = UIBarButtonItem(image: buttonImg, style: .plain, target: self, action: #selector(rightbarButtonAction(_:)))
@@ -55,10 +64,15 @@ class BoardTextDetailViewController: UIViewController {
         getBoardTextDetailData()
         setBoardTextDetailUI()
         footerViewUISet()
+        setCollectionViewCell()
+        setBookViewUI()
         secondLineStackView.setCustomSpacing(5, after: self.textDetailViewsImage)
         self.navigationItem.rightBarButtonItem = self.rightButton
         print("\(self.PID)PID")
+        
     }
+ 
+
     @objc private func rightbarButtonAction(_ sender : Any){
         let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -124,7 +138,14 @@ class BoardTextDetailViewController: UIViewController {
         self.likeThatButton.setTitle("좋아요(\(likeCount))", for: .normal)
         self.likeThatButton.tintColor = .black
         let textCount = self.textDetailContentsLabel.text?.count ?? 0
-        self.postDetailView.frame.size.height = 200+CGFloat((textCount/60)*20)
+        if self.bookdata?.TITLE == nil && self.ImageArray == [] {
+            self.postDetailView.frame.size.height = 200+CGFloat((textCount/60)*20)
+        }else if self.bookdata?.TITLE == nil || self.ImageArray == [] {
+            self.postDetailView.frame.size.height = 320+CGFloat((textCount/60)*20)
+        }else {
+            self.postDetailView.frame.size.height = 460+CGFloat((textCount/60)*20)
+        }
+       
         self.commentButton.tintColor = .black
         self.writeisAccessible = model.isAccessible
     }
@@ -133,6 +154,23 @@ class BoardTextDetailViewController: UIViewController {
         self.commentButton.setTitle("댓글(\(model.commentCnt ?? 0))", for: .normal)
         //대댓글수 까지 포함
     }
+    func setBookView(model : PostDetailBookData ){
+        if let url = URL(string: model.thumbnailImage ?? "") {
+            self.bookImageView.load(url: url)
+        }
+        self.bookNameLabel.text = model.TITLE
+        let Author = model.AUTHOR ?? ""
+        let PUBLISHER = model.PUBLISHER ?? ""
+        self.bookAPLabel.text = "\(Author)/\(PUBLISHER)"
+        
+    }
+    func setBookViewUI(){
+        self.bookNameLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        self.bookAPLabel.font = UIFont.systemFont(ofSize: 12)
+        self.DetailBookView.layer.borderWidth = 2
+        self.DetailBookView.layer.borderColor = UIColor(named: "lightGrayColor")?.cgColor
+    }
+    
 // MARK: - 데이터 통신함수
     //GET PostDetail
     private func getBoardTextDetailData(){
@@ -141,10 +179,21 @@ class BoardTextDetailViewController: UIViewController {
                 guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
                 let writeTextDetailData = communityGetDetailList.result.postdata
                 let commnetCount = communityGetDetailList.result
+                self.bookdata = communityGetDetailList.result.Book
+                self.ImageArray = writeTextDetailData.postImage ?? []
                 self.writeTextDetailcommentData = communityGetDetailList.result.commentdata ?? []
-//                print("\(self.writeTextDetailcommentData )")
                 if communityGetDetailList.success{
                     DispatchQueue.main.async {
+                        if self.bookdata?.TITLE == nil {
+                            self.bookViewHeight.constant = 0
+                        }else{
+                            self.setBookView(model:self.bookdata!)
+                        }
+                        if self.ImageArray == [] {
+                            self.userImageViewHeight.constant = 0
+                        }else {
+                            self.ImageCollectionView.reloadData()
+                        }
                         self.setBoardTextDetailData(model: writeTextDetailData)
                         self.setCommentCount(model: commnetCount)
                         self.bookDetailCommentTableView.reloadData()
@@ -310,6 +359,16 @@ class BoardTextDetailViewController: UIViewController {
         self.writeCommentButton.layer.backgroundColor = UIColor(named: "PrimaryBlueColor")?.cgColor
         self.writeCommentButton.layer.cornerRadius = 15
     }
+    private func setCollectionViewCell() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CGSize(width: 100, height: 120)  //cellsize
+        flowLayout.minimumLineSpacing = 4.0
+        self.ImageCollectionView?.collectionViewLayout = flowLayout
+        self.ImageCollectionView?.showsHorizontalScrollIndicator = false
+        self.ImageCollectionView?.dataSource = self
+        self.ImageCollectionView?.delegate = self
+    }
 }
 
 extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSource {
@@ -344,7 +403,6 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if self.section == section {
-            print("\(self.tableViewfooterHeight)")
            return self.tableViewfooterHeight
         }
         return 0
@@ -398,4 +456,16 @@ extension BoardTextDetailViewController : UITextViewDelegate{
             textView.textColor = UIColor.lightGray
         }
     }
+}
+extension BoardTextDetailViewController :UICollectionViewDelegate,UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.ImageArray.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
+        cell.setImageArray(model: self.ImageArray[indexPath.row])
+        return cell
+    }
+    
 }

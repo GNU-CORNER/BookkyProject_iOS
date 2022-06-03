@@ -18,3 +18,10 @@ class CustomButton : UIButton {
         self.isAccessible = isAccessible
         }
 }
+class ImageCancelButton : UIButton {
+    var row : Int = 0
+    convenience init(row: Int) {
+        self.init()
+        self.row = row
+        }
+}
