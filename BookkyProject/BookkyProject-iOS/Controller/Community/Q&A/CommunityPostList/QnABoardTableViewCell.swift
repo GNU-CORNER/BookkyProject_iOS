@@ -53,7 +53,16 @@ class QnABoardTableViewCell: UITableViewCell {
         self.communityType = model.communityType
         self.replyCnt = model.replyCnt
         self.PID = model.PID
-        
+    }
+    func searchPostList(model :PostSearchData){
+        self.titleLabel.text = model.title
+        self.contentsLabel.text = model.contents
+        self.likeCntLabel.text = "\(model.likeCnt)"
+        self.commentLabel.text = "\(model.commentCnt)"
+        self.replyCommetLabel.text = "\(model.replyCnt)\n답글"
+        self.communityType = model.communityType
+        self.replyCnt = model.replyCnt
+        self.PID = model.PID
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
