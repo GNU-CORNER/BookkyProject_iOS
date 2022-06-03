@@ -12,4 +12,5 @@ enum UserDefaultsModel: String {
     case accessToken = "accessToken"
     case refreshToken = "refreshToken"
     case loginMethod = "loginMethod"
+    case launchBefore = "launchBefore"
 }

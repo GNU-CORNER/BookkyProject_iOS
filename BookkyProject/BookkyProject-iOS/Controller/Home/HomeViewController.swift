@@ -61,7 +61,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.recommendButton.setTitle("추천하개 >", for: .normal)
         self.recommendButton.titleLabel?.font = UIFont.systemFont(ofSize: 24)
         self.recommendButton.tintColor = UIColor.black
-        self.recommendExplainLabel.text = "당신에게 적합한 책을 찾아 줄깨요!"
+        self.recommendExplainLabel.text = "당신에게 적합한 책을 찾아 줄게요!"
         self.recommendExplainLabel.font = UIFont.systemFont(ofSize: 12)
         self.recommendExplainLabel.textColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
         
@@ -69,7 +69,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.bookynatorButtonStackView.layer.borderWidth = 2
         self.bookynatorButtonStackView.layer.cornerRadius = 10
         
-        self.bookynatorGoButtonFirst.setTitle("당신의 책을 찾아보세요", for: .normal)
+        self.bookynatorGoButtonFirst.setTitle("당신의 책을 찾아보세요.", for: .normal)
         self.bookynatorGoButtonFirst.tintColor =  UIColor.black
         self.bookynatorGoButtonSecond.setTitle("북키네이터", for: .normal)
         self.bookynatorGoButtonSecond.tintColor =  UIColor.black
@@ -94,17 +94,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.boardButtonStackView.layer.borderWidth = 1
         self.boardButtonStackView.layer.cornerRadius = 10
         self.boardButtonStackView.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
-        self.freeBoardGoButton.setTitle("자유  게시판", for: .normal)
+        self.freeBoardGoButton.setTitle("자유게시판", for: .normal)
         self.freeBoardGoButton.tintColor = UIColor.black
         self.freeBoardTextGoButton.setTitle("카카오 공채 떳던데 보신분 있으 신가요 ?", for: .normal)
         self.freeBoardTextGoButton.tintColor = UIColor.black
         
-        self.QnABoardGoButton.setTitle("Q&A 게시판", for: .normal)
+        self.QnABoardGoButton.setTitle("Q&A게시판", for: .normal)
         self.QnABoardGoButton.tintColor = UIColor.black
         self.QnABoardTextGoButton.setTitle("함수를 썻는데 너무이상해요함수를 썻는데 너무 이상해요  ", for: .normal)
         self.QnABoardTextGoButton.tintColor = UIColor.black
         
-        self.hotBoardGoButton.setTitle("HoT 게시판", for: .normal)
+        self.hotBoardGoButton.setTitle("HoT게시판", for: .normal)
         self.hotBoardGoButton.tintColor = UIColor.black
         self.hoeBoardTextGoButton.setTitle("한번 읽어보고 마스터한 책사실분 ?", for: .normal)
         self.hoeBoardTextGoButton.tintColor = UIColor.black

@@ -8,13 +8,24 @@
 import Foundation
 
 class BookkyURL {
+    // baseURL
     static let baseURL = "http://203.255.3.144:8002/v1"
+    //sig
     static let signupURL = "/user/signup"
     static let signinURL = "/user/signin"
     static let refreshURL = "/auth/refresh"
-    
+    static let signoutPath = "/user/signout"
+    static let userPath = "/user"
+    //MyProfile
     static let myprofilePath = "/myprofile"
 // MARK: - 홈 Get
+
+    static let myprofileUpdatePath = "/user/myprofile"
+    static let favoriteBookPath = "/user/favoritebook/"
+    static let myPostsPath = "/user/mypost"
+    static let myReviewsPath = "/user/myreview"
+    static let userTagsPath = "/user/tag"
+    //Home
     static let HomeURL = "/home"
     static let tagURL = "/books/tag/"
     static let tagMoreViewURL = "/home/tags"
@@ -31,6 +42,7 @@ class BookkyURL {
 // MARK: - 커뮤니티 Delete
     static let communityDeletePostURL = "/community/deletepost/"
     static let communityDeleteCommentURL = "/community/deletecomment/"
-// MARK: - 커뮤니티 Search
     static let communitySearchPostURL = "/community/search?keyword="
+    static let nicknameCheckPath = "/user/nickname"
+    static let tagsPath = "/tags"
 }

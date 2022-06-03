@@ -20,7 +20,9 @@ class EmailAuthenticate {
         }
 
         let email = userEmail.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        urlComponent.queryItems = [ URLQueryItem(name: "email", value: email) ]
+        urlComponent.queryItems = [
+            URLQueryItem(name: "email", value: email)
+        ]
         guard let url = urlComponent.url else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"

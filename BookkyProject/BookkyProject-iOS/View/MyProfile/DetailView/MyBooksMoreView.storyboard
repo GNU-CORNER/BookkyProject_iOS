@@ -29,23 +29,23 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyBooksMoreCell" id="Q1r-Pl-Rjl" customClass="MyBooksMoreCollectionViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="0.0" width="82" height="125"/>
+                                        <rect key="frame" x="20" y="0.0" width="82" height="121"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Zff-Zv-MFd">
-                                            <rect key="frame" x="0.0" y="0.0" width="82" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="82" height="121"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2jY-Pa-6Wc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="82" height="104"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="82" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="82" id="U44-iL-VaV"/>
                                                         <constraint firstAttribute="height" constant="100" id="lxS-lg-bHA"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MV3-Vp-opv">
-                                                    <rect key="frame" x="0.0" y="104" width="82" height="21"/>
+                                                    <rect key="frame" x="0.0" y="100" width="82" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="8Mw-eo-CzS"/>
+                                                        <constraint firstAttribute="height" priority="750" constant="21" id="8Mw-eo-CzS"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <nil key="textColor"/>
@@ -62,7 +62,6 @@
                                                 <constraint firstItem="2jY-Pa-6Wc" firstAttribute="top" secondItem="Zff-Zv-MFd" secondAttribute="top" id="YJK-1G-DmP"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="82" height="125"/>
                                         <connections>
                                             <outlet property="bookThumbnailImageView" destination="2jY-Pa-6Wc" id="SdR-WT-gXA"/>
                                             <outlet property="booksTitleLabel" destination="MV3-Vp-opv" id="stD-LK-Tim"/>
