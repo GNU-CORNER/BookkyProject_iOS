@@ -35,7 +35,7 @@
             <connections>
                 <outlet property="tagNameLabel" destination="AmX-D0-M6i" id="0ad-Gd-dN6"/>
             </connections>
-            <point key="canvasLocation" x="115" y="-3"/>
+            <point key="canvasLocation" x="78" y="-3"/>
         </collectionViewCell>
     </objects>
 </document>
