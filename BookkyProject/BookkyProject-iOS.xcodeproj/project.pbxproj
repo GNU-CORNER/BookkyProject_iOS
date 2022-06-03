@@ -699,9 +699,9 @@
 		F8C10A952832C3EA00D311F6 /* search */ = {
 			isa = PBXGroup;
 			children = (
-				F8260578282E52E1006DB702 /* SearchPostTableViewCell.xib */,
-				F88D6843282D6E0500E23344 /* SearchPostTableViewCell.swift */,
 				F88D6841282D68E600E23344 /* SearchPostViewController.swift */,
+				F88D6843282D6E0500E23344 /* SearchPostTableViewCell.swift */,
+				F8260578282E52E1006DB702 /* SearchPostTableViewCell.xib */,
 			);
 			path = search;
 			sourceTree = "<group>";
@@ -1135,7 +1135,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9T9YFXL798;
+				DEVELOPMENT_TEAM = 4G47XHXXQX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BookkyProject-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -1164,7 +1164,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9T9YFXL798;
+				DEVELOPMENT_TEAM = 4G47XHXXQX;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BookkyProject-iOS/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

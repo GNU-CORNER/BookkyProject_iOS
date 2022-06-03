@@ -354,23 +354,18 @@ class CommunityViewController: UIViewController {
     func communityGetPostMyList(){
         CommunityGetAPI.shared.getCommunityMyWriteList(CommunityBoardNumber: self.boardTypeNumber, pageCount: self.currentPage) { (success,data) in
             if success {
-                print("갱3")
                 guard let communityGetWriteMyList = data as? PostListMyInformation else {return}
                 self.myPostList.append(contentsOf: communityGetWriteMyList.result.postList)
                 self.getPageDataCount = communityGetWriteMyList.result.postList.count
 //                self.totalTextCount = communityGetWriteMyList.result.total_size
                 self.currentTextCount+=self.getPageDataCount
-                print("갱4")
                 if communityGetWriteMyList.success{
-                    print("갱5")
                     DispatchQueue.main.async {
                         self.boardTableView.reloadData()
                     }
-                    print("갱6")
                 }else{
                     print("통신오류")
                 }
-                print("갱7")
             }
         }
     }

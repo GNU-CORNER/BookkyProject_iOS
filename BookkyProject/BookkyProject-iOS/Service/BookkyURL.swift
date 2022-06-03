@@ -31,4 +31,6 @@ class BookkyURL {
 // MARK: - 커뮤니티 Delete
     static let communityDeletePostURL = "/community/deletepost/"
     static let communityDeleteCommentURL = "/community/deletecomment/"
+// MARK: - 커뮤니티 Search
+    static let communitySearchPostURL = "/community/search?keyword="
 }
