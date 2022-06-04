@@ -44,4 +44,8 @@ class BookkyURL {
     static let communityDeleteCommentURL = "/community/deletecomment/"
     static let nicknameCheckPath = "/user/nickname"
     static let tagsPath = "/tags"
+    
+// MARK: - Books GET
+    static let booksSearchPath = "/books/search"
+    
 }

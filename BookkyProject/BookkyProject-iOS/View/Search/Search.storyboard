@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0Y-Ni-Mjc">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <connections>
                                     <segue destination="Rgi-Ur-hbE" kind="embed" id="heA-eh-FSe"/>
                                 </connections>
@@ -39,14 +39,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DSI-0H-cYQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2002.8985507246377" y="131.91964285714286"/>
+            <point key="canvasLocation" x="1916" y="852"/>
+        </scene>
+        <!--검색-->
+        <scene sceneID="5iq-ox-ICL">
+            <objects>
+                <tableViewController id="Mee-Tm-t2J" customClass="SearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="6wg-zH-24q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="Mee-Tm-t2J" id="HWe-bA-2sx"/>
+                            <outlet property="delegate" destination="Mee-Tm-t2J" id="Kcz-oP-O4J"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="검색" id="KVJ-rj-67u"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="agu-3L-GV9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1917" y="132"/>
+        </scene>
+        <!--Search Results Table View Controller-->
+        <scene sceneID="hDL-rj-fLx">
+            <objects>
+                <tableViewController storyboardIdentifier="ResultsTableViewController" id="bRm-mq-SV4" customClass="SearchResultsTableViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="eZm-tO-5fS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qxb-yw-61c">
+                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qxb-yw-61c" id="lTu-kA-iCg">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bRm-mq-SV4" id="VrA-pr-F5Q"/>
+                            <outlet property="delegate" destination="bRm-mq-SV4" id="hWG-9S-wGD"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h6G-fW-hO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2710" y="132"/>
         </scene>
         <!--Search Table View Controller-->
         <scene sceneID="c4e-XI-Tfr">
             <objects>
                 <tableViewController id="Rgi-Ur-hbE" customClass="SearchTableViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="kFj-cx-O9d">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <connections>
@@ -57,7 +104,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hxY-cR-xhr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2852" y="132"/>
+            <point key="canvasLocation" x="2710" y="852"/>
         </scene>
         <!--검색-->
         <scene sceneID="Noo-Wz-BwE">
@@ -71,7 +118,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="J1E-tI-jbu" kind="relationship" relationship="rootViewController" id="1Di-xg-8px"/>
+                        <segue destination="Mee-Tm-t2J" kind="relationship" relationship="rootViewController" id="zJK-IK-Wug"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wsp-dd-Rbx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
