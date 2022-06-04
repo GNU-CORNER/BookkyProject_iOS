@@ -53,7 +53,6 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        /// enter 버튼을 누르면 keyboard가 내려가도록 설정
         textField.resignFirstResponder()
         return true
     }

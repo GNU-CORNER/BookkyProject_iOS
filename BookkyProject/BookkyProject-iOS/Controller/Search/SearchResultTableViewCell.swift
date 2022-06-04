@@ -9,15 +9,7 @@ import UIKit
 
 class SearchResultTableViewCell: UITableViewCell {
     
-    var myTagsArray: [UserTagList] = [
-        UserTagList(tag: "iOS", tmid: 0),
-        UserTagList(tag: "Swift", tmid: 0),
-        UserTagList(tag: "Xcode", tmid: 0),
-        UserTagList(tag: "UIUX", tmid: 0),
-        UserTagList(tag: "Python", tmid: 0),
-        UserTagList(tag: "Django", tmid: 0),
-        UserTagList(tag: "iPhone", tmid: 0)
-    ]
+    var myTagsArray: [TagDatum] = []
 
     @IBOutlet weak var searchResultBookImageView: UIImageView!
     @IBOutlet weak var searchResultBookTitle: UILabel!
@@ -28,12 +20,6 @@ class SearchResultTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-//        let flowLayout = UICollectionViewFlowLayout()
-//        flowLayout.scrollDirection = .horizontal
-//        flowLayout.itemSize = CGSize(width: 150, height: 180)
-//        flowLayout.minimumLineSpacing = 2.0
-//        flowLayout.minimumInteritemSpacing = 5.0
-//        self.searchResultBooksTagCollectionView.collectionViewLayout = flowLayout
         self.searchResultBooksTagCollectionView.showsHorizontalScrollIndicator = false
         
         self.searchResultBooksTagCollectionView.dataSource = self
@@ -48,12 +34,19 @@ class SearchResultTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func setBookTags(tagArray: [TagDatum]) {
+        self.myTagsArray = tagArray
+        DispatchQueue.main.async {
+            self.searchResultBooksTagCollectionView.reloadData()
+        }
+    }
+    
 }
 
 extension SearchResultTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return myTagsArray.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -72,8 +65,7 @@ extension SearchResultTableViewCell: UICollectionViewDelegate, UICollectionViewD
             return .zero
         }
         tagCell.tagNameLabel.sizeToFit()
-//        let width = tagCell.tagNameLabel.frame.width + 30
-        return CGSize(width: 100, height: 25)
+        return CGSize(width: tagCell.frame.width, height: tagCell.frame.height)
     }
     
 }

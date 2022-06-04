@@ -29,6 +29,13 @@
                         <color key="textColor" name="grayColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AHC-sW-FNG">
+                        <rect key="frame" x="20" y="32" width="280" height="1"/>
+                        <color key="backgroundColor" name="lightGrayColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="hCg-3V-JBZ"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="kU0-17-sTv" firstAttribute="top" secondItem="jqb-Gd-NKN" secondAttribute="top" constant="8" id="4u8-UU-3r9"/>
@@ -37,7 +44,10 @@
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kU0-17-sTv" secondAttribute="trailing" priority="750" constant="20" id="Cdq-vR-sTb"/>
                     <constraint firstAttribute="bottom" secondItem="pyc-8C-90K" secondAttribute="bottom" constant="6.5" id="I7K-oL-ZGd"/>
                     <constraint firstItem="pyc-8C-90K" firstAttribute="leading" secondItem="jqb-Gd-NKN" secondAttribute="leading" constant="20" id="NBd-sf-xIY"/>
+                    <constraint firstAttribute="trailing" secondItem="AHC-sW-FNG" secondAttribute="trailing" constant="20" id="PAI-ak-fBc"/>
+                    <constraint firstAttribute="bottom" secondItem="AHC-sW-FNG" secondAttribute="bottom" id="XR1-rP-Hmq"/>
                     <constraint firstAttribute="bottom" secondItem="kU0-17-sTv" secondAttribute="bottom" constant="8" id="ccb-lv-RaF"/>
+                    <constraint firstItem="AHC-sW-FNG" firstAttribute="leading" secondItem="jqb-Gd-NKN" secondAttribute="leading" constant="20" id="zjW-d2-bvb"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="LUI-Uk-ENp"/>
@@ -52,6 +62,9 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <namedColor name="grayColor">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.55699998140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="lightGrayColor">
+            <color red="0.96100002527236938" green="0.96100002527236938" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

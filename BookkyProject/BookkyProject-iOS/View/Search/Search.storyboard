@@ -4,48 +4,15 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Search View Controller-->
-        <scene sceneID="MZG-xT-rjg">
-            <objects>
-                <viewController id="J1E-tI-jbu" customClass="SearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8gf-fN-9Fj">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O0Y-Ni-Mjc">
-                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
-                                <connections>
-                                    <segue destination="Rgi-Ur-hbE" kind="embed" id="heA-eh-FSe"/>
-                                </connections>
-                            </containerView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="M0D-5Q-aGV"/>
-                        <color key="backgroundColor" name="WhiteOrBlack"/>
-                        <constraints>
-                            <constraint firstItem="O0Y-Ni-Mjc" firstAttribute="leading" secondItem="M0D-5Q-aGV" secondAttribute="leading" id="3K7-6S-fmQ"/>
-                            <constraint firstItem="O0Y-Ni-Mjc" firstAttribute="top" secondItem="M0D-5Q-aGV" secondAttribute="top" id="DpA-Ny-4CK"/>
-                            <constraint firstAttribute="bottom" secondItem="O0Y-Ni-Mjc" secondAttribute="bottom" id="e34-kv-QIU"/>
-                            <constraint firstItem="O0Y-Ni-Mjc" firstAttribute="trailing" secondItem="M0D-5Q-aGV" secondAttribute="trailing" id="wwr-qW-A2y"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="nbE-BP-PsS"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DSI-0H-cYQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1916" y="852"/>
-        </scene>
         <!--검색-->
         <scene sceneID="5iq-ox-ICL">
             <objects>
                 <tableViewController id="Mee-Tm-t2J" customClass="SearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="6wg-zH-24q">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="6wg-zH-24q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -68,16 +35,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="qxb-yw-61c">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qxb-yw-61c" id="lTu-kA-iCg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="bRm-mq-SV4" id="VrA-pr-F5Q"/>
                             <outlet property="delegate" destination="bRm-mq-SV4" id="hWG-9S-wGD"/>
@@ -87,24 +44,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h6G-fW-hO8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2710" y="132"/>
-        </scene>
-        <!--Search Table View Controller-->
-        <scene sceneID="c4e-XI-Tfr">
-            <objects>
-                <tableViewController id="Rgi-Ur-hbE" customClass="SearchTableViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="kFj-cx-O9d">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <connections>
-                            <outlet property="dataSource" destination="Rgi-Ur-hbE" id="UYp-uu-FLk"/>
-                            <outlet property="delegate" destination="Rgi-Ur-hbE" id="7gf-qw-eud"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hxY-cR-xhr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2710" y="852"/>
         </scene>
         <!--검색-->
         <scene sceneID="Noo-Wz-BwE">
@@ -128,9 +67,6 @@
     </scenes>
     <resources>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <namedColor name="WhiteOrBlack">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
