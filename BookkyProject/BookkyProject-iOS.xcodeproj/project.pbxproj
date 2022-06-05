@@ -30,6 +30,7 @@
 		6853E22A284B5E65002BA8C9 /* SearchTableResultHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6853E229284B5E65002BA8C9 /* SearchTableResultHeaderView.xib */; };
 		6853E22C284B5EAF002BA8C9 /* SearchTableResultHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6853E22B284B5EAF002BA8C9 /* SearchTableResultHeaderView.swift */; };
 		6853E22F284B80EC002BA8C9 /* BooksAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6853E22E284B80EC002BA8C9 /* BooksAPI.swift */; };
+		6853E232284BBFD9002BA8C9 /* Searches.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6853E230284BBFD9002BA8C9 /* Searches.xcdatamodeld */; };
 		6860BE2828336E2D00C7399E /* SettingsView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6860BE2728336E2C00C7399E /* SettingsView.storyboard */; };
 		6860BE2A28336E5100C7399E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860BE2928336E5100C7399E /* SettingsViewController.swift */; };
 		6860BE302833CC0400C7399E /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860BE2F2833CC0400C7399E /* SearchResultsTableViewController.swift */; };
@@ -77,6 +78,9 @@
 		68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629727DF650E004B4F73 /* Recommend.storyboard */; };
 		68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629927DF659F004B4F73 /* Search.storyboard */; };
 		68C8629C27DF6605004B4F73 /* MyProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629B27DF6605004B4F73 /* MyProfile.storyboard */; };
+		68CD4EE1284C272E00D94391 /* Searches+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CD4EDF284C272E00D94391 /* Searches+CoreDataClass.swift */; };
+		68CD4EE2284C272E00D94391 /* Searches+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CD4EE0284C272E00D94391 /* Searches+CoreDataProperties.swift */; };
+		68CD4EE4284C27D500D94391 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CD4EE3284C27D500D94391 /* CoreDataManager.swift */; };
 		68FBE65427FCA245003DBFB7 /* BookkyURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65327FCA245003DBFB7 /* BookkyURL.swift */; };
 		68FBE65727FD50E8003DBFB7 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65627FD50E8003DBFB7 /* SignupModel.swift */; };
 		68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65827FDB1EF003DBFB7 /* UITextField.swift */; };
@@ -175,6 +179,7 @@
 		6853E229284B5E65002BA8C9 /* SearchTableResultHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableResultHeaderView.xib; sourceTree = "<group>"; };
 		6853E22B284B5EAF002BA8C9 /* SearchTableResultHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableResultHeaderView.swift; sourceTree = "<group>"; };
 		6853E22E284B80EC002BA8C9 /* BooksAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BooksAPI.swift; path = "BookkyProject-iOS/SerVice/BooksAPI.swift"; sourceTree = SOURCE_ROOT; };
+		6853E231284BBFD9002BA8C9 /* Searches.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Searches.xcdatamodel; sourceTree = "<group>"; };
 		6860BE2728336E2C00C7399E /* SettingsView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsView.storyboard; sourceTree = "<group>"; };
 		6860BE2928336E5100C7399E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6860BE2F2833CC0400C7399E /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +232,9 @@
 		68C8629727DF650E004B4F73 /* Recommend.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recommend.storyboard; sourceTree = "<group>"; };
 		68C8629927DF659F004B4F73 /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		68C8629B27DF6605004B4F73 /* MyProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfile.storyboard; sourceTree = "<group>"; };
+		68CD4EDF284C272E00D94391 /* Searches+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Searches+CoreDataClass.swift"; sourceTree = "<group>"; };
+		68CD4EE0284C272E00D94391 /* Searches+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Searches+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		68CD4EE3284C27D500D94391 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = "BookkyProject-iOS/SerVice/CoreDataManager.swift"; sourceTree = SOURCE_ROOT; };
 		68FBE65327FCA245003DBFB7 /* BookkyURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookkyURL.swift; sourceTree = "<group>"; };
 		68FBE65627FD50E8003DBFB7 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
 		68FBE65827FDB1EF003DBFB7 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -369,6 +377,9 @@
 		68683D3027DDF5EE008EF3CF = {
 			isa = PBXGroup;
 			children = (
+				68CD4EDF284C272E00D94391 /* Searches+CoreDataClass.swift */,
+				68CD4EE0284C272E00D94391 /* Searches+CoreDataProperties.swift */,
+				6853E230284BBFD9002BA8C9 /* Searches.xcdatamodeld */,
 				68683D3B27DDF5EE008EF3CF /* BookkyProject-iOS */,
 				68683D5227DDF5EF008EF3CF /* BookkyProject-iOSTests */,
 				68683D5C27DDF5EF008EF3CF /* BookkyProject-iOSUITests */,
@@ -462,6 +473,7 @@
 				68307C3A2846004500109FBD /* CameraHandler.swift */,
 				6883FE1E2847487A00C132A4 /* UserTagHandler.swift */,
 				6853E22E284B80EC002BA8C9 /* BooksAPI.swift */,
+				68CD4EE3284C27D500D94391 /* CoreDataManager.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -931,6 +943,7 @@
 				68FBE65727FD50E8003DBFB7 /* SignupModel.swift in Sources */,
 				F8C10A902832C05D00D311F6 /* QnACommentViewController.swift in Sources */,
 				F8B3126B28328B8E00E01201 /* QnaAnswerTableViewCell.swift in Sources */,
+				68CD4EE4284C27D500D94391 /* CoreDataManager.swift in Sources */,
 				6852E56E27F2EE8900CAEF02 /* LoginVC.swift in Sources */,
 				68307C3F284692B100109FBD /* MyProfileUpdateModel.swift in Sources */,
 				6852E57927F372CC00CAEF02 /* NewPasswordVC.swift in Sources */,
@@ -939,6 +952,7 @@
 				6852E57027F3079700CAEF02 /* SignupVC.swift in Sources */,
 				6860BE2A28336E5100C7399E /* SettingsViewController.swift in Sources */,
 				F82A862528464C8200DBBE00 /* CommentHeaderTableViewCell.swift in Sources */,
+				6853E232284BBFD9002BA8C9 /* Searches.xcdatamodeld in Sources */,
 				686AE6C427FC6D3700B77245 /* Account.swift in Sources */,
 				F899B5D328490300000A03D7 /* CommunityDeleteDataSerVice.swift in Sources */,
 				F899B5D12848FE5E000A03D7 /* CommunityPostDataSerVice.swift in Sources */,
@@ -962,6 +976,7 @@
 				F8260587282E840F006DB702 /* BookWriteReviewViewController.swift in Sources */,
 				686AE6BB27FC01DC00B77245 /* EmailAuthenticate.swift in Sources */,
 				68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */,
+				68CD4EE2284C272E00D94391 /* Searches+CoreDataProperties.swift in Sources */,
 				68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */,
 				F8FE3FFC281FCA200014E060 /* WriteTextViewController.swift in Sources */,
 				68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */,
@@ -987,6 +1002,7 @@
 				F874319A28030012003EA8C0 /* ExtensionUikit.swift in Sources */,
 				6860BE352833D25800C7399E /* SearchResultTableViewCell.swift in Sources */,
 				683674C4282215DE00CB618D /* MyPostCollectionViewCell.swift in Sources */,
+				68CD4EE1284C272E00D94391 /* Searches+CoreDataClass.swift in Sources */,
 				68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */,
 				688DEDAE282C05AC002F647A /* TagsCollectionViewCell.swift in Sources */,
 				688DEDAC282C0580002F647A /* ResearchViewController.swift in Sources */,
@@ -1350,6 +1366,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6853E230284BBFD9002BA8C9 /* Searches.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6853E231284BBFD9002BA8C9 /* Searches.xcdatamodel */,
+			);
+			currentVersion = 6853E231284BBFD9002BA8C9 /* Searches.xcdatamodel */;
+			path = Searches.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 68683D3127DDF5EE008EF3CF /* Project object */;
 }

@@ -128,12 +128,12 @@ class MyProfileViewController: UIViewController {
                     }
 
                     guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
-                        print("Launch: 사용자 이메일을 불러올 수 없음.")
+                        print("사용자 이메일을 불러올 수 없음.")
                         return
                     }
                     guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
                           let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
-                        print("Launch: 토큰을 불러올 수 없음.")
+                        print("토큰을 불러올 수 없음.")
                         return
                     }
                     print("갱신요청")
@@ -143,7 +143,7 @@ class MyProfileViewController: UIViewController {
                         if success {
                             if let newAccessToken = tokens.result?.accessToken {
                                 if !KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) {
-                                    print("Launch: 새로운 토큰 제대로 저장이 안되었어요~~~~")
+                                    print("새로운 토큰 제대로 저장이 안되었어요~~~~")
                                 }
                                 self.requestMyprofile(accessToken: previousAccessToken)
                             }
@@ -184,6 +184,7 @@ class MyProfileViewController: UIViewController {
     
     private func setUserNameLabel(_ userName:String) {
         userNameLabel.text = userName + "님, 반가워요!"
+        userNameLabel.asColr(targetString: userName, color: UIColor(named: "primaryColor") ?? UIColor.blue)
     }
     
     private func setDefaultMyProfileView() {

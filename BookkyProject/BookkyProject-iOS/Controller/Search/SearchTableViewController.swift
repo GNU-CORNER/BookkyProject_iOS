@@ -6,15 +6,11 @@
 //
 
 import UIKit
+import CoreData
 
-class SearchViewController: UITableViewController, UISearchResultsUpdating {
+class SearchViewController: UITableViewController {
     
-    func updateSearchResults(for searchController: UISearchController) {
-         
-    }
-
-    
-    var recentSearchKeyword: [String] = ["안녕하세요", "React를 검색한다면?", "김뿅뵹인데요", "뭐", "므"]
+    var recentSearchKeyword: [String] = []
     
     var searchController: UISearchController!
     var resultsTableViewController: SearchResultsTableViewController!
@@ -29,7 +25,7 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating {
         
         searchController = UISearchController(searchResultsController: resultsTableViewController)
         searchController.delegate = self
-        searchController.searchResultsUpdater = self
+//        searchController.searchResultsUpdater = self
         searchController.searchBar.searchBarStyle = .minimal
         searchController.searchBar.placeholder = "제목 또는 태그"
         searchController.searchBar.delegate = self
@@ -42,10 +38,26 @@ class SearchViewController: UITableViewController, UISearchResultsUpdating {
         definesPresentationContext = true
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        setDefaultView()
+    }
 
     private func registerNibCell() {
         tableView.register( UINib(nibName: "SearchDefaultTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchDefaultCell" )
         tableView.register( UINib(nibName: "SearchTableHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "SearchDefaultHeaderView" )
+    }
+    
+    private func setDefaultView() {
+        CoreDataManager.shared.deleteLastKeyword()
+        var tempList: [String] = []
+        for searches in CoreDataManager.shared.read(ascending: false) {
+            if let keyword = searches.value(forKey: "keyword") as? String {
+                tempList.append(keyword)
+            }
+        }
+        self.recentSearchKeyword = tempList
+        tableView.reloadData()
     }
     
 }
@@ -78,7 +90,6 @@ extension SearchViewController {
             return UITableViewHeaderFooterView()
         }
         headerView.headerTitle.text = "최근 검색"
-//        headerView.headerTitleUnderLine.isHidden = false
         return headerView
     }
     
@@ -101,6 +112,7 @@ extension SearchViewController: UISearchBarDelegate {
             print("사용자가 입력한 텍스트를 불러올 수 없음.")
             return
         }
+        CoreDataManager.shared.save(keyword: userInputText, date: Date())
         // - [] 검색되는 양, 페이지 모두 무한 스크롤에 맞게 수정해야함 ㅠㅠ
         Books.shared.booksSearch(keyword: userInputText, quantity: 10, page: 1, completionHandler: { (success, data, statuscode) in
             if success {
@@ -115,8 +127,8 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-//        SearchModel.didSearch = false
-//        resultTableViewController.tableView.reloadData()
+        self.resultsTableViewController.setSearchResults(resultsArray: [])
+        setDefaultView()
     }
     
 }
