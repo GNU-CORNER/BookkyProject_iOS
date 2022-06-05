@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="1917" y="132"/>
         </scene>
-        <!--Search Results Table View Controller-->
+        <!--Search Results View Controller-->
         <scene sceneID="hDL-rj-fLx">
             <objects>
-                <tableViewController storyboardIdentifier="ResultsTableViewController" id="bRm-mq-SV4" customClass="SearchResultsTableViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ResultsTableViewController" id="bRm-mq-SV4" customClass="SearchResultsViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="eZm-tO-5fS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

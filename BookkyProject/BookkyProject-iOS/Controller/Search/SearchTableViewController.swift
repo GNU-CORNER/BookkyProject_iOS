@@ -13,14 +13,14 @@ class SearchViewController: UITableViewController {
     var recentSearchKeyword: [String] = []
     
     var searchController: UISearchController!
-    var resultsTableViewController: SearchResultsTableViewController!
+    var resultsTableViewController: SearchResultsViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         registerNibCell()
         
-        resultsTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "ResultsTableViewController") as? SearchResultsTableViewController
+        resultsTableViewController = self.storyboard?.instantiateViewController(withIdentifier: "ResultsTableViewController") as? SearchResultsViewController
         resultsTableViewController.tableView.delegate = self
         
         searchController = UISearchController(searchResultsController: resultsTableViewController)
@@ -76,7 +76,6 @@ extension SearchViewController {
         }
         
         searchDefaultCell.recentSearchKeywordLabel.text = self.recentSearchKeyword[indexPath.row]
-        
         return searchDefaultCell
     }
     
@@ -85,6 +84,7 @@ extension SearchViewController {
         return CGFloat(height)
     }
     
+    // Table Header View
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "SearchDefaultHeaderView") as? SearchTableHeaderView else {
             return UITableViewHeaderFooterView()
@@ -118,16 +118,19 @@ extension SearchViewController: UISearchBarDelegate {
             if success {
                 guard let decodedData = data as? SearchModel else { return }
                 guard let searchResults = decodedData.result?.searchData else { return }
-                self.resultsTableViewController.setSearchResults(resultsArray: searchResults)
+                self.resultsTableViewController.setSearchResults(resultsArray: searchResults, noResult: false)
                 
             } else {
                 print("통신오류~ \(statuscode)")
+                if statuscode == 204 {
+                    self.resultsTableViewController.setSearchResults(resultsArray: [], noResult: true)
+                }
             }
         })
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.resultsTableViewController.setSearchResults(resultsArray: [])
+        self.resultsTableViewController.setSearchResults(resultsArray: [], noResult: false)
         setDefaultView()
     }
     

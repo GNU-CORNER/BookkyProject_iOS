@@ -18,16 +18,16 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lJh-ZI-eLl">
-                        <rect key="frame" x="10" y="10" width="340" height="14"/>
+                        <rect key="frame" x="20" y="10" width="320" height="14"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="내글제목" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fg7-Sa-th8">
-                                <rect key="frame" x="0.0" y="0.0" width="284" height="14"/>
+                                <rect key="frame" x="0.0" y="0.0" width="264" height="14"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="AeX-Cg-OGO">
-                                <rect key="frame" x="294" y="0.0" width="46" height="14"/>
+                                <rect key="frame" x="274" y="0.0" width="46" height="14"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xpt-JK-3W6">
                                         <rect key="frame" x="0.0" y="0.0" width="20.5" height="14"/>
@@ -70,9 +70,8 @@
                         </subviews>
                     </stackView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="middleTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gME-JK-mNW">
-                        <rect key="frame" x="10" y="32" width="340" height="15"/>
+                        <rect key="frame" x="20" y="32" width="320" height="15"/>
                         <constraints>
-                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="360" id="FxH-Ht-N4P"/>
                             <constraint firstAttribute="height" constant="15" id="Tve-CO-IQC"/>
                         </constraints>
                         <string key="text">내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. 내글 본ㅂ문입니다. ㅍ</string>
@@ -84,10 +83,10 @@
                 <constraints>
                     <constraint firstItem="gME-JK-mNW" firstAttribute="top" secondItem="lJh-ZI-eLl" secondAttribute="bottom" constant="8" symbolic="YES" id="B0n-ne-gbu"/>
                     <constraint firstItem="lJh-ZI-eLl" firstAttribute="top" secondItem="4Ym-pt-OKb" secondAttribute="top" constant="10" id="TWI-Q0-CX9"/>
-                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="gME-JK-mNW" secondAttribute="bottom" priority="750" constant="10" id="UBd-DZ-t0p"/>
-                    <constraint firstAttribute="trailing" secondItem="lJh-ZI-eLl" secondAttribute="trailing" constant="10" id="VD6-pI-2lr"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="gME-JK-mNW" secondAttribute="bottom" priority="750" constant="10" id="UBd-DZ-t0p"/>
+                    <constraint firstAttribute="trailing" secondItem="lJh-ZI-eLl" secondAttribute="trailing" constant="20" id="VD6-pI-2lr"/>
                     <constraint firstItem="gME-JK-mNW" firstAttribute="leading" secondItem="lJh-ZI-eLl" secondAttribute="leading" id="hsf-f8-5RY"/>
-                    <constraint firstItem="lJh-ZI-eLl" firstAttribute="leading" secondItem="4Ym-pt-OKb" secondAttribute="leading" constant="10" id="iFB-WF-iRJ"/>
+                    <constraint firstItem="lJh-ZI-eLl" firstAttribute="leading" secondItem="4Ym-pt-OKb" secondAttribute="leading" constant="20" id="iFB-WF-iRJ"/>
                     <constraint firstItem="gME-JK-mNW" firstAttribute="trailing" secondItem="lJh-ZI-eLl" secondAttribute="trailing" id="raL-f4-W8P"/>
                 </constraints>
             </collectionViewCellContentView>
