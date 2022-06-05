@@ -221,7 +221,7 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             else {
                 return UICollectionViewCell()
             }
-            myTagsCell.tagNameLabel.text = "#\(myTagsArray[indexPath.row].tag)"
+            myTagsCell.tagNameLabel.text = "# \(myTagsArray[indexPath.row].tag)"
             return myTagsCell
             
         } else if collectionView == self.myBooksCollectionView {

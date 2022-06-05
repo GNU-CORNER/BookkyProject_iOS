@@ -56,7 +56,6 @@ class ResearchViewController: UIViewController {
                 print("User Tags 수정 완료.")
 //                DispatchQueue.main.async {
 //                    self.navigationController?.popViewController(animated: false)
-//
 //                }
             } else {
                 print("User Tags 수정이 안돼.")

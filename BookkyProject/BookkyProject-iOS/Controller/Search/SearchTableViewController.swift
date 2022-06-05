@@ -114,23 +114,22 @@ extension SearchViewController: UISearchBarDelegate {
         }
         CoreDataManager.shared.save(keyword: userInputText, date: Date())
         // - [] 검색되는 양, 페이지 모두 무한 스크롤에 맞게 수정해야함 ㅠㅠ
-        Books.shared.booksSearch(keyword: userInputText, quantity: 10, page: 1, completionHandler: { (success, data, statuscode) in
+        Books.shared.booksSearch(keyword: userInputText, quantity: 20, page: 1, completionHandler: { (success, data, statuscode, total) in
             if success {
                 guard let decodedData = data as? SearchModel else { return }
                 guard let searchResults = decodedData.result?.searchData else { return }
-                self.resultsTableViewController.setSearchResults(resultsArray: searchResults, noResult: false)
-                
+                self.resultsTableViewController.setSearchResults(resultsArray: searchResults, noResult: false, totalPage: total ?? 0, isScroll: false)
             } else {
-                print("통신오류~ \(statuscode)")
+                print("통신오류 \(statuscode)")
                 if statuscode == 204 {
-                    self.resultsTableViewController.setSearchResults(resultsArray: [], noResult: true)
+                    self.resultsTableViewController.setSearchResults(resultsArray: [], noResult: true, totalPage: 0, isScroll: false)
                 }
             }
         })
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.resultsTableViewController.setSearchResults(resultsArray: [], noResult: false)
+        self.resultsTableViewController.setSearchResults(resultsArray: [], noResult: false, totalPage: 0, isScroll: false)
         setDefaultView()
     }
     

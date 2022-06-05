@@ -10,7 +10,7 @@ import Foundation
 class Books {
     static var shared = Books()
     
-    func booksSearch(keyword: String, quantity: Int, page: Int, completionHandler: @escaping(Bool, Any?, Int) -> Void) {
+    func booksSearch(keyword: String, quantity: Int, page: Int, completionHandler: @escaping(Bool, Any?, Int, Int?) -> Void) {
         let session = URLSession(configuration: .default)
         guard var booksSearchComponents = URLComponents(string: BookkyURL.baseURL + BookkyURL.booksSearchPath) else {
             print("Books Search: Cannot Create URLComponents.")
@@ -46,10 +46,10 @@ class Books {
 
             do {
                 let decodedData: SearchModel = try JSONDecoder().decode(SearchModel.self, from: data)
-                completionHandler(decodedData.success, decodedData, response.statusCode)
+                completionHandler(decodedData.success, decodedData, response.statusCode, decodedData.result?.total)
             } catch {
                 print("Books Search: Decode Error.")
-                completionHandler(false, nil, response.statusCode)
+                completionHandler(false, nil, response.statusCode, nil)
             }
         }.resume()
     }
