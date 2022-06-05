@@ -58,6 +58,7 @@ struct BookDetailData : Codable{
     let PUBLISH_DATE : String
     let Allah_BID : String
     let thumbnailImage :String
+    let RATING : Double
     let tagData : [BookDetailDataTagData]
 }
 struct BookDetailDataTagData : Codable {

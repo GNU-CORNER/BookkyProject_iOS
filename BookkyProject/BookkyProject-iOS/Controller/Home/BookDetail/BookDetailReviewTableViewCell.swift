@@ -15,13 +15,50 @@ class BookDetailReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewCreateAtLabel: UILabel!
     @IBOutlet weak var reviewLikeCnt: UILabel!
     
+    @IBOutlet weak var reviewAddFunction: ReviewButton!
     @IBOutlet weak var reviewStackView: UIStackView!
+    var reviewIsAccessible : Bool = false
+    @IBOutlet weak var reviewRatingStarImageView: UIImageView!
+    var RID : Int = 0
+    var rating : Float = 0.0
+    var contents : String = ""
     func setReview(model : ReviewData){
         self.reviewUserNameLabel.text = model.nickname
         self.reviewUserRatingLabel.text = "\(model.rating)"
+        
         self.reviewUserCotents.text = model.contents
         self.reviewCreateAtLabel.text = model.createAt
         self.reviewLikeCnt.text = "공감(\(model.likeCnt))"
+        self.reviewIsAccessible = model.isAccessible
+        self.RID = model.RID
+        self.rating = Float(model.rating)
+        self.contents = model.contents
+        switch model.rating {
+        case 0 :
+            self.reviewRatingStarImageView.image = UIImage(named: "starZero")
+        case 0..<0.5:
+            self.reviewRatingStarImageView.image = UIImage(named: "starZeroHalf")
+        case 0.5..<1.0:
+            self.reviewRatingStarImageView.image = UIImage(named: "starOne")
+        case 1.0..<1.5:
+            self.reviewRatingStarImageView.image = UIImage(named: "starOneHalf")
+        case 1.5..<2.0:
+            self.reviewRatingStarImageView.image = UIImage(named: "starTwo")
+        case 2.0..<2.5:
+            self.reviewRatingStarImageView.image = UIImage(named: "starTwoHalf")
+        case 2.5..<3.0:
+            self.reviewRatingStarImageView.image = UIImage(named: "starThree")
+        case 3.0..<3.5:
+            self.reviewRatingStarImageView.image = UIImage(named: "starThreeHalf")
+        case 3.5..<4.0:
+            self.reviewRatingStarImageView.image = UIImage(named: "starFour")
+        case 4.0..<4.5:
+            self.reviewRatingStarImageView.image = UIImage(named: "starFourHalf")
+        case 5.0:
+            self.reviewRatingStarImageView.image = UIImage(named: "starFive")
+        default :
+            self.reviewRatingStarImageView.image = UIImage(named: "starZero")
+        }
     }
     func setTableViewCellUI(){
         self.reviewUserNameLabel.font = UIFont.boldSystemFont(ofSize: 12)

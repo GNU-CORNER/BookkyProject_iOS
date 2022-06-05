@@ -77,6 +77,8 @@
 		68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65827FDB1EF003DBFB7 /* UITextField.swift */; };
 		68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */; };
 		F80756DC2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */; };
+		F8075DFB284BD4EE00305F1C /* HomePostSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8075DFA284BD4EE00305F1C /* HomePostSevice.swift */; };
+		F8075DFE284CA36000305F1C /* HomeDeleteSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8075DFD284CA36000305F1C /* HomeDeleteSerVice.swift */; };
 		F826057A282E52E1006DB702 /* SearchPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8260578282E52E1006DB702 /* SearchPostTableViewCell.xib */; };
 		F826057E282E5B94006DB702 /* WritePostBookSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F826057D282E5B94006DB702 /* WritePostBookSearchViewController.swift */; };
 		F8260580282E6290006DB702 /* WritePostBookSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F826057F282E6290006DB702 /* WritePostBookSearchTableViewCell.swift */; };
@@ -86,6 +88,7 @@
 		F82A862528464C8200DBBE00 /* CommentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82A862328464C8200DBBE00 /* CommentHeaderTableViewCell.swift */; };
 		F82A862628464C8200DBBE00 /* CommentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82A862428464C8200DBBE00 /* CommentHeaderTableViewCell.xib */; };
 		F840D07E2847A30E00CB0F3C /* ExtensionUIAertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */; };
+		F8584AEB284B4715006BDE8D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8584AEA284B4715006BDE8D /* LoadingView.swift */; };
 		F8606C23282ED5E100E49535 /* BoardTextCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8606C21282ED5E100E49535 /* BoardTextCommentTableViewCell.swift */; };
 		F8606C24282ED5E100E49535 /* BoardTextCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8606C22282ED5E100E49535 /* BoardTextCommentTableViewCell.xib */; };
 		F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */; };
@@ -109,6 +112,7 @@
 		F899B5CF28485D55000A03D7 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5CE28485D55000A03D7 /* CustomButton.swift */; };
 		F899B5D12848FE5E000A03D7 /* CommunityPostDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */; };
 		F899B5D328490300000A03D7 /* CommunityDeleteDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */; };
+		F8A6039B284CD4C1004FD937 /* BookUpdateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6039A284CD4C1004FD937 /* BookUpdateReviewViewController.swift */; };
 		F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */; };
 		F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */; };
 		F8B3126828327C2000E01201 /* QnABoardTextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */; };
@@ -222,6 +226,8 @@
 		68FBE65827FDB1EF003DBFB7 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModel.swift; sourceTree = "<group>"; };
 		F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		F8075DFA284BD4EE00305F1C /* HomePostSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomePostSevice.swift; path = "BookkyProject-iOS/Service/Home/HomePostSevice.swift"; sourceTree = SOURCE_ROOT; };
+		F8075DFD284CA36000305F1C /* HomeDeleteSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeDeleteSerVice.swift; path = "BookkyProject-iOS/SerVice/Home/HomeDeleteSerVice.swift"; sourceTree = SOURCE_ROOT; };
 		F8260578282E52E1006DB702 /* SearchPostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPostTableViewCell.xib; sourceTree = "<group>"; };
 		F826057D282E5B94006DB702 /* WritePostBookSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostBookSearchViewController.swift; sourceTree = "<group>"; };
 		F826057F282E6290006DB702 /* WritePostBookSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostBookSearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 		F82A862328464C8200DBBE00 /* CommentHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F82A862428464C8200DBBE00 /* CommentHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIAertAction.swift; sourceTree = "<group>"; };
+		F8584AEA284B4715006BDE8D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F8606C21282ED5E100E49535 /* BoardTextCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextCommentTableViewCell.swift; sourceTree = "<group>"; };
 		F8606C22282ED5E100E49535 /* BoardTextCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardTextCommentTableViewCell.xib; sourceTree = "<group>"; };
 		F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBookDetailReviewDataFormat.swift; sourceTree = "<group>"; };
@@ -255,6 +262,7 @@
 		F899B5CE28485D55000A03D7 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityPostDataSerVice.swift; path = "BookkyProject-iOS/Service/Community/CommunityPostDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
 		F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityDeleteDataSerVice.swift; path = "BookkyProject-iOS/Service/Community/CommunityDeleteDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
+		F8A6039A284CD4C1004FD937 /* BookUpdateReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateReviewViewController.swift; sourceTree = "<group>"; };
 		F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionReusableViewHeader.swift; sourceTree = "<group>"; };
 		F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnABoardTextDetailViewController.swift; sourceTree = "<group>"; };
@@ -429,15 +437,14 @@
 		686AE6B927FC01B600B77245 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				F8075DFC284BD50F00305F1C /* Home */,
 				F899B5D428490303000A03D7 /* Community */,
-				F87B810B28016C3D00E2FB7A /* HomeDataSerVice.swift */,
 				686AE6BA27FC01DC00B77245 /* EmailAuthenticate.swift */,
 				686AE6C327FC6D3700B77245 /* Account.swift */,
 				68FBE65327FCA245003DBFB7 /* BookkyURL.swift */,
 				686B212F2805498000384408 /* KeychainManager.swift */,
 				68169243282A85450066946A /* MyProfileAPI.swift */,
 				68169246282B8B530066946A /* RedirectView.swift */,
-				F8886F292821309300044737 /* CommunityDataSerVice.swift */,
 				68307C3A2846004500109FBD /* CameraHandler.swift */,
 				6883FE1E2847487A00C132A4 /* UserTagHandler.swift */,
 			);
@@ -593,6 +600,16 @@
 			path = MyProfile;
 			sourceTree = "<group>";
 		};
+		F8075DFC284BD50F00305F1C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				F8075DFA284BD4EE00305F1C /* HomePostSevice.swift */,
+				F87B810B28016C3D00E2FB7A /* HomeDataSerVice.swift */,
+				F8075DFD284CA36000305F1C /* HomeDeleteSerVice.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 		F840D07F2847ACF900CB0F3C /* BoardDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -621,6 +638,7 @@
 				F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */,
 				F899B5CE28485D55000A03D7 /* CustomButton.swift */,
 				68307C3C2846843700109FBD /* UIImageExtension.swift */,
+				F8584AEA284B4715006BDE8D /* LoadingView.swift */,
 			);
 			path = ExtensionUI;
 			sourceTree = "<group>";
@@ -632,6 +650,7 @@
 				F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */,
 				F8E68A7C282960320046760A /* BookDetailReviewTableViewCell.swift */,
 				F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */,
+				F8A6039A284CD4C1004FD937 /* BookUpdateReviewViewController.swift */,
 			);
 			path = BookDetail;
 			sourceTree = "<group>";
@@ -670,9 +689,9 @@
 		F899B5D428490303000A03D7 /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				F8886F292821309300044737 /* CommunityGetDataSerVice.swift */,
 				F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */,
 				F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */,
+				F8886F292821309300044737 /* CommunityGetDataSerVice.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -899,6 +918,7 @@
 				F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */,
 				6860BE302833CC0400C7399E /* SearchTableViewController.swift in Sources */,
 				F8260583282E691C006DB702 /* QnABoardTableViewCell.swift in Sources */,
+				F8075DFB284BD4EE00305F1C /* HomePostSevice.swift in Sources */,
 				F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */,
 				F88D683E282D254400E23344 /* TagMoreViewBookList.swift in Sources */,
 				F8886F2C2821328800044737 /* WritePostDataFormat.swift in Sources */,
@@ -960,14 +980,17 @@
 				F874319A28030012003EA8C0 /* ExtensionUikit.swift in Sources */,
 				6860BE352833D25800C7399E /* SearchResultTableViewCell.swift in Sources */,
 				683674C4282215DE00CB618D /* MyPostCollectionViewCell.swift in Sources */,
+				F8584AEB284B4715006BDE8D /* LoadingView.swift in Sources */,
 				68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */,
 				688DEDAE282C05AC002F647A /* TagsCollectionViewCell.swift in Sources */,
 				688DEDAC282C0580002F647A /* ResearchViewController.swift in Sources */,
 				686B21302805498000384408 /* KeychainManager.swift in Sources */,
+				F8A6039B284CD4C1004FD937 /* BookUpdateReviewViewController.swift in Sources */,
 				6860BE3B283408F100C7399E /* SearchModel.swift in Sources */,
 				688DEDC5282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift in Sources */,
 				6852E57727F35EC600CAEF02 /* FindPasswordVC.swift in Sources */,
 				F826057E282E5B94006DB702 /* WritePostBookSearchViewController.swift in Sources */,
+				F8075DFE284CA36000305F1C /* HomeDeleteSerVice.swift in Sources */,
 				F88808DE281D6BDA007CE79C /* TagViewController.swift in Sources */,
 				F8B5BC79283D01A500A70190 /* ExtensionStatusBar.swift in Sources */,
 				F8886F2A2821309300044737 /* CommunityGetDataSerVice.swift in Sources */,
