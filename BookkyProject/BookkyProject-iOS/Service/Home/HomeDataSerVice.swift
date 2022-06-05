@@ -107,7 +107,6 @@ class GetBookData {
             }
             do {
                 let DetailBookData = try JSONDecoder().decode(BookDetailInformation.self, from: data)
-                print("\(DetailBookData)갱갱")
                 completion(true,DetailBookData)
             }
             catch(let err) {

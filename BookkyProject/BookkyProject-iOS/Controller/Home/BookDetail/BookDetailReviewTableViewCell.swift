@@ -13,12 +13,14 @@ class BookDetailReviewTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewUserRatingLabel: UILabel!
     @IBOutlet weak var reviewUserCotents: UILabel!
     @IBOutlet weak var reviewCreateAtLabel: UILabel!
-    @IBOutlet weak var reviewLikeCnt: UILabel!
+    
+    @IBOutlet weak var reviewLikeCntButotn: UIButton!
     
     @IBOutlet weak var reviewAddFunction: ReviewButton!
     @IBOutlet weak var reviewStackView: UIStackView!
     var reviewIsAccessible : Bool = false
     @IBOutlet weak var reviewRatingStarImageView: UIImageView!
+    @IBOutlet weak var reviewLikeButton: ReviewButton!
     var RID : Int = 0
     var rating : Float = 0.0
     var contents : String = ""
@@ -28,7 +30,7 @@ class BookDetailReviewTableViewCell: UITableViewCell {
         
         self.reviewUserCotents.text = model.contents
         self.reviewCreateAtLabel.text = model.createAt
-        self.reviewLikeCnt.text = "공감(\(model.likeCnt))"
+        self.reviewLikeCntButotn.setTitle("공감(\(model.likeCnt))", for: .normal)
         self.reviewIsAccessible = model.isAccessible
         self.RID = model.RID
         self.rating = Float(model.rating)
@@ -65,8 +67,8 @@ class BookDetailReviewTableViewCell: UITableViewCell {
         self.reviewUserRatingLabel.font = UIFont.systemFont(ofSize: 10)
         self.reviewUserCotents.font = UIFont.systemFont(ofSize: 12)
         self.reviewCreateAtLabel.font = UIFont.systemFont(ofSize: 10)
-        self.reviewCreateAtLabel.textColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1)
-        self.reviewLikeCnt.font = UIFont.systemFont(ofSize: 10)
+        self.reviewLikeCntButotn.tintColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1)
+        self.reviewLikeCntButotn.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         self.reviewStackView.layer.borderWidth = 1
         self.reviewStackView.layer.borderColor = UIColor(red: 233/255, green: 233/255, blue: 233/255, alpha: 1).cgColor
         self.reviewStackView.layer.cornerRadius = 10

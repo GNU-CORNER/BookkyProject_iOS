@@ -34,6 +34,7 @@ class BookkyURL {
     static let bookDetailReview = "/books/reviews/"
     static let bookPostReview = "/review/"
     static let bookDeleteReview = "/review/"
+    static let bookReviewLike = "/review/like/"
 // MARK: - 커뮤니티 Get
     static let communityPostListGetURL =  "/community/postlist/"
     static let communityTextDetail = "/community/postdetail/"

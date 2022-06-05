@@ -92,7 +92,6 @@ class BookDetailViewController: UIViewController {
         
     }
 // MARK: - API 통신
-
     private func getBookDetailData(){
         
         GetBookData.shared.getDetailBookData(BID: self.BID){ (sucess,data) in
@@ -137,12 +136,23 @@ class BookDetailViewController: UIViewController {
             }
         }
     }
+    
+    
     private func deleteBookDetailReviewData(RID : Int){
         HomeReviewDeleteAPI.shared.DeletPost(RID : RID) { (success,data) in
             if success {
                 print("리뷰가 성공적으로 삭제 되었습니다.")
             }else {
                 print("리뷰 삭제에 실패했습니다.")
+            }
+        }
+    }
+    private func likeReviewUpdate(RID : Int){
+        HomePostDataAPI.shared.updateHomeReviewLike(RID: RID) { (success,data) in
+            if success {
+                print("좋아요 성공")
+            }else {
+                print("좋아요 실패")
             }
         }
     }
@@ -239,7 +249,6 @@ class BookDetailViewController: UIViewController {
             bookIndexLabel.numberOfLines = 5
             self.tapViewMoreBookIndex.setTitle("펼쳐보기>", for: .normal)
         }
-        print("\(self.bookIndexLabel.frame.size)")
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "writeReViewSegue" {
@@ -258,7 +267,14 @@ class BookDetailViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
-    
+    @objc func tapAddLike(_ sender : Any){
+        let RID : Int = (sender as! ReviewButton).RID
+        likeReviewUpdate(RID: RID)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+            self.getBookDetailReViewData()
+        })
+        
+    }
     @objc func tapAddReviewFunction(_ sender : Any){
         let RID : Int = (sender as! ReviewButton).RID
         let isAccessible : Bool = (sender as! ReviewButton).isAccessible
@@ -344,6 +360,8 @@ extension BookDetailViewController : UITableViewDelegate,UITableViewDataSource{
         cell.reviewAddFunction.isAccessible = cell.reviewIsAccessible
         cell.reviewAddFunction.rating = cell.rating
         cell.reviewAddFunction.contents = cell.contents
+        cell.reviewLikeButton.RID = cell.RID
+        cell.reviewLikeButton.addTarget(self, action: #selector(tapAddLike), for: .touchUpInside)
         cell.reviewAddFunction.addTarget(self, action: #selector(tapAddReviewFunction), for: .touchUpInside)
         return cell
     }
