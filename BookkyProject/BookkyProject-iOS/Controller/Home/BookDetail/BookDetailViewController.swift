@@ -16,6 +16,7 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var bookDetailImage: UIImageView!
     var BID = 0
     
+    @IBOutlet weak var ratingNumberLabel: UILabel!
     var bookDetailTagList : [BookDetailDataTagData] = []
     //네이버
     var bookDetailRevieList  : [ReviewData] = []
@@ -47,17 +48,24 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var bookDetailCommentTableView: UITableView!
     @IBOutlet weak var bookDetailScrollView: UIScrollView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var starImageView: UIImageView!
+    var userContents : String = ""
+    var userRating : Double = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
         //리뷰 테이블뷰
-        self.bookDetailCommentTableView.delegate = self
-        self.bookDetailCommentTableView.dataSource = self
-        getBookDetailReViewData()
+        bookDetailCommentTableView.delegate = self
+        bookDetailCommentTableView.dataSource = self
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
-        self.setBookDetailUI()
-        self.getBookDetailData()
-        self.setColletioView()
+        setBookDetailUI()
+        setColletioView()
+        print("\(self.BID)BID")
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getBookDetailReViewData()
+        getBookDetailData()
     }
     private func setBookDetailUI(){
         self.detailBookName.font = UIFont.boldSystemFont(ofSize: 18)
@@ -83,9 +91,7 @@ class BookDetailViewController: UIViewController {
         self.tapViewMoreBookIndex.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         
     }
-    private func setAddMoreButtonUI(){
-        
-    }
+// MARK: - API 통신
     private func getBookDetailData(){
         
         GetBookData.shared.getDetailBookData(BID: self.BID){ (sucess,data) in
@@ -117,12 +123,36 @@ class BookDetailViewController: UIViewController {
                         }else {
                             self.tableViewHeight.constant = 100
                         }
-                        
                         self.bookDetailCommentTableView.reloadData()
                     }
                 }else {
                     print("통신오류")
                 }
+            }else {
+                DispatchQueue.main.async {
+                    self.tableViewHeight.constant = 0.1
+                    self.bookDetailCommentTableView.reloadData()
+                }
+            }
+        }
+    }
+    
+    
+    private func deleteBookDetailReviewData(RID : Int){
+        HomeReviewDeleteAPI.shared.DeletPost(RID : RID) { (success,data) in
+            if success {
+                print("리뷰가 성공적으로 삭제 되었습니다.")
+            }else {
+                print("리뷰 삭제에 실패했습니다.")
+            }
+        }
+    }
+    private func likeReviewUpdate(RID : Int){
+        HomePostDataAPI.shared.updateHomeReviewLike(RID: RID) { (success,data) in
+            if success {
+                print("좋아요 성공")
+            }else {
+                print("좋아요 실패")
             }
         }
     }
@@ -143,7 +173,33 @@ class BookDetailViewController: UIViewController {
         self.detailBookName.text = model.TITLE
         self.detailBookAuthor.text = model.AUTHOR
         self.bookDetailTagList = model.tagData
-        
+        self.ratingNumberLabel.text = "\(model.RATING)"
+        switch model.RATING {
+        case 0 :
+            self.starImageView.image = UIImage(named: "starZero")
+        case 0..<0.5:
+            self.starImageView.image = UIImage(named: "starZeroHalf")
+        case 0.5..<1.0:
+            self.starImageView.image = UIImage(named: "starOne")
+        case 1.0..<1.5:
+            self.starImageView.image = UIImage(named: "starOneHalf")
+        case 1.5..<2.0:
+            self.starImageView.image = UIImage(named: "starTwo")
+        case 2.0..<2.5:
+            self.starImageView.image = UIImage(named: "starTwoHalf")
+        case 2.5..<3.0:
+            self.starImageView.image = UIImage(named: "starThree")
+        case 3.0..<3.5:
+            self.starImageView.image = UIImage(named: "starThreeHalf")
+        case 3.5..<4.0:
+            self.starImageView.image = UIImage(named: "starFour")
+        case 4.0..<4.5:
+            self.starImageView.image = UIImage(named: "starFourHalf")
+        case 5.0:
+            self.starImageView.image = UIImage(named: "starFive")
+        default :
+            self.starImageView.image = UIImage(named: "starZero")
+        }
         self.bookImage = URL(string: "\(model.thumbnailImage)")
         self.bookName = model.TITLE
         self.AUTHOR = model.AUTHOR
@@ -171,22 +227,18 @@ class BookDetailViewController: UIViewController {
         self.bookIndexLabel.text = bookIndexString
         self.bookExplainContent.frame.size.height = 150
         self.bookIndexLabel.frame.size.height = 150
-        print("\(self.bookExplainContent.frame.height)")
-        print("\(self.bookIndexLabel.frame.height)")
+        
         
     }
     @IBAction func tapMoreBookIntroduction(_ sender: UIButton) {
         if bookExplainContent.numberOfLines == 5{
-            print("펼쳐보기")
             bookExplainContent.frame.size.height = 100
             bookExplainContent.numberOfLines = 0
             self.tapViewMoreBookIntroduction.setTitle("펼쳐보기 닫기>", for: .normal)
         }else if bookExplainContent.numberOfLines == 0 {
-            print("펼쳐 닫기")
             bookExplainContent.numberOfLines = 5
             self.tapViewMoreBookIntroduction.setTitle("펼쳐보기>", for: .normal)
         }
-        print("\(self.bookExplainContent.frame.size)")
     }
     
     @IBAction func tapMoreBookIndex(_ sender: UIButton) {
@@ -197,7 +249,6 @@ class BookDetailViewController: UIViewController {
             bookIndexLabel.numberOfLines = 5
             self.tapViewMoreBookIndex.setTitle("펼쳐보기>", for: .normal)
         }
-        print("\(self.bookIndexLabel.frame.size)")
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "writeReViewSegue" {
@@ -205,7 +256,68 @@ class BookDetailViewController: UIViewController {
             BookWriteReViewViewController.url = self.bookImage
             BookWriteReViewViewController.bookName = self.bookName
             BookWriteReViewViewController.bookAuthor = self.AUTHOR
+            BookWriteReViewViewController.BID = self.BID
         }
+    }
+    func completeDelete(){
+        let alert = UIAlertController(title: "리뷰가 삭제되었습니다.", message: nil, preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "확인", style: .cancel)
+        alert.addAction(cancel)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+    }
+    @objc func tapAddLike(_ sender : Any){
+        let RID : Int = (sender as! ReviewButton).RID
+        likeReviewUpdate(RID: RID)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+            self.getBookDetailReViewData()
+        })
+        
+    }
+    @objc func tapAddReviewFunction(_ sender : Any){
+        let RID : Int = (sender as! ReviewButton).RID
+        let isAccessible : Bool = (sender as! ReviewButton).isAccessible
+        let rating : Float = (sender as! ReviewButton).rating
+        let contents : String = (sender as! ReviewButton).contents
+        self.userContents = contents
+        let alert = UIAlertController(title: "리뷰 메뉴", message: nil, preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let report = UIAlertAction(title: "신고", style: .destructive)
+        if isAccessible == true {
+            let delete = UIAlertAction(title: "삭제", style: .destructive){(_) in
+                self.deleteBookDetailReviewData(RID: RID)
+                self.completeDelete()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                    self.getBookDetailReViewData()
+                    self.getBookDetailData()
+                })
+                
+                
+            }
+            let update = UIAlertAction(title: "수정", style: .default){(_) in
+                guard let BookUpdateReviewViewController =
+                        self.storyboard?.instantiateViewController(identifier: "writeReviewController") as? BookUpdateReviewViewController  else {return}
+                BookUpdateReviewViewController.modalPresentationStyle = .fullScreen
+                BookUpdateReviewViewController.ratingStar = rating
+                BookUpdateReviewViewController.url = self.bookImage
+                BookUpdateReviewViewController.bookName = self.bookName
+                BookUpdateReviewViewController.bookAuthor = self.AUTHOR
+                BookUpdateReviewViewController.RID = RID
+                BookUpdateReviewViewController.userContents = self.userContents
+                self.present(BookUpdateReviewViewController, animated: true, completion: nil)
+            }
+            alert.addAction(delete)
+            alert.addAction(update)
+           
+        }
+       
+        alert.addAction(cancel)
+        alert.addAction(report)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true)
+        }
+        
     }
 }
 extension BookDetailViewController : UICollectionViewDataSource,UICollectionViewDelegate{
@@ -244,6 +356,13 @@ extension BookDetailViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell : BookDetailReviewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "bookDetailCommentTableViewcellid")as? BookDetailReviewTableViewCell else {return UITableViewCell()}
         cell.setReview(model : self.bookDetailRevieList[indexPath.row])
+        cell.reviewAddFunction.RID = cell.RID
+        cell.reviewAddFunction.isAccessible = cell.reviewIsAccessible
+        cell.reviewAddFunction.rating = cell.rating
+        cell.reviewAddFunction.contents = cell.contents
+        cell.reviewLikeButton.RID = cell.RID
+        cell.reviewLikeButton.addTarget(self, action: #selector(tapAddLike), for: .touchUpInside)
+        cell.reviewAddFunction.addTarget(self, action: #selector(tapAddReviewFunction), for: .touchUpInside)
         return cell
     }
 }
