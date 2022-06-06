@@ -43,16 +43,18 @@ class WriteTextViewController: UIViewController ,SelectSendData {
     var UserImage : UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        setBackButton()
-        setWriteTitleTextField()
-        setWriteTitleTextField()
+        setwriteTitleTextField()
+        setWriteTitleTextView()
+        selectBookUI()
         setWriteTextButtonUI()
         setStackViewSpacing()
+        setCollectionViewCell()
+        setBackButton()
         setdropDownView()
         setinitCommunity()
         boardTypeColor()
-        setCollectionViewCell()
-        selectBookUI()
+        
+        
         self.ImgCollectionViewHeight.constant = 0
         self.SelectBookViewHeight.constant = 0
 
@@ -176,11 +178,11 @@ class WriteTextViewController: UIViewController ,SelectSendData {
     }
     private func setwriteTitleTextField(){
         writeTitleTextField.layer.borderWidth = 1
-        writeTitleTextField.textColor = UIColor.lightGray
+        writeTitleTextField.placeholder = "제목을 입력해주세요"
         writeTitleTextField.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
         
     }
-    private func setWriteTitleTextField() {
+    private func setWriteTitleTextView() {
         writeContentTextView.delegate = self // txtvReview가 유저가 선언한 outlet
         writeContentTextView.text = "내용을 입력해주세요"
         writeContentTextView.textColor = UIColor.lightGray
@@ -191,7 +193,7 @@ class WriteTextViewController: UIViewController ,SelectSendData {
     private func setCollectionViewCell() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
-        flowLayout.itemSize = CGSize(width: 100, height: 120)  //cellsize
+        flowLayout.itemSize = CGSize(width: 100, height: 150)  //cellsize
         flowLayout.minimumLineSpacing = 4.0
         self.ImageCollectionView?.collectionViewLayout = flowLayout
         self.ImageCollectionView?.showsHorizontalScrollIndicator = false
@@ -213,7 +215,7 @@ class WriteTextViewController: UIViewController ,SelectSendData {
             CameraHandler.shared.imagePickerBlock = { (image) in
                 self.imageArray.append(image)
                 DispatchQueue.main.async {
-                    self.ImgCollectionViewHeight.constant = 120
+                    self.ImgCollectionViewHeight.constant = 150
                     
                     self.ImageCollectionView.reloadData()
                 }

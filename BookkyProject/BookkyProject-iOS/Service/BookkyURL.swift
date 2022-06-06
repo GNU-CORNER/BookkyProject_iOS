@@ -40,6 +40,10 @@ class BookkyURL {
     static let communityWritePostURL = "/community/writepost/"
     static let communityCommetPostURL = "/community/writecomment/"
     static let communityLikePost = "/community/like/"   //좋아요
+    static let communityLikeComment = "/community/likecomment/"   //좋아요
+// MARK: - 커뮤니티 글 Update
+    static let communityUpdatePostURL = "/community/modifypost/"
+    static let communityUpdateCommentURL = "/community/modifycomment/"
 // MARK: - 커뮤니티 Delete
     static let communityDeletePostURL = "/community/deletepost/"
     static let communityDeleteCommentURL = "/community/deletecomment/"

@@ -407,34 +407,34 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="글" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6DD-f5-uJi">
-                                <rect key="frame" x="0.0" y="462.5" width="414" height="344.5"/>
+                                <rect key="frame" x="0.0" y="492.5" width="414" height="314.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zpN-cr-IHi">
-                                <rect key="frame" x="10" y="332.5" width="394" height="120"/>
+                                <rect key="frame" x="10" y="332.5" width="394" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="120" id="xr8-CK-D9W"/>
+                                    <constraint firstAttribute="height" constant="150" id="xr8-CK-D9W"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="14I-Wp-Whq">
-                                    <size key="itemSize" width="147" height="106"/>
+                                    <size key="itemSize" width="147" height="151"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="writeCollectionViewid" id="lZZ-Jd-1Hu" customClass="WriteAddImgCollectionViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="147" height="106"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="147" height="150"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="m3w-i8-BXr">
-                                            <rect key="frame" x="0.0" y="0.0" width="147" height="106"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="147" height="150"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GlQ-DA-Zck">
-                                                    <rect key="frame" x="0.0" y="0.0" width="129.5" height="106"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="129.5" height="150"/>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fA6-PT-0qa" customClass="ImageCancelButton" customModule="BookkyProject_iOS" customModuleProvider="target">
                                                     <rect key="frame" x="129.5" y="0.0" width="17.5" height="22"/>
@@ -452,7 +452,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="GlQ-DA-Zck" secondAttribute="bottom" id="wEd-5f-uAC"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="147" height="106"/>
+                                        <size key="customSize" width="147" height="150"/>
                                         <connections>
                                             <outlet property="UserImg" destination="GlQ-DA-Zck" id="dnJ-ke-BmI"/>
                                             <outlet property="cancelImgeButton" destination="fA6-PT-0qa" id="hDf-47-qxx"/>
@@ -552,13 +552,13 @@
                                 <rect key="frame" x="10" y="207.5" width="394" height="120"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mo7-TG-f5l">
-                                        <rect key="frame" x="20" y="5" width="60" height="110"/>
+                                        <rect key="frame" x="20" y="5" width="80" height="110"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="RZi-Lf-Oz4"/>
+                                            <constraint firstAttribute="width" constant="80" id="RZi-Lf-Oz4"/>
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tqb-yG-nmY">
-                                        <rect key="frame" x="340" y="5" width="49" height="15"/>
+                                        <rect key="frame" x="360" y="5" width="29" height="15"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="xmark" catalog="system"/>
@@ -567,7 +567,7 @@
                                         </connections>
                                     </button>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ywq-LJ-691">
-                                        <rect key="frame" x="85" y="5" width="250" height="65"/>
+                                        <rect key="frame" x="105" y="5" width="250" height="65"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="책이름" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rox-d2-8Pj">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="29.5"/>
@@ -663,7 +663,218 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7e9-pR-Fbd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2828.985507246377" y="480.80357142857139"/>
+            <point key="canvasLocation" x="2758" y="481"/>
+        </scene>
+        <!--Update Post View Controller-->
+        <scene sceneID="rP7-8a-4E7">
+            <objects>
+                <viewController storyboardIdentifier="UpdatePostViewController" hidesBottomBarWhenPushed="YES" id="TmN-fE-xvM" customClass="UpdatePostViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wyN-j9-3le">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목을 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EbL-gQ-IfC">
+                                <rect key="frame" x="0.0" y="84.5" width="414" height="34"/>
+                                <color key="backgroundColor" red="0.97647064920000004" green="0.97647064920000004" blue="0.97647064920000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="글" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="EHW-0i-ksS">
+                                <rect key="frame" x="0.0" y="408.5" width="414" height="398.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="A45-rR-ibB">
+                                <rect key="frame" x="10" y="248.5" width="394" height="150"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="LV0-z8-MKZ"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="W3W-Ss-eBF">
+                                    <size key="itemSize" width="147" height="151"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="updateCollectionViewid" id="3SU-a5-DUk" customClass="UpdateAddImgCollectionViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="147" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="H96-kW-iCg">
+                                            <rect key="frame" x="0.0" y="0.0" width="147" height="150"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4fe-4o-NKD">
+                                                    <rect key="frame" x="0.0" y="0.0" width="129.5" height="150"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uN1-B4-jR2" customClass="ImageCancelButton" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                                    <rect key="frame" x="129.5" y="0.0" width="17.5" height="22"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                    <state key="normal" image="xmark" catalog="system"/>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="uN1-B4-jR2" firstAttribute="leading" secondItem="4fe-4o-NKD" secondAttribute="trailing" id="FVi-VA-oBp"/>
+                                                <constraint firstItem="4fe-4o-NKD" firstAttribute="top" secondItem="H96-kW-iCg" secondAttribute="top" id="IZE-pe-jhn"/>
+                                                <constraint firstAttribute="trailing" secondItem="uN1-B4-jR2" secondAttribute="trailing" id="OtR-pc-4qE"/>
+                                                <constraint firstItem="4fe-4o-NKD" firstAttribute="leading" secondItem="H96-kW-iCg" secondAttribute="leading" id="YVF-kR-DQ1"/>
+                                                <constraint firstAttribute="bottom" secondItem="4fe-4o-NKD" secondAttribute="bottom" id="myD-bD-2Wr"/>
+                                                <constraint firstItem="uN1-B4-jR2" firstAttribute="top" secondItem="H96-kW-iCg" secondAttribute="top" id="wXs-dW-7kh"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="147" height="150"/>
+                                        <connections>
+                                            <outlet property="UserImg" destination="4fe-4o-NKD" id="A7E-CM-6Wz"/>
+                                            <outlet property="cancelButton" destination="uN1-B4-jR2" id="3Md-Rk-f4D"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="글 수정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCb-bu-2w9">
+                                <rect key="frame" x="183" y="54" width="48.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="93" translatesAutoresizingMaskIntoConstraints="NO" id="4bM-vm-UWr">
+                                <rect key="frame" x="10" y="812" width="384" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0et-M8-h0Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="23.5" height="30"/>
+                                        <color key="tintColor" red="0.50196081400000003" green="0.50196087359999997" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="book.fill" catalog="system"/>
+                                        <connections>
+                                            <segue destination="2SY-oQ-t05" kind="presentation" identifier="updateGoSearchView" id="5G1-W6-QfJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ggG-3a-RUD">
+                                        <rect key="frame" x="116.5" y="0.0" width="24.5" height="30"/>
+                                        <color key="tintColor" red="0.50196081400000003" green="0.50196087359999997" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="camera" catalog="system"/>
+                                        <connections>
+                                            <action selector="tapAddImageButton:" destination="TmN-fE-xvM" eventType="touchUpInside" id="MTV-eC-8XM"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K8j-q8-Aa0" customClass="AutoAddPaddingButtton" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="234" y="0.0" width="150" height="30"/>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="10" leading="20" bottom="10" trailing="20"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="글 수정"/>
+                                        <connections>
+                                            <action selector="tapUpdatePostButton:" destination="TmN-fE-xvM" eventType="touchUpInside" id="kc5-IB-bkG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="338-Lf-tyD">
+                                <rect key="frame" x="10" y="123.5" width="394" height="120"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DCt-BX-DpB">
+                                        <rect key="frame" x="20" y="0.0" width="80" height="115"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="jgW-uZ-WJO"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="At0-IA-1WR">
+                                        <rect key="frame" x="360" y="5" width="29" height="15"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="xmark" catalog="system"/>
+                                        <connections>
+                                            <action selector="tapDeleteSelectBook:" destination="TmN-fE-xvM" eventType="touchUpInside" id="c8a-3z-IHM"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Fip-ym-qBK">
+                                        <rect key="frame" x="105" y="5" width="250" height="65"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="책이름" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EdD-XG-hob">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="29.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="xSa-Xe-FDZ"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aAx-t2-OUo">
+                                                <rect key="frame" x="0.0" y="44.5" width="250" height="20.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="FTc-SE-d6b"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="At0-IA-1WR" secondAttribute="bottom" constant="100" id="95q-1c-Y8U"/>
+                                    <constraint firstAttribute="bottom" secondItem="Fip-ym-qBK" secondAttribute="bottom" constant="50" id="9Cc-XJ-rcz"/>
+                                    <constraint firstItem="DCt-BX-DpB" firstAttribute="leading" secondItem="338-Lf-tyD" secondAttribute="leading" constant="20" id="Ee5-K3-mhc"/>
+                                    <constraint firstItem="DCt-BX-DpB" firstAttribute="top" secondItem="338-Lf-tyD" secondAttribute="top" id="YG5-yA-gqc"/>
+                                    <constraint firstAttribute="trailing" secondItem="At0-IA-1WR" secondAttribute="trailing" constant="5" id="bnX-Mk-cmb"/>
+                                    <constraint firstItem="Fip-ym-qBK" firstAttribute="leading" secondItem="DCt-BX-DpB" secondAttribute="trailing" constant="5" id="daG-Ir-Ov0"/>
+                                    <constraint firstItem="At0-IA-1WR" firstAttribute="leading" secondItem="Fip-ym-qBK" secondAttribute="trailing" constant="5" id="fH3-2N-yhM"/>
+                                    <constraint firstItem="At0-IA-1WR" firstAttribute="top" secondItem="338-Lf-tyD" secondAttribute="top" constant="5" id="iuy-5m-gHG"/>
+                                    <constraint firstAttribute="bottom" secondItem="DCt-BX-DpB" secondAttribute="bottom" constant="5" id="soc-l4-huZ"/>
+                                    <constraint firstItem="Fip-ym-qBK" firstAttribute="top" secondItem="338-Lf-tyD" secondAttribute="top" constant="5" id="vKy-Am-iTo"/>
+                                    <constraint firstAttribute="height" constant="120" id="xHE-f2-Qbw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ysL-gP-eTD"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ysL-gP-eTD" firstAttribute="bottom" secondItem="4bM-vm-UWr" secondAttribute="bottom" constant="20" id="9dc-6z-w46"/>
+                            <constraint firstItem="EbL-gQ-IfC" firstAttribute="top" secondItem="aCb-bu-2w9" secondAttribute="bottom" constant="10" id="AJV-kq-V6q"/>
+                            <constraint firstItem="ysL-gP-eTD" firstAttribute="trailing" secondItem="338-Lf-tyD" secondAttribute="trailing" constant="10" id="CwC-D0-jNB"/>
+                            <constraint firstItem="ysL-gP-eTD" firstAttribute="trailing" secondItem="EbL-gQ-IfC" secondAttribute="trailing" id="GFi-Gq-74p"/>
+                            <constraint firstItem="4bM-vm-UWr" firstAttribute="top" secondItem="EHW-0i-ksS" secondAttribute="bottom" constant="5" id="JAQ-pp-b92"/>
+                            <constraint firstItem="aCb-bu-2w9" firstAttribute="centerX" secondItem="wyN-j9-3le" secondAttribute="centerX" id="Mte-OA-kWC"/>
+                            <constraint firstAttribute="trailing" secondItem="4bM-vm-UWr" secondAttribute="trailing" constant="20" id="SQe-JK-hVu"/>
+                            <constraint firstItem="EHW-0i-ksS" firstAttribute="top" secondItem="A45-rR-ibB" secondAttribute="bottom" constant="10" id="SuH-eH-efR"/>
+                            <constraint firstItem="aCb-bu-2w9" firstAttribute="top" secondItem="ysL-gP-eTD" secondAttribute="top" constant="10" id="V4k-cM-Zvf"/>
+                            <constraint firstItem="EbL-gQ-IfC" firstAttribute="leading" secondItem="ysL-gP-eTD" secondAttribute="leading" id="XPs-ej-w0k"/>
+                            <constraint firstItem="A45-rR-ibB" firstAttribute="top" secondItem="338-Lf-tyD" secondAttribute="bottom" constant="5" id="cb2-88-jAE"/>
+                            <constraint firstItem="ysL-gP-eTD" firstAttribute="trailing" secondItem="EHW-0i-ksS" secondAttribute="trailing" id="ex4-IR-eba"/>
+                            <constraint firstItem="4bM-vm-UWr" firstAttribute="leading" secondItem="wyN-j9-3le" secondAttribute="leading" constant="10" id="jIF-l9-5rL"/>
+                            <constraint firstItem="A45-rR-ibB" firstAttribute="leading" secondItem="ysL-gP-eTD" secondAttribute="leading" constant="10" id="nEc-Hr-xI3"/>
+                            <constraint firstItem="ysL-gP-eTD" firstAttribute="trailing" secondItem="A45-rR-ibB" secondAttribute="trailing" constant="10" id="ocA-kd-PNy"/>
+                            <constraint firstItem="338-Lf-tyD" firstAttribute="leading" secondItem="ysL-gP-eTD" secondAttribute="leading" constant="10" id="p3p-s1-DCz"/>
+                            <constraint firstItem="338-Lf-tyD" firstAttribute="top" secondItem="EbL-gQ-IfC" secondAttribute="bottom" constant="5" id="sUT-7T-KaZ"/>
+                            <constraint firstItem="EHW-0i-ksS" firstAttribute="leading" secondItem="ysL-gP-eTD" secondAttribute="leading" id="y4p-XO-kcI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YGP-jx-PTd">
+                        <nil key="title"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ImageAddButton" destination="ggG-3a-RUD" id="o8m-WO-JkO"/>
+                        <outlet property="ImageCollectionVIewHeight" destination="LV0-z8-MKZ" id="YPF-yl-HIZ"/>
+                        <outlet property="ImageCollectionView" destination="A45-rR-ibB" id="7jZ-Kv-CYN"/>
+                        <outlet property="bookAPLabel" destination="aAx-t2-OUo" id="pb8-7d-DBf"/>
+                        <outlet property="bookCancelButton" destination="At0-IA-1WR" id="LOf-uW-Dwe"/>
+                        <outlet property="bookImageView" destination="DCt-BX-DpB" id="thI-43-RQH"/>
+                        <outlet property="bookNameLabel" destination="EdD-XG-hob" id="5d0-W8-v11"/>
+                        <outlet property="bookSearchnAddButton" destination="0et-M8-h0Q" id="iSL-w4-UPA"/>
+                        <outlet property="contentsTextView" destination="EHW-0i-ksS" id="3b8-Np-SHI"/>
+                        <outlet property="selectBookView" destination="338-Lf-tyD" id="ShM-RG-Qo7"/>
+                        <outlet property="selectBookViewHeight" destination="xHE-f2-Qbw" id="b1M-5M-Azb"/>
+                        <outlet property="titleTextField" destination="EbL-gQ-IfC" id="063-Ot-MsQ"/>
+                        <outlet property="updatePostButton" destination="K8j-q8-Aa0" id="GbO-g3-oxQ"/>
+                        <outlet property="updateStackView" destination="4bM-vm-UWr" id="geO-pI-0KK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bpv-4e-MqL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2963.768115942029" y="1153.7946428571429"/>
         </scene>
         <!--Write Post Book Search View Controller-->
         <scene sceneID="IUO-bs-QJo">
@@ -842,7 +1053,7 @@
                                             </subviews>
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VdO-qf-Pkd">
-                                            <rect key="frame" x="20" y="326" width="374" height="39"/>
+                                            <rect key="frame" x="20" y="344.5" width="374" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -892,30 +1103,30 @@
                                             </constraints>
                                         </view>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PqL-lf-eFA">
-                                            <rect key="frame" x="20" y="201" width="374" height="120"/>
+                                            <rect key="frame" x="20" y="201" width="374" height="138.5"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="9EY-w4-1xu"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="9EY-w4-1xu"/>
                                             </constraints>
                                             <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="efb-TI-mPh">
-                                                <size key="itemSize" width="128" height="120"/>
+                                                <size key="itemSize" width="120" height="150"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BoardTextDetailid" id="8xD-CL-0pf" customClass="BoardTextDetailImageCollectionViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SlC-l9-0aT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sd5-pn-lee">
-                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="120" height="140"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="120" id="93F-BX-eeQ"/>
-                                                                    <constraint firstAttribute="height" constant="120" id="UAC-e3-PM2"/>
+                                                                    <constraint firstAttribute="height" constant="150" id="UAC-e3-PM2"/>
                                                                 </constraints>
                                                             </imageView>
                                                         </subviews>
@@ -926,6 +1137,7 @@
                                                             <constraint firstItem="Sd5-pn-lee" firstAttribute="leading" secondItem="SlC-l9-0aT" secondAttribute="leading" id="ca0-Oz-0DA"/>
                                                         </constraints>
                                                     </collectionViewCellContentView>
+                                                    <size key="customSize" width="120" height="140"/>
                                                     <connections>
                                                         <outlet property="UIimageView" destination="Sd5-pn-lee" id="WKZ-m5-3Vw"/>
                                                     </connections>
@@ -939,6 +1151,9 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="39" height="30"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="좋아요"/>
+                                                    <connections>
+                                                        <action selector="taplikePostButton:" destination="Ux7-33-kLW" eventType="touchUpInside" id="Wrj-Xu-PRP"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iK7-kE-kkq">
                                                     <rect key="frame" x="75" y="0.0" width="299" height="30"/>
@@ -1024,7 +1239,7 @@
                         <outlet property="bookNameLabel" destination="vRV-qj-wza" id="02j-BE-GD5"/>
                         <outlet property="bookViewHeight" destination="mgE-cb-fCH" id="L1i-M7-9Mt"/>
                         <outlet property="commentButton" destination="iK7-kE-kkq" id="J6K-5H-Kef"/>
-                        <outlet property="commentTextView" destination="sJk-1A-JO2" id="0hk-iB-4Dz"/>
+                        <outlet property="commentTextView" destination="sJk-1A-JO2" id="oH3-QW-whr"/>
                         <outlet property="likeThatButton" destination="dXX-WI-8PQ" id="qNh-PO-UmM"/>
                         <outlet property="postDetailView" destination="dI0-hm-JLl" id="aI6-qI-cga"/>
                         <outlet property="secondLineStackView" destination="50P-0p-7WZ" id="GCQ-mL-zxw"/>
@@ -1054,6 +1269,9 @@
             <point key="canvasLocation" x="534" y="536"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="EFA-Bq-MpU"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="95"/>
         <image name="camera" catalog="system" width="128" height="94"/>

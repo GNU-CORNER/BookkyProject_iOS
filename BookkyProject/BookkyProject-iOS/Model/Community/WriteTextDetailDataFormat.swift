@@ -43,6 +43,7 @@ struct WriteTextDetailPostData : Codable {
     let createAt : String
     let updateAt : String
     let like : [Int]?
+    let isLiked : Bool
     let postImage : [String]?
     let nickname : String
     let thumbnail : String?
@@ -60,6 +61,7 @@ struct WriteTextDetailCommentdata : Codable{
     let childComment : [ChildComment]?
     let CID : Int
     let isAccessible : Bool
+    let isLiked : Bool
 }
 struct PostDetailBookData : Codable {
     let TBID : Int?
@@ -79,6 +81,7 @@ struct ChildComment : Codable{
     let thumbnail : String?
     let CID: Int
     let isAccessible : Bool
+    let isLiked : Bool
 }
 // MARK: - Q&A Detail
 struct WriteTextDetailQnAInformation :Codable {
@@ -91,6 +94,15 @@ struct WriteQnATextDetailData : Codable {
     let replydata : [WriteTextDetailQnAReplyData]?
     let commentCnt : Int?
     let replyCnt : Int
+    let Book : QnAPostDetailBookData?
+}
+struct QnAPostDetailBookData : Codable {
+    let TBID : Int?
+    let TITLE : String?
+    let AUTHOR : String?
+    let thumbnailImage : String?
+    let RATING : Double?
+    let PUBLISHER : String?
 }
 
 struct WriteTextDetailQnAPostData : Codable {
@@ -104,6 +116,8 @@ struct WriteTextDetailQnAPostData : Codable {
     let thumbnail : String?
     let isAccessible : Bool
     let TBID : Int
+    let postImage : [String]?
+    let isLiked : Bool
 }
 struct WriteTextDetailQnAReplyData : Codable{
     let title : String
@@ -130,6 +144,7 @@ struct QnACommentResult : Codable {
     let commentdata : [QnACommentDataList]
     let commentCnt : Int
 }
+
 struct QnACommentDataList : Codable {
     let comment : String
     let updateAt : String
@@ -148,4 +163,5 @@ struct QnAChildComment :Codable {
     let thumbnail : String?
     let isAccessible : Bool
     let CID : Int
+    let isLiked : Bool
 }

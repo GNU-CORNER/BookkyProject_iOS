@@ -9,6 +9,7 @@ import UIKit
 
 class BoardTextDetailImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var UIimageView: UIImageView!
+    var UIImage : UIImage!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,7 +18,11 @@ class BoardTextDetailImageCollectionViewCell: UICollectionViewCell {
         if let url = URL(string: model) {
             self.UIimageView.load(url: url)
         }
-
+        let url = URL(string: "\(model)")
+        let data = try! Data(contentsOf: url!)
+        self.UIImage = UIKit.UIImage(data: data)
+        
+        
     }
     override func prepareForReuse() {
         super.prepareForReuse()

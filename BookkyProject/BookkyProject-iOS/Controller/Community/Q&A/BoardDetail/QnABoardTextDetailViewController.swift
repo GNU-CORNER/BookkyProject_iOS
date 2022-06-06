@@ -20,11 +20,23 @@ class QnABoardTextDetailViewController: UIViewController {
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var writeAnswerButton: UIButton!
     @IBOutlet weak var QnATableView: UITableView!
-   
+    @IBOutlet weak var bookViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var userImageViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var ImageCollectionView: UICollectionView!
+    @IBOutlet weak var bookImageView: UIImageView!
+    @IBOutlet weak var bookNameLabel: UILabel!
+    @IBOutlet weak var bookAPLabel: UILabel!
+    @IBOutlet weak var selectBookView: UIView!
+    @IBOutlet weak var QnAPostDetailView: UIView!
+    var bookdata : QnAPostDetailBookData?
     var PID : Int = 0
+    var BID : Int = 0
+    var PostisLiked : Bool = false
     var boardTypeNumber : Int = 0
     var QnAReplyData : [WriteTextDetailQnAReplyData] = []
+    var updateImageArray : [UIImage] = []
     var isAccessible : Bool = false //사용자의 글인지 아닌지 확인
+    var ImageArray : [String] = []
     lazy var rightButton: UIBarButtonItem = {
         let buttonImg = UIImage(systemName: "ellipsis")
         let barButtonItem = UIBarButtonItem(image: buttonImg, style: .plain, target: self, action: #selector(rightbarButtonAction(_:)))
@@ -36,9 +48,12 @@ class QnABoardTextDetailViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         setTableViewCell()
         setBoardTextDetailUI()
+        setCollectionViewCell()
+        setBookViewUI()
         self.navigationItem.rightBarButtonItem = self.rightButton
         print("\(self.PID)BoardPID")
     }
+    
     @objc private func rightbarButtonAction(_ sender : Any){
         let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -63,11 +78,11 @@ class QnABoardTextDetailViewController: UIViewController {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
-            self.getBoardTextDetailQnAData()
-        })
-      
+        getBoardTextDetailQnAData()
+//        DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
+//            self.getBoardTextDetailQnAData()
+//        })
+        
     }
     func setTableViewCell(){
         self.QnATableView.dataSource = self
@@ -75,6 +90,12 @@ class QnABoardTextDetailViewController: UIViewController {
         let cellNib = UINib(nibName: "QnaAnswerTableViewCell", bundle: nil)
         self.QnATableView.register(cellNib, forCellReuseIdentifier: "QnaAnswerTableViewCellid")
         
+    }
+    func setBookViewUI(){
+        self.bookNameLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        self.bookAPLabel.font = UIFont.systemFont(ofSize: 12)
+        self.selectBookView.layer.borderWidth = 2
+        self.selectBookView.layer.borderColor = UIColor(named: "lightGrayColor")?.cgColor
     }
     func setBoardTextDetailUI(){
         self.QnATitleLabel.font = UIFont.systemFont(ofSize: 20)
@@ -101,7 +122,16 @@ class QnABoardTextDetailViewController: UIViewController {
         
     }
    
-  
+    private func setCollectionViewCell() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CGSize(width: 120, height: 150)  //cellsize
+        flowLayout.minimumLineSpacing = 4.0
+        self.ImageCollectionView?.collectionViewLayout = flowLayout
+        self.ImageCollectionView?.showsHorizontalScrollIndicator = false
+        self.ImageCollectionView?.dataSource = self
+        self.ImageCollectionView?.delegate = self
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "writePostCommentSegue" {
             guard let QnAWriteAnswerVIewController = segue.destination as? QnAWriteAnswerViewController else {return}
@@ -121,11 +151,30 @@ class QnABoardTextDetailViewController: UIViewController {
         self.QnAViewCnt.text = "\(model.views)"
         self.likeCntLButton.setTitle("좋아요(\(model.like?.count ?? 0))", for: .normal)
         self.isAccessible = model.isAccessible
+        let textCount = self.QnAContentsLabel.text?.count ?? 0
+        
+        if self.bookdata?.TITLE == nil && self.ImageArray == [] {
+            self.QnAPostDetailView.frame.size.height = 200+CGFloat((textCount/60)*20)
+        }else if self.bookdata?.TITLE == nil || self.ImageArray == [] {
+            self.QnAPostDetailView.frame.size.height = 320+CGFloat((textCount/60)*20)
+        }else {
+            self.QnAPostDetailView.frame.size.height = 460+CGFloat((textCount/60)*20)
+        }
         
     }
     private func setReplyNComment(model : WriteTextDetailQnAInformation){
         self.CommetButton.setTitle("댓글(\(model.result.commentCnt ?? 0))", for: .normal)
         self.answerLabel.text = "답변(\(model.result.replyCnt))"
+    }
+    private func setBookView(model : QnAPostDetailBookData ){
+        if let url = URL(string: model.thumbnailImage ?? "") {
+            self.bookImageView.load(url: url)
+        }
+        self.bookNameLabel.text = model.TITLE
+        let Author = model.AUTHOR ?? ""
+        let PUBLISHER = model.PUBLISHER ?? ""
+        self.bookAPLabel.text = "\(Author)/\(PUBLISHER)"
+        
     }
 // MARK: - API통신
     private func deletePost(communityBoardNumber: Int ,PID: Int){
@@ -144,8 +193,22 @@ class QnABoardTextDetailViewController: UIViewController {
                 guard let communityGetDetailList = data as? WriteTextDetailQnAInformation else {return}
                 let writeTextDetailQnAData = communityGetDetailList.result.postdata
                 self.QnAReplyData = communityGetDetailList.result.replydata!
+                self.bookdata = communityGetDetailList.result.Book
+                self.BID = self.bookdata?.TBID ?? 0
+                self.ImageArray = writeTextDetailQnAData.postImage ?? []
+                self.PostisLiked = writeTextDetailQnAData.isLiked
                 if communityGetDetailList.success{
                     DispatchQueue.main.async {
+                        if self.bookdata?.TITLE == nil {
+                            self.bookViewHeight.constant = 0
+                        }else{
+                            self.setBookView(model:self.bookdata!)
+                        }
+                        if self.ImageArray == [] {
+                            self.userImageViewHeight.constant = 0
+                        }else {
+                            self.ImageCollectionView.reloadData()
+                        }
                         self.setBoardTextDetailData(model: writeTextDetailQnAData)
                         self.setReplyNComment(model: communityGetDetailList)
                         self.QnATableView.reloadData()
@@ -219,6 +282,22 @@ extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDe
     
     
 }
+extension QnABoardTextDetailViewController :UICollectionViewDelegate,UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.ImageArray.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
+        cell.setImageArray(model: self.ImageArray[indexPath.row])
+        self.updateImageArray.append(cell.UIImage)
+        
+        
+        return cell
+    }
+    
+}
+
 class CustomQnAButton : UIButton {
     var parentID : Int = 0
     var isAccessible : Bool = false
