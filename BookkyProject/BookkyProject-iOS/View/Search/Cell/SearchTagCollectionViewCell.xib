@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyTagCollectionViewCellid" id="KCX-94-Wfg" customClass="MyTagsCollectionViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="101" height="25"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="oRh-Rg-L4O">
+                <rect key="frame" x="0.0" y="0.0" width="101" height="25"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AmX-D0-M6i">
+                        <rect key="frame" x="8" y="5" width="85" height="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="AmX-D0-M6i" secondAttribute="trailing" constant="8" id="5Dv-PK-VcQ"/>
+                    <constraint firstItem="AmX-D0-M6i" firstAttribute="leading" secondItem="oRh-Rg-L4O" secondAttribute="leading" constant="8" id="6h6-XC-xNX"/>
+                    <constraint firstItem="AmX-D0-M6i" firstAttribute="top" secondItem="oRh-Rg-L4O" secondAttribute="top" constant="5" id="FtX-ct-pHj"/>
+                    <constraint firstAttribute="bottom" secondItem="AmX-D0-M6i" secondAttribute="bottom" constant="5" id="UP9-fv-UhM"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="101" height="25"/>
+            <connections>
+                <outlet property="tagNameLabel" destination="AmX-D0-M6i" id="0ad-Gd-dN6"/>
+            </connections>
+            <point key="canvasLocation" x="78" y="-3"/>
+        </collectionViewCell>
+    </objects>
+</document>

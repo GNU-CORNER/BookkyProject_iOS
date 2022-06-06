@@ -167,7 +167,8 @@ Label</string>
                                             <rect key="frame" x="20" y="15" width="374" height="61"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QT-om-12i">
-                                                    <rect key="frame" x="0.0" y="0.0" width="46" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="0.0"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="Button"/>
                                                     <connections>
@@ -565,10 +566,10 @@ Label</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zcf-jv-rud">
-                                                        <rect key="frame" x="20" y="219" width="374" height="120.5"/>
+                                                        <rect key="frame" x="20" y="219" width="374" height="96"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="749" text="내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35B-HJ-9e1" customClass="CustomLabel" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="85.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="61"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -579,7 +580,7 @@ Label</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hys-Yo-Kag">
-                                                                <rect key="frame" x="0.0" y="90.5" width="374" height="30"/>
+                                                                <rect key="frame" x="0.0" y="66" width="374" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="l3V-Ja-pkO"/>
                                                                 </constraints>
@@ -597,7 +598,7 @@ Label</string>
                                                         </constraints>
                                                     </stackView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="목차" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tID-RB-2zP">
-                                                        <rect key="frame" x="20" y="354.5" width="29.5" height="30"/>
+                                                        <rect key="frame" x="20" y="330" width="29.5" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="sLD-R2-Bt3"/>
                                                         </constraints>
@@ -607,10 +608,10 @@ Label</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Uax-f4-X8K">
-                                                        <rect key="frame" x="20" y="394.5" width="374" height="85"/>
+                                                        <rect key="frame" x="20" y="370" width="374" height="109.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="내용없음" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROM-14-Too" customClass="CustomLabel" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="54"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="78.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -621,7 +622,7 @@ Label</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9FU-Tl-f3u">
-                                                                <rect key="frame" x="0.0" y="55" width="374" height="30"/>
+                                                                <rect key="frame" x="0.0" y="79.5" width="374" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="XWT-yk-mgO"/>
                                                                 </constraints>

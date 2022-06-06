@@ -9,13 +9,13 @@ import Foundation
 
 struct MyProfileUpdateModel: Codable {
     let success: Bool
-    let result: MyProfileUpdateResult?
+    let result: MyProfileUpdateUserData?
     let errorMessage: String?
 }
 
-struct MyProfileUpdateResult: Codable {
-    let userData: MyProfileUpdateUserData
-}
+//struct MyProfileUpdateResult: Codable {
+//    let userData: MyProfileUpdateUserData
+//}
 
 struct MyProfileUpdateUserData: Codable {
     let route: String

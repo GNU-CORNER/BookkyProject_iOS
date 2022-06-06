@@ -54,8 +54,20 @@ class ResearchViewController: UIViewController {
         UserTagHandler.shared.userTagsUpdate(didSelectItems, accessToken) { (success, data, statuscode) in
             if success {
                 print("User Tags 수정 완료.")
+//                DispatchQueue.main.async {
+//                    self.navigationController?.popViewController(animated: false)
+//                }
             } else {
-                print("User Tags 수정이 잘 안돼~~ 떠올려봐도~~")
+                print("User Tags 수정이 안돼.")
+//                let alert = UIAlertController(title: "태그 설정에 실패했습니다.", message: nil, preferredStyle: .alert)
+//                let cancel = UIAlertAction(title: "돌아가기", style: .cancel, handler: {(_) in
+//                    self.navigationController?.popViewController(animated: false)
+//                })
+//                alert.addAction(cancel)
+//                DispatchQueue.main.async {
+//                    
+//                    self.present(alert, animated: true)
+//                }
             }
         }
     }
