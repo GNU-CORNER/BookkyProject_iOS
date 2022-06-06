@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "comment_18pt_1x.png",
+      "filename" : "angle-left_18pt_1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "comment_18pt_2x.png",
+      "filename" : "angle-left_18pt_2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "comment_18pt_3x.png",
+      "filename" : "angle-left_18pt_3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
@@ -19,5 +19,8 @@
   "info" : {
     "author" : "xcode",
     "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "template"
   }
 }
