@@ -12,12 +12,15 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userReplyCommentContentsLabel: UILabel!
     @IBOutlet weak var replyCommentCreateAtLabel: UILabel!
-    @IBOutlet weak var replyCommentLikeCntLabel: UILabel!
+    @IBOutlet weak var replyCommentLIkeCntButton: UIButton!
     @IBOutlet weak var replyTableViewCellStackView: UIStackView!
     @IBOutlet weak var addMoreFunction: UIButton!
-    var buttonAction: (()->Void)? = nil
+    var addbuttonAction: (()->Void)? = nil
+    var likebuttonAction: (()->Void)? = nil
     var isAccessible : Bool = false
     var CID : Int = 0
+    var replyContents : String = ""
+    var isLiked : Bool = false
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,18 +30,32 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         let likeCount = model.like?.count ?? 0
         self.userReplyCommentContentsLabel.text = model.comment
         self.replyCommentCreateAtLabel.text = model.updateAt
-        self.replyCommentLikeCntLabel.text = "공감(\(likeCount))"
+        self.replyCommentLIkeCntButton.setTitle("공감(\(likeCount))", for: .normal)
         self.userNameLabel.text = model.nickname
         self.isAccessible = model.isAccessible
+        self.isLiked = model.isLiked
+        if model.isLiked == false{
+            self.replyCommentLIkeCntButton.tintColor = UIColor.gray
+            
+        }else {
+            self.replyCommentLIkeCntButton.tintColor = UIColor(named: "PrimaryBlueColor")
+        }
         self.CID = model.CID
+        self.replyContents = model.comment
     }
     func setQnAComment(model: QnAChildComment ){
         let likeCount = model.like?.count ?? 0
         self.userReplyCommentContentsLabel.text = model.comment
         self.replyCommentCreateAtLabel.text = model.updateAt
-        self.replyCommentLikeCntLabel.text = "공감(\(likeCount))"
+        self.replyCommentLIkeCntButton.setTitle("공감(\(likeCount))", for: .normal)
         self.userNameLabel.text = model.nickname
-        self.isAccessible = model.isAccessible
+        self .isAccessible = model.isAccessible
+        if model.isLiked == false{
+            self.replyCommentLIkeCntButton.tintColor = UIColor.gray
+            
+        }else {
+            self.replyCommentLIkeCntButton.tintColor = UIColor(named: "PrimaryBlueColor")
+        }
         self.CID = model.CID
     }
     private func BoardTextReplyCommentTableViewCellUI(){
@@ -46,7 +63,7 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         self.userReplyCommentContentsLabel.font = UIFont.systemFont(ofSize: 12)
         self.replyCommentCreateAtLabel.font = UIFont.systemFont(ofSize: 10)
         self.replyCommentCreateAtLabel.textColor  = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1)
-        self.replyCommentLikeCntLabel.font = UIFont.systemFont(ofSize: 10)
+        self.replyCommentLIkeCntButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         self.replyTableViewCellStackView.backgroundColor = UIColor(named: "lightGrayColor")
         self.replyTableViewCellStackView.layer.cornerRadius = 5
     }
@@ -60,7 +77,10 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func tapLikeFunction(_ sender: UIButton) {
+        likebuttonAction?()
+    }
     @IBAction func tapAddFunction(_ sender: UIButton) {
-        buttonAction?()
+        addbuttonAction?()
     }
 }

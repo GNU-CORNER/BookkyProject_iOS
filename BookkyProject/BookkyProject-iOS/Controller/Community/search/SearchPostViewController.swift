@@ -77,10 +77,7 @@ class SearchPostViewController: UIViewController {
 }
 extension SearchPostViewController : UISearchResultsUpdating , UISearchBarDelegate{
     func updateSearchResults(for searchController: UISearchController) {
-      
         self.searchText = searchController.searchBar.text ?? ""
-        print("\(self.searchText)")
-        
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         getsearchData()

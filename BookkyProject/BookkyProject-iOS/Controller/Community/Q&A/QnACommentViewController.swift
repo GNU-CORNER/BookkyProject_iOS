@@ -239,7 +239,7 @@ extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
         headerView.contentsLabel.text = self.QnACommentList[section].comment
         headerView.createDateLabel.text = self.QnACommentList[section].updateAt
         let likeCnt = self.QnACommentList[section].like?.count ?? 0
-        headerView.likeCntLabel.text = "공감(\(likeCnt))"
+        headerView.addFunctionButton.setTitle("공감(\(likeCnt))", for: .normal) 
         headerView.layer.addBorder([.top], color: UIColor(named: "lightGrayColor") ?? UIColor.gray, width : 1)
         headerView.addFunctionButton.section = section
         headerView.addFunctionButton.CID = self.QnACommentList[section].CID
@@ -257,7 +257,7 @@ extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let replycell  = QnACommentTableView.dequeueReusableCell(withIdentifier: "BoardTextCommentReplyTableViewCellid", for: indexPath)as? CommunityReplyCommentTableViewCell else {return UITableViewCell()}
         replycell.setQnAComment(model: (self.QnACommentList[indexPath.section].childComment?[indexPath.row])!)
-        replycell.buttonAction = {
+        replycell.addbuttonAction = {
             self.QnAreplyCommentActionsheet()
             self.replycommentisAccessible = replycell.isAccessible
             self.CID = replycell.CID
