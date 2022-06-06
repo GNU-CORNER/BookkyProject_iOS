@@ -356,6 +356,7 @@ extension BookDetailViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell : BookDetailReviewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "bookDetailCommentTableViewcellid")as? BookDetailReviewTableViewCell else {return UITableViewCell()}
         cell.setReview(model : self.bookDetailRevieList[indexPath.row])
+        
         cell.reviewAddFunction.RID = cell.RID
         cell.reviewAddFunction.isAccessible = cell.reviewIsAccessible
         cell.reviewAddFunction.rating = cell.rating
