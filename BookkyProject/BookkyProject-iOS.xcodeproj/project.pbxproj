@@ -75,6 +75,10 @@
 		68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B21B08282A2D4C00707C5A /* MyProfileModel.swift */; };
 		68C4E910284CF66700589137 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C4E90F284CF66700589137 /* LoadingCell.xib */; };
 		68C4E912284CF80500589137 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C4E911284CF80500589137 /* LoadingCell.swift */; };
+		68C4E916284DDC5D00589137 /* KoddiUDOnGothic-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68C4E913284DDC3500589137 /* KoddiUDOnGothic-Bold.ttf */; };
+		68C4E917284DDC5F00589137 /* KoddiUDOnGothic-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68C4E914284DDC3500589137 /* KoddiUDOnGothic-ExtraBold.ttf */; };
+		68C4E918284DDC6100589137 /* KoddiUDOnGothic-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 68C4E915284DDC3500589137 /* KoddiUDOnGothic-Regular.ttf */; };
+		68C4E91B284DE47500589137 /* UIFontExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C4E91A284DE47500589137 /* UIFontExtension.swift */; };
 		68C8629427DF61D3004B4F73 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629327DF61D3004B4F73 /* Home.storyboard */; };
 		68C8629627DF6481004B4F73 /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629527DF6481004B4F73 /* Community.storyboard */; };
 		68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C8629727DF650E004B4F73 /* Recommend.storyboard */; };
@@ -233,6 +237,10 @@
 		68B21B08282A2D4C00707C5A /* MyProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileModel.swift; sourceTree = "<group>"; };
 		68C4E90F284CF66700589137 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
 		68C4E911284CF80500589137 /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
+		68C4E913284DDC3500589137 /* KoddiUDOnGothic-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KoddiUDOnGothic-Bold.ttf"; sourceTree = "<group>"; };
+		68C4E914284DDC3500589137 /* KoddiUDOnGothic-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KoddiUDOnGothic-ExtraBold.ttf"; sourceTree = "<group>"; };
+		68C4E915284DDC3500589137 /* KoddiUDOnGothic-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KoddiUDOnGothic-Regular.ttf"; sourceTree = "<group>"; };
+		68C4E91A284DE47500589137 /* UIFontExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontExtension.swift; sourceTree = "<group>"; };
 		68C8629327DF61D3004B4F73 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		68C8629527DF6481004B4F73 /* Community.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Community.storyboard; sourceTree = "<group>"; };
 		68C8629727DF650E004B4F73 /* Recommend.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recommend.storyboard; sourceTree = "<group>"; };
@@ -431,6 +439,7 @@
 		68683D3B27DDF5EE008EF3CF /* BookkyProject-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				68C4E919284DDC6500589137 /* Font */,
 				F87431982802FFEE003EA8C0 /* ExtensionUI */,
 				686AE6B927FC01B600B77245 /* Service */,
 				686AE6BE27FC1F5100B77245 /* Model */,
@@ -599,6 +608,16 @@
 			path = MyProfile;
 			sourceTree = "<group>";
 		};
+		68C4E919284DDC6500589137 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				68C4E913284DDC3500589137 /* KoddiUDOnGothic-Bold.ttf */,
+				68C4E914284DDC3500589137 /* KoddiUDOnGothic-ExtraBold.ttf */,
+				68C4E915284DDC3500589137 /* KoddiUDOnGothic-Regular.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		68C8628927DF0CD9004B4F73 /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +703,7 @@
 				F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */,
 				F899B5CE28485D55000A03D7 /* CustomButton.swift */,
 				68307C3C2846843700109FBD /* UIImageExtension.swift */,
+				68C4E91A284DE47500589137 /* UIFontExtension.swift */,
 			);
 			path = ExtensionUI;
 			sourceTree = "<group>";
@@ -907,12 +927,14 @@
 				F87702102800893A002EA1F5 /* BookTableViewCell.xib in Resources */,
 				68C8629C27DF6605004B4F73 /* MyProfile.storyboard in Resources */,
 				68B21B052829269C00707C5A /* MyPostsCollectionViewCell.xib in Resources */,
+				68C4E916284DDC5D00589137 /* KoddiUDOnGothic-Bold.ttf in Resources */,
 				688DEDC3282E8A12002F647A /* MyReviewsMoreCollectionViewCell.xib in Resources */,
 				688DEDC7282E9C60002F647A /* MyProfileUpdateView.storyboard in Resources */,
 				68683D4627DDF5EF008EF3CF /* Assets.xcassets in Resources */,
 				6860BE2828336E2D00C7399E /* SettingsView.storyboard in Resources */,
 				6853E226284B1E84002BA8C9 /* SearchTableHeaderView.xib in Resources */,
 				68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */,
+				68C4E918284DDC6100589137 /* KoddiUDOnGothic-Regular.ttf in Resources */,
 				68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */,
 				6860BE382833D27500C7399E /* SearchDefaultTableViewCell.xib in Resources */,
 				68C8629627DF6481004B4F73 /* Community.storyboard in Resources */,
@@ -924,6 +946,7 @@
 				F826057A282E52E1006DB702 /* SearchPostTableViewCell.xib in Resources */,
 				68C8629427DF61D3004B4F73 /* Home.storyboard in Resources */,
 				688DEDA9282C0452002F647A /* InitialResearch.storyboard in Resources */,
+				68C4E917284DDC5F00589137 /* KoddiUDOnGothic-ExtraBold.ttf in Resources */,
 				F8B3126C28328B8E00E01201 /* QnaAnswerTableViewCell.xib in Resources */,
 				68C4E910284CF66700589137 /* LoadingCell.xib in Resources */,
 				6816924E282B925A0066946A /* MyReviewsMoreView.storyboard in Resources */,
@@ -966,6 +989,7 @@
 				6860BE302833CC0400C7399E /* SearchResultsViewController.swift in Sources */,
 				F8260583282E691C006DB702 /* QnABoardTableViewCell.swift in Sources */,
 				F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */,
+				68C4E91B284DE47500589137 /* UIFontExtension.swift in Sources */,
 				F88D683E282D254400E23344 /* TagMoreViewBookList.swift in Sources */,
 				F8886F2C2821328800044737 /* WritePostDataFormat.swift in Sources */,
 				68683D7427DE40E8008EF3CF /* SearchTableViewController.swift in Sources */,

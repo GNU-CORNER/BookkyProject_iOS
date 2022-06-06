@@ -141,6 +141,10 @@ extension SearchResultsViewController {
         return CGFloat(height)
     }
     
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        <#code#>
+//    }
+    
 }
 
 
@@ -165,19 +169,6 @@ extension SearchResultsViewController {
 }
 
 extension SearchResultsViewController {
-    
-    
-//    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        let offsetY = scrollView.contentOffset.y
-//        let contentHeight = scrollView.contentSize.height
-//
-//        if (offsetY > contentHeight - 100 - scrollView.frame.size.height) && !isLoading {
-//            // - [] Load Data
-//
-//        }
-//    }
-    
-    
     
     func requestBooksSearch(page: Int, keyword: String, totalPage: Int) {
 //        if !self.isLoading {
