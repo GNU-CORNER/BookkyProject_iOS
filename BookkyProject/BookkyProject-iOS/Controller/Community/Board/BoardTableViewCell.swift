@@ -55,6 +55,7 @@ class BoardTableViewCell: UITableViewCell {
         self.communityType = model.communityType
         self.replyCnt = model.replyCnt
     }
+   
     
     func setBoardTableViewCellUI(){
         self.titleLabel.font = UIFont.systemFont(ofSize: 15)

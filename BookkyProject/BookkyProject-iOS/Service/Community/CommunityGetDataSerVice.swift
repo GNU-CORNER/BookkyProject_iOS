@@ -253,6 +253,65 @@ class CommunityGetAPI {
         }.resume()
         
     }
+    func getCommunitySearchPost(searchText:String, completion : @escaping(Bool, Any) -> Void){
+        let session = URLSession(configuration:.default)
+        let urlString = String(BookkyURL.baseURL+BookkyURL.communitySearchPostURL+"\(searchText)")
+        let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let url = URL(string: encodedString) else {
+            print("Error : Cannot create URL")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "accept")
+        session.dataTask(with: request) { (data,response,error) in
+            guard error == nil else{
+                print("Error:error.")
+                return
+            }
+            guard let data = data, let response = response as? HTTPURLResponse,(200..<300) ~= response.statusCode else{
+                print("\(String(describing: error))")
+                return
+            }
+            do {
+                let SearchPostData = try JSONDecoder().decode(PostSearchModel.self, from: data)
+                completion(true, SearchPostData)
+            }catch(let err){
+                print("Decoding Error")
+                print(err.localizedDescription)
+            }
+        }.resume()
+    }
+    func getCommunitySearchBook(searchText:String, completion : @escaping(Bool, Any) -> Void){
+        let session = URLSession(configuration:.default)
+        let urlString = String(BookkyURL.baseURL+BookkyURL.communitySearchBookURL+"\(searchText)")
+        let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let url = URL(string: encodedString) else {
+            print("Error : Cannot create URL")
+            return
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json", forHTTPHeaderField: "accept")
+        session.dataTask(with: request) { (data,response,error) in
+            guard error == nil else{
+                print("Error:error.")
+                return
+            }
+            guard let data = data, let response = response as? HTTPURLResponse,(200..<300) ~= response.statusCode else{
+                print("\(String(describing: error))")
+                return
+            }
+            do {
+                let SearchBookData = try JSONDecoder().decode(BookSearchInformation.self, from: data)
+                completion(true, SearchBookData)
+            }catch(let err){
+                print("Decoding Error")
+                print(err.localizedDescription)
+            }
+        }.resume()
+        
+    }
 }
 
 

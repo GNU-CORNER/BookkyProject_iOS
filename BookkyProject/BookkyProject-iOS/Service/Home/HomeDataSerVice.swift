@@ -108,7 +108,6 @@ class GetBookData {
             do {
                 let DetailBookData = try JSONDecoder().decode(BookDetailInformation.self, from: data)
                 completion(true,DetailBookData)
-                
             }
             catch(let err) {
                 print("Decoding Error")
@@ -117,7 +116,7 @@ class GetBookData {
         }.resume()
     }
     //책상세 정보 리뷰 API
-    func getBookDetailReviewData(BID : Int ,completion : @escaping(Bool, Any) -> Void){
+    func getBookDetailReviewData(BID : Int ,completion : @escaping(Bool,Any) -> Void){
         
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
             print("Launch: 사용자 이메일을 불러올 수 없음.")
@@ -154,10 +153,14 @@ class GetBookData {
                 let detailBookReviewData = try JSONDecoder().decode(BookDetailReviewInformation.self, from: data)
                 completion(true,detailBookReviewData)
             }
-            
             catch(let err) {
-                print("Decoding Error")
-                print(err.localizedDescription)
+                if response.statusCode == 204 {
+                    let reviewString  = "리뷰데이터가 없습니다."
+                    completion(false,reviewString)
+                }else {
+                    print("Decoding Error")
+                    print(err.localizedDescription)
+                }
             }
         }.resume()
     }
@@ -242,4 +245,5 @@ class BookReviewAPi{
             }
         }.resume()
     }
+    
 }
