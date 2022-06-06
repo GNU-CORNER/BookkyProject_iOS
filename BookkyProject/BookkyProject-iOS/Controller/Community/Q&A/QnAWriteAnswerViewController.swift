@@ -14,7 +14,9 @@ class QnAWriteAnswerViewController: UIViewController {
     @IBOutlet weak var addImageButton: UIButton!
     @IBOutlet weak var bottomStackView: UIStackView!
     var PID : Int = 0
+    var TBID : Int = 0
     var boardTypeNumber : Int = 0
+    var imageArray : [String] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         setWriteTitleTextField()
@@ -23,19 +25,19 @@ class QnAWriteAnswerViewController: UIViewController {
     }
     
     @IBAction func tapWriteReplyComment(_ sender: UIButton)  {
-        let replyCommentContents = self.writeContentsTextView.text
-        communityPostWriteData(textTitle: "text", textContetnt: replyCommentContents ?? "", boardTypeNumber: self.boardTypeNumber, parentQPID: self.PID)
+//        let replyCommentContents = self.writeContentsTextView.text
+//        communityPostWriteData(textTitle: "text", textContetnt: replyCommentContents ?? "", boardTypeNumber: self.boardTypeNumber, parentQPID: self.PID,TBID:self.TBID,thumbnail:"a")
         self.navigationController?.popViewController(animated: true)
     }
-    private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int , parentQPID : Int){
-        CommunityPostAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber , parentQPID : parentQPID ){(success,data)in
-            if success {
-                print("post통신 성공")
-            }else {
-                print("post 통신 실패")
-            }
-        }
-    }
+//    private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int , parentQPID : Int,TBID : Int,thumbnail:String){
+//        CommunityPostAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber , parentQPID : parentQPID ,TBID:TBID ,thumbnail:thumbnail){(success,data)in
+//            if success {
+//                print("post통신 성공")
+//            }else {
+//                print("post 통신 실패")
+//            }
+//        }
+//    }
     private func writePostButtonUI(){
         writePostButton.tintColor = .white
         writePostButton.layer.borderWidth = 2

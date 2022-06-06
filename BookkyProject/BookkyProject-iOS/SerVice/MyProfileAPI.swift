@@ -49,7 +49,6 @@ class MyProfileAPI {
             print("My Favorite Books: Cannot create URL")
             return
         }
-        print("\(BookkyURL.baseURL + BookkyURL.favoriteBookPath)")
         var request = URLRequest(url: myprofileURL)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -66,7 +65,7 @@ class MyProfileAPI {
             }
             do {
                 let decodedData: MyprofileModel = try JSONDecoder().decode(MyprofileModel.self, from: data)
-                print("v: 통신 완료.")
+                print("My Favorite Books: 통신 완료.")
                 completionHandler(decodedData.success, decodedData, response.statusCode)
             } catch {
                 print("My Favorite Books: Decode Error. \(String(describing: error))")

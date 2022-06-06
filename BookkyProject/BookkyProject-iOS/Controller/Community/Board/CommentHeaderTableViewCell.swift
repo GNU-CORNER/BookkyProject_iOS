@@ -12,8 +12,9 @@ class CommentHeaderTableViewCell: UITableViewHeaderFooterView {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var contentsLabel: UILabel!
     @IBOutlet weak var createDateLabel: UILabel!
-    @IBOutlet weak var likeCntLabel: UILabel!
     
+    @IBOutlet weak var likeCntButton: CommentLikeButton!
+
     @IBOutlet weak var addFunctionButton: CustomButton!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +29,7 @@ class CommentHeaderTableViewCell: UITableViewHeaderFooterView {
         self.contentsLabel.font = UIFont.systemFont(ofSize: 12)
         self.createDateLabel.font = UIFont.systemFont(ofSize: 10)
         self.createDateLabel.textColor  = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1)
-        self.likeCntLabel.font = UIFont.systemFont(ofSize: 10)
+        self.likeCntButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
         self.addFunctionButton.tintColor = .black
         
     }

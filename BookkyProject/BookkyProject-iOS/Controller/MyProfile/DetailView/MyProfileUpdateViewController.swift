@@ -53,7 +53,6 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        /// enter 버튼을 누르면 keyboard가 내려가도록 설정
         textField.resignFirstResponder()
         return true
     }
@@ -100,22 +99,23 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
                 }
                 MyProfileAPI.shared.myProfileUpdate(accessToken: accessToken, nickname: userNickname, thumbnailString: userThumbnail) { (data, statuscode) in
                     print("프로필 수정에 성공했습니다.")
-                    let alert = UIAlertController(title: "프로필을 수정했습니다.", message: nil, preferredStyle: .alert)
-                    let check = UIAlertAction(title: "확인", style: .cancel) { (_) in
-                        // - [ ] redirect myprofile
-                    }
-                    alert.addAction(check)
                     DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "프로필을 수정했습니다.", message: nil, preferredStyle: .alert)
+                        let check = UIAlertAction(title: "확인", style: .cancel) { (_) in
+                            // - [x] redirect myprofile
+                            self.navigationController?.popViewController(animated: false)
+                        }
+                        alert.addAction(check)
                         self.present(alert, animated: true)
                     }
                 }
             } else {
                 print("닉네임 중복입니다.")
                 // - [x] alert , 함수화하자...
-                let alert = UIAlertController(title: "중복된 닉네임입니다.", message: nil, preferredStyle: .alert)
-                let check = UIAlertAction(title: "확인", style: .cancel)
-                alert.addAction(check)
                 DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "중복된 닉네임입니다.", message: nil, preferredStyle: .alert)
+                    let check = UIAlertAction(title: "확인", style: .cancel)
+                    alert.addAction(check)
                     self.present(alert, animated: true)
                 }
                 return
