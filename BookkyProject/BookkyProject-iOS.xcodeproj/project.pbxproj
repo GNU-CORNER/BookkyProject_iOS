@@ -129,10 +129,10 @@
 		F899B5CF28485D55000A03D7 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5CE28485D55000A03D7 /* CustomButton.swift */; };
 		F899B5D12848FE5E000A03D7 /* CommunityPostDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */; };
 		F899B5D328490300000A03D7 /* CommunityDeleteDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */; };
+		F8A6039B284CD4C1004FD937 /* BookUpdateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6039A284CD4C1004FD937 /* BookUpdateReviewViewController.swift */; };
 		F8A6039E284CE525004FD937 /* UpdatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6039D284CE525004FD937 /* UpdatePostViewController.swift */; };
 		F8A603A3284CF478004FD937 /* UpdateAddImgCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A603A2284CF478004FD937 /* UpdateAddImgCollectionViewCell.swift */; };
 		F8A603A5284D17DD004FD937 /* CommunityUpdateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A603A4284D17DD004FD937 /* CommunityUpdateService.swift */; };
-		F8A6039B284CD4C1004FD937 /* BookUpdateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6039A284CD4C1004FD937 /* BookUpdateReviewViewController.swift */; };
 		F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */; };
 		F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */; };
 		F8B3126828327C2000E01201 /* QnABoardTextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */; };
@@ -302,10 +302,10 @@
 		F899B5CE28485D55000A03D7 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityPostDataSerVice.swift; path = "BookkyProject-iOS/Service/Community/CommunityPostDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
 		F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityDeleteDataSerVice.swift; path = "BookkyProject-iOS/Service/Community/CommunityDeleteDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
+		F8A6039A284CD4C1004FD937 /* BookUpdateReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateReviewViewController.swift; sourceTree = "<group>"; };
 		F8A6039D284CE525004FD937 /* UpdatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostViewController.swift; sourceTree = "<group>"; };
 		F8A603A2284CF478004FD937 /* UpdateAddImgCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAddImgCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8A603A4284D17DD004FD937 /* CommunityUpdateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityUpdateService.swift; path = "BookkyProject-iOS/SerVice/Community/CommunityUpdateService.swift"; sourceTree = SOURCE_ROOT; };
-		F8A6039A284CD4C1004FD937 /* BookUpdateReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateReviewViewController.swift; sourceTree = "<group>"; };
 		F8B0D3FB281EB834007E271F /* TagViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8B0D3FD281ECC5F007E271F /* TagCollectionReusableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionReusableViewHeader.swift; sourceTree = "<group>"; };
 		F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnABoardTextDetailViewController.swift; sourceTree = "<group>"; };
@@ -789,7 +789,6 @@
 			children = (
 				F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */,
 				F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */,
-				F8886F292821309300044737 /* CommunityGetDataSerVice.swift */,
 				F8A603A4284D17DD004FD937 /* CommunityUpdateService.swift */,
 			);
 			path = Community;

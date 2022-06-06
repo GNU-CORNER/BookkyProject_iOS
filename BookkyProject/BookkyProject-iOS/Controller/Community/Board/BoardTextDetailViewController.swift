@@ -158,6 +158,10 @@ class BoardTextDetailViewController: UIViewController {
         self.textDetailViewsLabel.text = "\(model.views)"
         self.textDetailContentsLabel.text = model.contents
         self.textDetailUserNickname.text = model.nickname
+        if let url = URL(string: model.thumbnail ?? "") {
+            self.textDetailUserImage.load(url: url)
+        }
+        
         self.textDetailContentsLabel.numberOfLines = 0
         let likeCount =  model.like?.count ?? 0
         self.likeThatButton.setTitle("좋아요(\(likeCount))", for: .normal)

@@ -28,7 +28,6 @@ class CommunityUpdateAPI{
         }
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
-        
         request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
         request.setValue("application/json", forHTTPHeaderField: "accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
