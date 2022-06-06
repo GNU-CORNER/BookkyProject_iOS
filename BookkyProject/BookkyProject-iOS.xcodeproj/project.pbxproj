@@ -106,8 +106,6 @@
 		F82A862628464C8200DBBE00 /* CommentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82A862428464C8200DBBE00 /* CommentHeaderTableViewCell.xib */; };
 		F840D07E2847A30E00CB0F3C /* ExtensionUIAertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */; };
 		F8584AEB284B4715006BDE8D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8584AEA284B4715006BDE8D /* LoadingView.swift */; };
-		F8606C23282ED5E100E49535 /* BoardTextCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8606C21282ED5E100E49535 /* BoardTextCommentTableViewCell.swift */; };
-		F8606C24282ED5E100E49535 /* BoardTextCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8606C22282ED5E100E49535 /* BoardTextCommentTableViewCell.xib */; };
 		F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */; };
 		F8731D81282AAC4C00FB64ED /* BoardTextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */; };
 		F874319A28030012003EA8C0 /* ExtensionUikit.swift in Sources */ = {isa = PBXBuildFile; fileRef = F874319928030012003EA8C0 /* ExtensionUikit.swift */; };
@@ -278,8 +276,6 @@
 		F82A862428464C8200DBBE00 /* CommentHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIAertAction.swift; sourceTree = "<group>"; };
 		F8584AEA284B4715006BDE8D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		F8606C21282ED5E100E49535 /* BoardTextCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextCommentTableViewCell.swift; sourceTree = "<group>"; };
-		F8606C22282ED5E100E49535 /* BoardTextCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BoardTextCommentTableViewCell.xib; sourceTree = "<group>"; };
 		F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBookDetailReviewDataFormat.swift; sourceTree = "<group>"; };
 		F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextDetailViewController.swift; sourceTree = "<group>"; };
 		F874319928030012003EA8C0 /* ExtensionUikit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUikit.swift; sourceTree = "<group>"; };
@@ -819,8 +815,6 @@
 			isa = PBXGroup;
 			children = (
 				F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */,
-				F8606C21282ED5E100E49535 /* BoardTextCommentTableViewCell.swift */,
-				F8606C22282ED5E100E49535 /* BoardTextCommentTableViewCell.xib */,
 				F88EF53327FD86A400634696 /* BoardTableViewCell.swift */,
 				F8F31C51284A799E001C61DC /* BoardTextDetailImageCollectionViewCell.swift */,
 				F82A862328464C8200DBBE00 /* CommentHeaderTableViewCell.swift */,
@@ -1001,7 +995,6 @@
 				68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */,
 				F8C10A922832C0C400D311F6 /* QnACommunity.storyboard in Resources */,
 				F8260584282E691C006DB702 /* QnABoardTableViewCell.xib in Resources */,
-				F8606C24282ED5E100E49535 /* BoardTextCommentTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1063,7 +1056,6 @@
 				6853E22C284B5EAF002BA8C9 /* SearchTableResultHeaderView.swift in Sources */,
 				683674BE282215B500CB618D /* MyTagsCollectionViewCell.swift in Sources */,
 				F877021328008C72002EA1F5 /* BookCollectionViewCell.swift in Sources */,
-				F8606C23282ED5E100E49535 /* BoardTextCommentTableViewCell.swift in Sources */,
 				68307C3D2846843700109FBD /* UIImageExtension.swift in Sources */,
 				6853E228284B1ED9002BA8C9 /* SearchTableHeaderView.swift in Sources */,
 				F8886F2E28214BB500044737 /* WriteGetListDataFomat.swift in Sources */,
