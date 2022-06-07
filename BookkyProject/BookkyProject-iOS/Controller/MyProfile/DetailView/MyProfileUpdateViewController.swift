@@ -20,9 +20,11 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationController?.title = "프로필 수정"
         self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.title = "프로필 수정"
+        
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "BlackOrWhite")
+
         self.myprofileNicknameTextField.delegate = self
         setDefaultView()
     }

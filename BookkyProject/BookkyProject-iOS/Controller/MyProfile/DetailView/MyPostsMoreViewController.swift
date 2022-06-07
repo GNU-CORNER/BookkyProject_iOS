@@ -17,6 +17,7 @@ class MyPostsMoreViewController: UIViewController {
         
         self.myPostsMoreCollectionView.delegate = self
         self.myPostsMoreCollectionView.dataSource = self
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "BlackOrWhite")
         setDefaultView()
         registerMyPostsCellNib()
     }
@@ -55,7 +56,6 @@ class MyPostsMoreViewController: UIViewController {
     }
     
     private func setDefaultView() {
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "Label Color")
         self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "내 글 보기"
@@ -86,7 +86,6 @@ extension MyPostsMoreViewController: UICollectionViewDelegate, UICollectionViewD
         cell.myPostsLikeLabel.text = String(myPostsMoreArray[indexPath.row].likeCnt)
         cell.myPostsCommentsLabel.text = String(myPostsMoreArray[indexPath.row].commentCnt)
         cell.myPostsLikeImageView.image = UIImage(named: "likeThat")
-//        cell.myPostsLikeImageView.image?.withTintColor( UIColor(named: "primaryColor") )
         cell.myPostsCommentsImageView.image = UIImage(named: "comment")
         cell.layer.cornerRadius = 0
         return cell

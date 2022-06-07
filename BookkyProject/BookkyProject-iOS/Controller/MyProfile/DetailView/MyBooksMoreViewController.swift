@@ -18,12 +18,13 @@ class MyBooksMoreViewController: UIViewController {
         
         self.myBooksMoreCollectionView.delegate = self
         self.myBooksMoreCollectionView.dataSource = self
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "BlackOrWhite")
         setDefaultView()
         requestFavoriteBook()
     }
     
     private func setDefaultView() {
-//        self.navigationController?.navigationBar.tintColor = UIColor(named: "Label Color")
+        
         self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonTapped))
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "관심도서 보기"

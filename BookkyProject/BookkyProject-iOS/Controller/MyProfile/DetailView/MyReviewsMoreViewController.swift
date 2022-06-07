@@ -17,6 +17,7 @@ class MyReviewsMoreViewController: UIViewController {
         
         self.myReviewsMoreCollectionView.delegate = self
         self.myReviewsMoreCollectionView.dataSource = self
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "BlackOrWhite")
         setDefaultView()
         registerMyPostsCellNib()
     }
@@ -36,7 +37,6 @@ class MyReviewsMoreViewController: UIViewController {
     }
     
     private func setDefaultView() {
-        self.navigationController?.navigationBar.tintColor = UIColor(named: "Label Color")
         self.navigationController?.navigationBar.topItem?.title = ""
         self.navigationItem.title = "내 후기 보기"
     }
