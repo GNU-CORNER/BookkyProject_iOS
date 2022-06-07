@@ -560,6 +560,7 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
             self.ReplyCellCID = replycell.CID
             self.replyCommentContents = replycell.replyContents
             self.replyCommentActionsheet()
+            self.section = indexPath.section
         }
         replycell.likebuttonAction = {
             CommunityPostAPI.shared.LikeCommunityComment(CommunityBoardNumber: self.boardTypeNumber, CID: replycell.CID){ success, data in
