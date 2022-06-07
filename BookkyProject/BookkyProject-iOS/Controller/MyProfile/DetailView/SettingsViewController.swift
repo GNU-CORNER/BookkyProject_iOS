@@ -14,6 +14,7 @@ class SettingsViewController: UITableViewController {
 
         self.navigationItem.title = "설정"
         self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "BlackOrWhite")
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
