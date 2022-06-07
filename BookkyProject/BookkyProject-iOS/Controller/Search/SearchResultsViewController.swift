@@ -30,11 +30,11 @@ class SearchResultsViewController: UITableViewController {
         tableView.register( UINib(nibName: "LoadingCell", bundle: nil), forCellReuseIdentifier: "LoadingCell" )
     }
     
-    func setSearchResults(resultsArray: [SearchDatum], noResult: Bool, totalPage: Int, isScroll: Bool) {
-        if noResult {
-            self.isNothing = noResult
+    func setSearchResults(resultsArray: [SearchDatum], isNothing: Bool, totalPage: Int, isScroll: Bool) {
+        if isNothing {
+            self.isNothing = isNothing
         } else {
-            self.isNothing = noResult
+            self.isNothing = isNothing
         }
         
         if isScroll {
@@ -119,7 +119,7 @@ extension SearchResultsViewController {
                         print(error)
                     }
                 }
-                searchResultCell.setBookTags(tagArray: filteredBooks[indexPath.row].tagData)
+                searchResultCell.setBookTags(tagArray: filteredBooks[indexPath.row].tagData ?? [])
                 tableView.separatorStyle = .singleLine
                 return searchResultCell
             // - [x] Activity Indicator
@@ -141,9 +141,9 @@ extension SearchResultsViewController {
         return CGFloat(height)
     }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        <#code#>
-//    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
     
 }
 
@@ -180,7 +180,7 @@ extension SearchResultsViewController {
                         if success {
                             guard let decodeData = data as? SearchModel else { return }
                             guard let searchResult = decodeData.result?.searchData else { return }
-                            self.setSearchResults(resultsArray: searchResult, noResult: false, totalPage: totalPage, isScroll: true)
+                            self.setSearchResults(resultsArray: searchResult, isNothing: false, totalPage: totalPage, isScroll: true)
                             self.presentPage += 1
                             print("안녕")
                             print(searchResult)

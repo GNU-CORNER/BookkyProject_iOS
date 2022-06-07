@@ -101,4 +101,17 @@ extension MyPostsMoreViewController: UICollectionViewDelegate, UICollectionViewD
         return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let CommunityStoryboard: UIStoryboard = UIStoryboard(name: "Community", bundle: nil)
+        guard let BoardTextDetailVC = CommunityStoryboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BoardTextDetailViewController else {
+            return
+        }
+        BoardTextDetailVC.PID = myPostsMoreArray[indexPath.row].pid
+        BoardTextDetailVC.boardTypeNumber = myPostsMoreArray[indexPath.row].communityType
+        //?
+        BoardTextDetailVC.previousBoardNumber = 0
+        self.navigationController?.pushViewController(BoardTextDetailVC, animated: true)
+        
+    }
+    
 }

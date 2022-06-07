@@ -118,18 +118,18 @@ extension SearchViewController: UISearchBarDelegate {
             if success {
                 guard let decodedData = data as? SearchModel else { return }
                 guard let searchResults = decodedData.result?.searchData else { return }
-                self.resultsTableViewController.setSearchResults(resultsArray: searchResults, noResult: false, totalPage: total ?? 0, isScroll: false)
+                self.resultsTableViewController.setSearchResults(resultsArray: searchResults, isNothing: false, totalPage: total ?? 0, isScroll: false)
             } else {
                 print("통신오류 \(statuscode)")
                 if statuscode == 204 {
-                    self.resultsTableViewController.setSearchResults(resultsArray: [], noResult: true, totalPage: 0, isScroll: false)
+                    self.resultsTableViewController.setSearchResults(resultsArray: [], isNothing: true, totalPage: 0, isScroll: false)
                 }
             }
         })
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.resultsTableViewController.setSearchResults(resultsArray: [], noResult: false, totalPage: 0, isScroll: false)
+        self.resultsTableViewController.setSearchResults(resultsArray: [], isNothing: false, totalPage: 0, isScroll: false)
         setDefaultView()
     }
     

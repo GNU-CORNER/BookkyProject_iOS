@@ -71,8 +71,8 @@ class MyProfileViewController: UIViewController {
                 print("잘 되었따.")
                 self.myTagsArray = (myprofileData.result?.userData?.userTagList)!
                 self.myBooksArray = (myprofileData.result?.favoriteBookList)!.reversed()
-                self.myPostArray = (myprofileData.result?.userPostList)!.reversed()
-                self.myReviewsArray = (myprofileData.result?.userReviewList)!.reversed()
+                self.myPostArray = (myprofileData.result?.userPostList)!
+                self.myReviewsArray = (myprofileData.result?.userReviewList)!
                 DispatchQueue.main.async {
                     self.userName = (myprofileData.result?.userData?.nickname)!
                     self.setUserNameLabel(self.userName)
@@ -197,16 +197,34 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.myTagsCollectionView {
+            let homeStoryboard: UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+            guard let TagVC = homeStoryboard.instantiateViewController(withIdentifier: "TagViewController") as? TagViewController else {
+                return
+            }
+            TagVC.TID = self.myTagsArray[indexPath.row].tmid
+            self.navigationController?.pushViewController(TagVC, animated: true)
             
         } else if collectionView == self.myBooksCollectionView {
-            let CommunityStorboard : UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
-            guard let BookDetailViewController = CommunityStorboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController
-            else {return}
-            BookDetailViewController.BID = self.myBooksArray[indexPath.row].tbid
-            self.navigationController?.pushViewController(BookDetailViewController, animated: true)
+            let homeStoryboard : UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+            guard let BookDetailVC = homeStoryboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {
+                return
+            }
+            BookDetailVC.BID = self.myBooksArray[indexPath.row].tbid
+            self.navigationController?.pushViewController(BookDetailVC, animated: true)
+            
         } else if collectionView == self.myPostCollectionView {
+            let CommunityStoryboard: UIStoryboard = UIStoryboard(name: "Community", bundle: nil)
+            guard let BoardTextDetailVC = CommunityStoryboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BoardTextDetailViewController else {
+                return
+            }
+            BoardTextDetailVC.PID = myPostArray[indexPath.row].pid
+            BoardTextDetailVC.boardTypeNumber = myPostArray[indexPath.row].communityType
+            //?
+            BoardTextDetailVC.previousBoardNumber = 0
+            self.navigationController?.pushViewController(BoardTextDetailVC, animated: true)
             
         } else {
+            
         }
     }
         

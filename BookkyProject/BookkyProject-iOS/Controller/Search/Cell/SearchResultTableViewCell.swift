@@ -68,4 +68,8 @@ extension SearchResultTableViewCell: UICollectionViewDelegate, UICollectionViewD
         return CGSize(width: tagCell.frame.width, height: tagCell.frame.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
 }

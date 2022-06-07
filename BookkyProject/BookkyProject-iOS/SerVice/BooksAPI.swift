@@ -49,6 +49,7 @@ class Books {
                 completionHandler(decodedData.success, decodedData, response.statusCode, decodedData.result?.total)
             } catch {
                 print("Books Search: Decode Error.")
+                print(error.localizedDescription)
                 completionHandler(false, nil, response.statusCode, nil)
             }
         }.resume()

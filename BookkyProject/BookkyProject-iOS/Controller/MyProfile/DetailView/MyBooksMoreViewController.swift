@@ -84,5 +84,12 @@ extension MyBooksMoreViewController: UICollectionViewDelegate, UICollectionViewD
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let homeStoryboard : UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+        guard let BookDetailVC = homeStoryboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController else {
+            return
+        }
+        BookDetailVC.BID = self.myBooksMoreArray[indexPath.row].tbid
+        self.navigationController?.pushViewController(BookDetailVC, animated: true)
+    }
 }
