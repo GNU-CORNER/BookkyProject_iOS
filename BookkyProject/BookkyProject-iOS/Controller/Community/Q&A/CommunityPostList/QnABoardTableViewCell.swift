@@ -31,6 +31,9 @@ class QnABoardTableViewCell: UITableViewCell {
         self.commentLabel.text = "\(model.commentCnt)"
         self.replyCommetLabel.text = "\(model.replyCnt)\n답글"
         self.PID = model.PID
+        let img = UIImage(named: "comment")! as UIImage
+        let redImg = img.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+        self.commentImage.image = redImg
         
     }
     func setBoardPostHotList(model : PostListHotList){
@@ -42,6 +45,9 @@ class QnABoardTableViewCell: UITableViewCell {
         self.communityType = model.communityType
         self.replyCnt = model.replyCnt
         self.PID = model.PID
+        let img = UIImage(named: "comment")! as UIImage
+        let redImg = img.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+        self.commentImage.image = redImg
         
     }
     func setBoardPostmyList(model : PostLisyMyList){
@@ -53,6 +59,9 @@ class QnABoardTableViewCell: UITableViewCell {
         self.communityType = model.communityType
         self.replyCnt = model.replyCnt
         self.PID = model.PID
+        let img = UIImage(named: "comment")! as UIImage
+        let redImg = img.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+        self.commentImage.image = redImg
     }
     func searchPostList(model :PostSearchData){
         self.titleLabel.text = model.title
@@ -63,6 +72,9 @@ class QnABoardTableViewCell: UITableViewCell {
         self.communityType = model.communityType
         self.replyCnt = model.replyCnt
         self.PID = model.PID
+        let img = UIImage(named: "comment")! as UIImage
+        let redImg = img.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+        self.commentImage.image = redImg
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -34,7 +34,9 @@ class BoardTableViewCell: UITableViewCell {
         self.PID = model.PID
         self.likeThatCountLabel.text = "\(model.likeCnt)"
         self.commentCountLabel.text = "\(model.commentCnt)"
-        
+        let img = UIImage(named: "comment")! as UIImage
+        let redImg = img.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+        self.commentImageView.image = redImg
         
     }
     func setBoardHotPostList(model :PostListHotList){
@@ -45,6 +47,9 @@ class BoardTableViewCell: UITableViewCell {
         self.commentCountLabel.text = "\(model.commentCnt)"
         self.communityType = model.communityType
         self.replyCnt = model.replyCnt
+        let img = UIImage(named: "comment")! as UIImage
+        let redImg = img.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+        self.commentImageView.image = redImg
     }
     func setBoardMyPostList(model :PostLisyMyList){
         self.titleLabel.text = model.title
@@ -54,6 +59,9 @@ class BoardTableViewCell: UITableViewCell {
         self.commentCountLabel.text = "\(model.commentCnt)"
         self.communityType = model.communityType
         self.replyCnt = model.replyCnt
+        let img = UIImage(named: "comment")! as UIImage
+        let redImg = img.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+        self.commentImageView.image = redImg
     }
    
     
