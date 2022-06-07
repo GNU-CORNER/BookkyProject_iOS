@@ -34,7 +34,7 @@ class CommunityViewController: UIViewController {
     //tableView
     @IBOutlet weak var boardTableView: UITableView!
     @IBOutlet weak var grayView: UIView!
-    var moreScroll : Bool = false
+    var moreScroll : Bool = true
     var totalTextCount : Int = 0
     var currentTextCount : Int = 0
     //replyCnt. -1 일반글 갯수 있으면 Q&A글
@@ -286,7 +286,7 @@ class CommunityViewController: UIViewController {
     }
     
     func communityGetPostList(){
-        CommunityGetAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
+        CommunityGetAPI.shared.getCommunityWriteList(CommunityBoardNumber: self.previousBoardNumber,pageCount: self.currentPage) { (success,data) in
             if success{
                 guard let communityGetWriteList = data as? WriteListInformation else {return}
                 if self.boardTypeNumber == 0{
@@ -331,7 +331,7 @@ class CommunityViewController: UIViewController {
     }
     
     func communityGetPostQnAList(){
-        CommunityGetAPI.shared.getCommunityWriteQnAList(CommunityBoardNumber: self.boardTypeNumber,pageCount: self.currentPage) { (success,data) in
+        CommunityGetAPI.shared.getCommunityWriteQnAList(CommunityBoardNumber: self.previousBoardNumber,pageCount: self.currentPage) { (success,data) in
             if success{
                 guard let communityGetWriteQnAList = data as? WriteListQnAInformation else {return}
                 if self.boardTypeNumber == 2{
@@ -352,12 +352,12 @@ class CommunityViewController: UIViewController {
         }
     }
     func communityGetPostMyList(){
-        CommunityGetAPI.shared.getCommunityMyWriteList(CommunityBoardNumber: self.boardTypeNumber, pageCount: self.currentPage) { (success,data) in
+        CommunityGetAPI.shared.getCommunityMyWriteList(CommunityBoardNumber: self.previousBoardNumber, pageCount: self.currentPage) { (success,data) in
             if success {
                 guard let communityGetWriteMyList = data as? PostListMyInformation else {return}
                 self.myPostList.append(contentsOf: communityGetWriteMyList.result.postList)
                 self.getPageDataCount = communityGetWriteMyList.result.postList.count
-//                self.totalTextCount = communityGetWriteMyList.result.total_size
+                self.totalTextCount = communityGetWriteMyList.result.total_size
                 self.currentTextCount+=self.getPageDataCount
                 if communityGetWriteMyList.success{
                     DispatchQueue.main.async {
@@ -371,7 +371,7 @@ class CommunityViewController: UIViewController {
     }
    
     private func beginfetch(){
-        moreScroll = true
+        self.moreScroll = false
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
             self.currentPage+=1
             if self.previousBoardNumber == 0{
@@ -387,7 +387,7 @@ class CommunityViewController: UIViewController {
             }else {
                 self.communityGetPostList()
             }
-            self.moreScroll = false
+            self.moreScroll = true
             self.boardTableView.reloadData()
             
         })
@@ -398,9 +398,6 @@ class CommunityViewController: UIViewController {
             boardTextDetailViewController.PID = self.PID
             boardTextDetailViewController.previousBoardNumber = self.previousBoardNumber
             boardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
-            if self.previousBoardNumber == 4{
-                boardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
-            }
         }else if segue.identifier == "QnAboardTextDetailSegueId"{
             guard let QnABoardTextDetailViewController = segue.destination as? QnABoardTextDetailViewController else {return}
             QnABoardTextDetailViewController.PID = self.PID
@@ -520,15 +517,11 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         let scrollSize = scrollView.contentOffset.y+50
         if currentTextCount < totalTextCount  {
             if  scrollSize > totalScrollSize{
-                if !moreScroll {
+                if moreScroll {
                     print("로딩실행")
                     beginfetch()
                 }
-                
             }
-            
         }
-        
     }
-    
 }

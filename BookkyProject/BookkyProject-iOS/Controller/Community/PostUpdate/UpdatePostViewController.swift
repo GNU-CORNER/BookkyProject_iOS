@@ -48,10 +48,9 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
         setCollectionViewCell()
         SetPostData()
     }
-    override func viewWillAppear(_ animated: Bool) {
-      
-      
-        
+    override func viewWillDisappear(_ animated: Bool) {
+        self.imageArray = []
+        print("\(self.imageArray)dis")
     }
     private func SetPostData(){
         if self.BID == 0 {
@@ -133,6 +132,7 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
     @IBAction func tapDeleteSelectBook(_ sender: UIButton) {
         self.selectBookViewHeight.constant = 0
         self.bookData = nil
+        self.BID = 0
     }
     @objc func deleteImg(_ sender : UIButton){
         let row : Int = (sender as! ImageCancelButton).row
@@ -153,10 +153,12 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
         let titleString = self.titleTextField.text ?? ""
         let contentString = self.contentsTextView.text ?? ""
         updatePost(textTitle:titleString, textContent:contentString , CommunityBoardNumber: self.boardTypeNumber, parentQPID: self.PID, TBID: self.BID, thumbnail: imgarray)
+       
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+            self.imageArray = []
             self.navigationController?.popViewController(animated: true)
         })
-        
+      
     }
     @IBAction func tapAddImageButton(_ sender: UIButton) {
         if self.imageArray.count > 4{

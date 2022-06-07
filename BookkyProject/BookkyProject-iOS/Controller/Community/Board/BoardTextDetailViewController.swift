@@ -78,11 +78,11 @@ class BoardTextDetailViewController: UIViewController {
         setBookViewUI()
         secondLineStackView.setCustomSpacing(5, after: self.textDetailViewsImage)
         self.navigationItem.rightBarButtonItem = self.rightButton
-        print("\(self.PID)PID")
         
     }
     override func viewWillAppear(_ animated: Bool) {
         getBoardTextDetailData()
+        self.updateImageArray = []
     }
  
 
@@ -106,7 +106,6 @@ class BoardTextDetailViewController: UIViewController {
                 UpdatePostviewController.BID = self.BID
                 UpdatePostviewController.PID = self.PID
                 UpdatePostviewController.bookData = self.bookdata
-                print("\(self.updateImageArray)Board")
                 UpdatePostviewController.imageArray = self.updateImageArray
                 UpdatePostviewController.boardTypeNumber = self.boardTypeNumber
                 self.navigationController?.pushViewController(UpdatePostviewController, animated: true)
@@ -146,8 +145,6 @@ class BoardTextDetailViewController: UIViewController {
         self.bookDetailCommentTableView.dataSource = self
         self.bookDetailCommentTableView.delegate = self
         self.bookDetailCommentTableView.register(UINib(nibName: "CommentHeaderTableViewCell", bundle: nil), forHeaderFooterViewReuseIdentifier: "CommentHeaderid")
-        let cellNib = UINib(nibName: "BoardTextCommentTableViewCell", bundle: nil)
-        self.bookDetailCommentTableView.register(cellNib, forCellReuseIdentifier: "BoardTextCommentTableViewCellid")
         let cellreplyNib = UINib(nibName: "CommunityReplyCommentTableViewCell", bundle: nil)
         self.bookDetailCommentTableView.register(cellreplyNib, forCellReuseIdentifier: "BoardTextCommentReplyTableViewCellid")
     }
@@ -158,6 +155,10 @@ class BoardTextDetailViewController: UIViewController {
         self.textDetailViewsLabel.text = "\(model.views)"
         self.textDetailContentsLabel.text = model.contents
         self.textDetailUserNickname.text = model.nickname
+        if let url = URL(string: model.thumbnail ?? "") {
+            self.textDetailUserImage.load(url: url)
+        }
+        
         self.textDetailContentsLabel.numberOfLines = 0
         let likeCount =  model.like?.count ?? 0
         self.likeThatButton.setTitle("좋아요(\(likeCount))", for: .normal)

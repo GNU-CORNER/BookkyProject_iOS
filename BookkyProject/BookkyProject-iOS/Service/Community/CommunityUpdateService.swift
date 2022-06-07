@@ -20,7 +20,9 @@ class CommunityUpdateAPI{
             print("Launch: 토큰을 불러올 수 없음.")
             return
         }
+        
         let httpBody : [String:Any] = ["title":textTitle,"contents":textContent ,"TBID":TBID,"PID":parentQPID,"Images":thumbnail]
+        print("\(httpBody)")
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityUpdatePostURL+"\(CommunityBoardNumber)") else {
             print("Error: Cannot create URL")
@@ -28,7 +30,6 @@ class CommunityUpdateAPI{
         }
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
-        
         request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
         request.setValue("application/json", forHTTPHeaderField: "accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

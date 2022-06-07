@@ -24,6 +24,7 @@ class BookDetailReviewTableViewCell: UITableViewCell {
     var RID : Int = 0
     var rating : Float = 0.0
     var contents : String = ""
+    var isLiked : Bool = false
     func setReview(model : ReviewData){
         self.reviewUserNameLabel.text = model.nickname
         self.reviewUserRatingLabel.text = "\(model.rating)"
@@ -33,6 +34,11 @@ class BookDetailReviewTableViewCell: UITableViewCell {
         self.reviewLikeCntButotn.setTitle("공감(\(model.likeCnt))", for: .normal)
         self.reviewIsAccessible = model.isAccessible
         self.RID = model.RID
+        if model.isLiked == true{
+            self.reviewLikeCntButotn.tintColor = UIColor(named: "primaryColor")
+        }else {
+            self.reviewLikeCntButotn.tintColor = UIColor(named: "grayColor")
+        }
         self.rating = Float(model.rating)
         self.contents = model.contents
         switch model.rating {
