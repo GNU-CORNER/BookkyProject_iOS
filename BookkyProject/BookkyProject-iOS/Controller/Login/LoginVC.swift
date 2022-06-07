@@ -83,10 +83,7 @@ class LoginVC: UIViewController {
                     if UserDefaults.standard.bool(forKey: UserDefaultsModel.launchBefore.rawValue) == false {
                         UserDefaults.standard.set(true, forKey: UserDefaultsModel.launchBefore.rawValue)
                         RedirectView.initialResearchView(presentView: self)
-                    } /*else if userAccount.result?.userData?.email != UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) {
-                        UserDefaults.standard.set(true, forKey: UserDefaultsModel.launchBefore.rawValue)
-                        RedirectView.initialResearchView(presentView: self)
-                    } */
+                    }
                 }
             } else {
                 print(statuscode)

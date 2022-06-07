@@ -28,19 +28,10 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        guard let email = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
-//            return
-//        }
-//        guard let accessToken = KeychainManager.shared.read(userEmail: email, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
-//            return
-//        }
         self.myprofileImageView.image = thumbnailImageRecived
         self.myprofileNicknameTextField.text = nicknameTextRecived
     }
     
-    private func accessToken() {
-        
-    }
     
     private func setDefaultView() {
         self.myprofileImageView.layer.cornerRadius = self.myprofileImageView.frame.height / 2
@@ -56,15 +47,6 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
-    
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        self.myprofileUpdateCompleteButton.isEnabled = true
-//        self.myprofileUpdateCompleteButton.backgroundColor = UIColor(named: "primaryColor")
-//    }
-    
-//    private func requestDuplicateNicknameCheck() {
-//
-//    }
 
     @IBAction func pickMyProfileImage(_ sender: Any) {
         CameraHandler.shared.actionSheetAlert(vc: self)
@@ -84,8 +66,6 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
         guard let userThumbnail = self.myprofileImageView.image?.imageToPNGString() else {
             return
         }
-        // - [ ] 닉네임 형식 검사
-
         // - [x] 닉네임 중복 검사
         Account.shared.duplicateNicknameCheck(nickname: userNickname) { (success, data, statuscode) in
             if success {

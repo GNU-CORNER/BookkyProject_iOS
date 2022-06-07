@@ -153,9 +153,9 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
         let titleString = self.titleTextField.text ?? ""
         let contentString = self.contentsTextView.text ?? ""
         updatePost(textTitle:titleString, textContent:contentString , CommunityBoardNumber: self.boardTypeNumber, parentQPID: self.PID, TBID: self.BID, thumbnail: imgarray)
-//        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-//            self.navigationController?.popViewController(animated: true)
-//        })
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+            self.navigationController?.popViewController(animated: true)
+        })
         
     }
     @IBAction func tapAddImageButton(_ sender: UIButton) {

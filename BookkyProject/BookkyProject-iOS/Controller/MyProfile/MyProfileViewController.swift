@@ -14,6 +14,7 @@ class MyProfileViewController: UIViewController {
     var myPostArray: [UserPostList] = []
     var myReviewsArray: [UserReviewList] = []
     
+    @IBOutlet weak var loginButton: UIBarButtonItem!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var myTagsCollectionView: UICollectionView!
@@ -31,7 +32,7 @@ class MyProfileViewController: UIViewController {
         setCollectionViewDelegate()
         setCollectionViewDataSource()
         registerNibCollectionViewCell()
-    
+        self.loginButton.customView?.isHidden = true
     }
     
     // MARK: - View Will Appear
@@ -193,6 +194,21 @@ class MyProfileViewController: UIViewController {
 
 // MARK: - UICollectionView Extension
 extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.myTagsCollectionView {
+            
+        } else if collectionView == self.myBooksCollectionView {
+            let CommunityStorboard : UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+            guard let BookDetailViewController = CommunityStorboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BookDetailViewController
+            else {return}
+            BookDetailViewController.BID = self.myBooksArray[indexPath.row].tbid
+            self.navigationController?.pushViewController(BookDetailViewController, animated: true)
+        } else if collectionView == self.myPostCollectionView {
+            
+        } else {
+        }
+    }
         
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.myTagsCollectionView {
@@ -221,7 +237,7 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             else {
                 return UICollectionViewCell()
             }
-            myTagsCell.tagNameLabel.text = "# \(myTagsArray[indexPath.row].tag)"
+            myTagsCell.tagNameLabel.text = "#\(myTagsArray[indexPath.row].tag)"
             return myTagsCell
             
         } else if collectionView == self.myBooksCollectionView {

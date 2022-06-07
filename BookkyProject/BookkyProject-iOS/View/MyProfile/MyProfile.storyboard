@@ -20,7 +20,7 @@
         <scene sceneID="Yas-dU-pgF">
             <objects>
                 <navigationController storyboardIdentifier="MyProfile" automaticallyAdjustsScrollViewInsets="NO" id="GpL-nx-THo" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="내정보" image="star.fill" catalog="system" id="DIf-P3-Brt"/>
+                    <tabBarItem key="tabBarItem" title="내정보" image="myProfile" id="DIf-P3-Brt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="dgI-eH-bLy">
                         <rect key="frame" x="0.0" y="44" width="428" height="44"/>
@@ -391,9 +391,9 @@
                             <constraint firstItem="Rg6-D2-w3B" firstAttribute="bottom" secondItem="4aq-Vf-Dfw" secondAttribute="bottom" id="wPw-PM-qT2"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="내정보" image="star.fill" catalog="system" id="NSN-1e-4ue"/>
+                    <tabBarItem key="tabBarItem" title="내정보" image="myProfile" selectedImage="myProfile" id="NSN-1e-4ue"/>
                     <navigationItem key="navigationItem" title="내 정보" id="WjP-Z4-Mn8">
-                        <barButtonItem key="leftBarButtonItem" style="done" id="K9H-N5-ZpU">
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="done" id="K9H-N5-ZpU">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="w7M-M8-KCD">
                                 <rect key="frame" x="20" y="6.6666666666666679" width="91" height="31.000000000000004"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -420,7 +420,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="gear" catalog="system"/>
+                                <state key="normal" image="setting"/>
                                 <connections>
                                     <segue destination="U1T-pU-6JK" kind="show" id="n0w-rg-HAV"/>
                                 </connections>
@@ -429,6 +429,7 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="loginButton" destination="K9H-N5-ZpU" id="r0n-vi-JhU"/>
                         <outlet property="myBooksCollectionView" destination="RyT-40-hCK" id="mK5-ix-1mo"/>
                         <outlet property="myPostCollectionView" destination="4HK-A8-0xD" id="oSf-tk-zY7"/>
                         <outlet property="myReviewsCollectionView" destination="saI-E8-1Vu" id="c23-IY-zXt"/>
@@ -514,8 +515,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gear" catalog="system" width="128" height="119"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="myProfile" width="18" height="18"/>
+        <image name="setting" width="18" height="18"/>
         <namedColor name="grayColor">
             <color red="0.55699998140335083" green="0.55699998140335083" blue="0.55699998140335083" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

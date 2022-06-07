@@ -81,7 +81,6 @@ class Account {
             print( response.debugDescription )
             do {
                 let decodedData: SignupModel = try JSONDecoder().decode(SignupModel.self, from: data)
-//                print(decodedData)
                 completion(decodedData.success, decodedData, response.statusCode)
             } catch {
                 print("Error: Email Sender Decode Error. \(String(describing: error))")
@@ -289,8 +288,12 @@ extension Account {
             if success {
                 let alert = UIAlertController(title: "로그아웃 되었습니다.", message: nil, preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "확인", style: .default) { (_) in
+//                    let homeStoryboard : UIStoryboard = UIStoryboard(name: "Home", bundle: nil)
+//                    guard let homeVC = homeStoryboard.instantiateViewController(withIdentifier: "Home") as? HomeViewController else {return}
+//                    homeVC.bookListTableView.reloadData()
                     vc.tabBarController?.selectedIndex = 0
                     vc.navigationController?.popViewController(animated: false)
+                    
                 }
                 alert.addAction(okAction)
                 // - [] AT, RT, email 삭제하기

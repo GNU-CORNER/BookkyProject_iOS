@@ -86,6 +86,7 @@ extension MyPostsMoreViewController: UICollectionViewDelegate, UICollectionViewD
         cell.myPostsLikeLabel.text = String(myPostsMoreArray[indexPath.row].likeCnt)
         cell.myPostsCommentsLabel.text = String(myPostsMoreArray[indexPath.row].commentCnt)
         cell.myPostsLikeImageView.image = UIImage(named: "likeThat")
+//        cell.myPostsLikeImageView.image?.withTintColor( UIColor(named: "primaryColor") )
         cell.myPostsCommentsImageView.image = UIImage(named: "comment")
         cell.layer.cornerRadius = 0
         return cell
