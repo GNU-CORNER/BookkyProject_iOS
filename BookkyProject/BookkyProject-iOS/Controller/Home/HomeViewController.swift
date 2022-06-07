@@ -35,7 +35,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var hoeBoardTextGoButton: UIButton!
     // MARK: - 도서리스트 테이블
     @IBOutlet weak var bookListTableView: UITableView!
-    
+    var communityList : [CommunityRecentList] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setBookTableView()
@@ -84,6 +84,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.roadMapGoButtonSecond.tintColor =  UIColor.black
         self.roadMapGoButtonSecond.titleLabel?.font = UIFont.systemFont(ofSize: 24)
     }
+    private func setCommunityData(){
+        self.freeBoardTextGoButton.setTitle("\(self.communityList[0].title)", for: .normal)
+        self.QnABoardTextGoButton.setTitle("\(self.communityList[1].title)", for: .normal)
+        self.hoeBoardTextGoButton.setTitle("\(self.communityList[2].title)", for: .normal)
+    }
     // MARK: - 커뮤니티뷰 SET
     private func setCommunityView(){
         self.communityGoButton.setTitle("커뮤니티 >", for: .normal)
@@ -95,17 +100,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.boardButtonStackView.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
         self.freeBoardGoButton.setTitle("자유게시판", for: .normal)
         self.freeBoardGoButton.tintColor = UIColor.black
-        self.freeBoardTextGoButton.setTitle("카카오 공채 떳던데 보신분 있으 신가요 ?", for: .normal)
+      
         self.freeBoardTextGoButton.tintColor = UIColor.black
         
         self.QnABoardGoButton.setTitle("Q&A게시판", for: .normal)
         self.QnABoardGoButton.tintColor = UIColor.black
-        self.QnABoardTextGoButton.setTitle("함수를 썻는데 너무이상해요함수를 썻는데 너무 이상해요  ", for: .normal)
         self.QnABoardTextGoButton.tintColor = UIColor.black
         
         self.hotBoardGoButton.setTitle("HoT게시판", for: .normal)
         self.hotBoardGoButton.tintColor = UIColor.black
-        self.hoeBoardTextGoButton.setTitle("한번 읽어보고 마스터한 책사실분 ?", for: .normal)
         self.hoeBoardTextGoButton.tintColor = UIColor.black
         
     }
@@ -120,8 +123,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
             if sucess {
                 guard let bookData = data as? BookInformation else {return}
                 self.bookList = bookData.result.bookList
+                self.communityList = bookData.result.communityList
                 if bookData.success{
                     DispatchQueue.main.async {
+                        self.setCommunityData()
                         self.userName = bookData.result.userData.nickname
                         self.bookListTableView.reloadData()
                     }

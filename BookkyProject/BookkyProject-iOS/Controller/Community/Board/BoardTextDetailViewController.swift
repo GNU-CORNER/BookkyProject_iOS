@@ -175,7 +175,6 @@ class BoardTextDetailViewController: UIViewController {
         }else {
             self.postDetailView.frame.size.height = 460+CGFloat((textCount/60)*20)
         }
-       
         self.commentButton.tintColor = .black
         self.writeisAccessible = model.isAccessible
     }
@@ -202,7 +201,7 @@ class BoardTextDetailViewController: UIViewController {
     }
     
 // MARK: - 데이터 통신함수
-    //GET PostDetail
+    //GET PostDetai
     private func getBoardTextDetailData(){
         CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
@@ -218,7 +217,6 @@ class BoardTextDetailViewController: UIViewController {
                     DispatchQueue.main.async {
                         if self.bookdata?.TITLE == nil {
                             self.bookViewHeight.constant = 0
-                            
                         }else{
                             self.setBookView(model:self.bookdata!)
                         }
@@ -227,7 +225,6 @@ class BoardTextDetailViewController: UIViewController {
                         }else {
                             self.ImageCollectionView.reloadData()
                         }
-                       
                         self.setBoardTextDetailData(model: writeTextDetailData)
                         self.setCommentCount(model: commnetCount)
                         self.bookDetailCommentTableView.reloadData()
@@ -238,6 +235,7 @@ class BoardTextDetailViewController: UIViewController {
             }
         }
     }
+    
     // Write 댓글,대댓글
     private func postCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , PID : Int){
         CommunityPostAPI.shared.postCommunityCommentWrite(comment: commnet, parentID: parentID, CommunityBoardNumber: communityBoardNumber, PID: PID) {(succes,data) in

@@ -314,7 +314,7 @@ class CommunityViewController: UIViewController {
         CommunityGetAPI.shared.getCommunityPostListHot { (sucess,data ) in
             if sucess {
                 guard let PostHotList = data as? PostListHotInformation else {return}
-                self.hotPostList = PostHotList.result.postList
+                self.hotPostList.append(contentsOf: PostHotList.result.postList)
                 self.getPageDataCount = PostHotList.result.postList.count
                 self.totalTextCount = PostHotList.result.total_size
                 self.currentTextCount+=self.getPageDataCount
@@ -334,9 +334,7 @@ class CommunityViewController: UIViewController {
         CommunityGetAPI.shared.getCommunityWriteQnAList(CommunityBoardNumber: self.previousBoardNumber,pageCount: self.currentPage) { (success,data) in
             if success{
                 guard let communityGetWriteQnAList = data as? WriteListQnAInformation else {return}
-                if self.boardTypeNumber == 2{
-                    self.postListQnA.append(contentsOf: communityGetWriteQnAList.result.postList)
-                }
+                self.postListQnA.append(contentsOf: communityGetWriteQnAList.result.postList)
                 self.getPageDataCount = communityGetWriteQnAList.result.postList.count
                 self.totalTextCount = communityGetWriteQnAList.result.total_size
                 self.currentTextCount+=self.getPageDataCount
@@ -439,13 +437,16 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
         if previousBoardNumber == 0 {
             cell.setBoardPostList(model:postListFree[indexPath.row])
             return cell
-        }else if previousBoardNumber == 1{
+        }
+        else if previousBoardNumber == 1{
             cell.setBoardPostList(model:postListBookMarket[indexPath.row])
             return cell
-        }else if previousBoardNumber == 2{
+        }
+        else if previousBoardNumber == 2{
             QnACell.setBoardPostQnAList(model: postListQnA[indexPath.row])
             return QnACell
-        }else if previousBoardNumber == 3{
+        }
+        else if previousBoardNumber == 3{
             if myPostList[indexPath.row].communityType == 2{
                 QnACell.setBoardPostmyList(model: myPostList[indexPath.row])
                 return QnACell
@@ -453,7 +454,8 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
                 cell.setBoardMyPostList(model: myPostList[indexPath.row])
                 return cell
             }
-        }else if previousBoardNumber == 4{
+        }
+        else if previousBoardNumber == 4{
             if hotPostList[indexPath.row].communityType == 2{
                 QnACell.setBoardPostHotList(model: hotPostList[indexPath.row])
                 return QnACell
@@ -463,8 +465,6 @@ extension CommunityViewController:UITableViewDelegate,UITableViewDataSource {
             }
             
         }
-        
-        print("셀 생성")
         return UITableViewCell()
         
     }
