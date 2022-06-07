@@ -81,12 +81,14 @@ extension MyPostsMoreViewController: UICollectionViewDelegate, UICollectionViewD
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyPostsCollectionViewCell", for: indexPath) as? MyPostCollectionViewCell else {
             return UICollectionViewCell()
         }
+        let commentImage = UIImage(named: "comment")! as UIImage
+        let commentImageWithColor = commentImage.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
         cell.myPostsTitleLabel.text = myPostsMoreArray[indexPath.row].title
         cell.myPostsDescriptionLabel.text = myPostsMoreArray[indexPath.row].contents
         cell.myPostsLikeLabel.text = String(myPostsMoreArray[indexPath.row].likeCnt)
         cell.myPostsCommentsLabel.text = String(myPostsMoreArray[indexPath.row].commentCnt)
         cell.myPostsLikeImageView.image = UIImage(named: "likeThat")
-        cell.myPostsCommentsImageView.image = UIImage(named: "comment")
+        cell.myPostsCommentsImageView.image = commentImageWithColor
         cell.layer.cornerRadius = 0
         return cell
     }

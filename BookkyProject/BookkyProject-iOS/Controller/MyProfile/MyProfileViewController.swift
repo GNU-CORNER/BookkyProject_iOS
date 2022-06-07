@@ -279,10 +279,15 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             else {
                 return UICollectionViewCell()
             }
+            let commentImage = UIImage(named: "comment")! as UIImage
+            let commentImageWithColor = commentImage.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+            
             myPostCell.myPostsTitleLabel.text = myPostArray[indexPath.row].title
             myPostCell.myPostsDescriptionLabel.text = myPostArray[indexPath.row].contents
             myPostCell.myPostsLikeLabel.text = String(myPostArray[indexPath.row].likeCnt)
             myPostCell.myPostsCommentsLabel.text = String(myPostArray[indexPath.row].commentCnt)
+            myPostCell.myPostsCommentsImageView.image = commentImageWithColor
+            
             return myPostCell
             
         } else {
