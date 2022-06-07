@@ -162,7 +162,7 @@
                                                                                 <constraint firstAttribute="width" constant="12" id="irh-oW-huH"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TM4-Da-Tdz">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TM4-Da-Tdz">
                                                                             <rect key="frame" x="12" y="0.0" width="12" height="18"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="12" id="tti-dZ-UEj"/>
@@ -178,7 +178,7 @@
                                                                                 <constraint firstAttribute="width" constant="12" id="mHO-wV-vvk"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPk-eV-oOd">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPk-eV-oOd">
                                                                             <rect key="frame" x="36" y="0.0" width="15" height="18"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="15" id="iA8-42-5ms"/>
