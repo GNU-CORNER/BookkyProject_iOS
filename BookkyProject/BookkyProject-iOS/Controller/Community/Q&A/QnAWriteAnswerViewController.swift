@@ -25,19 +25,22 @@ class QnAWriteAnswerViewController: UIViewController {
     }
     
     @IBAction func tapWriteReplyComment(_ sender: UIButton)  {
-//        let replyCommentContents = self.writeContentsTextView.text
-//        communityPostWriteData(textTitle: "text", textContetnt: replyCommentContents ?? "", boardTypeNumber: self.boardTypeNumber, parentQPID: self.PID,TBID:self.TBID,thumbnail:"a")
-        self.navigationController?.popViewController(animated: true)
+        let replyCommentContents = self.writeContentsTextView.text
+        communityPostWriteData(textTitle: "text", textContetnt: replyCommentContents ?? "", boardTypeNumber: self.boardTypeNumber, parentQPID: self.PID,TBID:self.TBID,thumbnail:self.imageArray)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+            self.imageArray = []
+            self.navigationController?.popViewController(animated: true)
+        })
     }
-//    private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int , parentQPID : Int,TBID : Int,thumbnail:String){
-//        CommunityPostAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber , parentQPID : parentQPID ,TBID:TBID ,thumbnail:thumbnail){(success,data)in
-//            if success {
-//                print("post통신 성공")
-//            }else {
-//                print("post 통신 실패")
-//            }
-//        }
-//    }
+    private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int , parentQPID : Int,TBID : Int,thumbnail:[String]){
+        CommunityPostAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber , parentQPID : parentQPID ,TBID:TBID ,thumbnail:[]){(success,data)in
+            if success {
+                print("post통신 성공")
+            }else {
+                print("post 통신 실패")
+            }
+        }
+    }
     private func writePostButtonUI(){
         writePostButton.tintColor = .white
         writePostButton.layer.borderWidth = 2

@@ -86,7 +86,7 @@ class MyProfileViewController: UIViewController {
                         self.setDefaultUserImage(imageName: "북키프사")
                         return
                     }
-                    
+
                     if let userThumbnailImageURL = URL(string: userThumbnailImageString) {
                         do {
                             let userThumbnailData = try Data(contentsOf: userThumbnailImageURL)
