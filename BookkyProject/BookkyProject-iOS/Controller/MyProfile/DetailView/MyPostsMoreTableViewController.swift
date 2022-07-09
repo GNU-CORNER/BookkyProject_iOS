@@ -8,82 +8,132 @@
 import UIKit
 
 class MyPostsMoreTableViewController: UITableViewController {
+    
+    var myPostsMoreArray: [UserPostList] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        setDefaultView()
+        registerMyPostsCellNib()
+        
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("My Reviews: 사용자 이메일을 불러올 수 없음.")
+            RedirectView.loginView(previousView: self)
+            return
+        }
+        guard let accessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+            print("My Reivews: 사용자 토큰을 불러올 수 없음.")
+            RedirectView.loginView(previousView: self)
+            return
+        }
+        self.requestMyPosts(accessToken: accessToken)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        self.navigationController?.navigationBar.tintColor = UIColor(named: "BlackOrWhite")
+        setDefaultView()
+    }
+    
+    private func requestMyPosts(accessToken: String) {
+        MyProfileAPI.shared.myPosts(accessToken: accessToken) { (success, data, statuscode) in
+            if success {
+                guard let myPostsData = data as? MyprofileModel else {
+                    // 예외처리
+                    return
+                }
+                if let myPostsList = myPostsData.result?.communityList {
+                    self.myPostsMoreArray = myPostsList
+                }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            } else {
 
-    // MARK: - Table view data source
+            }
+        }
+    }
+}
 
+// MARK: - Table view data source
+extension MyPostsMoreTableViewController {
+        
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return myPostsMoreArray.count
     }
 
-    /*
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+        if myPostsMoreArray[indexPath.row].communityType == 0 {
+            guard let defaultCell = tableView.dequeueReusableCell(withIdentifier: "searchTableViewCellNib", for: indexPath) as? SearchPostTableViewCell else {
+                return UITableViewCell()
+            }
+            let commentImage = UIImage(named: "comment")! as UIImage
+            let commentImageWithColor = commentImage.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+            defaultCell.postTitleLabel.text = myPostsMoreArray[indexPath.row].title
+            defaultCell.postContentsLabel.text = myPostsMoreArray[indexPath.row].contents
+            defaultCell.likThatCountLabel.text = String(myPostsMoreArray[indexPath.row].likeCnt)
+            defaultCell.commentLabel.text = String(myPostsMoreArray[indexPath.row].commentCnt)
+            defaultCell.likeThatImage.image = UIImage(named: "likeThat")
+            defaultCell.commentImage.image = commentImageWithColor
+            defaultCell.selectionStyle = .none
+            return defaultCell
+            
+        } else {
+            guard let qnaCell = tableView.dequeueReusableCell(withIdentifier: "QnATableVIewCellid", for: indexPath) as? QnABoardTableViewCell else{
+                return UITableViewCell()
+            }
+            let commentImage = UIImage(named: "comment")! as UIImage
+            let commentImageWithColor = commentImage.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
+            qnaCell.titleLabel.text = myPostsMoreArray[indexPath.row].title
+            qnaCell.contentsLabel.text = myPostsMoreArray[indexPath.row].contents
+            qnaCell.likeCntLabel.text = String(myPostsMoreArray[indexPath.row].likeCnt)
+            qnaCell.commentLabel.text = String(myPostsMoreArray[indexPath.row].commentCnt)
+            qnaCell.likeCntImage.image = UIImage(named: "likeThat")
+            qnaCell.commentImage.image = commentImageWithColor
+//            qnaCell.replyCnt = myPostsMoreArray[indexPath.row]. replyCnt가 없음!!!
+            qnaCell.selectionStyle = .none
+            return qnaCell
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let CommunityStoryboard: UIStoryboard = UIStoryboard(name: "Community", bundle: nil)
+        guard let BoardTextDetailVC = CommunityStoryboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BoardTextDetailViewController else {
+            return
+        }
+        BoardTextDetailVC.PID = myPostsMoreArray[indexPath.row].pid
+        BoardTextDetailVC.boardTypeNumber = myPostsMoreArray[indexPath.row].communityType
+        BoardTextDetailVC.previousBoardNumber = 0
+        self.navigationController?.pushViewController(BoardTextDetailVC, animated: true)
+        
     }
-    */
+}
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+
+extension MyPostsMoreTableViewController {
+    
+    private func setDefaultView() {
+        self.navigationController?.navigationBar.tintColor = UIColor(named: "BlackOrWhite")
+        self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
+        self.navigationController?.navigationBar.topItem?.title = ""
+        self.navigationItem.title = "내 글 보기"
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    @objc func searchButtonTapped() {
+        // '내글보기'에서 검색 버튼을 누르면 이 함수가 수행된다.
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    
+    private func registerMyPostsCellNib() {
+        let defaultCellNibName = UINib(nibName: "SearchPostTableViewCell", bundle: nil)
+        tableView.register(defaultCellNibName, forCellReuseIdentifier: "searchTableViewCellNib")
+        
+        let qnaCellNibName = UINib(nibName: "QnABoardTableViewCell", bundle: nil)
+        tableView.register(qnaCellNibName, forCellReuseIdentifier: "QnATableVIewCellid")
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
