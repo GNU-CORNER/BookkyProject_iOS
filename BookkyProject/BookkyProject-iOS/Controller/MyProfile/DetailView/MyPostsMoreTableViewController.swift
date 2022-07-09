@@ -9,7 +9,8 @@ import UIKit
 
 class MyPostsMoreTableViewController: UITableViewController {
     
-    var myPostsMoreArray: [UserPostList] = []
+    var myPostsMoreArray: [PostLisyMyList] = []
+    var myPostTotal: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,23 +37,40 @@ class MyPostsMoreTableViewController: UITableViewController {
     }
     
     private func requestMyPosts(accessToken: String) {
-        MyProfileAPI.shared.myPosts(accessToken: accessToken) { (success, data, statuscode) in
+        // page count -> 무한스크롤을 사용할 때 활용하도록.
+        CommunityGetAPI.shared.getCommunityMyWriteList(CommunityBoardNumber: 3, pageCount: 1) { (success, data) in
             if success {
-                guard let myPostsData = data as? MyprofileModel else {
+                guard let myPostsData = data as? PostListMyInformation else {
                     // 예외처리
                     return
                 }
-                if let myPostsList = myPostsData.result?.communityList {
-                    self.myPostsMoreArray = myPostsList
-                }
+                self.myPostsMoreArray = myPostsData.result.postList
+                self.myPostTotal = myPostsData.result.total_size
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             } else {
-
+                print("error")
             }
         }
+//        MyProfileAPI.shared.myPosts(accessToken: accessToken) { (success, data, statuscode) in
+//            if success {
+//                guard let myPostsData = data as? MyprofileModel else { // PostListMyInformation
+//                    // 예외처리
+//                    return
+//                }
+//                if let myPostsList = myPostsData.result?.communityList {
+//                    self.myPostsMoreArray = myPostsList
+//                }
+//                DispatchQueue.main.async {
+//                    self.tableView.reloadData()
+//                }
+//            } else {
+//
+//            }
+//        }
     }
+    
 }
 
 // MARK: - Table view data source
@@ -68,7 +86,7 @@ extension MyPostsMoreTableViewController {
 
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if myPostsMoreArray[indexPath.row].communityType == 0 {
+        if myPostsMoreArray[indexPath.row].communityType < 2 {  // 0,1 -> 자유게시판, 장터게시판
             guard let defaultCell = tableView.dequeueReusableCell(withIdentifier: "searchTableViewCellNib", for: indexPath) as? SearchPostTableViewCell else {
                 return UITableViewCell()
             }
@@ -87,16 +105,7 @@ extension MyPostsMoreTableViewController {
             guard let qnaCell = tableView.dequeueReusableCell(withIdentifier: "QnATableVIewCellid", for: indexPath) as? QnABoardTableViewCell else{
                 return UITableViewCell()
             }
-            let commentImage = UIImage(named: "comment")! as UIImage
-            let commentImageWithColor = commentImage.imageWithColor(color: UIColor(named: "PrimaryBlueColor") ?? UIColor.blue)
-            qnaCell.titleLabel.text = myPostsMoreArray[indexPath.row].title
-            qnaCell.contentsLabel.text = myPostsMoreArray[indexPath.row].contents
-            qnaCell.likeCntLabel.text = String(myPostsMoreArray[indexPath.row].likeCnt)
-            qnaCell.commentLabel.text = String(myPostsMoreArray[indexPath.row].commentCnt)
-            qnaCell.likeCntImage.image = UIImage(named: "likeThat")
-            qnaCell.commentImage.image = commentImageWithColor
-//            qnaCell.replyCnt = myPostsMoreArray[indexPath.row]. replyCnt가 없음!!!
-            qnaCell.selectionStyle = .none
+            qnaCell.setBoardPostmyList(model: myPostsMoreArray[indexPath.row])
             return qnaCell
         }
     }
@@ -106,7 +115,7 @@ extension MyPostsMoreTableViewController {
         guard let BoardTextDetailVC = CommunityStoryboard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BoardTextDetailViewController else {
             return
         }
-        BoardTextDetailVC.PID = myPostsMoreArray[indexPath.row].pid
+        BoardTextDetailVC.PID = myPostsMoreArray[indexPath.row].PID
         BoardTextDetailVC.boardTypeNumber = myPostsMoreArray[indexPath.row].communityType
         BoardTextDetailVC.previousBoardNumber = 0
         self.navigationController?.pushViewController(BoardTextDetailVC, animated: true)
