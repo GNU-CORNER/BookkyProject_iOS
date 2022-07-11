@@ -33,7 +33,8 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
     var imgString : String = ""
     var bookImage : UIImageView!
     var UserImage : UIImageView!
-    var bookData : PostDetailBookData? 
+    var bookData : PostDetailBookData?
+    var QnABookData : QnAPostDetailBookData?
     @IBOutlet weak var bookSearchnAddButton: UIButton!
     @IBOutlet weak var updateStackView: UIStackView!
     @IBOutlet weak var ImageAddButton: UIButton!
@@ -48,19 +49,25 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
         setCollectionViewCell()
         SetPostData()
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        self.imageArray = []
-        print("\(self.imageArray)dis")
-    }
+    
     private func SetPostData(){
         if self.BID == 0 {
             self.selectBookViewHeight.constant = 0
         }else {
-            if let url = URL(string: self.bookData?.thumbnailImage ?? "") {
-                self.bookImageView.load(url: url)
-                self.bookNameLabel.text = self.bookData?.TITLE
-                self.bookAPLabel.text = "\(self.bookData?.AUTHOR ?? "")/\(self.bookData?.PUBLISHER ?? ""))"
+            if self.boardTypeNumber == 2{
+                if let url = URL(string: self.QnABookData?.thumbnailImage ?? "") {
+                    self.bookImageView.load(url: url)
+                    self.bookNameLabel.text = self.QnABookData?.TITLE
+                    self.bookAPLabel.text = "\(self.QnABookData?.AUTHOR ?? "")/\(self.QnABookData?.PUBLISHER ?? ""))"
+                }
+            }else {
+                if let url = URL(string: self.bookData?.thumbnailImage ?? "") {
+                    self.bookImageView.load(url: url)
+                    self.bookNameLabel.text = self.bookData?.TITLE
+                    self.bookAPLabel.text = "\(self.bookData?.AUTHOR ?? "")/\(self.bookData?.PUBLISHER ?? ""))"
+                }
             }
+            
         }
         if self.imageArray == []{
             self.ImageCollectionVIewHeight.constant = 0
@@ -132,6 +139,7 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
     @IBAction func tapDeleteSelectBook(_ sender: UIButton) {
         self.selectBookViewHeight.constant = 0
         self.bookData = nil
+        self.QnABookData = nil
         self.BID = 0
     }
     @objc func deleteImg(_ sender : UIButton){
@@ -153,9 +161,8 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
         let titleString = self.titleTextField.text ?? ""
         let contentString = self.contentsTextView.text ?? ""
         updatePost(textTitle:titleString, textContent:contentString , CommunityBoardNumber: self.boardTypeNumber, parentQPID: self.PID, TBID: self.BID, thumbnail: imgarray)
-       
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-            self.imageArray = []
+        self.imageArray = []
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
             self.navigationController?.popViewController(animated: true)
         })
       

@@ -51,8 +51,9 @@ class QnABoardTextDetailViewController: UIViewController {
         setCollectionViewCell()
         setBookViewUI()
         self.navigationItem.rightBarButtonItem = self.rightButton
-        print("\(self.PID)BoardPID")
+        
     }
+    
     
     @objc private func rightbarButtonAction(_ sender : Any){
         let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
@@ -65,7 +66,20 @@ class QnABoardTextDetailViewController: UIViewController {
                     self.navigationController?.popViewController(animated: true)
                 })
             }
-            let update = UIAlertAction(title: "글 수정", style: .default)
+            let update = UIAlertAction(title: "글 수정", style: .default){(_)in
+                let CommunityStoryboard: UIStoryboard = UIStoryboard(name: "Community", bundle: nil)
+                guard let UpdatePostviewController = CommunityStoryboard.instantiateViewController(withIdentifier: "UpdatePostViewController") as? UpdatePostViewController
+                else {return}
+                UpdatePostviewController.titleString = self.QnATitleLabel.text ?? ""
+                UpdatePostviewController.contentsString = self.QnAContentsLabel.text ?? ""
+                UpdatePostviewController.BID = self.BID
+                UpdatePostviewController.PID = self.PID
+                UpdatePostviewController.QnABookData = self.bookdata
+                
+                UpdatePostviewController.imageArray = self.updateImageArray
+                UpdatePostviewController.boardTypeNumber = self.boardTypeNumber
+                self.navigationController?.pushViewController(UpdatePostviewController, animated: true)
+            }
             alert.addAction(delete)
             alert.addAction(update)
             
@@ -79,10 +93,7 @@ class QnABoardTextDetailViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         getBoardTextDetailQnAData()
-//        DispatchQueue.main.asyncAfter(deadline: .now()+0.1, execute: {
-//            self.getBoardTextDetailQnAData()
-//        })
-        
+        self.updateImageArray = []
     }
     func setTableViewCell(){
         self.QnATableView.dataSource = self
@@ -105,7 +116,7 @@ class QnABoardTextDetailViewController: UIViewController {
         self.QnAContentsLabel.font = UIFont.systemFont(ofSize: 13)
         
         self.userNameLabel.font = UIFont.systemFont(ofSize: 14)
-   
+        
         self.likeCntLButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         self.likeCntLButton.setTitleColor(UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1), for: .normal)
         self.likeCntLButton.tintColor = UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1)
@@ -121,7 +132,7 @@ class QnABoardTextDetailViewController: UIViewController {
         self.writeAnswerButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         
     }
-   
+    
     private func setCollectionViewCell() {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
@@ -176,7 +187,7 @@ class QnABoardTextDetailViewController: UIViewController {
         self.bookAPLabel.text = "\(Author)/\(PUBLISHER)"
         
     }
-// MARK: - API통신
+    // MARK: - API통신
     private func deletePost(communityBoardNumber: Int ,PID: Int){
         CommunityDeleteAPI.shared.DeletPost(CommunityBoardNumber: communityBoardNumber, PID: PID) { (success,data) in
             if success {
@@ -194,6 +205,7 @@ class QnABoardTextDetailViewController: UIViewController {
                 let writeTextDetailQnAData = communityGetDetailList.result.postdata
                 self.QnAReplyData = communityGetDetailList.result.replydata!
                 self.bookdata = communityGetDetailList.result.Book
+                
                 self.BID = self.bookdata?.TBID ?? 0
                 self.ImageArray = writeTextDetailQnAData.postImage ?? []
                 self.PostisLiked = writeTextDetailQnAData.isLiked
@@ -286,7 +298,7 @@ extension QnABoardTextDetailViewController :UICollectionViewDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.ImageArray.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
         cell.setImageArray(model: self.ImageArray[indexPath.row])
@@ -305,5 +317,5 @@ class CustomQnAButton : UIButton {
         self.init()
         self.parentID = parentID
         self.isAccessible = isAccessible
-        }
+    }
 }

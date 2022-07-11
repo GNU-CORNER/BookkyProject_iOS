@@ -206,9 +206,11 @@ class BoardTextDetailViewController: UIViewController {
         CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
                 guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
+                print("\(communityGetDetailList)test")
                 let writeTextDetailData = communityGetDetailList.result.postdata
                 let commnetCount = communityGetDetailList.result
                 self.bookdata = communityGetDetailList.result.Book
+                
                 self.BID = self.bookdata?.TBID ?? 0
                 self.ImageArray = writeTextDetailData.postImage ?? []
                 self.PostisLiked = writeTextDetailData.isLiked
