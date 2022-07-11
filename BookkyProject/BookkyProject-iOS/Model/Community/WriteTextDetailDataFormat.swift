@@ -6,23 +6,6 @@
 //
 
 import Foundation
-//1차원배열
-//struct WriteTextDetailCommentdata : Codable{
-//    let comment : String
-//    let updateAt : String
-//    let like : [Int]?
-//    let nickname : String
-//    let thumbnail : String?
-//    let isAccessible : Bool
-//    let CID : Int
-//    let reply : Int
-//}
-//1차원배열
-//struct WriteTextDetailData : Codable{
-//    let postdata : WriteTextDetailPostData
-//    let commentdata : [WriteTextDetailCommentdata]?
-//    let commentCnt : Int?
-//}
 struct WriteTextDetailInformation : Codable {
     let success : Bool
     let result : WriteTextDetailData
@@ -50,7 +33,6 @@ struct WriteTextDetailPostData : Codable {
     let isAccessible : Bool
 }
 
-//2차원배열
 struct WriteTextDetailCommentdata : Codable{
 //    let parentID : Int
     let comment : String
@@ -71,7 +53,6 @@ struct PostDetailBookData : Codable {
     let RATING : Double?
     let PUBLISHER : String?
 }
-//2차원배열
 struct ChildComment : Codable{
 //    let parentID : Int
     let comment : String
@@ -156,6 +137,7 @@ struct QnACommentDataList : Codable {
     let childComment : [QnAChildComment]?
 }
 struct QnAChildComment :Codable {
+    let parentID : Int
     let comment : String
     let updateAt : String
     let like : [Int]?
@@ -163,5 +145,5 @@ struct QnAChildComment :Codable {
     let thumbnail : String?
     let isAccessible : Bool
     let CID : Int
-    let isLiked : Bool
+    
 }

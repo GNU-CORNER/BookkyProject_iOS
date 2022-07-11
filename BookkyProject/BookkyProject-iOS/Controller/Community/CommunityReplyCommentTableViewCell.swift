@@ -50,12 +50,12 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         self.replyCommentLIkeCntButton.setTitle("공감(\(likeCount))", for: .normal)
         self.userNameLabel.text = model.nickname
         self .isAccessible = model.isAccessible
-        if model.isLiked == false{
-            self.replyCommentLIkeCntButton.tintColor = UIColor.gray
-            
-        }else {
-            self.replyCommentLIkeCntButton.tintColor = UIColor(named: "PrimaryBlueColor")
-        }
+//        if model.isLiked == false{
+//            self.replyCommentLIkeCntButton.tintColor = UIColor.gray
+//            
+//        }else {
+//            self.replyCommentLIkeCntButton.tintColor = UIColor(named: "PrimaryBlueColor")
+//        }
         self.CID = model.CID
     }
     private func BoardTextReplyCommentTableViewCellUI(){

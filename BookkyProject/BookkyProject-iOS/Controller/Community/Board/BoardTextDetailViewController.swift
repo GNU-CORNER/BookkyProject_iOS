@@ -500,7 +500,7 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
                 self.writeReplyButton.setTitle("대댓글 수정", for: .normal)
             }
             
-            self.writeReplyButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+            self.writeReplyButton.titleLabel?.font = UIFont.systemFont(ofSize: 9)
             self.writeReplyButton.tintColor = .white
             self.writeReplyButton.layer.borderColor = UIColor(named: "PrimaryBlueColor")?.cgColor
             self.writeReplyButton.layer.borderWidth = 1
