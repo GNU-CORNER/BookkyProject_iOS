@@ -7,13 +7,10 @@
 
 import UIKit
 
-class WriteTextViewController: UIViewController ,SelectSendData {
-    var boardTypeNumber : Int = 0
-    @IBOutlet weak var boardNameButton: UIButton!
-    @IBOutlet weak var freeBoardGoButton: UIButton!
-    @IBOutlet weak var QnABoardGoButton: UIButton!
-    @IBOutlet weak var bookMarketGoButton: UIButton!
-    @IBOutlet weak var boardTypeStackView: UIStackView!
+class WriteTextViewController: UIViewController ,SelectSendData{
+    
+    @IBOutlet weak var boardPicker: UITextField!
+    
     @IBOutlet weak var writeContentTextView: UITextView!
     @IBOutlet weak var writeTitleTextField: UITextField!
     @IBOutlet weak var writeTextButton: UIButton!
@@ -41,6 +38,8 @@ class WriteTextViewController: UIViewController ,SelectSendData {
     var imgString : String = ""
     var bookImage : UIImageView!
     var UserImage : UIImageView!
+    let boardArray = ["자유게시판","책장터게시판","Q&A게시판"]
+    var selectedBoardType : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         setwriteTitleTextField()
@@ -50,15 +49,12 @@ class WriteTextViewController: UIViewController ,SelectSendData {
         setStackViewSpacing()
         setCollectionViewCell()
         setBackButton()
-        setdropDownView()
-        setinitCommunity()
-        boardTypeColor()
-        
-        
         self.ImgCollectionViewHeight.constant = 0
         self.SelectBookViewHeight.constant = 0
-
-        
+        createPickerView()
+        dismissPickerView()
+        boardPicker.tintColor = .clear
+        boardPicker.text = "자유게시판"
     }
     //화면터치시내려감
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -86,84 +82,12 @@ class WriteTextViewController: UIViewController ,SelectSendData {
         communityGoBackButton.setTitle("Back", for: .normal)
         communityGoBackButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
     }
-    func setdropDownView(){
-        self.freeBoardGoButton.setTitle("자유", for: .normal)
-        self.QnABoardGoButton.setTitle("Q&A", for: .normal)
-        self.bookMarketGoButton.setTitle("책 장터", for: .normal)
-        
-    }
-    func setinitCommunity(){
-        //보드게시판 클릭전 초기
-        self.boardNameButton.setTitle("자유 게시판", for: .normal)
-        self.boardNameButton.setImage(UIImage(systemName: "arrowtriangle.down"), for: .normal)
-        self.boardNameButton.sizeToFit()
-        self.boardNameButton.tintColor = .black
-        self.freeBoardGoButton.setTitleColor(.black, for: .normal)
-    }
-    private func boardTypeColor() {
-        self.freeBoardGoButton.tintColor = UIColor(named: "grayColor")
-        self.QnABoardGoButton.tintColor = UIColor(named: "grayColor")
-        self.bookMarketGoButton.tintColor = UIColor(named: "grayColor")
-    }
-    //드롭다운 메뉴구현
-    @IBAction func tapGoBoard(_ sender: UIButton) {
-        if sender == self.freeBoardGoButton{
-            self.boardTypeNumber = 0
-            setDropDownMenu()
-        }else if sender == self.bookMarketGoButton{
-            self.boardTypeNumber = 1
-            setDropDownMenu()
-        }else if sender == self.QnABoardGoButton{
-            self.boardTypeNumber = 2
-            setDropDownMenu()
-        }
-    }
-    @IBAction func tapChangeBoard(_ sender: UIButton) {
-        if boardTypeStackView.isHidden == false {
-            self.boardTypeStackView.isHidden = true
-        }else{
-            self.boardTypeStackView.isHidden = false
-            self.boardTypeStackView.backgroundColor = .white
-            self.boardTypeStackView.layer.borderWidth = 1
-            self.boardTypeStackView.layer.cornerRadius = 8
-            self.boardNameButton.setImage(UIImage(systemName: "arrowtriangle.down.fill"), for: .normal)
-        }
-    }
-    func setDropDownMenu(){
-        var boardName : String = "자유 게시판"
-        self.freeBoardGoButton.setTitleColor(.gray, for: .normal)
-        self.QnABoardGoButton.setTitleColor(.gray, for: .normal)
-        self.bookMarketGoButton.setTitleColor(.gray, for: .normal)
-        
-        
-        self.freeBoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        self.QnABoardGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        self.bookMarketGoButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        
-        self.boardTypeStackView.isHidden = true
-        
-        self.boardNameButton.setImage(UIImage(systemName: "arrowtriangle.down"), for: .normal)
-        
-        if boardTypeNumber == 0{
-            self.freeBoardGoButton.setTitleColor(.black, for: .normal)
-            self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            boardName = "자유 게시판"
-        }else if boardTypeNumber == 1{
-            self.bookMarketGoButton.setTitleColor(.black, for: .normal)
-            self.bookMarketGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            boardName = "책 장터 게시판"
-        }else if boardTypeNumber == 2{
-            self.QnABoardGoButton.setTitleColor(.black, for: .normal)
-            self.QnABoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            boardName = "Q&A 게시판"
-        }else{
-            self.freeBoardGoButton.setTitleColor(.black, for: .normal)
-            self.freeBoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            boardName = "자유 게시판"
-        }
-        self.boardNameButton.setTitle(boardName, for: .normal)
-        
-    }
+   
+ 
+   
+
+
+  
     func setStackViewSpacing(){
         writeTextBottomStackView.setCustomSpacing(10, after: bookthumbnailImageAddButton)
         writeTextBottomStackView.setCustomSpacing(200, after: ImageAddButton)
@@ -236,7 +160,7 @@ class WriteTextViewController: UIViewController ,SelectSendData {
             let encodedThumbnail = "data:image/png;base64," + thumbnail
             imgarray.append(encodedThumbnail)
         }
-        communityPostWriteData(textTitle: textTitle, textContetnt: textContent, boardTypeNumber: boardTypeNumber,parentQPID: 0,TBID:self.BID,thumbnail:imgarray)
+        communityPostWriteData(textTitle: textTitle, textContetnt: textContent, boardTypeNumber: self.selectedBoardType,parentQPID: 0,TBID:self.BID,thumbnail:imgarray)
 //
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
             self.navigationController?.popViewController(animated: true)
@@ -283,6 +207,22 @@ class WriteTextViewController: UIViewController ,SelectSendData {
     @IBAction func tapDeleteSelectBook(_ sender: UIButton) {
         self.SelectBookViewHeight.constant = 0
     }
+    @objc func pickerAction(){
+        boardPicker.resignFirstResponder()
+    }
+    func createPickerView(){
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        boardPicker.inputView = pickerView
+    }
+    func dismissPickerView(){
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "선택", style: .plain, target: self, action: #selector(self.pickerAction))
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        boardPicker.inputAccessoryView = toolBar
+    }
 }
 extension WriteTextViewController : UITextViewDelegate{
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -313,4 +253,21 @@ extension WriteTextViewController :UICollectionViewDelegate,UICollectionViewData
 
     
 
+}
+extension WriteTextViewController : UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource{
+    //몇개의 선택한 리스트를 표시할것인지
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return boardArray.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return boardArray[row]
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        boardPicker.text = boardArray[row]
+        self.selectedBoardType = row
+    }
 }
