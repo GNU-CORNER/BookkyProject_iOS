@@ -56,6 +56,8 @@
 		686AE6C227FC1F9200B77245 /* EmailAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */; };
 		686AE6C427FC6D3700B77245 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686AE6C327FC6D3700B77245 /* Account.swift */; };
 		686B21302805498000384408 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686B212F2805498000384408 /* KeychainManager.swift */; };
+		687C1377287975DD00452917 /* MyPostsMoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687C1376287975DD00452917 /* MyPostsMoreTableViewController.swift */; };
+		687C137B2879BDA500452917 /* MyBooksMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687C137A2879BDA500452917 /* MyBooksMoreCollectionViewCell.swift */; };
 		6883FE1D284732CB00C132A4 /* TagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883FE1C284732CB00C132A4 /* TagsModel.swift */; };
 		6883FE1F2847487A00C132A4 /* UserTagHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883FE1E2847487A00C132A4 /* UserTagHandler.swift */; };
 		688DEDA9282C0452002F647A /* InitialResearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688DEDA8282C0452002F647A /* InitialResearch.storyboard */; };
@@ -63,9 +65,7 @@
 		688DEDAE282C05AC002F647A /* TagsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDAD282C05AC002F647A /* TagsCollectionViewCell.swift */; };
 		688DEDB0282CA3D5002F647A /* InitialResearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDAF282CA3D5002F647A /* InitialResearchViewController.swift */; };
 		688DEDB3282D3349002F647A /* MyBooksMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDB2282D3349002F647A /* MyBooksMoreViewController.swift */; };
-		688DEDB5282D335F002F647A /* MyPostsMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDB4282D335F002F647A /* MyPostsMoreViewController.swift */; };
 		688DEDB7282D336A002F647A /* MyReviewsMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDB6282D336A002F647A /* MyReviewsMoreViewController.swift */; };
-		688DEDBD282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDBC282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift */; };
 		688DEDC3282E8A12002F647A /* MyReviewsMoreCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 688DEDC2282E8A12002F647A /* MyReviewsMoreCollectionViewCell.xib */; };
 		688DEDC5282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDC4282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift */; };
 		688DEDC7282E9C60002F647A /* MyProfileUpdateView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688DEDC6282E9C60002F647A /* MyProfileUpdateView.storyboard */; };
@@ -226,6 +226,8 @@
 		686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthModel.swift; sourceTree = "<group>"; };
 		686AE6C327FC6D3700B77245 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		686B212F2805498000384408 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainManager.swift; path = "BookkyProject-iOS/SerVice/KeychainManager.swift"; sourceTree = SOURCE_ROOT; };
+		687C1376287975DD00452917 /* MyPostsMoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsMoreTableViewController.swift; sourceTree = "<group>"; };
+		687C137A2879BDA500452917 /* MyBooksMoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBooksMoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		6883FE1C284732CB00C132A4 /* TagsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsModel.swift; sourceTree = "<group>"; };
 		6883FE1E2847487A00C132A4 /* UserTagHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserTagHandler.swift; path = "BookkyProject-iOS/SerVice/UserTagHandler.swift"; sourceTree = SOURCE_ROOT; };
 		688DEDA8282C0452002F647A /* InitialResearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InitialResearch.storyboard; sourceTree = "<group>"; };
@@ -233,9 +235,7 @@
 		688DEDAD282C05AC002F647A /* TagsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsCollectionViewCell.swift; sourceTree = "<group>"; };
 		688DEDAF282CA3D5002F647A /* InitialResearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialResearchViewController.swift; sourceTree = "<group>"; };
 		688DEDB2282D3349002F647A /* MyBooksMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksMoreViewController.swift; sourceTree = "<group>"; };
-		688DEDB4282D335F002F647A /* MyPostsMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsMoreViewController.swift; sourceTree = "<group>"; };
 		688DEDB6282D336A002F647A /* MyReviewsMoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsMoreViewController.swift; sourceTree = "<group>"; };
-		688DEDBC282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBooksMoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		688DEDC2282E8A12002F647A /* MyReviewsMoreCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyReviewsMoreCollectionViewCell.xib; sourceTree = "<group>"; };
 		688DEDC4282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsMoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		688DEDC6282E9C60002F647A /* MyProfileUpdateView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfileUpdateView.storyboard; sourceTree = "<group>"; };
@@ -566,7 +566,7 @@
 				6860BE2928336E5100C7399E /* SettingsViewController.swift */,
 				688DEDC8282E9C95002F647A /* MyProfileUpdateViewController.swift */,
 				688DEDB2282D3349002F647A /* MyBooksMoreViewController.swift */,
-				688DEDB4282D335F002F647A /* MyPostsMoreViewController.swift */,
+				687C1376287975DD00452917 /* MyPostsMoreTableViewController.swift */,
 				688DEDB6282D336A002F647A /* MyReviewsMoreViewController.swift */,
 				688DEDBE282E79AA002F647A /* DetailCollectionViewCell */,
 			);
@@ -581,7 +581,7 @@
 				68169248282B906C0066946A /* MyBooksMoreView.storyboard */,
 				6816924B282B91B80066946A /* MyPostsMoreView.storyboard */,
 				6816924D282B925A0066946A /* MyReviewsMoreView.storyboard */,
-				688DEDC1282E89EE002F647A /* DetailCollectionViewCell */,
+				688DEDC1282E89EE002F647A /* DetailViewCell */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -600,18 +600,18 @@
 		688DEDBE282E79AA002F647A /* DetailCollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
-				688DEDBC282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift */,
+				687C137A2879BDA500452917 /* MyBooksMoreCollectionViewCell.swift */,
 				688DEDC4282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift */,
 			);
 			path = DetailCollectionViewCell;
 			sourceTree = "<group>";
 		};
-		688DEDC1282E89EE002F647A /* DetailCollectionViewCell */ = {
+		688DEDC1282E89EE002F647A /* DetailViewCell */ = {
 			isa = PBXGroup;
 			children = (
 				688DEDC2282E8A12002F647A /* MyReviewsMoreCollectionViewCell.xib */,
 			);
-			path = DetailCollectionViewCell;
+			path = DetailViewCell;
 			sourceTree = "<group>";
 		};
 		68B21B012829265A00707C5A /* MyProfile */ = {
@@ -1028,6 +1028,7 @@
 				F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */,
 				6860BE302833CC0400C7399E /* SearchResultsViewController.swift in Sources */,
 				F8260583282E691C006DB702 /* QnABoardTableViewCell.swift in Sources */,
+				687C1377287975DD00452917 /* MyPostsMoreTableViewController.swift in Sources */,
 				F8075DFB284BD4EE00305F1C /* HomePostSevice.swift in Sources */,
 				F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */,
 				68C4E91B284DE47500589137 /* UIFontExtension.swift in Sources */,
@@ -1043,7 +1044,6 @@
 				68307C3F284692B100109FBD /* MyProfileUpdateModel.swift in Sources */,
 				6852E57927F372CC00CAEF02 /* NewPasswordVC.swift in Sources */,
 				F8A603A5284D17DD004FD937 /* CommunityUpdateService.swift in Sources */,
-				688DEDB5282D335F002F647A /* MyPostsMoreViewController.swift in Sources */,
 				F8731D81282AAC4C00FB64ED /* BoardTextDetailViewController.swift in Sources */,
 				6852E57027F3079700CAEF02 /* SignupVC.swift in Sources */,
 				6860BE2A28336E5100C7399E /* SettingsViewController.swift in Sources */,
@@ -1083,7 +1083,6 @@
 				F8F31C54284A8B17001C61DC /* ExtensionUIImage.swift in Sources */,
 				F8F6623C280588A5000135B8 /* BookDetailViewController.swift in Sources */,
 				F8FFC1F9281EA639005B18B2 /* TagDataFormat.swift in Sources */,
-				688DEDBD282E38F5002F647A /* MyBooksMoreCollectionViewCell.swift in Sources */,
 				F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */,
 				68683D7227DE40DB008EF3CF /* RecommendViewController.swift in Sources */,
 				F80756DC2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift in Sources */,
@@ -1120,6 +1119,7 @@
 				F8886F2A2821309300044737 /* CommunityGetDataSerVice.swift in Sources */,
 				F8E68A352828C4450046760A /* WriteTextDetailDataFormat.swift in Sources */,
 				6852E57427F307BB00CAEF02 /* SocialSignupVC.swift in Sources */,
+				687C137B2879BDA500452917 /* MyBooksMoreCollectionViewCell.swift in Sources */,
 				F8C10A882832B89600D311F6 /* SearchPostTableViewCell.swift in Sources */,
 				F8260580282E6290006DB702 /* WritePostBookSearchTableViewCell.swift in Sources */,
 				68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */,
