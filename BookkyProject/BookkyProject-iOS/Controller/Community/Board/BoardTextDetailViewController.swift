@@ -206,9 +206,11 @@ class BoardTextDetailViewController: UIViewController {
         CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
                 guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
+                print("\(communityGetDetailList)test")
                 let writeTextDetailData = communityGetDetailList.result.postdata
                 let commnetCount = communityGetDetailList.result
                 self.bookdata = communityGetDetailList.result.Book
+                
                 self.BID = self.bookdata?.TBID ?? 0
                 self.ImageArray = writeTextDetailData.postImage ?? []
                 self.PostisLiked = writeTextDetailData.isLiked
@@ -498,7 +500,7 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
                 self.writeReplyButton.setTitle("대댓글 수정", for: .normal)
             }
             
-            self.writeReplyButton.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+            self.writeReplyButton.titleLabel?.font = UIFont.systemFont(ofSize: 9)
             self.writeReplyButton.tintColor = .white
             self.writeReplyButton.layer.borderColor = UIColor(named: "PrimaryBlueColor")?.cgColor
             self.writeReplyButton.layer.borderWidth = 1

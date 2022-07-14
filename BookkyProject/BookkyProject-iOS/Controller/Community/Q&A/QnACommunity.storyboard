@@ -67,7 +67,7 @@
                     <navigationItem key="navigationItem" title="댓글" id="d7r-3g-v1u"/>
                     <connections>
                         <outlet property="QnACommentTableView" destination="Swa-cg-v6w" id="Xeu-xR-Lpf"/>
-                        <outlet property="QnACommentTextView" destination="Vie-c0-WHD" id="Eky-Xt-OU2"/>
+                        <outlet property="QnACommentTextView" destination="Vie-c0-WHD" id="dvp-m9-2xG"/>
                         <outlet property="QnAWriteCommentButton" destination="oBX-kP-sm5" id="ZYM-FD-VTZ"/>
                         <outlet property="QnAcommentFooterView" destination="Une-2M-ngT" id="r09-KK-7AU"/>
                     </connections>
