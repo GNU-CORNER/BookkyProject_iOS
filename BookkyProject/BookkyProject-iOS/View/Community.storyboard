@@ -404,20 +404,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목을 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0d-vc-Ocv">
-                                <rect key="frame" x="0.0" y="168.5" width="414" height="34"/>
+                                <rect key="frame" x="0.0" y="167.5" width="414" height="34"/>
                                 <color key="backgroundColor" red="0.97647064920000004" green="0.97647064920000004" blue="0.97647064920000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="글" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6DD-f5-uJi">
-                                <rect key="frame" x="0.0" y="492.5" width="414" height="314.5"/>
+                                <rect key="frame" x="0.0" y="491.5" width="414" height="315.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="zpN-cr-IHi">
-                                <rect key="frame" x="10" y="332.5" width="394" height="150"/>
+                                <rect key="frame" x="10" y="331.5" width="394" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="xr8-CK-D9W"/>
@@ -464,19 +464,13 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zwq-Ry-Uzh">
-                                <rect key="frame" x="5" y="98" width="34" height="30"/>
+                                <rect key="frame" x="5" y="93" width="34" height="30"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="back"/>
                                 <connections>
                                     <action selector="tapGoBackCommunityButton:" destination="S2f-aB-ImO" eventType="touchUpInside" id="RpH-Bj-H2a"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="글 쓰기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egO-Jd-hbW">
-                                <rect key="frame" x="183" y="138" width="48.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="93" translatesAutoresizingMaskIntoConstraints="NO" id="dKb-dl-uVB">
                                 <rect key="frame" x="10" y="812" width="384" height="30"/>
                                 <subviews>
@@ -509,50 +503,8 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="exe-B8-6et">
-                                <rect key="frame" x="172" y="133" width="70" height="114"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="31S-2K-t7W">
-                                        <rect key="frame" x="12" y="12" width="46" height="30"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="tapGoBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="rWW-9b-3AP"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hld-kb-QF5">
-                                        <rect key="frame" x="12" y="42" width="46" height="30"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="tapGoBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="mfk-kG-h7x"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dkt-Tr-NfF">
-                                        <rect key="frame" x="12" y="72" width="46" height="30"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="tapGoBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="B1l-FQ-ZOL"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <directionalEdgeInsets key="directionalLayoutMargins" top="12" leading="12" bottom="12" trailing="12"/>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GF6-Fe-oI9">
-                                <rect key="frame" x="132" y="95" width="150" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="eML-0U-Yq9"/>
-                                </constraints>
-                                <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="20" bottom="8" trailing="20"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="자유"/>
-                                <connections>
-                                    <action selector="tapChangeBoard:" destination="S2f-aB-ImO" eventType="touchUpInside" id="wde-o6-pMI"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I00-Gk-akB">
-                                <rect key="frame" x="10" y="207.5" width="394" height="120"/>
+                                <rect key="frame" x="10" y="206.5" width="394" height="120"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mo7-TG-f5l">
                                         <rect key="frame" x="20" y="5" width="80" height="110"/>
@@ -608,32 +560,42 @@
                                     <constraint firstAttribute="bottom" secondItem="tqb-yG-nmY" secondAttribute="bottom" constant="100" id="vRE-DJ-Dlz"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="글 쓰기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egO-Jd-hbW">
+                                <rect key="frame" x="183" y="93" width="48.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DoE-PT-cpA">
+                                <rect key="frame" x="0.0" y="123.5" width="414" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="74j-7L-e1u"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="egO-Jd-hbW" firstAttribute="top" secondItem="GF6-Fe-oI9" secondAttribute="bottom" constant="13" id="1pg-Kr-Jk8"/>
                             <constraint firstItem="74j-7L-e1u" firstAttribute="trailing" secondItem="6DD-f5-uJi" secondAttribute="trailing" id="1zF-An-4jX"/>
+                            <constraint firstItem="egO-Jd-hbW" firstAttribute="top" secondItem="Zwq-Ry-Uzh" secondAttribute="top" id="3rJ-nF-aiY"/>
                             <constraint firstItem="74j-7L-e1u" firstAttribute="bottom" secondItem="dKb-dl-uVB" secondAttribute="bottom" constant="20" id="62y-Te-Ec8"/>
                             <constraint firstAttribute="trailing" secondItem="dKb-dl-uVB" secondAttribute="trailing" constant="20" id="8Dx-6e-Zim"/>
                             <constraint firstItem="74j-7L-e1u" firstAttribute="trailing" secondItem="a0d-vc-Ocv" secondAttribute="trailing" id="8Ht-Pu-pvd"/>
-                            <constraint firstItem="exe-B8-6et" firstAttribute="top" secondItem="GF6-Fe-oI9" secondAttribute="bottom" constant="8" id="A8D-dS-cTz"/>
                             <constraint firstItem="74j-7L-e1u" firstAttribute="trailing" secondItem="I00-Gk-akB" secondAttribute="trailing" constant="10" id="Gj0-Nr-Q4f"/>
                             <constraint firstItem="Zwq-Ry-Uzh" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" constant="5" id="H8u-Iw-g73"/>
-                            <constraint firstItem="GF6-Fe-oI9" firstAttribute="centerX" secondItem="GrY-E0-XQH" secondAttribute="centerX" id="IBo-uM-fFF"/>
-                            <constraint firstItem="GF6-Fe-oI9" firstAttribute="top" secondItem="74j-7L-e1u" secondAttribute="top" constant="7" id="L2e-S6-VIT"/>
-                            <constraint firstItem="exe-B8-6et" firstAttribute="centerX" secondItem="GrY-E0-XQH" secondAttribute="centerX" id="NGv-we-GMd"/>
                             <constraint firstItem="74j-7L-e1u" firstAttribute="trailing" secondItem="zpN-cr-IHi" secondAttribute="trailing" constant="10" id="WTK-bS-TP7"/>
                             <constraint firstItem="6DD-f5-uJi" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" id="Y2R-v8-C5V"/>
                             <constraint firstItem="dKb-dl-uVB" firstAttribute="leading" secondItem="GrY-E0-XQH" secondAttribute="leading" constant="10" id="aCj-Hm-j67"/>
+                            <constraint firstItem="DoE-PT-cpA" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" id="cr3-NA-ouM"/>
+                            <constraint firstItem="74j-7L-e1u" firstAttribute="trailing" secondItem="DoE-PT-cpA" secondAttribute="trailing" id="cxx-Nh-8ly"/>
+                            <constraint firstItem="a0d-vc-Ocv" firstAttribute="top" secondItem="DoE-PT-cpA" secondAttribute="bottom" constant="10" id="d11-4D-esb"/>
                             <constraint firstItem="I00-Gk-akB" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" constant="10" id="d1C-IU-lIs"/>
                             <constraint firstItem="I00-Gk-akB" firstAttribute="top" secondItem="a0d-vc-Ocv" secondAttribute="bottom" constant="5" id="dN8-v7-vBa"/>
                             <constraint firstItem="zpN-cr-IHi" firstAttribute="top" secondItem="I00-Gk-akB" secondAttribute="bottom" constant="5" id="eHU-sI-1dj"/>
                             <constraint firstItem="a0d-vc-Ocv" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" id="hJM-cI-Uxm"/>
                             <constraint firstItem="zpN-cr-IHi" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" constant="10" id="hX3-YS-ZdO"/>
+                            <constraint firstItem="DoE-PT-cpA" firstAttribute="top" secondItem="egO-Jd-hbW" secondAttribute="bottom" constant="10" id="hiN-eY-A1C"/>
                             <constraint firstItem="egO-Jd-hbW" firstAttribute="centerX" secondItem="GrY-E0-XQH" secondAttribute="centerX" id="lFk-4d-Nhc"/>
-                            <constraint firstItem="a0d-vc-Ocv" firstAttribute="top" secondItem="egO-Jd-hbW" secondAttribute="bottom" constant="10" id="lMO-dd-EUF"/>
-                            <constraint firstItem="Zwq-Ry-Uzh" firstAttribute="top" secondItem="74j-7L-e1u" secondAttribute="top" constant="10" id="pPU-cj-JS8"/>
+                            <constraint firstItem="Zwq-Ry-Uzh" firstAttribute="top" secondItem="74j-7L-e1u" secondAttribute="top" constant="5" id="pPU-cj-JS8"/>
                             <constraint firstItem="6DD-f5-uJi" firstAttribute="top" secondItem="zpN-cr-IHi" secondAttribute="bottom" constant="10" id="qKS-Zv-gF9"/>
                             <constraint firstItem="dKb-dl-uVB" firstAttribute="top" secondItem="6DD-f5-uJi" secondAttribute="bottom" constant="5" id="wQX-td-wKb"/>
                         </constraints>
@@ -646,16 +608,12 @@
                         <outlet property="ImageAddButton" destination="SDr-dN-2zg" id="JVH-ao-586"/>
                         <outlet property="ImageCollectionView" destination="zpN-cr-IHi" id="kxl-nt-moK"/>
                         <outlet property="ImgCollectionViewHeight" destination="xr8-CK-D9W" id="IYH-36-TGv"/>
-                        <outlet property="QnABoardGoButton" destination="Dkt-Tr-NfF" id="ltO-lS-jKI"/>
                         <outlet property="SelectBookViewHeight" destination="4YD-K6-mcd" id="OC7-DB-SLE"/>
-                        <outlet property="boardNameButton" destination="GF6-Fe-oI9" id="86O-bX-bMq"/>
-                        <outlet property="boardTypeStackView" destination="exe-B8-6et" id="aae-sm-AiH"/>
+                        <outlet property="boardPicker" destination="DoE-PT-cpA" id="N6Y-Mk-jtu"/>
                         <outlet property="bookAuthorPublisher" destination="kAm-pa-F9F" id="dUl-OD-OPt"/>
-                        <outlet property="bookMarketGoButton" destination="hld-kb-QF5" id="mbJ-AU-jg6"/>
                         <outlet property="bookNameLabel" destination="Rox-d2-8Pj" id="0D2-7B-Mj9"/>
                         <outlet property="bookthumbnailImageAddButton" destination="d30-4R-TQK" id="ZFh-yZ-Y6r"/>
                         <outlet property="communityGoBackButton" destination="Zwq-Ry-Uzh" id="gWj-Ow-fIR"/>
-                        <outlet property="freeBoardGoButton" destination="31S-2K-t7W" id="srn-ef-XMS"/>
                         <outlet property="selectBookDeleteButton" destination="tqb-yG-nmY" id="L20-wc-dgq"/>
                         <outlet property="selectBookView" destination="I00-Gk-akB" id="wOO-bv-Ava"/>
                         <outlet property="writeContentTextView" destination="6DD-f5-uJi" id="YOg-CS-bPe"/>
@@ -1273,7 +1231,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5G1-W6-QfJ"/>
+        <segue reference="EFA-Bq-MpU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Book" width="18" height="18"/>
