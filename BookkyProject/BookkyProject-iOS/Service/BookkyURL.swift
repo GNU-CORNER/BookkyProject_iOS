@@ -30,7 +30,9 @@ class BookkyURL {
     static let tagURL = "/books/tag/"
     static let tagMoreViewURL = "/home/tags"
     static let bookDetatilURL = "/books/detail/"
-// MARK : - 도서상세 정보 리뷰
+// MARK: - 책상세정보
+    static let favoriteURL = "/user/favoritebook/"
+// MARK: - 도서상세 정보 리뷰
     static let bookDetailReview = "/books/reviews/"
     static let bookPostReview = "/review/"
     static let bookDeleteReview = "/review/"

@@ -48,7 +48,6 @@ struct BookDetailInformation : Codable {
 }
 struct BookDetailBookList : Codable {
     let bookList : BookDetailData
-
     let isFavorite : Bool
 }
 struct BookDetailData : Codable{
@@ -67,6 +66,7 @@ struct BookDetailData : Codable{
     let thumbnailImage :String
     let RATING : Double
     let tagData : [BookDetailDataTagData]
+    
 }
 struct BookDetailDataTagData : Codable {
     let tag : String
