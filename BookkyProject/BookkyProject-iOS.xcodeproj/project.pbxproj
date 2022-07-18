@@ -96,6 +96,8 @@
 		F80756DC2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */; };
 		F8075DFB284BD4EE00305F1C /* HomePostSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8075DFA284BD4EE00305F1C /* HomePostSevice.swift */; };
 		F8075DFE284CA36000305F1C /* HomeDeleteSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8075DFD284CA36000305F1C /* HomeDeleteSerVice.swift */; };
+		F80BB3A628815F9100689AA8 /* QnaAnswerImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80BB3A428815F9100689AA8 /* QnaAnswerImageCollectionViewCell.swift */; };
+		F80BB3A728815F9100689AA8 /* QnaAnswerImageCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F80BB3A528815F9100689AA8 /* QnaAnswerImageCollectionViewCell.xib */; };
 		F826057A282E52E1006DB702 /* SearchPostTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8260578282E52E1006DB702 /* SearchPostTableViewCell.xib */; };
 		F826057E282E5B94006DB702 /* WritePostBookSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F826057D282E5B94006DB702 /* WritePostBookSearchViewController.swift */; };
 		F8260580282E6290006DB702 /* WritePostBookSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F826057F282E6290006DB702 /* WritePostBookSearchTableViewCell.swift */; };
@@ -137,6 +139,7 @@
 		F8B3126B28328B8E00E01201 /* QnaAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B3126928328B8E00E01201 /* QnaAnswerTableViewCell.swift */; };
 		F8B3126C28328B8E00E01201 /* QnaAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8B3126A28328B8E00E01201 /* QnaAnswerTableViewCell.xib */; };
 		F8B5BC79283D01A500A70190 /* ExtensionStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B5BC78283D01A500A70190 /* ExtensionStatusBar.swift */; };
+		F8BE9B122885758500913468 /* QnAWriteAddImgCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BE9B112885758500913468 /* QnAWriteAddImgCollectionViewCell.swift */; };
 		F8C10A882832B89600D311F6 /* SearchPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88D6843282D6E0500E23344 /* SearchPostTableViewCell.swift */; };
 		F8C10A8E2832C04F00D311F6 /* QnAWriteAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C10A8D2832C04F00D311F6 /* QnAWriteAnswerViewController.swift */; };
 		F8C10A902832C05D00D311F6 /* QnACommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C10A8F2832C05D00D311F6 /* QnACommentViewController.swift */; };
@@ -266,6 +269,8 @@
 		F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8075DFA284BD4EE00305F1C /* HomePostSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomePostSevice.swift; path = "BookkyProject-iOS/Service/Home/HomePostSevice.swift"; sourceTree = SOURCE_ROOT; };
 		F8075DFD284CA36000305F1C /* HomeDeleteSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeDeleteSerVice.swift; path = "BookkyProject-iOS/SerVice/Home/HomeDeleteSerVice.swift"; sourceTree = SOURCE_ROOT; };
+		F80BB3A428815F9100689AA8 /* QnaAnswerImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnaAnswerImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		F80BB3A528815F9100689AA8 /* QnaAnswerImageCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QnaAnswerImageCollectionViewCell.xib; sourceTree = "<group>"; };
 		F8260578282E52E1006DB702 /* SearchPostTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchPostTableViewCell.xib; sourceTree = "<group>"; };
 		F826057D282E5B94006DB702 /* WritePostBookSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostBookSearchViewController.swift; sourceTree = "<group>"; };
 		F826057F282E6290006DB702 /* WritePostBookSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritePostBookSearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -308,6 +313,7 @@
 		F8B3126928328B8E00E01201 /* QnaAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnaAnswerTableViewCell.swift; sourceTree = "<group>"; };
 		F8B3126A28328B8E00E01201 /* QnaAnswerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QnaAnswerTableViewCell.xib; sourceTree = "<group>"; };
 		F8B5BC78283D01A500A70190 /* ExtensionStatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionStatusBar.swift; sourceTree = "<group>"; };
+		F8BE9B112885758500913468 /* QnAWriteAddImgCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAWriteAddImgCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8C10A8D2832C04F00D311F6 /* QnAWriteAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnAWriteAnswerViewController.swift; sourceTree = "<group>"; };
 		F8C10A8F2832C05D00D311F6 /* QnACommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnACommentViewController.swift; sourceTree = "<group>"; };
 		F8C10A912832C0C400D311F6 /* QnACommunity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QnACommunity.storyboard; sourceTree = "<group>"; };
@@ -708,6 +714,9 @@
 				F8B3126728327C2000E01201 /* QnABoardTextDetailViewController.swift */,
 				F8B3126928328B8E00E01201 /* QnaAnswerTableViewCell.swift */,
 				F8B3126A28328B8E00E01201 /* QnaAnswerTableViewCell.xib */,
+				F80BB3A428815F9100689AA8 /* QnaAnswerImageCollectionViewCell.swift */,
+				F80BB3A528815F9100689AA8 /* QnaAnswerImageCollectionViewCell.xib */,
+				F8BE9B112885758500913468 /* QnAWriteAddImgCollectionViewCell.swift */,
 			);
 			path = BoardDetail;
 			sourceTree = "<group>";
@@ -977,6 +986,7 @@
 				68C4E918284DDC6100589137 /* KoddiUDOnGothic-Regular.ttf in Resources */,
 				68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */,
 				6860BE382833D27500C7399E /* SearchDefaultTableViewCell.xib in Resources */,
+				F80BB3A728815F9100689AA8 /* QnaAnswerImageCollectionViewCell.xib in Resources */,
 				68C8629627DF6481004B4F73 /* Community.storyboard in Resources */,
 				6853E22A284B5E65002BA8C9 /* SearchTableResultHeaderView.xib in Resources */,
 				F89297762844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.xib in Resources */,
@@ -1068,6 +1078,7 @@
 				688DEDB3282D3349002F647A /* MyBooksMoreViewController.swift in Sources */,
 				F8F31C50284A435C001C61DC /* WriteAddImgCollectionViewCell.swift in Sources */,
 				68169247282B8B530066946A /* RedirectView.swift in Sources */,
+				F8BE9B122885758500913468 /* QnAWriteAddImgCollectionViewCell.swift in Sources */,
 				68307C3B2846004500109FBD /* CameraHandler.swift in Sources */,
 				F8C10A8E2832C04F00D311F6 /* QnAWriteAnswerViewController.swift in Sources */,
 				F8260587282E840F006DB702 /* BookWriteReviewViewController.swift in Sources */,
@@ -1098,6 +1109,7 @@
 				6883FE1D284732CB00C132A4 /* TagsModel.swift in Sources */,
 				F8B0D3FC281EB834007E271F /* TagViewCollectionViewCell.swift in Sources */,
 				F874319A28030012003EA8C0 /* ExtensionUikit.swift in Sources */,
+				F80BB3A628815F9100689AA8 /* QnaAnswerImageCollectionViewCell.swift in Sources */,
 				6860BE352833D25800C7399E /* SearchResultTableViewCell.swift in Sources */,
 				F8F31C52284A799E001C61DC /* BoardTextDetailImageCollectionViewCell.swift in Sources */,
 				683674C4282215DE00CB618D /* MyPostCollectionViewCell.swift in Sources */,

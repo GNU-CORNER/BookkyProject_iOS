@@ -840,7 +840,7 @@
         <!--Write Post Book Search View Controller-->
         <scene sceneID="IUO-bs-QJo">
             <objects>
-                <viewController id="2SY-oQ-t05" customClass="WritePostBookSearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WritePostBookSearchViewController" id="2SY-oQ-t05" customClass="WritePostBookSearchViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3iQ-c4-Yfq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
