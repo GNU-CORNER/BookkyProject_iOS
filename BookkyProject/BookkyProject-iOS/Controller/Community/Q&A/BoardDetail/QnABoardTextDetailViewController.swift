@@ -29,6 +29,7 @@ class QnABoardTextDetailViewController: UIViewController {
     @IBOutlet weak var selectBookView: UIView!
     @IBOutlet weak var QnAPostDetailView: UIView!
     var bookdata : QnAPostDetailBookData?
+    var comentBookData : CommentBookData?
     var PID : Int = 0
     var BID : Int = 0
     var PostisLiked : Bool = false
@@ -204,12 +205,12 @@ class QnABoardTextDetailViewController: UIViewController {
                 guard let communityGetDetailList = data as? WriteTextDetailQnAInformation else {return}
                 let writeTextDetailQnAData = communityGetDetailList.result.postdata
                 self.QnAReplyData = communityGetDetailList.result.replydata!
-                print("\(self.QnAReplyData)")
                 self.bookdata = communityGetDetailList.result.Book
                 
                 self.BID = self.bookdata?.TBID ?? 0
                 self.ImageArray = writeTextDetailQnAData.postImage ?? []
                 self.PostisLiked = writeTextDetailQnAData.isLiked
+                
                 if communityGetDetailList.success{
                     DispatchQueue.main.async {
                         if self.bookdata?.TITLE == nil {

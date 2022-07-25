@@ -126,6 +126,7 @@
                             <constraint firstAttribute="bottom" secondItem="iqt-v6-2sO" secondAttribute="bottom" constant="50" id="FpO-K7-qt6"/>
                             <constraint firstAttribute="bottom" secondItem="qKk-cz-1vB" secondAttribute="bottom" constant="5" id="Qf2-mh-iYl"/>
                             <constraint firstItem="qKk-cz-1vB" firstAttribute="top" secondItem="u3t-1X-v8G" secondAttribute="top" constant="5" id="neL-Vi-F90"/>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="120" id="o8q-JP-XaB"/>
                             <constraint firstItem="iqt-v6-2sO" firstAttribute="leading" secondItem="qKk-cz-1vB" secondAttribute="trailing" constant="10" id="xGC-sz-GIu"/>
                         </constraints>
                     </view>
@@ -165,11 +166,16 @@
             <connections>
                 <outlet property="addFunctionButton" destination="Jav-qj-VOd" id="soX-HA-5cn"/>
                 <outlet property="addfunctionButton" destination="Jav-qj-VOd" id="Xjw-gu-6fJ"/>
+                <outlet property="bookAPLabel" destination="ZjL-qz-3jY" id="oSP-cF-GTK"/>
+                <outlet property="bookImg" destination="qKk-cz-1vB" id="I1T-Ux-0xH"/>
+                <outlet property="bookNameLabel" destination="1Db-31-qck" id="EE5-Sg-sJo"/>
+                <outlet property="bookViewHeight" destination="o8q-JP-XaB" id="f20-17-Hl6"/>
                 <outlet property="choiceAnswerLabel" destination="JNF-EM-gaW" id="ywD-3P-QGp"/>
                 <outlet property="commentButton" destination="iQk-YB-94N" id="fcq-A2-hZU"/>
                 <outlet property="contentsLabel" destination="amR-NI-SMm" id="VkJ-kV-d7x"/>
                 <outlet property="createDataLabel" destination="HWn-qi-89W" id="2QL-HK-QpD"/>
                 <outlet property="likeCntLabel" destination="IzT-bM-fgR" id="nBQ-O8-hsZ"/>
+                <outlet property="selectBookView" destination="u3t-1X-v8G" id="w1Q-H3-Iwm"/>
                 <outlet property="userImage" destination="i1X-dz-BsM" id="QAb-Dr-EJN"/>
                 <outlet property="userNameLabel" destination="2Oh-t1-35n" id="mwx-WK-bpF"/>
             </connections>

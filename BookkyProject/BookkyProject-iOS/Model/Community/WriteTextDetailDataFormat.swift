@@ -114,6 +114,15 @@ struct WriteTextDetailQnAReplyData : Codable{
     let commentCnt : Int?
     let isAccessible : Bool
     let TBID : Int
+    let Book : CommentBookData?
+}
+struct CommentBookData : Codable {
+    let TBID : Int?
+    let TITLE : String?
+    let AUTHOR : String?
+    let thumbnailImage : String?
+    let RATING : Double?
+    let PUBLISHER : String?
 }
 // MARK: -Q&A 댓글 데이터 format
 struct QnACommentDataInformation : Codable {
