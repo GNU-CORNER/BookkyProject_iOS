@@ -51,6 +51,7 @@ class QnABoardTextDetailViewController: UIViewController {
         setBoardTextDetailUI()
         setCollectionViewCell()
         setBookViewUI()
+        print("\(self.PID)test")
         self.navigationItem.rightBarButtonItem = self.rightButton
         
     }

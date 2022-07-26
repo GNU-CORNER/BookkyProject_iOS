@@ -115,6 +115,7 @@ struct WriteTextDetailQnAReplyData : Codable{
     let isAccessible : Bool
     let TBID : Int
     let Book : CommentBookData?
+    let postImage : [String]?
 }
 struct CommentBookData : Codable {
     let TBID : Int?

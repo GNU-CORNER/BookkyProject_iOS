@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QnABoardTextDetailViewController" customModule="BookkyProject_iOS" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QnaAnswerTableViewCellid" rowHeight="352" id="KGk-i7-Jjw" customClass="QnaAnswerTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QnaAnswerTableViewCellid" id="KGk-i7-Jjw" customClass="QnaAnswerTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="352"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -65,15 +65,15 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Yum-rB-evS">
-                        <rect key="frame" x="20" y="324.5" width="102" height="31.5"/>
+                        <rect key="frame" x="20" y="294.5" width="102" height="61.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzT-bM-fgR">
-                                <rect key="frame" x="0.0" y="0.0" width="46" height="31.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="46" height="61.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQk-YB-94N" customClass="CustomQnAButton" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                <rect key="frame" x="56" y="0.0" width="46" height="31.5"/>
+                                <rect key="frame" x="56" y="0.0" width="46" height="61.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
                             </button>
@@ -131,10 +131,10 @@
                         </constraints>
                     </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="6oE-8r-aG6">
-                        <rect key="frame" x="20" y="169.5" width="280" height="150"/>
+                        <rect key="frame" x="20" y="169.5" width="280" height="120"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="Vbd-xR-v4o"/>
+                            <constraint firstAttribute="height" constant="120" id="HHl-qx-9cU"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="81Y-AV-Bsj">
                             <size key="itemSize" width="128" height="128"/>
@@ -174,6 +174,8 @@
                 <outlet property="commentButton" destination="iQk-YB-94N" id="fcq-A2-hZU"/>
                 <outlet property="contentsLabel" destination="amR-NI-SMm" id="VkJ-kV-d7x"/>
                 <outlet property="createDataLabel" destination="HWn-qi-89W" id="2QL-HK-QpD"/>
+                <outlet property="imgArrayHeight" destination="HHl-qx-9cU" id="xOC-87-Iid"/>
+                <outlet property="imgCollectionView" destination="6oE-8r-aG6" id="k1P-Dr-68T"/>
                 <outlet property="likeCntLabel" destination="IzT-bM-fgR" id="nBQ-O8-hsZ"/>
                 <outlet property="selectBookView" destination="u3t-1X-v8G" id="w1Q-H3-Iwm"/>
                 <outlet property="userImage" destination="i1X-dz-BsM" id="QAb-Dr-EJN"/>

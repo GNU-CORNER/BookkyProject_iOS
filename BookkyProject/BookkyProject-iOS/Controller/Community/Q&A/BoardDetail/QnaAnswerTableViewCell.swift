@@ -26,10 +26,14 @@ class QnaAnswerTableViewCell: UITableViewCell {
     @IBOutlet weak var bookNameLabel: UILabel!
     @IBOutlet weak var bookAPLabel: UILabel!
     @IBOutlet weak var bookViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var imgArrayHeight: NSLayoutConstraint!
     @IBOutlet weak var selectBookView: UIView!
+    @IBOutlet weak var imgCollectionView: UICollectionView!
+    var ImageArray : [String] = []
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
+        setCollectionViewCell()
     }
     func setReplyData(model :WriteTextDetailQnAReplyData ){
         self.userNameLabel.text = model.nickname
@@ -41,6 +45,10 @@ class QnaAnswerTableViewCell: UITableViewCell {
         self.PID = model.PID
         self.QnaAnswerisAccessible = model.isAccessible
         self.bookNameLabel.text = model.Book?.TITLE
+        self.ImageArray = model.postImage ?? []
+        if self.ImageArray == [] {
+            self.imgArrayHeight.constant = 0
+        }
         if model.TBID == 0 {
             self.bookViewHeight.constant = 0
         }else {
@@ -81,4 +89,29 @@ class QnaAnswerTableViewCell: UITableViewCell {
         self.selectBookView.layer.borderColor = UIColor(named: "lightGrayColor")?.cgColor
 
     }
+    private func setCollectionViewCell() {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.itemSize = CGSize(width: 120, height: 150)  //cellsize
+        flowLayout.minimumLineSpacing = 4.0
+        self.imgCollectionView?.collectionViewLayout = flowLayout
+        self.imgCollectionView?.showsHorizontalScrollIndicator = false
+        self.imgCollectionView?.dataSource = self
+        self.imgCollectionView?.delegate = self
+        let cellNib = UINib(nibName: "QnaAnswerImageCollectionViewCell", bundle: nil)
+        self.imgCollectionView?.register(cellNib, forCellWithReuseIdentifier: "QnaImgViewid")
+    }
+}
+extension QnaAnswerTableViewCell : UICollectionViewDelegate,UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.ImageArray.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QnaImgViewid", for: indexPath) as? QnaAnswerImageCollectionViewCell else { return UICollectionViewCell()}
+        cell.setImageArray(model: ImageArray[indexPath.row])
+        return cell
+    }
+
+
 }

@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="QnaAnswerImageCollectionViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="QnaImgViewid" id="gTV-IL-0wX" customClass="QnaAnswerImageCollectionViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="120" height="150"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -34,6 +34,9 @@
                 <constraint firstAttribute="bottom" secondItem="kaa-fs-lTh" secondAttribute="bottom" id="VlZ-fx-UID"/>
             </constraints>
             <size key="customSize" width="153" height="106"/>
+            <connections>
+                <outlet property="CommentImageView" destination="kaa-fs-lTh" id="ASh-cw-cYK"/>
+            </connections>
             <point key="canvasLocation" x="205.79710144927537" y="94.419642857142847"/>
         </collectionViewCell>
     </objects>

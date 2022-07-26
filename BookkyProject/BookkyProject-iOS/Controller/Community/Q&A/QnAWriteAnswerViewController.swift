@@ -92,7 +92,7 @@ class QnAWriteAnswerViewController: UIViewController,SelectSendData {
         })
     }
     private func communityPostWriteData(textTitle: String ,textContetnt: String , boardTypeNumber: Int , parentQPID : Int,TBID : Int,thumbnail:[String]){
-        CommunityPostAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber , parentQPID : parentQPID ,TBID:TBID ,thumbnail:[]){(success,data)in
+        CommunityPostAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber , parentQPID : parentQPID ,TBID:TBID ,thumbnail:thumbnail){(success,data)in
             if success {
                 print("post통신 성공")
             }else {
