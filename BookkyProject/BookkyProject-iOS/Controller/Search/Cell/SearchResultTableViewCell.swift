@@ -20,8 +20,6 @@ class SearchResultTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.searchResultBooksTagCollectionView.showsHorizontalScrollIndicator = false
-        
         self.searchResultBooksTagCollectionView.dataSource = self
         self.searchResultBooksTagCollectionView.delegate = self
         
@@ -64,12 +62,18 @@ extension SearchResultTableViewCell: UICollectionViewDelegate, UICollectionViewD
         else {
             return .zero
         }
+        tagCell.tagNameLabel.text = "# \(myTagsArray[indexPath.row].tag)"
         tagCell.tagNameLabel.sizeToFit()
-        return CGSize(width: tagCell.frame.width, height: tagCell.frame.height)
+        let cellWidth = tagCell.tagNameLabel.frame.width + 16
+        return CGSize(width: cellWidth, height: 25)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//
+//    }
     
 }

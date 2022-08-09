@@ -8,10 +8,11 @@
 import UIKit
 import CoreData
 
-class SearchViewController: UITableViewController {
+class SearchViewController: UITableViewController, UISearchControllerDelegate {
     
     var recentSearchKeyword: [String] = []
-    
+    var isLoading: Bool = false
+    var page: Int = 1
     var searchController: UISearchController!
     var resultsTableViewController: SearchResultsViewController!
     
@@ -25,7 +26,6 @@ class SearchViewController: UITableViewController {
         
         searchController = UISearchController(searchResultsController: resultsTableViewController)
         searchController.delegate = self
-//        searchController.searchResultsUpdater = self
         searchController.searchBar.searchBarStyle = .minimal
         searchController.searchBar.placeholder = "제목 또는 태그"
         searchController.searchBar.delegate = self
@@ -113,19 +113,8 @@ extension SearchViewController: UISearchBarDelegate {
             return
         }
         CoreDataManager.shared.save(keyword: userInputText, date: Date())
-        // - [] 검색되는 양, 페이지 모두 무한 스크롤에 맞게 수정해야함 ㅠㅠ
-        Books.shared.booksSearch(keyword: userInputText, quantity: 20, page: 1, completionHandler: { (success, data, statuscode, total) in
-            if success {
-                guard let decodedData = data as? SearchModel else { return }
-                guard let searchResults = decodedData.result?.searchData else { return }
-                self.resultsTableViewController.setSearchResults(resultsArray: searchResults, isNothing: false, totalPage: total ?? 0, isScroll: false)
-            } else {
-                print("통신오류 \(statuscode)")
-                if statuscode == 204 {
-                    self.resultsTableViewController.setSearchResults(resultsArray: [], isNothing: true, totalPage: 0, isScroll: false)
-                }
-            }
-        })
+        // FIX: - page, total page
+        requestBooksSearch(page: self.page, keyword: userInputText, totalPage: 0, isScroll: false)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -135,28 +124,43 @@ extension SearchViewController: UISearchBarDelegate {
     
 }
 
-// MARK: - UISearchControllerDelegate
-
-extension SearchViewController: UISearchControllerDelegate {
+extension SearchViewController {
     
-    func presentSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let totalScrollSize = scrollView.contentSize.height - scrollView.bounds.height
+        let scrollSize = scrollView.contentOffset.y
+        
+        if scrollSize > totalScrollSize && self.tableView == resultsTableViewController.tableView {
+            if isLoading == false {
+                print("로딩실행")
+                beginFetch()
+            }
+        }
     }
     
-    func willPresentSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
+    func beginFetch() {
+        isLoading = true
+        guard let userInputText = self.searchController.searchBar.text else {
+            print("사용자가 입력한 텍스트를 불러올 수 없음.")
+            return
+        }
+        self.page += 1
+        requestBooksSearch(page: self.page, keyword: userInputText, totalPage: 0, isScroll: true)
     }
     
-    func didPresentSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
-    }
-    
-    func willDismissSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
-    }
-    
-    func didDismissSearchController(_ searchController: UISearchController) {
-        //Swift.debugPrint("UISearchControllerDelegate invoked method: \(#function).")
+    func requestBooksSearch(page: Int, keyword: String, totalPage: Int, isScroll: Bool) {
+        Books.shared.booksSearch(keyword: keyword, quantity: 20, page: page, completionHandler: { (success, data, statuscode, total) in
+            if success {
+                guard let decodedData = data as? SearchModel else { return }
+                guard let searchResults = decodedData.result?.searchData else { return }
+                self.resultsTableViewController.setSearchResults(resultsArray: searchResults, isNothing: false, totalPage: total ?? 0, isScroll: isScroll)
+            } else {
+                print("통신오류 \(statuscode)")
+                if statuscode == 204 {
+                    self.resultsTableViewController.setSearchResults(resultsArray: [], isNothing: true, totalPage: 0, isScroll: isScroll)
+                }
+            }
+        })
     }
     
 }
