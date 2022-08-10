@@ -35,7 +35,7 @@ class RecommendViewController: UIViewController {
     }
     
     private func registerNibCell() {
-        self.recommendTableView.register(UINib(nibName: "RoadmapBookkyTableViewCell", bundle: nil), forCellReuseIdentifier: "RoadmapBookkyCellid")
+        self.recommendTableView.register(UINib(nibName: "RecommendTableViewCell", bundle: nil), forCellReuseIdentifier: "RecommendCellid")
     }
 }
 
@@ -48,7 +48,7 @@ extension RecommendViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let bookkyCell:  RoadmapBookkyTableViewCell = self.recommendTableView.dequeueReusableCell(withIdentifier: "RoadmapBookkyCellid", for: indexPath) as? RoadmapBookkyTableViewCell else {
+        guard let bookkyCell:  RecommendTableViewCell = self.recommendTableView.dequeueReusableCell(withIdentifier: "RecommendCellid", for: indexPath) as? RecommendTableViewCell else {
             return UITableViewCell()
         }
         bookkyCell.selectionStyle = .none

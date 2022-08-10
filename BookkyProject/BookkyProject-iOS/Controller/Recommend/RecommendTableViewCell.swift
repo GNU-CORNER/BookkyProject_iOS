@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RoadmapBookkyTableViewCell: UITableViewCell {
+class RecommendTableViewCell: UITableViewCell {
 
     @IBOutlet weak var bookkyView: UIView!
     @IBOutlet weak var bookkyImageView: UIImageView!
