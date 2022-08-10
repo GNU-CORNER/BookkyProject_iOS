@@ -11,6 +11,7 @@ class MyPostsMoreTableViewController: UITableViewController {
     
     var myPostsMoreArray: [PostLisyMyList] = []
     var myPostTotal: Int = 0
+    var fetchingMore: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +29,7 @@ class MyPostsMoreTableViewController: UITableViewController {
             RedirectView.loginView(previousView: self)
             return
         }
-        self.requestMyPosts(accessToken: accessToken)
+        self.requestMyPosts(accessToken: accessToken, page: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,9 +37,9 @@ class MyPostsMoreTableViewController: UITableViewController {
         setDefaultView()
     }
     
-    private func requestMyPosts(accessToken: String) {
+    private func requestMyPosts(accessToken: String, page: Int) {
         // page count -> 무한스크롤을 사용할 때 활용하도록.
-        CommunityGetAPI.shared.getCommunityMyWriteList(CommunityBoardNumber: 3, pageCount: 1) { (success, data) in
+        CommunityGetAPI.shared.getCommunityMyWriteList(CommunityBoardNumber: 3, pageCount: page) { (success, data) in
             if success {
                 guard let myPostsData = data as? PostListMyInformation else {
                     // 예외처리
@@ -121,6 +122,16 @@ extension MyPostsMoreTableViewController {
         self.navigationController?.pushViewController(BoardTextDetailVC, animated: true)
         
     }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print(self.tableView.contentOffset.y)
+        print(self.tableView.contentSize.height)
+        print(self.tableView.bounds.size.height)
+        if self.tableView.contentOffset.y > (self.tableView.contentSize.height - self.tableView.bounds.size.height) {
+            print("끝에도달!!")
+        }
+    }
+    
 }
 
 

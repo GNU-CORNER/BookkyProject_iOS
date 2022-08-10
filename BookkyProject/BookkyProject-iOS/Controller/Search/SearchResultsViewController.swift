@@ -16,6 +16,7 @@ class SearchResultsViewController: UITableViewController {
     var isLoading: Bool = false
     var totalPage: Int = 1
     var presentPage: Int = 2
+    var searchViewController: SearchViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,34 +32,22 @@ class SearchResultsViewController: UITableViewController {
     }
     
     func setSearchResults(resultsArray: [SearchDatum], isNothing: Bool, totalPage: Int, isScroll: Bool) {
-        if isNothing {
-            self.isNothing = isNothing
-        } else {
-            self.isNothing = isNothing
-        }
-        
+        self.isNothing = isNothing
+        self.totalPage = totalPage
         if isScroll {
             self.filteredBooks.append(contentsOf: resultsArray)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
+                
+                self.tableView.reloadData()
+            })
         } else {
             self.filteredBooks = resultsArray
-        }
-        
-        self.totalPage = totalPage
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
-    
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("안녕12")
-        let scrollSize = self.tableView.contentOffset.y
-        let totalScrollSize = self.tableView.contentSize.height - self.tableView.bounds.size.height
-        if (scrollSize > totalScrollSize) && !isLoading {
-            requestBooksSearch(page: self.presentPage, keyword: self.searchKeyword, totalPage: self.totalPage)
-            print("안녕1")
-        }
-        print("안녕12")
-    }
+
     
 }
 
@@ -100,6 +89,7 @@ extension SearchResultsViewController {
             noResultCell.noResultLabel.text = "검색 결과가 없습니다."
             tableView.separatorStyle = .none
             return noResultCell
+            
         // - [x] 검색 결과가 있을 경우
         } else {
             // - [x] 데이터가 보여지는 곳
@@ -135,7 +125,7 @@ extension SearchResultsViewController {
         }
         
     }
-    
+        
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height = tableView.estimatedRowHeight
         return CGFloat(height)
@@ -165,37 +155,5 @@ extension SearchResultsViewController {
         }
         return headerView.frame.height
     }
-    
-}
-
-extension SearchResultsViewController {
-    
-    func requestBooksSearch(page: Int, keyword: String, totalPage: Int) {
-//        if !self.isLoading {
-            self.isLoading = true
-//            DispatchQueue.global().async {
-//                sleep(1)
-                if page <= totalPage {
-                    Books.shared.booksSearch(keyword: keyword, quantity: 20, page: page, completionHandler: {(success, data, statuscode, page) in
-                        if success {
-                            guard let decodeData = data as? SearchModel else { return }
-                            guard let searchResult = decodeData.result?.searchData else { return }
-                            self.setSearchResults(resultsArray: searchResult, isNothing: false, totalPage: totalPage, isScroll: true)
-                            self.presentPage += 1
-                            print("안녕")
-                            print(searchResult)
-                        } else {
-                            print("서치 안된다ㅏ")
-                        }
-                    })
-//                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
-                        self.isLoading = false
-//                    }
-                }
-//            }
-//        }
-    }
-    
     
 }

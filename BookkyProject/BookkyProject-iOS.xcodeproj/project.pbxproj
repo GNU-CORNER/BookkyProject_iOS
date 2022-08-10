@@ -12,6 +12,11 @@
 		68169249282B906C0066946A /* MyBooksMoreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68169248282B906C0066946A /* MyBooksMoreView.storyboard */; };
 		6816924C282B91B80066946A /* MyPostsMoreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6816924B282B91B80066946A /* MyPostsMoreView.storyboard */; };
 		6816924E282B925A0066946A /* MyReviewsMoreView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6816924D282B925A0066946A /* MyReviewsMoreView.storyboard */; };
+		681EEE2928A237DD00FF9B40 /* RoadmapBookkyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681EEE2728A237DD00FF9B40 /* RoadmapBookkyTableViewCell.swift */; };
+		681EEE2A28A237DD00FF9B40 /* RoadmapBookkyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 681EEE2828A237DD00FF9B40 /* RoadmapBookkyTableViewCell.xib */; };
+		681EEE2C28A23FAE00FF9B40 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681EEE2B28A23FAE00FF9B40 /* UIView.swift */; };
+		681EEE3228A24E8100FF9B40 /* Roadmap.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 681EEE3128A24E8100FF9B40 /* Roadmap.storyboard */; };
+		681EEE3428A24E9300FF9B40 /* RoadmapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 681EEE3328A24E9300FF9B40 /* RoadmapViewController.swift */; };
 		68307C3B2846004500109FBD /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68307C3A2846004500109FBD /* CameraHandler.swift */; };
 		68307C3D2846843700109FBD /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68307C3C2846843700109FBD /* UIImageExtension.swift */; };
 		68307C3F284692B100109FBD /* MyProfileUpdateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68307C3E284692B100109FBD /* MyProfileUpdateModel.swift */; };
@@ -177,6 +182,11 @@
 		68169248282B906C0066946A /* MyBooksMoreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyBooksMoreView.storyboard; sourceTree = "<group>"; };
 		6816924B282B91B80066946A /* MyPostsMoreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPostsMoreView.storyboard; sourceTree = "<group>"; };
 		6816924D282B925A0066946A /* MyReviewsMoreView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyReviewsMoreView.storyboard; sourceTree = "<group>"; };
+		681EEE2728A237DD00FF9B40 /* RoadmapBookkyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapBookkyTableViewCell.swift; sourceTree = "<group>"; };
+		681EEE2828A237DD00FF9B40 /* RoadmapBookkyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoadmapBookkyTableViewCell.xib; sourceTree = "<group>"; };
+		681EEE2B28A23FAE00FF9B40 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		681EEE3128A24E8100FF9B40 /* Roadmap.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Roadmap.storyboard; sourceTree = "<group>"; };
+		681EEE3328A24E9300FF9B40 /* RoadmapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoadmapViewController.swift; sourceTree = "<group>"; };
 		68307C3A2846004500109FBD /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CameraHandler.swift; path = "BookkyProject-iOS/SerVice/CameraHandler.swift"; sourceTree = SOURCE_ROOT; };
 		68307C3C2846843700109FBD /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		68307C3E284692B100109FBD /* MyProfileUpdateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileUpdateModel.swift; sourceTree = "<group>"; };
@@ -357,6 +367,16 @@
 			path = CollectionViewCell;
 			sourceTree = "<group>";
 		};
+		681EEE2228A230D800FF9B40 /* Recommend */ = {
+			isa = PBXGroup;
+			children = (
+				68C8629727DF650E004B4F73 /* Recommend.storyboard */,
+				681EEE2828A237DD00FF9B40 /* RoadmapBookkyTableViewCell.xib */,
+				681EEE3128A24E8100FF9B40 /* Roadmap.storyboard */,
+			);
+			path = Recommend;
+			sourceTree = "<group>";
+		};
 		6852E56727F2EDC300CAEF02 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -491,9 +511,9 @@
 			children = (
 				68683D4227DDF5EE008EF3CF /* Main.storyboard */,
 				68C8629527DF6481004B4F73 /* Community.storyboard */,
-				68C8629727DF650E004B4F73 /* Recommend.storyboard */,
 				F8C84C94280427E200B5E7DA /* Home */,
 				6852E56727F2EDC300CAEF02 /* Login */,
+				681EEE2228A230D800FF9B40 /* Recommend */,
 				6853E224284A1642002BA8C9 /* Search */,
 				68B21B012829265A00707C5A /* MyProfile */,
 			);
@@ -503,8 +523,8 @@
 		68683D6E27DDFCDD008EF3CF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				68C8628927DF0CD9004B4F73 /* Home */,
 				6852E57527F3112B00CAEF02 /* extension */,
+				68C8628927DF0CD9004B4F73 /* Home */,
 				6852E56C27F2EE6400CAEF02 /* Login */,
 				68C8628A27DF0CDF004B4F73 /* Community */,
 				68C8628B27DF0CE9004B4F73 /* Recommend */,
@@ -666,6 +686,8 @@
 			isa = PBXGroup;
 			children = (
 				68683D7127DE40DB008EF3CF /* RecommendViewController.swift */,
+				681EEE2728A237DD00FF9B40 /* RoadmapBookkyTableViewCell.swift */,
+				681EEE3328A24E9300FF9B40 /* RoadmapViewController.swift */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";
@@ -733,6 +755,7 @@
 				68C4E91A284DE47500589137 /* UIFontExtension.swift */,
 				F8F31C53284A8B17001C61DC /* ExtensionUIImage.swift */,
 				F8584AEA284B4715006BDE8D /* LoadingView.swift */,
+				681EEE2B28A23FAE00FF9B40 /* UIView.swift */,
 			);
 			path = ExtensionUI;
 			sourceTree = "<group>";
@@ -962,6 +985,7 @@
 				6860BE362833D25800C7399E /* SearchResultTableViewCell.xib in Resources */,
 				6860BE3D2834701200C7399E /* SearchTagCollectionViewCell.xib in Resources */,
 				68683D4927DDF5EF008EF3CF /* LaunchScreen.storyboard in Resources */,
+				681EEE3228A24E8100FF9B40 /* Roadmap.storyboard in Resources */,
 				68C8629827DF650E004B4F73 /* Recommend.storyboard in Resources */,
 				F82A862628464C8200DBBE00 /* CommentHeaderTableViewCell.xib in Resources */,
 				F87702102800893A002EA1F5 /* BookTableViewCell.xib in Resources */,
@@ -983,6 +1007,7 @@
 				68169249282B906C0066946A /* MyBooksMoreView.storyboard in Resources */,
 				6816924C282B91B80066946A /* MyPostsMoreView.storyboard in Resources */,
 				68FD8F9B284CBBEA00F2BBB5 /* SearchNoResultTableViewCell.xib in Resources */,
+				681EEE2A28A237DD00FF9B40 /* RoadmapBookkyTableViewCell.xib in Resources */,
 				F826057A282E52E1006DB702 /* SearchPostTableViewCell.xib in Resources */,
 				68C8629427DF61D3004B4F73 /* Home.storyboard in Resources */,
 				688DEDA9282C0452002F647A /* InitialResearch.storyboard in Resources */,
@@ -1046,6 +1071,7 @@
 				F8A603A5284D17DD004FD937 /* CommunityUpdateService.swift in Sources */,
 				F8731D81282AAC4C00FB64ED /* BoardTextDetailViewController.swift in Sources */,
 				6852E57027F3079700CAEF02 /* SignupVC.swift in Sources */,
+				681EEE3428A24E9300FF9B40 /* RoadmapViewController.swift in Sources */,
 				6860BE2A28336E5100C7399E /* SettingsViewController.swift in Sources */,
 				F82A862528464C8200DBBE00 /* CommentHeaderTableViewCell.swift in Sources */,
 				6853E232284BBFD9002BA8C9 /* Searches.xcdatamodeld in Sources */,
@@ -1067,6 +1093,7 @@
 				68C4E912284CF80500589137 /* LoadingCell.swift in Sources */,
 				688DEDB3282D3349002F647A /* MyBooksMoreViewController.swift in Sources */,
 				F8F31C50284A435C001C61DC /* WriteAddImgCollectionViewCell.swift in Sources */,
+				681EEE2928A237DD00FF9B40 /* RoadmapBookkyTableViewCell.swift in Sources */,
 				68169247282B8B530066946A /* RedirectView.swift in Sources */,
 				68307C3B2846004500109FBD /* CameraHandler.swift in Sources */,
 				F8C10A8E2832C04F00D311F6 /* QnAWriteAnswerViewController.swift in Sources */,
@@ -1106,6 +1133,7 @@
 				F8584AEB284B4715006BDE8D /* LoadingView.swift in Sources */,
 				68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */,
 				688DEDAE282C05AC002F647A /* TagsCollectionViewCell.swift in Sources */,
+				681EEE2C28A23FAE00FF9B40 /* UIView.swift in Sources */,
 				688DEDAC282C0580002F647A /* ResearchViewController.swift in Sources */,
 				686B21302805498000384408 /* KeychainManager.swift in Sources */,
 				F8A6039B284CD4C1004FD937 /* BookUpdateReviewViewController.swift in Sources */,

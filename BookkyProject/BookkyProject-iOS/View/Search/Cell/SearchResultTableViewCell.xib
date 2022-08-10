@@ -19,17 +19,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="140"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HHf-K9-Vch">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HHf-K9-Vch">
                         <rect key="frame" x="0.0" y="105" width="320" height="25"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="NWl-Xq-w7P"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="5" minimumInteritemSpacing="5" id="IMR-5q-M5R">
-                            <size key="itemSize" width="128" height="128"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IMR-5q-M5R">
+                            <size key="itemSize" width="287" height="25"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qQp-7e-h2w">
@@ -43,22 +43,23 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="N76-ix-2ys">
-                                <rect key="frame" x="74" y="6.5" width="206" height="75"/>
+                                <rect key="frame" x="74" y="3" width="206" height="82"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="nB8-dX-jE7">
-                                        <rect key="frame" x="0.0" y="0.0" width="206" height="38"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="206" height="45"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F11-2F-QKS">
-                                                <rect key="frame" x="0.0" y="0.0" width="206" height="18"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="책 제목" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F11-2F-QKS">
+                                                <rect key="frame" x="0.0" y="0.0" width="206" height="25"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="18" id="fGa-AT-Ggh"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="fGa-AT-Ggh"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
+                                                <size key="shadowOffset" width="0.0" height="0.0"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="저자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pjw-g5-niV">
-                                                <rect key="frame" x="0.0" y="25" width="206" height="13"/>
+                                                <rect key="frame" x="0.0" y="32" width="206" height="13"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="13" id="QCh-oK-j5c"/>
                                                 </constraints>
@@ -69,7 +70,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="2pK-cv-P6b">
-                                        <rect key="frame" x="0.0" y="60" width="101.5" height="15"/>
+                                        <rect key="frame" x="0.0" y="67" width="101.5" height="15"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AJr-SV-Ysm">
                                                 <rect key="frame" x="0.0" y="0.0" width="75" height="15"/>
