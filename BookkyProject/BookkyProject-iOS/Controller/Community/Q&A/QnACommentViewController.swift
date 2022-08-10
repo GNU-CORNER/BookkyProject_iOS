@@ -145,7 +145,30 @@ class QnACommentViewController: UIViewController {
     private func QnAreplyCommentActionsheet(){
         let alert = UIAlertController(title: "대댓글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let report = UIAlertAction(title: "신고", style: .destructive)
+        let report = UIAlertAction(title: "신고", style: .destructive){(_) in
+            let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
+            let diseasePost = UIAlertAction(title: "불건전 댓글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let adNsalePost = UIAlertAction(title: "광고 및 판매 댓글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let spamPost = UIAlertAction(title: "악성 도배 댓글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let swearPost = UIAlertAction(title: "욕설 및 비하 댓글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            reportAlert.addAction(diseasePost)
+            reportAlert.addAction(adNsalePost)
+            reportAlert.addAction(spamPost)
+            reportAlert.addAction(swearPost)
+            reportAlert.addAction(cancel)
+            DispatchQueue.main.async {
+                self.present(reportAlert, animated: true)
+            }
+        }
         if self.replycommentisAccessible == true {
             let delete = UIAlertAction(title: "대댓글 삭제", style: .destructive){(_) in
                 self.deleteComment(communityBoardNumber:self.boardTypeNumber  ,CID: self.CID)
@@ -210,7 +233,30 @@ class QnACommentViewController: UIViewController {
             alert.addAction(delete)
             alert.addAction(update)
         }
-        let report = UIAlertAction(title: "신고", style: .destructive)
+        let report = UIAlertAction(title: "신고", style: .destructive){(_) in
+            let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
+            let diseasePost = UIAlertAction(title: "불건전 댓글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let adNsalePost = UIAlertAction(title: "광고 및 판매 댓글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let spamPost = UIAlertAction(title: "악성 도배 댓글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let swearPost = UIAlertAction(title: "욕설 및 비하 댓글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            reportAlert.addAction(diseasePost)
+            reportAlert.addAction(adNsalePost)
+            reportAlert.addAction(spamPost)
+            reportAlert.addAction(swearPost)
+            reportAlert.addAction(cancel)
+            DispatchQueue.main.async {
+                self.present(reportAlert, animated: true)
+            }
+        }
         let writeComment = UIAlertAction(title: "대댓글 작성", style: .default){(_) in
             self.replyCommentType = 0
             self.replyparentID = CID
@@ -260,6 +306,18 @@ class QnACommentViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
+    //신고 팝업창
+    func reportAlert(){
+        let reportAlert = UIAlertController(title: "게시판 성격에 부적절함", message: "게시물의 주제가 게시판의 성격에 벗어나, 다른 이용자에게 불편을 끼칠수 있는 게시물", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let report = UIAlertAction(title: "확인", style: .default)
+        reportAlert.addAction(cancel)
+        reportAlert.addAction(report)
+        DispatchQueue.main.async {
+            self.present(reportAlert, animated: true)
+        }
+    }
+
 }
 extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
