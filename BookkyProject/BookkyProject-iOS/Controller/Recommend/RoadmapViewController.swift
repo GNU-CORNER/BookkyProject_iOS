@@ -8,7 +8,8 @@
 import UIKit
 
 class RoadmapViewController: UIViewController {
-
+    @IBOutlet weak var roadmapTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -17,5 +18,5 @@ class RoadmapViewController: UIViewController {
 
     }
     
-
 }
+
