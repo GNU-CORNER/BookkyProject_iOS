@@ -92,9 +92,20 @@ class GetBookData {
             print("Error : Can not Create URL")
             return
         }
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("Launch: 사용자 이메일을 불러올 수 없음.")
+            return
+        }
+        print(userEmail)
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)else {
+            print("Launch: AccessToken토큰을 불러올 수 없음.")
+            return
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("application/json", forHTTPHeaderField: "accept")
+        request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
+        
         session.dataTask(with: request) { (data,response,error) in
             guard error == nil else {
                 print("Error: error.")
@@ -107,6 +118,7 @@ class GetBookData {
             }
             do {
                 let DetailBookData = try JSONDecoder().decode(BookDetailInformation.self, from: data)
+//                debugPrint("\(DetailBookData)")
                 completion(true,DetailBookData)
             }
             catch(let err) {

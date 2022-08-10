@@ -9,6 +9,7 @@ import UIKit
 
 class BookDetailViewController: UIViewController {
     
+    
     @IBOutlet var bookDetailView: UIView!
     @IBOutlet weak var detailBookName: UILabel!
     @IBOutlet weak var detailBookAuthor: UILabel!
@@ -51,12 +52,16 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var starImageView: UIImageView!
     var userContents : String = ""
     var userRating : Double = 0.0
+    // 관심도서 설정
+    @IBOutlet weak var favoriteButton: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         //리뷰 테이블뷰
         bookDetailCommentTableView.delegate = self
         bookDetailCommentTableView.dataSource = self
         self.navigationController?.navigationBar.tintColor = UIColor.black
+        
+        
         self.navigationController?.navigationBar.topItem?.title = ""
         setBookDetailUI()
         setColletioView()
@@ -66,6 +71,7 @@ class BookDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         getBookDetailReViewData()
         getBookDetailData()
+    
     }
     private func setBookDetailUI(){
         self.detailBookName.font = UIFont.boldSystemFont(ofSize: 18)
@@ -93,16 +99,25 @@ class BookDetailViewController: UIViewController {
     }
 // MARK: - API 통신
     private func getBookDetailData(){
-        
         GetBookData.shared.getDetailBookData(BID: self.BID){ (sucess,data) in
             if sucess {
                 guard let bookDetailData = data as? BookDetailInformation else {return}
-                
                 let DetailData = bookDetailData.result.bookList
+                let favorite = bookDetailData.result.isFavorite
+                
                 if bookDetailData.success{
                     DispatchQueue.main.async {
                         self.setBookDetailData(model: DetailData)
+                        self.navigationItem.rightBarButtonItem = self.favoriteButton
+                        if favorite == true{
+                            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.red
+                            self.favoriteButton.image = UIImage(systemName: "heart.fill")
+                        }else {
+                            self.navigationItem.rightBarButtonItem?.tintColor = UIColor.black
+                            self.favoriteButton.image = UIImage(systemName: "heart")
+                        }
                         self.detailBookTagListCollectionView.reloadData()
+                        
                     }
                 }else {
                     print("통신 오류")
@@ -147,8 +162,18 @@ class BookDetailViewController: UIViewController {
             }
         }
     }
+
     private func likeReviewUpdate(RID : Int){
         HomePostDataAPI.shared.updateHomeReviewLike(RID: RID) { (success,data) in
+            if success {
+                print("좋아요 성공")
+            }else {
+                print("좋아요 실패")
+            }
+        }
+    }
+    private func tapFavoriteBook(BID : Int) {
+        HomePostDataAPI.shared.favoriteBook(BID: BID) { (success,data) in
             if success {
                 print("좋아요 성공")
             }else {
@@ -167,6 +192,7 @@ class BookDetailViewController: UIViewController {
         self.detailBookTagListCollectionView?.showsHorizontalScrollIndicator = false
     }
     private func setBookDetailData(model:BookDetailData){
+        
         let url = URL(string: "\(model.thumbnailImage)")
         let data = try! Data(contentsOf: url!)
         bookDetailImage.image = UIImage(data: data)
@@ -250,6 +276,17 @@ class BookDetailViewController: UIViewController {
             self.tapViewMoreBookIndex.setTitle("펼쳐보기>", for: .normal)
         }
     }
+    @IBAction func tapFaovorite(_ sender: UIBarButtonItem) {
+        self.tapFavoriteBook(BID: self.BID)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+            self.getBookDetailData()
+        })
+        
+    }
+    
+    
+        
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "writeReViewSegue" {
             let BookWriteReViewViewController = segue.destination as! BookWriteReviewViewController
