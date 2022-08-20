@@ -377,7 +377,6 @@
 				68C8629727DF650E004B4F73 /* Recommend.storyboard */,
 				681EEE2828A237DD00FF9B40 /* RecommendTableViewCell.xib */,
 				681EEE3128A24E8100FF9B40 /* Roadmap.storyboard */,
-				681EEE3928A2804700FF9B40 /* RoadmapTableViewCell.swift */,
 				681EEE3A28A2804700FF9B40 /* RoadmapTableViewCell.xib */,
 			);
 			path = Recommend;
@@ -694,6 +693,7 @@
 				68683D7127DE40DB008EF3CF /* RecommendViewController.swift */,
 				681EEE2728A237DD00FF9B40 /* RecommendTableViewCell.swift */,
 				681EEE3328A24E9300FF9B40 /* RoadmapViewController.swift */,
+				681EEE3928A2804700FF9B40 /* RoadmapTableViewCell.swift */,
 			);
 			path = Recommend;
 			sourceTree = "<group>";

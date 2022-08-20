@@ -9,9 +9,16 @@ import UIKit
 
 class RoadmapTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var roadmapAnswerBackgroundView: UIView!
+    @IBOutlet weak var roadmapAnswerLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.roadmapAnswerBackgroundView.layer.borderWidth = 0.8
+        self.roadmapAnswerBackgroundView.layer.borderColor = UIColor(named: "lightGrayColor")?.cgColor
+        self.roadmapAnswerBackgroundView.layer.cornerRadius = 8
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
