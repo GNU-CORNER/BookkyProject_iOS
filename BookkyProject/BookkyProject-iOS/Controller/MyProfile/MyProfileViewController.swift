@@ -33,10 +33,11 @@ class MyProfileViewController: UIViewController {
         setCollectionViewDataSource()
         registerNibCollectionViewCell()
         self.loginButton.customView?.isHidden = true
+        
+        setView()
     }
     
-    // MARK: - View Will Appear
-    override func viewWillAppear(_ animated: Bool) {
+    public func setView() {
         self.navigationItem.title = "내 정보"
         // navigation color 기본값 복원
         self.navigationController?.navigationBar.tintColor = UIColor(named: "Accent Color")
@@ -52,6 +53,11 @@ class MyProfileViewController: UIViewController {
             return
         }
         self.requestMyprofile(accessToken: acessToken)
+    }
+    
+    // MARK: - View Will Appear
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

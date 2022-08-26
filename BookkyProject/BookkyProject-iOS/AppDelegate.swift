@@ -7,9 +7,14 @@
 
 import UIKit
 import CoreData
+import FirebaseCore
+//import FirebaseAnalytics
+import FirebaseMessaging
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    
+    var window: UIWindow?
 
     override init() {
         super.init()
@@ -59,6 +64,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         print("런치끝")
+        FirebaseApp.configure()
+
+        UNUserNotificationCenter.current().delegate = self
+        Messaging.messaging().delegate = self
+
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter
+            .current()
+            .requestAuthorization(
+            options: authOptions,completionHandler: { (_, _) in }
+            )
+        application.registerForRemoteNotifications()
         return true
     }
 
@@ -90,3 +107,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate : MessagingDelegate {
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print("파이어베이스 토큰: \(String(describing: fcmToken))")
+    }
+}
+//
+//extension AppDelegate : UNUserNotificationCenterDelegate {
+//    func userNotificationCenter(_ center: UNUserNotificationCenter,willPresent notification: UNNotification,withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//        completionHandler([.alert, .badge, .sound])
+//    }
+//
+//    func userNotificationCenter(_ center: UNUserNotificationCenter,didReceive response: UNNotificationResponse,withCompletionHandler completionHandler: @escaping () -> Void) {
+//        completionHandler()
+//    }
+//}

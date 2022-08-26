@@ -35,7 +35,7 @@ class RoadmapViewController: UIViewController {
         self.roadmapTableView.delegate = self
         self.roadmapTableView.dataSource = self
         registerNibCell()
-        setRecommendTableHeaderView()
+        setRecommendTableHeaderViewLayout()
     }
     
     private func registerNibCell() {
@@ -46,14 +46,42 @@ class RoadmapViewController: UIViewController {
 
 extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
     
-    private func setRecommendTableHeaderView() {
-        let header = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
-        header.backgroundColor = .systemOrange
-        let headerLabel = UILabel()
-        headerLabel.text = "여기는 뿡붕이"
-        headerLabel.textAlignment = .center
-        header.addSubview(headerLabel)
-        roadmapTableView.tableHeaderView = header
+    // FIXME: 전부 코드로 AutoLayout 설정해주기
+    private func setRecommendTableHeaderViewLayout() {
+        /// container  view
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        containerView.backgroundColor = .systemGray
+        
+        /// center view
+        let centerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width/3 + 30, height: 60))
+        centerView.backgroundColor = .white
+        centerView.layer.cornerRadius = centerView.frame.height / 2
+        centerView.layer.borderWidth = 1.0
+        centerView.layer.borderColor = UIColor(named: "primaryColor")?.cgColor
+        
+        let centerLabel = UILabel(frame: centerView.bounds) // frame 값 안주면 보이지 않는다.
+        centerLabel.text = "center label."
+        centerLabel.textAlignment = .center
+        centerView.addSubview(centerLabel)
+        centerView.center = containerView.center
+        
+        /// left view
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: 40))
+        leftView.backgroundColor = .systemOrange
+        
+        let leftLabel = UILabel(frame: leftView.bounds) // bounds가 뭐지?
+        leftLabel.text = "left label."
+        leftLabel.textAlignment = .left
+        leftView.addSubview(leftLabel)
+        
+        containerView.addSubview(centerView)
+        
+        containerView.addSubview(leftView)
+        
+//        NSLayoutConstraint.activate([
+//            leftView.leadingAnchor.constraint(equalTo: self.roadmapTableView.leadingAnchor)
+//        ])
+        self.roadmapTableView.tableHeaderView = containerView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

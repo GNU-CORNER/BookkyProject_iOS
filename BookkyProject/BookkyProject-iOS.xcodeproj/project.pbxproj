@@ -47,6 +47,9 @@
 		6860BE382833D27500C7399E /* SearchDefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6860BE372833D27500C7399E /* SearchDefaultTableViewCell.xib */; };
 		6860BE3B283408F100C7399E /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860BE3A283408F100C7399E /* SearchModel.swift */; };
 		6860BE3D2834701200C7399E /* SearchTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6860BE3C2834701200C7399E /* SearchTagCollectionViewCell.xib */; };
+		6862CD1A28B8D6F500F72553 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6862CD1928B8D6F500F72553 /* FirebaseAnalytics */; };
+		6862CD1C28B8D6FE00F72553 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6862CD1B28B8D6FE00F72553 /* FirebaseAuth */; };
+		6862CD2228B8DA9400F72553 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 6862CD2128B8DA9400F72553 /* FirebaseMessaging */; };
 		68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */; };
 		68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */; };
 		68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68683D4227DDF5EE008EF3CF /* Main.storyboard */; };
@@ -77,6 +80,7 @@
 		688DEDC5282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDC4282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift */; };
 		688DEDC7282E9C60002F647A /* MyProfileUpdateView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688DEDC6282E9C60002F647A /* MyProfileUpdateView.storyboard */; };
 		688DEDC9282E9C95002F647A /* MyProfileUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDC8282E9C95002F647A /* MyProfileUpdateViewController.swift */; };
+		68AFBF2F28B8932C00D5BD59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68AFBF2E28B8932C00D5BD59 /* GoogleService-Info.plist */; };
 		68B21B052829269C00707C5A /* MyPostsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */; };
 		68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */; };
 		68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B21B08282A2D4C00707C5A /* MyProfileModel.swift */; };
@@ -254,6 +258,7 @@
 		688DEDC4282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsMoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		688DEDC6282E9C60002F647A /* MyProfileUpdateView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfileUpdateView.storyboard; sourceTree = "<group>"; };
 		688DEDC8282E9C95002F647A /* MyProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileUpdateViewController.swift; sourceTree = "<group>"; };
+		68AFBF2E28B8932C00D5BD59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyReviewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B08282A2D4C00707C5A /* MyProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileModel.swift; sourceTree = "<group>"; };
@@ -342,6 +347,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6862CD1A28B8D6F500F72553 /* FirebaseAnalytics in Frameworks */,
+				6862CD2228B8DA9400F72553 /* FirebaseMessaging in Frameworks */,
+				6862CD1C28B8D6FE00F72553 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +462,13 @@
 			path = Search;
 			sourceTree = "<group>";
 		};
+		6862CD1828B8D6F500F72553 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		68683D3027DDF5EE008EF3CF = {
 			isa = PBXGroup;
 			children = (
@@ -464,6 +479,7 @@
 				68683D5227DDF5EF008EF3CF /* BookkyProject-iOSTests */,
 				68683D5C27DDF5EF008EF3CF /* BookkyProject-iOSUITests */,
 				68683D3A27DDF5EE008EF3CF /* Products */,
+				6862CD1828B8D6F500F72553 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -490,6 +506,7 @@
 				68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */,
 				68683D4527DDF5EF008EF3CF /* Assets.xcassets */,
 				68683D4A27DDF5EF008EF3CF /* Info.plist */,
+				68AFBF2E28B8932C00D5BD59 /* GoogleService-Info.plist */,
 			);
 			path = "BookkyProject-iOS";
 			sourceTree = "<group>";
@@ -900,6 +917,11 @@
 			dependencies = (
 			);
 			name = "BookkyProject-iOS";
+			packageProductDependencies = (
+				6862CD1928B8D6F500F72553 /* FirebaseAnalytics */,
+				6862CD1B28B8D6FE00F72553 /* FirebaseAuth */,
+				6862CD2128B8DA9400F72553 /* FirebaseMessaging */,
+			);
 			productName = "BookkyProject-iOS";
 			productReference = 68683D3927DDF5EE008EF3CF /* BookkyProject-iOS.app */;
 			productType = "com.apple.product-type.application";
@@ -972,6 +994,9 @@
 				Base,
 			);
 			mainGroup = 68683D3027DDF5EE008EF3CF;
+			packageReferences = (
+				68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 68683D3A27DDF5EE008EF3CF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1005,6 +1030,7 @@
 				6860BE2828336E2D00C7399E /* SettingsView.storyboard in Resources */,
 				6853E226284B1E84002BA8C9 /* SearchTableHeaderView.xib in Resources */,
 				68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */,
+				68AFBF2F28B8932C00D5BD59 /* GoogleService-Info.plist in Resources */,
 				68C4E918284DDC6100589137 /* KoddiUDOnGothic-Regular.ttf in Resources */,
 				68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */,
 				6860BE382833D27500C7399E /* SearchDefaultTableViewCell.xib in Resources */,
@@ -1339,9 +1365,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4G47XHXXQX;
+				DEVELOPMENT_TEAM = 9T9YFXL798;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BookkyProject-iOS/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1353,7 +1381,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "BookkyProject-iOS";
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.corner.BookkyProject-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1368,9 +1397,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4G47XHXXQX;
+				DEVELOPMENT_TEAM = 9T9YFXL798;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BookkyProject-iOS/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1382,7 +1413,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "BookkyProject-iOS";
+				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.corner.BookkyProject-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1506,6 +1538,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6862CD1928B8D6F500F72553 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		6862CD1B28B8D6FE00F72553 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		6862CD2128B8DA9400F72553 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		6853E230284BBFD9002BA8C9 /* Searches.xcdatamodeld */ = {
