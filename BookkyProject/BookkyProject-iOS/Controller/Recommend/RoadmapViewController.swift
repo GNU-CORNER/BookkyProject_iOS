@@ -50,7 +50,13 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
     private func setRecommendTableHeaderViewLayout() {
         /// container  view
         let containerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+//        containerView.translatesAutoresizingMaskIntoConstraints = false
         containerView.backgroundColor = .systemGray
+//        NSLayoutConstraint.activate([
+//            containerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+//            containerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+//            containerView.heightAnchor.constraint(equalToConstant: 100)
+//        ])
         
         /// center view
         let centerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width/3 + 30, height: 60))
@@ -77,10 +83,29 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
         containerView.addSubview(centerView)
         
         containerView.addSubview(leftView)
+        leftView.translatesAutoresizingMaskIntoConstraints = false
+        leftView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        leftView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+        leftView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        leftView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2).isActive = true
         
-//        NSLayoutConstraint.activate([
-//            leftView.leadingAnchor.constraint(equalTo: self.roadmapTableView.leadingAnchor)
-//        ])
+//        /// right view
+//        let rightView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: 40))
+//        rightView.backgroundColor = .systemOrange
+//        
+//        let leftLabel = UILabel(frame: rightView.bounds) // bounds가 뭐지?
+//        leftLabel.text = "right label."
+//        leftLabel.textAlignment = .right
+//        leftView.addSubview(leftLabel)
+//        
+//        
+//        containerView.addSubview(rightView)
+//        rightView.translatesAutoresizingMaskIntoConstraints = false
+//        rightView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+//        rightView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
+//        rightView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+//        rightView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2).isActive = true
+
         self.roadmapTableView.tableHeaderView = containerView
     }
     

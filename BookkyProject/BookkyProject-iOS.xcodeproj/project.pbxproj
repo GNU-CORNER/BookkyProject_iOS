@@ -66,6 +66,7 @@
 		686AE6C227FC1F9200B77245 /* EmailAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */; };
 		686AE6C427FC6D3700B77245 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686AE6C327FC6D3700B77245 /* Account.swift */; };
 		686B21302805498000384408 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686B212F2805498000384408 /* KeychainManager.swift */; };
+		6879239D28B903FC009419FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6879239C28B903FC009419FB /* GoogleService-Info.plist */; };
 		687C1377287975DD00452917 /* MyPostsMoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687C1376287975DD00452917 /* MyPostsMoreTableViewController.swift */; };
 		687C137B2879BDA500452917 /* MyBooksMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687C137A2879BDA500452917 /* MyBooksMoreCollectionViewCell.swift */; };
 		6883FE1D284732CB00C132A4 /* TagsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6883FE1C284732CB00C132A4 /* TagsModel.swift */; };
@@ -80,7 +81,6 @@
 		688DEDC5282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDC4282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift */; };
 		688DEDC7282E9C60002F647A /* MyProfileUpdateView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688DEDC6282E9C60002F647A /* MyProfileUpdateView.storyboard */; };
 		688DEDC9282E9C95002F647A /* MyProfileUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688DEDC8282E9C95002F647A /* MyProfileUpdateViewController.swift */; };
-		68AFBF2F28B8932C00D5BD59 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68AFBF2E28B8932C00D5BD59 /* GoogleService-Info.plist */; };
 		68B21B052829269C00707C5A /* MyPostsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */; };
 		68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */; };
 		68B21B09282A2D4C00707C5A /* MyProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B21B08282A2D4C00707C5A /* MyProfileModel.swift */; };
@@ -223,6 +223,8 @@
 		6860BE372833D27500C7399E /* SearchDefaultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchDefaultTableViewCell.xib; sourceTree = "<group>"; };
 		6860BE3A283408F100C7399E /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		6860BE3C2834701200C7399E /* SearchTagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTagCollectionViewCell.xib; sourceTree = "<group>"; };
+		6862CD2328B8FA9800F72553 /* BookkyProject-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "BookkyProject-iOS.entitlements"; sourceTree = "<group>"; };
+		6862CD2428B8FA9800F72553 /* HomeKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HomeKit.framework; path = System/Library/Frameworks/HomeKit.framework; sourceTree = SDKROOT; };
 		68683D3927DDF5EE008EF3CF /* BookkyProject-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "BookkyProject-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 		686AE6C127FC1F9200B77245 /* EmailAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAuthModel.swift; sourceTree = "<group>"; };
 		686AE6C327FC6D3700B77245 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		686B212F2805498000384408 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KeychainManager.swift; path = "BookkyProject-iOS/SerVice/KeychainManager.swift"; sourceTree = SOURCE_ROOT; };
+		6879239C28B903FC009419FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		687C1376287975DD00452917 /* MyPostsMoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsMoreTableViewController.swift; sourceTree = "<group>"; };
 		687C137A2879BDA500452917 /* MyBooksMoreCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyBooksMoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		6883FE1C284732CB00C132A4 /* TagsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsModel.swift; sourceTree = "<group>"; };
@@ -258,7 +261,6 @@
 		688DEDC4282E8A2A002F647A /* MyReviewsMoreCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReviewsMoreCollectionViewCell.swift; sourceTree = "<group>"; };
 		688DEDC6282E9C60002F647A /* MyProfileUpdateView.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfileUpdateView.storyboard; sourceTree = "<group>"; };
 		688DEDC8282E9C95002F647A /* MyProfileUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileUpdateViewController.swift; sourceTree = "<group>"; };
-		68AFBF2E28B8932C00D5BD59 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68B21B042829269C00707C5A /* MyPostsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPostsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B06282939C800707C5A /* MyReviewsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyReviewsCollectionViewCell.xib; sourceTree = "<group>"; };
 		68B21B08282A2D4C00707C5A /* MyProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileModel.swift; sourceTree = "<group>"; };
@@ -465,6 +467,7 @@
 		6862CD1828B8D6F500F72553 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6862CD2428B8FA9800F72553 /* HomeKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -496,6 +499,7 @@
 		68683D3B27DDF5EE008EF3CF /* BookkyProject-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				6862CD2328B8FA9800F72553 /* BookkyProject-iOS.entitlements */,
 				68C4E919284DDC6500589137 /* Font */,
 				F87431982802FFEE003EA8C0 /* ExtensionUI */,
 				686AE6B927FC01B600B77245 /* Service */,
@@ -506,7 +510,7 @@
 				68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */,
 				68683D4527DDF5EF008EF3CF /* Assets.xcassets */,
 				68683D4A27DDF5EF008EF3CF /* Info.plist */,
-				68AFBF2E28B8932C00D5BD59 /* GoogleService-Info.plist */,
+				6879239C28B903FC009419FB /* GoogleService-Info.plist */,
 			);
 			path = "BookkyProject-iOS";
 			sourceTree = "<group>";
@@ -1030,7 +1034,7 @@
 				6860BE2828336E2D00C7399E /* SettingsView.storyboard in Resources */,
 				6853E226284B1E84002BA8C9 /* SearchTableHeaderView.xib in Resources */,
 				68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */,
-				68AFBF2F28B8932C00D5BD59 /* GoogleService-Info.plist in Resources */,
+				6879239D28B903FC009419FB /* GoogleService-Info.plist in Resources */,
 				68C4E918284DDC6100589137 /* KoddiUDOnGothic-Regular.ttf in Resources */,
 				68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */,
 				6860BE382833D27500C7399E /* SearchDefaultTableViewCell.xib in Resources */,
@@ -1363,9 +1367,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BookkyProject-iOS/BookkyProject-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9T9YFXL798;
+				DEVELOPMENT_TEAM = K8HS243B4A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BookkyProject-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera.";
@@ -1382,7 +1387,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.corner.BookkyProject-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = BookkyProjectiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1395,9 +1400,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "BookkyProject-iOS/BookkyProject-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 9T9YFXL798;
+				DEVELOPMENT_TEAM = K8HS243B4A;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "BookkyProject-iOS/Info.plist";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera.";
@@ -1414,7 +1420,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--generate-entitlement-der";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.corner.BookkyProject-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = BookkyProjectiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
