@@ -51,23 +51,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raJ-Sj-Wdc">
-                                <rect key="frame" x="20" y="44" width="374" height="30"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wG-eS-Uym">
-                                        <rect key="frame" x="169.5" y="6.5" width="35.5" height="17"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6Eg-Cc-1Me"/>
-                                    <constraint firstItem="1wG-eS-Uym" firstAttribute="centerX" secondItem="raJ-Sj-Wdc" secondAttribute="centerX" id="a01-v6-Q7V"/>
-                                    <constraint firstItem="1wG-eS-Uym" firstAttribute="centerY" secondItem="raJ-Sj-Wdc" secondAttribute="centerY" id="vGl-HQ-wkQ"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PDc-zZ-Dij">
                                 <rect key="frame" x="20" y="119" width="374" height="30"/>
                                 <constraints>
@@ -87,16 +70,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raJ-Sj-Wdc">
+                                <rect key="frame" x="169" y="44" width="76" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1wG-eS-Uym">
+                                        <rect key="frame" x="20" y="6.5" width="36" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="1wG-eS-Uym" secondAttribute="trailing" constant="20" id="NVV-qy-WtQ"/>
+                                    <constraint firstItem="1wG-eS-Uym" firstAttribute="top" secondItem="raJ-Sj-Wdc" secondAttribute="top" constant="6.5" id="QO6-KP-8jQ"/>
+                                    <constraint firstItem="1wG-eS-Uym" firstAttribute="leading" secondItem="raJ-Sj-Wdc" secondAttribute="leading" constant="20" id="Yx1-1U-bml"/>
+                                    <constraint firstAttribute="bottom" secondItem="1wG-eS-Uym" secondAttribute="bottom" constant="6.5" id="ifa-6R-HeR"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cH7-dw-znR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="LHz-AQ-QjG" firstAttribute="leading" secondItem="cH7-dw-znR" secondAttribute="leading" constant="20" id="0UM-wO-jaD"/>
+                            <constraint firstItem="raJ-Sj-Wdc" firstAttribute="leading" relation="lessThanOrEqual" secondItem="cH7-dw-znR" secondAttribute="leading" priority="750" constant="169" id="5hq-4y-AAy"/>
                             <constraint firstItem="PDc-zZ-Dij" firstAttribute="leading" secondItem="cH7-dw-znR" secondAttribute="leading" constant="20" id="7t6-xl-VBN"/>
-                            <constraint firstItem="cH7-dw-znR" firstAttribute="trailing" secondItem="raJ-Sj-Wdc" secondAttribute="trailing" constant="20" id="8FI-v4-Q04"/>
-                            <constraint firstItem="raJ-Sj-Wdc" firstAttribute="leading" secondItem="cH7-dw-znR" secondAttribute="leading" constant="20" id="DRu-Rr-m24"/>
                             <constraint firstItem="cH7-dw-znR" firstAttribute="trailing" secondItem="LHz-AQ-QjG" secondAttribute="trailing" constant="20" id="E4k-od-O2y"/>
                             <constraint firstItem="PDc-zZ-Dij" firstAttribute="top" secondItem="raJ-Sj-Wdc" secondAttribute="bottom" constant="45" id="RHD-U1-C1b"/>
+                            <constraint firstItem="cH7-dw-znR" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="raJ-Sj-Wdc" secondAttribute="trailing" priority="750" constant="169" id="T32-YI-cyT"/>
                             <constraint firstItem="LHz-AQ-QjG" firstAttribute="top" secondItem="PDc-zZ-Dij" secondAttribute="bottom" constant="45" id="ZWX-L6-CaG"/>
                             <constraint firstItem="raJ-Sj-Wdc" firstAttribute="top" secondItem="cH7-dw-znR" secondAttribute="top" id="he4-cU-KGL"/>
                             <constraint firstItem="cH7-dw-znR" firstAttribute="trailing" secondItem="PDc-zZ-Dij" secondAttribute="trailing" constant="20" id="jbs-eV-EO1"/>
