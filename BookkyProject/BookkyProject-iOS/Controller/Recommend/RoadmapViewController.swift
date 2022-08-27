@@ -165,7 +165,19 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
         answerCell.selectionStyle = .none
         return answerCell
     }
-
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let roadmapStoryboard = UIStoryboard(name: "Roadmap", bundle: nil)
+        guard let roadmapDetailVC = roadmapStoryboard.instantiateViewController(withIdentifier: "RoadmapDeatil") as? RoadmapDetailViewController else {
+            return 
+        }
+        // 현재 뷰컨의 네비게이션 타이틀을 그대로 디테일뷰컨에 넘겨준다.
+        roadmapDetailVC.navigationItem.titleView = self.navigationItem.titleView
+        // FIXME: topic 담는 곳 수정하기 (로직 만들기)
+        roadmapDetailVC.topic = roadmapTopic[0]
+        roadmapDetailVC.question = roadmapAnswer[indexPath.row]
+        self.navigationController?.pushViewController(roadmapDetailVC, animated: true)
+    }
     
 }
 
