@@ -48,8 +48,13 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
     
     // FIXME: 전부 코드로 AutoLayout 설정해주기
     private func setRecommendTableHeaderViewLayout() {
+        let containerViewHeight: CGFloat = 100.0
+        let centerViewHeight: CGFloat = 60.0
+        let sideViewHeight: CGFloat = 40.0 // left, right view
+        let sideArrowViewHeight: CGFloat = 20.0
+        
         /// container  view
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: containerViewHeight))
 //        containerView.translatesAutoresizingMaskIntoConstraints = false
 //        containerView.backgroundColor = .systemGray
 //        NSLayoutConstraint.activate([
@@ -59,39 +64,51 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
 //        ])
         
         /// left view
-        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: 40))
+        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: sideViewHeight))
         leftView.backgroundColor = UIColor(named: "primaryColor")
         
         let leftLabel = UILabel(frame: leftView.bounds) // bounds가 뭐지?
         leftLabel.text = "left label."
-        leftLabel.textAlignment = .left
+        leftLabel.translatesAutoresizingMaskIntoConstraints = false
+//        leftLabel.textAlignment = .left
+        leftLabel.textColor = .white
+        leftLabel.font = UIFont.systemFont(ofSize: 14)
         leftView.addSubview(leftLabel)
+        
+        leftLabel.leadingAnchor.constraint(equalTo: leftView.leadingAnchor, constant: 10).isActive = true
+        leftLabel.centerYAnchor.constraint(equalTo: leftView.centerYAnchor).isActive = true
         
         containerView.addSubview(leftView)
         leftView.translatesAutoresizingMaskIntoConstraints = false
         leftView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         leftView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-        leftView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        leftView.heightAnchor.constraint(equalToConstant: sideViewHeight).isActive = true
         leftView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2).isActive = true
         
         /// right view
-        let rightView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: 40))
+        let rightView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: sideViewHeight))
         rightView.backgroundColor = UIColor(named: "primaryColor")
         
         let rightLabel = UILabel(frame: rightView.bounds) // bounds가 뭐지?
         rightLabel.text = "right label."
-        rightLabel.textAlignment = .right
+        rightLabel.translatesAutoresizingMaskIntoConstraints = false
+//        rightLabel.textAlignment = .right
+        rightLabel.textColor = .white
+        rightLabel.font = UIFont.systemFont(ofSize: 14)
         rightView.addSubview(rightLabel)
+        
+        rightLabel.trailingAnchor.constraint(equalTo: rightView.trailingAnchor, constant: -10).isActive = true
+        rightLabel.centerYAnchor.constraint(equalTo: rightView.centerYAnchor).isActive = true
         
         containerView.addSubview(rightView)
         rightView.translatesAutoresizingMaskIntoConstraints = false
         rightView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         rightView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-        rightView.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        rightView.heightAnchor.constraint(equalToConstant: sideViewHeight).isActive = true
         rightView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2).isActive = true
         
         /// center view
-        let centerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width/3 + 30, height: 60))
+        let centerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width/3 + 30, height: centerViewHeight))
         centerView.backgroundColor = .white
         centerView.layer.cornerRadius = centerView.frame.height / 2
         centerView.layer.borderWidth = 1.0
@@ -104,6 +121,29 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
         centerView.center = containerView.center
         
         containerView.addSubview(centerView)
+        
+        /// left, right button view
+        let rightArrowImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: sideArrowViewHeight, height: sideArrowViewHeight))
+        rightArrowImageView.image = UIImage(systemName: "arrowtriangle.forward.circle")
+        rightArrowImageView.tintColor = .white
+        rightView.addSubview(rightArrowImageView)
+        rightArrowImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        rightArrowImageView.heightAnchor.constraint(equalToConstant: sideArrowViewHeight).isActive = true
+        rightArrowImageView.widthAnchor.constraint(equalToConstant: sideArrowViewHeight).isActive = true
+        rightArrowImageView.leadingAnchor.constraint(equalTo: centerView.trailingAnchor, constant: 5).isActive = true
+        rightArrowImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
+        
+        let leftArrowImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: sideArrowViewHeight, height: sideArrowViewHeight))
+        leftArrowImageView.image = UIImage(systemName: "arrowtriangle.backward.circle")
+        leftArrowImageView.tintColor = .white
+        leftView.addSubview(leftArrowImageView)
+        leftArrowImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        leftArrowImageView.heightAnchor.constraint(equalToConstant: sideArrowViewHeight).isActive = true
+        leftArrowImageView.widthAnchor.constraint(equalToConstant: sideArrowViewHeight).isActive = true
+        leftArrowImageView.trailingAnchor.constraint(equalTo: centerView.leadingAnchor, constant: -5).isActive = true
+        leftArrowImageView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
 
         self.roadmapTableView.tableHeaderView = containerView
     }
