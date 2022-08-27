@@ -64,13 +64,13 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
 //        ])
         
         /// left view
-        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: sideViewHeight))
+//        let leftView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: sideViewHeight))
+        let leftView = UIButton(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: sideViewHeight))
         leftView.backgroundColor = UIColor(named: "primaryColor")
         
         let leftLabel = UILabel(frame: leftView.bounds) // bounds가 뭐지?
         leftLabel.text = "left label."
         leftLabel.translatesAutoresizingMaskIntoConstraints = false
-//        leftLabel.textAlignment = .left
         leftLabel.textColor = .white
         leftLabel.font = UIFont.systemFont(ofSize: 14)
         leftView.addSubview(leftLabel)
@@ -84,34 +84,38 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
         leftView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
         leftView.heightAnchor.constraint(equalToConstant: sideViewHeight).isActive = true
         leftView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2).isActive = true
+        /// button clicked
+        leftView.addTarget(self, action: #selector(headerViewLeftButtonClicked(sender:)), for: .touchUpInside)
         
         /// right view
-        let rightView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: sideViewHeight))
+//        let rightView = UIView(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: sideViewHeight))
+        let rightView = UIButton(frame: CGRect(x: 0, y: 0, width: containerView.frame.width/2, height: sideViewHeight))
         rightView.backgroundColor = UIColor(named: "primaryColor")
-        
+
         let rightLabel = UILabel(frame: rightView.bounds) // bounds가 뭐지?
         rightLabel.text = "right label."
         rightLabel.translatesAutoresizingMaskIntoConstraints = false
-//        rightLabel.textAlignment = .right
         rightLabel.textColor = .white
         rightLabel.font = UIFont.systemFont(ofSize: 14)
         rightView.addSubview(rightLabel)
-        
+
         rightLabel.trailingAnchor.constraint(equalTo: rightView.trailingAnchor, constant: -10).isActive = true
         rightLabel.centerYAnchor.constraint(equalTo: rightView.centerYAnchor).isActive = true
-        
+
         containerView.addSubview(rightView)
         rightView.translatesAutoresizingMaskIntoConstraints = false
         rightView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         rightView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
         rightView.heightAnchor.constraint(equalToConstant: sideViewHeight).isActive = true
         rightView.widthAnchor.constraint(equalToConstant: view.frame.size.width / 2).isActive = true
+        /// button clicked
+        rightView.addTarget(self, action: #selector(headerViewRightButtonClicked(sender:)), for: .touchUpInside)
         
         /// center view
         let centerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width/3 + 30, height: centerViewHeight))
         centerView.backgroundColor = .white
         centerView.layer.cornerRadius = centerView.frame.height / 2
-        centerView.layer.borderWidth = 1.0
+        centerView.layer.borderWidth = 2.0
         centerView.layer.borderColor = UIColor(named: "primaryColor")?.cgColor
         
         let centerLabel = UILabel(frame: centerView.bounds) // frame 값 안주면 보이지 않는다.
@@ -148,6 +152,7 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
         self.roadmapTableView.tableHeaderView = containerView
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return roadmapAnswer.count
     }
@@ -161,4 +166,16 @@ extension RoadmapViewController: UITableViewDelegate, UITableViewDataSource {
         return answerCell
     }
 
+    
+}
+
+extension RoadmapViewController {
+    
+    @objc func headerViewRightButtonClicked(sender: UIButton!) {
+        print("click right")
+    }
+    
+    @objc func headerViewLeftButtonClicked(sender: UIButton!) {
+        print("click left")
+    }
 }
