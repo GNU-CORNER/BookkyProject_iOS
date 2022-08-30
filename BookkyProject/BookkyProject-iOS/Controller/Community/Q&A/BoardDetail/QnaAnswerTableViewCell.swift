@@ -13,14 +13,14 @@ class QnaAnswerTableViewCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var createDataLabel: UILabel!
     @IBOutlet weak var choiceAnswerLabel: UILabel!
-    @IBOutlet weak var addfunctionButton: UIButton!
     @IBOutlet weak var contentsLabel: UILabel!
     
     @IBOutlet weak var likeCntLabel: UIButton!
     
     @IBOutlet weak var commentButton: CustomQnAButton!
-    @IBOutlet weak var addFunctionButton: CustomQnAButton!
+    @IBOutlet weak var addFunctionButton: CustomQnAButtonAddFunction!
     var PID : Int = 0
+    var BID : Int = 0
     var QnaAnswerisAccessible : Bool = false
     @IBOutlet weak var bookImg: UIImageView!
     @IBOutlet weak var bookNameLabel: UILabel!
@@ -30,22 +30,30 @@ class QnaAnswerTableViewCell: UITableViewCell {
     @IBOutlet weak var selectBookView: UIView!
     @IBOutlet weak var imgCollectionView: UICollectionView!
     var ImageArray : [String] = []
+    var commentUpdateImageArray : [UIImage] = []
+    var commentBookData : CommentBookData?
+    var contents : String = ""
+//    var commentBookData :
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
         setCollectionViewCell()
+        
     }
     func setReplyData(model :WriteTextDetailQnAReplyData ){
         self.userNameLabel.text = model.nickname
-        self.createDataLabel.text = model.createAt
+        self.createDataLabel.text = model.updateAt
         self.contentsLabel.text = model.contents
+        self.contents = model.contents
         self.likeCntLabel.setTitle("좋아요(\(model.like?.count ?? 0))", for: .normal)
         self.choiceAnswerLabel.text = " "
         self.commentButton.setTitle("댓글(\(model.commentCnt ?? 0))", for:.normal)
         self.PID = model.PID
+        self.BID = model.TBID
         self.QnaAnswerisAccessible = model.isAccessible
         self.bookNameLabel.text = model.Book?.TITLE
         self.ImageArray = model.postImage ?? []
+        self.commentBookData = model.Book
         if self.ImageArray == [] {
             self.imgArrayHeight.constant = 0
         }

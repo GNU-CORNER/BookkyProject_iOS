@@ -12,11 +12,15 @@ protocol SelectSendData : AnyObject {
 protocol SelectUpdateVCSendData : AnyObject {
     func sendData(ImageString:String,bookName: String ,bookAuthorPublisher : String,height : Int,BID : Int)
 }
+protocol SelectUpdateCommentVCSendData : AnyObject {
+    func sendData(ImageString:String,bookName: String ,bookAuthorPublisher : String,height : Int,BID : Int)
+}
 class WritePostBookSearchViewController: UIViewController {
     var searchText : String = ""
     var searchBookList : [BookSearchDataList] = []
     var delegate : SelectSendData?
     var updateDelegate : SelectUpdateVCSendData?
+    var updateCommentDelegate : SelectUpdateCommentVCSendData?
     var bookName : String = ""
     var bookImg : String = ""
     var bookAP : String = ""

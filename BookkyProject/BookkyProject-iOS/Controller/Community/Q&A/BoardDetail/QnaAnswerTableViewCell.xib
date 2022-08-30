@@ -55,7 +55,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jav-qj-VOd" customClass="CustomQnAButton" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jav-qj-VOd" customClass="CustomQnAButtonAddFunction" customModule="BookkyProject_iOS" customModuleProvider="target">
                                         <rect key="frame" x="42.5" y="0.0" width="19" height="25"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="ellipsis" catalog="system"/>
@@ -164,8 +164,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="addFunctionButton" destination="Jav-qj-VOd" id="soX-HA-5cn"/>
-                <outlet property="addfunctionButton" destination="Jav-qj-VOd" id="Xjw-gu-6fJ"/>
+                <outlet property="addFunctionButton" destination="Jav-qj-VOd" id="tgF-EE-bM7"/>
                 <outlet property="bookAPLabel" destination="ZjL-qz-3jY" id="oSP-cF-GTK"/>
                 <outlet property="bookImg" destination="qKk-cz-1vB" id="I1T-Ux-0xH"/>
                 <outlet property="bookNameLabel" destination="1Db-31-qck" id="EE5-Sg-sJo"/>

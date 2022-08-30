@@ -15,14 +15,7 @@ class BoardTextDetailImageCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     func setImageArray(model : String) {
-        if let url = URL(string: model) {
-            self.UIimageView.load(url: url)
-        }
-        let url = URL(string: "\(model)")
-        let data = try! Data(contentsOf: url!)
-        self.UIImage = UIKit.UIImage(data: data)
-        
-        
+
     }
     override func prepareForReuse() {
         super.prepareForReuse()

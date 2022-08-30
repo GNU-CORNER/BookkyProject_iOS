@@ -146,6 +146,7 @@
 		F8C10A922832C0C400D311F6 /* QnACommunity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8C10A912832C0C400D311F6 /* QnACommunity.storyboard */; };
 		F8C11E83281FE45E000D1689 /* ButtonPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C11E82281FE45E000D1689 /* ButtonPadding.swift */; };
 		F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D4027DDF5EE008EF3CF /* HomeViewController.swift */; };
+		F8D55D0928ABA2E000F3A38A /* QnACommentUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D55D0828ABA2E000F3A38A /* QnACommentUpdateViewController.swift */; };
 		F8E386A7282BE6AA006F9BDD /* TagMoreButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E386A6282BE6AA006F9BDD /* TagMoreButtonViewController.swift */; };
 		F8E68A352828C4450046760A /* WriteTextDetailDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E68A342828C4450046760A /* WriteTextDetailDataFormat.swift */; };
 		F8E68A7D282960320046760A /* BookDetailReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E68A7C282960320046760A /* BookDetailReviewTableViewCell.swift */; };
@@ -318,6 +319,7 @@
 		F8C10A8F2832C05D00D311F6 /* QnACommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnACommentViewController.swift; sourceTree = "<group>"; };
 		F8C10A912832C0C400D311F6 /* QnACommunity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QnACommunity.storyboard; sourceTree = "<group>"; };
 		F8C11E82281FE45E000D1689 /* ButtonPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPadding.swift; sourceTree = "<group>"; };
+		F8D55D0828ABA2E000F3A38A /* QnACommentUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnACommentUpdateViewController.swift; sourceTree = "<group>"; };
 		F8E386A6282BE6AA006F9BDD /* TagMoreButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMoreButtonViewController.swift; sourceTree = "<group>"; };
 		F8E68A342828C4450046760A /* WriteTextDetailDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTextDetailDataFormat.swift; sourceTree = "<group>"; };
 		F8E68A7C282960320046760A /* BookDetailReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailReviewTableViewCell.swift; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 				F80BB3A428815F9100689AA8 /* QnaAnswerImageCollectionViewCell.swift */,
 				F80BB3A528815F9100689AA8 /* QnaAnswerImageCollectionViewCell.xib */,
 				F8BE9B112885758500913468 /* QnAWriteAddImgCollectionViewCell.swift */,
+				F8D55D0828ABA2E000F3A38A /* QnACommentUpdateViewController.swift */,
 			);
 			path = BoardDetail;
 			sourceTree = "<group>";
@@ -1043,6 +1046,7 @@
 				F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */,
 				68C4E91B284DE47500589137 /* UIFontExtension.swift in Sources */,
 				F88D683E282D254400E23344 /* TagMoreViewBookList.swift in Sources */,
+				F8D55D0928ABA2E000F3A38A /* QnACommentUpdateViewController.swift in Sources */,
 				F8886F2C2821328800044737 /* WritePostDataFormat.swift in Sources */,
 				68683D7427DE40E8008EF3CF /* SearchTableViewController.swift in Sources */,
 				68683D7027DE408C008EF3CF /* CommunityViewController.swift in Sources */,

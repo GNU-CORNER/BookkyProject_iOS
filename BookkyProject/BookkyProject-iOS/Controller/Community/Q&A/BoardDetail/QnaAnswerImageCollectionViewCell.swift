@@ -16,6 +16,7 @@ class QnaAnswerImageCollectionViewCell: UICollectionViewCell {
         // Initialization code
     }
     func setImageArray(model : String) {
+
         if let url = URL(string: model) {
             self.CommentImageView.load(url: url)
         }

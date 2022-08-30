@@ -30,6 +30,7 @@ class QnABoardTextDetailViewController: UIViewController {
     @IBOutlet weak var QnAPostDetailView: UIView!
     var bookdata : QnAPostDetailBookData?
     var comentBookData : CommentBookData?
+    var bookData : PostDetailBookData?
     var PID : Int = 0
     var BID : Int = 0
     var PostisLiked : Bool = false
@@ -180,6 +181,7 @@ class QnABoardTextDetailViewController: UIViewController {
         }
     }
     private func setBoardTextDetailData(model :WriteTextDetailQnAPostData){
+        
         self.QnATitleLabel.text = model.title
         self.QnAContentsLabel.text = model.contents
         self.QnACreateDateLabel.text = "\(model.createAt)"
@@ -226,9 +228,11 @@ class QnABoardTextDetailViewController: UIViewController {
     private func getBoardTextDetailQnAData(){
         CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
+                    
                 guard let communityGetDetailList = data as? WriteTextDetailQnAInformation else {return}
                 let writeTextDetailQnAData = communityGetDetailList.result.postdata
                 self.QnAReplyData = communityGetDetailList.result.replydata!
+                print("\(self.QnAReplyData)test")
                 self.bookdata = communityGetDetailList.result.Book
                 
                 self.BID = self.bookdata?.TBID ?? 0
@@ -286,8 +290,12 @@ class QnABoardTextDetailViewController: UIViewController {
     }
     //답글 ...버튼 액션
     @objc func addReplyCommentFunction(_ sender : Any){
-        let parentID : Int = (sender as! CustomQnAButton).parentID
-        let isAccessible : Bool = (sender as! CustomQnAButton).isAccessible
+        let parentID : Int = (sender as! CustomQnAButtonAddFunction).parentID
+        let isAccessible : Bool = (sender as! CustomQnAButtonAddFunction).isAccessible
+        let commentBookData : CommentBookData? = (sender as! CustomQnAButtonAddFunction).commentBookData
+        //        let updateImgArray : [UIImage] = (sender as! CustomQnAButtonAddFunction).updateImgArray
+        let BID : Int = (sender as! CustomQnAButtonAddFunction).BID
+        let contents : String = (sender as! CustomQnAButtonAddFunction).contents
         let alert = UIAlertController(title: "답글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         let report = UIAlertAction(title: "신고", style: .destructive){(_) in
@@ -323,7 +331,15 @@ class QnABoardTextDetailViewController: UIViewController {
                 })
             }
             let update = UIAlertAction(title: "답글 수정", style: .default){(_)in
-                
+                guard let UpdateCommentviewController = self.storyboard?.instantiateViewController(withIdentifier: "QnACommentUpdateViewController")as? QnACommentUpdateViewController else {return}
+                UpdateCommentviewController.contentsString = contents
+                UpdateCommentviewController.BID = BID
+                UpdateCommentviewController.PID = parentID
+                print("\(BID)check")
+                UpdateCommentviewController.bookData = commentBookData
+                //                UpdateCommentviewController.imageArray = updateImgArray
+                UpdateCommentviewController.boardTypeNumber = self.boardTypeNumber
+                self.navigationController?.pushViewController(UpdateCommentviewController, animated: true)
             }
             alert.addAction(delete)
             alert.addAction(update)
@@ -346,9 +362,14 @@ extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDe
         cell.setReplyData(model:self.QnAReplyData[indexPath.row])
         cell.commentButton.addTarget(self, action: #selector(tapGoCommentofReplyComment) , for: .touchUpInside)
         cell.commentButton.parentID = self.QnAReplyData[indexPath.row].PID
+        
         cell.addFunctionButton.addTarget(self, action: #selector(addReplyCommentFunction), for: .touchUpInside)
         cell.addFunctionButton.isAccessible = cell.QnaAnswerisAccessible
         cell.addFunctionButton.parentID = cell.PID
+        cell.addFunctionButton.BID = cell.BID
+        cell.addFunctionButton.contents = cell.contents
+        //        cell.addFunctionButton.updateImgArray = cell.commentUpdateImageArray
+        cell.addFunctionButton.commentBookData = cell.commentBookData
         return cell
     }
     
@@ -377,5 +398,22 @@ class CustomQnAButton : UIButton {
         self.init()
         self.parentID = parentID
         self.isAccessible = isAccessible
+    }
+}
+class CustomQnAButtonAddFunction : UIButton {
+    var parentID : Int = 0
+    var BID : Int =  0
+    var commentBookData : CommentBookData?
+    var contents : String = ""
+    var updateImgArray : [UIImage] = []
+    var isAccessible : Bool = false
+    convenience init(parentID : Int,isAccessible : Bool , updateImgArray : [UIImage] ,contents : String,commentBookData : CommentBookData? ) {
+        self.init()
+        self.parentID = parentID
+        self.isAccessible = isAccessible
+        self.contents = contents
+        self.updateImgArray = updateImgArray
+        self.commentBookData = commentBookData
+        
     }
 }
