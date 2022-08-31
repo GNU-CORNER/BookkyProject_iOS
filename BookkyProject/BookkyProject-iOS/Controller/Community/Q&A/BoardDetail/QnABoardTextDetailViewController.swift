@@ -29,6 +29,8 @@ class QnABoardTextDetailViewController: UIViewController {
     @IBOutlet weak var selectBookView: UIView!
     @IBOutlet weak var QnAPostDetailView: UIView!
     var bookdata : QnAPostDetailBookData?
+    var comentBookData : CommentBookData?
+    var bookData : PostDetailBookData?
     var PID : Int = 0
     var BID : Int = 0
     var PostisLiked : Bool = false
@@ -58,7 +60,30 @@ class QnABoardTextDetailViewController: UIViewController {
     @objc private func rightbarButtonAction(_ sender : Any){
         let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let report = UIAlertAction(title: "신고", style: .destructive)
+        let report = UIAlertAction(title: "신고", style: .destructive){(_) in
+            let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
+            let diseasePost = UIAlertAction(title: "불건전 글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let adNsalePost = UIAlertAction(title: "광고 및 판매 글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let spamPost = UIAlertAction(title: "악성 도배 글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let swearPost = UIAlertAction(title: "욕설 및 비하 글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            reportAlert.addAction(diseasePost)
+            reportAlert.addAction(adNsalePost)
+            reportAlert.addAction(spamPost)
+            reportAlert.addAction(swearPost)
+            reportAlert.addAction(cancel)
+            DispatchQueue.main.async {
+                self.present(reportAlert, animated: true)
+            }
+        }
         if self.isAccessible == true {
             let delete = UIAlertAction(title: "글 삭제", style: .destructive){(_) in
                 self.deletePost(communityBoardNumber: self.boardTypeNumber, PID: self.PID)
@@ -155,6 +180,7 @@ class QnABoardTextDetailViewController: UIViewController {
         }
     }
     private func setBoardTextDetailData(model :WriteTextDetailQnAPostData){
+        
         self.QnATitleLabel.text = model.title
         self.QnAContentsLabel.text = model.contents
         self.QnACreateDateLabel.text = "\(model.createAt)"
@@ -201,6 +227,7 @@ class QnABoardTextDetailViewController: UIViewController {
     private func getBoardTextDetailQnAData(){
         CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
+                    
                 guard let communityGetDetailList = data as? WriteTextDetailQnAInformation else {return}
                 let writeTextDetailQnAData = communityGetDetailList.result.postdata
                 self.QnAReplyData = communityGetDetailList.result.replydata!
@@ -209,6 +236,7 @@ class QnABoardTextDetailViewController: UIViewController {
                 self.BID = self.bookdata?.TBID ?? 0
                 self.ImageArray = writeTextDetailQnAData.postImage ?? []
                 self.PostisLiked = writeTextDetailQnAData.isLiked
+                
                 if communityGetDetailList.success{
                     DispatchQueue.main.async {
                         if self.bookdata?.TITLE == nil {
@@ -247,13 +275,52 @@ class QnABoardTextDetailViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
+    //신고 팝업창
+    func reportAlert(){
+        let reportAlert = UIAlertController(title: "게시판 성격에 부적절함", message: "게시물의 주제가 게시판의 성격에 벗어나, 다른 이용자에게 불편을 끼칠수 있는 게시물", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        let report = UIAlertAction(title: "확인", style: .default)
+        reportAlert.addAction(cancel)
+        reportAlert.addAction(report)
+        DispatchQueue.main.async {
+            self.present(reportAlert, animated: true)
+        }
+    }
     //답글 ...버튼 액션
     @objc func addReplyCommentFunction(_ sender : Any){
-        let parentID : Int = (sender as! CustomQnAButton).parentID
-        let isAccessible : Bool = (sender as! CustomQnAButton).isAccessible
+        let parentID : Int = (sender as! CustomQnAButtonAddFunction).parentID
+        let isAccessible : Bool = (sender as! CustomQnAButtonAddFunction).isAccessible
+        let commentBookData : CommentBookData? = (sender as! CustomQnAButtonAddFunction).commentBookData
+        let commentUpdateImageArray : [UIImage] = (sender as! CustomQnAButtonAddFunction).commentUpdateImgArray
+        
+        let BID : Int = (sender as! CustomQnAButtonAddFunction).BID
+        let contents : String = (sender as! CustomQnAButtonAddFunction).contents
         let alert = UIAlertController(title: "답글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let report = UIAlertAction(title: "신고", style: .destructive)
+        let report = UIAlertAction(title: "신고", style: .destructive){(_) in
+            let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
+            let diseasePost = UIAlertAction(title: "불건전 답글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let adNsalePost = UIAlertAction(title: "광고 및 판매 답글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let spamPost = UIAlertAction(title: "악성 도배 답글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let swearPost = UIAlertAction(title: "욕설 및 비하 답글", style: .default){(_) in
+                self.reportAlert()
+            }
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            reportAlert.addAction(diseasePost)
+            reportAlert.addAction(adNsalePost)
+            reportAlert.addAction(spamPost)
+            reportAlert.addAction(swearPost)
+            reportAlert.addAction(cancel)
+            DispatchQueue.main.async {
+                self.present(reportAlert, animated: true)
+            }
+        }
         if isAccessible == true{
             let delete = UIAlertAction(title: "답글 삭제", style: .destructive){(_) in
                 self.deletePost(communityBoardNumber: self.boardTypeNumber, PID: parentID)
@@ -263,7 +330,14 @@ class QnABoardTextDetailViewController: UIViewController {
                 })
             }
             let update = UIAlertAction(title: "답글 수정", style: .default){(_)in
-                
+                guard let UpdateCommentviewController = self.storyboard?.instantiateViewController(withIdentifier: "QnACommentUpdateViewController")as? QnACommentUpdateViewController else {return}
+                UpdateCommentviewController.contentsString = contents
+                UpdateCommentviewController.BID = BID
+                UpdateCommentviewController.PID = parentID
+                UpdateCommentviewController.bookData = commentBookData
+                UpdateCommentviewController.imageArray = commentUpdateImageArray
+                UpdateCommentviewController.boardTypeNumber = self.boardTypeNumber
+                self.navigationController?.pushViewController(UpdateCommentviewController, animated: true)
             }
             alert.addAction(delete)
             alert.addAction(update)
@@ -286,9 +360,24 @@ extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDe
         cell.setReplyData(model:self.QnAReplyData[indexPath.row])
         cell.commentButton.addTarget(self, action: #selector(tapGoCommentofReplyComment) , for: .touchUpInside)
         cell.commentButton.parentID = self.QnAReplyData[indexPath.row].PID
+        
         cell.addFunctionButton.addTarget(self, action: #selector(addReplyCommentFunction), for: .touchUpInside)
         cell.addFunctionButton.isAccessible = cell.QnaAnswerisAccessible
         cell.addFunctionButton.parentID = cell.PID
+        cell.addFunctionButton.BID = cell.BID
+        cell.addFunctionButton.contents = cell.contents
+        var commentUpdateImageArray : [UIImage] = []
+        for i in cell.ImageArray {
+            let url = URL(string: i)
+            let data = try! Data(contentsOf: url!)
+            let UIImg = UIKit.UIImage(data: data)
+            if UIImg != nil {
+                commentUpdateImageArray.append(UIImg!)
+            }
+            
+        }
+        cell.addFunctionButton.commentUpdateImgArray = commentUpdateImageArray
+        cell.addFunctionButton.commentBookData = cell.commentBookData
         return cell
     }
     
@@ -302,9 +391,9 @@ extension QnABoardTextDetailViewController :UICollectionViewDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
         cell.setImageArray(model: self.ImageArray[indexPath.row])
-        self.updateImageArray.append(cell.UIImage)
-        
-        
+        if cell.UIImage != nil {
+            self.updateImageArray.append(cell.UIImage)
+        }
         return cell
     }
     
@@ -317,5 +406,22 @@ class CustomQnAButton : UIButton {
         self.init()
         self.parentID = parentID
         self.isAccessible = isAccessible
+    }
+}
+class CustomQnAButtonAddFunction : UIButton {
+    var parentID : Int = 0
+    var BID : Int =  0
+    var commentBookData : CommentBookData?
+    var contents : String = ""
+    var commentUpdateImgArray : [UIImage] = []
+    var isAccessible : Bool = false
+    convenience init(parentID : Int,isAccessible : Bool , commentUpdateImgArray : [UIImage] ,contents : String,commentBookData : CommentBookData? ) {
+        self.init()
+        self.parentID = parentID
+        self.isAccessible = isAccessible
+        self.contents = contents
+        self.commentUpdateImgArray = commentUpdateImgArray
+        self.commentBookData = commentBookData
+        
     }
 }

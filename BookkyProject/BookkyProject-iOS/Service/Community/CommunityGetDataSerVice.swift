@@ -178,10 +178,6 @@ class CommunityGetAPI {
             print("Error : Cannot create URL")
             return
         }
-        //        guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityTextDetail+"\(CommunityBoardNumber)/"+"\(PID)") else {
-        //            print("Error : Cannot create URL")
-        //            return
-        //        }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")

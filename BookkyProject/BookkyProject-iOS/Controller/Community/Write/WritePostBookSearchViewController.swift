@@ -12,11 +12,15 @@ protocol SelectSendData : AnyObject {
 protocol SelectUpdateVCSendData : AnyObject {
     func sendData(ImageString:String,bookName: String ,bookAuthorPublisher : String,height : Int,BID : Int)
 }
+protocol SelectUpdateCommentVCSendData : AnyObject {
+    func sendData(ImageString:String,bookName: String ,bookAuthorPublisher : String,height : Int,BID : Int)
+}
 class WritePostBookSearchViewController: UIViewController {
     var searchText : String = ""
     var searchBookList : [BookSearchDataList] = []
     var delegate : SelectSendData?
     var updateDelegate : SelectUpdateVCSendData?
+    var updateCommentDelegate : SelectUpdateCommentVCSendData?
     var bookName : String = ""
     var bookImg : String = ""
     var bookAP : String = ""
@@ -93,6 +97,7 @@ extension WritePostBookSearchViewController : UITableViewDelegate ,UITableViewDa
         let Imgstring = self.bookImg
         delegate?.sendData(ImageString:Imgstring , bookName: self.bookName, bookAuthorPublisher: self.bookAP,height:120,BID: self.BID)
         updateDelegate?.sendData(ImageString: Imgstring, bookName: self.bookName, bookAuthorPublisher: self.bookAP, height: 120, BID: self.BID)
+        updateCommentDelegate?.sendData(ImageString: Imgstring, bookName: self.bookName, bookAuthorPublisher: self.bookAP, height: 120, BID: self.BID)
         self.presentingViewController?.dismiss(animated: true,completion: nil)
     }
 }
