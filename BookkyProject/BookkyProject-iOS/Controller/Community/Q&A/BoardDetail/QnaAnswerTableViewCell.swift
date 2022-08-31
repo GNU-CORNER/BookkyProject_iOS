@@ -31,6 +31,7 @@ class QnaAnswerTableViewCell: UITableViewCell {
     @IBOutlet weak var imgCollectionView: UICollectionView!
     var ImageArray : [String] = []
     var commentUpdateImageArray : [UIImage] = []
+    
     var commentBookData : CommentBookData?
     var contents : String = ""
 //    var commentBookData :
@@ -113,6 +114,7 @@ class QnaAnswerTableViewCell: UITableViewCell {
 extension QnaAnswerTableViewCell : UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.ImageArray.count
+        
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

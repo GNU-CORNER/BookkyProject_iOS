@@ -97,6 +97,7 @@ extension WritePostBookSearchViewController : UITableViewDelegate ,UITableViewDa
         let Imgstring = self.bookImg
         delegate?.sendData(ImageString:Imgstring , bookName: self.bookName, bookAuthorPublisher: self.bookAP,height:120,BID: self.BID)
         updateDelegate?.sendData(ImageString: Imgstring, bookName: self.bookName, bookAuthorPublisher: self.bookAP, height: 120, BID: self.BID)
+        updateCommentDelegate?.sendData(ImageString: Imgstring, bookName: self.bookName, bookAuthorPublisher: self.bookAP, height: 120, BID: self.BID)
         self.presentingViewController?.dismiss(animated: true,completion: nil)
     }
 }

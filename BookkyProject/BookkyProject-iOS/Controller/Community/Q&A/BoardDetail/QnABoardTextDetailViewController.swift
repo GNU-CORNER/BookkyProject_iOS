@@ -52,7 +52,6 @@ class QnABoardTextDetailViewController: UIViewController {
         setBoardTextDetailUI()
         setCollectionViewCell()
         setBookViewUI()
-        print("\(self.PID)test")
         self.navigationItem.rightBarButtonItem = self.rightButton
         
     }
@@ -232,7 +231,6 @@ class QnABoardTextDetailViewController: UIViewController {
                 guard let communityGetDetailList = data as? WriteTextDetailQnAInformation else {return}
                 let writeTextDetailQnAData = communityGetDetailList.result.postdata
                 self.QnAReplyData = communityGetDetailList.result.replydata!
-                print("\(self.QnAReplyData)test")
                 self.bookdata = communityGetDetailList.result.Book
                 
                 self.BID = self.bookdata?.TBID ?? 0
@@ -293,7 +291,8 @@ class QnABoardTextDetailViewController: UIViewController {
         let parentID : Int = (sender as! CustomQnAButtonAddFunction).parentID
         let isAccessible : Bool = (sender as! CustomQnAButtonAddFunction).isAccessible
         let commentBookData : CommentBookData? = (sender as! CustomQnAButtonAddFunction).commentBookData
-        //        let updateImgArray : [UIImage] = (sender as! CustomQnAButtonAddFunction).updateImgArray
+        let commentUpdateImageArray : [UIImage] = (sender as! CustomQnAButtonAddFunction).commentUpdateImgArray
+        
         let BID : Int = (sender as! CustomQnAButtonAddFunction).BID
         let contents : String = (sender as! CustomQnAButtonAddFunction).contents
         let alert = UIAlertController(title: "답글 메뉴", message: nil, preferredStyle: .actionSheet)
@@ -335,9 +334,8 @@ class QnABoardTextDetailViewController: UIViewController {
                 UpdateCommentviewController.contentsString = contents
                 UpdateCommentviewController.BID = BID
                 UpdateCommentviewController.PID = parentID
-                print("\(BID)check")
                 UpdateCommentviewController.bookData = commentBookData
-                //                UpdateCommentviewController.imageArray = updateImgArray
+                UpdateCommentviewController.imageArray = commentUpdateImageArray
                 UpdateCommentviewController.boardTypeNumber = self.boardTypeNumber
                 self.navigationController?.pushViewController(UpdateCommentviewController, animated: true)
             }
@@ -368,7 +366,17 @@ extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDe
         cell.addFunctionButton.parentID = cell.PID
         cell.addFunctionButton.BID = cell.BID
         cell.addFunctionButton.contents = cell.contents
-        //        cell.addFunctionButton.updateImgArray = cell.commentUpdateImageArray
+        var commentUpdateImageArray : [UIImage] = []
+        for i in cell.ImageArray {
+            let url = URL(string: i)
+            let data = try! Data(contentsOf: url!)
+            let UIImg = UIKit.UIImage(data: data)
+            if UIImg != nil {
+                commentUpdateImageArray.append(UIImg!)
+            }
+            
+        }
+        cell.addFunctionButton.commentUpdateImgArray = commentUpdateImageArray
         cell.addFunctionButton.commentBookData = cell.commentBookData
         return cell
     }
@@ -383,9 +391,9 @@ extension QnABoardTextDetailViewController :UICollectionViewDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
         cell.setImageArray(model: self.ImageArray[indexPath.row])
-        self.updateImageArray.append(cell.UIImage)
-        
-        
+        if cell.UIImage != nil {
+            self.updateImageArray.append(cell.UIImage)
+        }
         return cell
     }
     
@@ -405,14 +413,14 @@ class CustomQnAButtonAddFunction : UIButton {
     var BID : Int =  0
     var commentBookData : CommentBookData?
     var contents : String = ""
-    var updateImgArray : [UIImage] = []
+    var commentUpdateImgArray : [UIImage] = []
     var isAccessible : Bool = false
-    convenience init(parentID : Int,isAccessible : Bool , updateImgArray : [UIImage] ,contents : String,commentBookData : CommentBookData? ) {
+    convenience init(parentID : Int,isAccessible : Bool , commentUpdateImgArray : [UIImage] ,contents : String,commentBookData : CommentBookData? ) {
         self.init()
         self.parentID = parentID
         self.isAccessible = isAccessible
         self.contents = contents
-        self.updateImgArray = updateImgArray
+        self.commentUpdateImgArray = commentUpdateImgArray
         self.commentBookData = commentBookData
         
     }

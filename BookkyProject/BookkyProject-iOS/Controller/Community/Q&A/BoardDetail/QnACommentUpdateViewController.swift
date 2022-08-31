@@ -113,11 +113,9 @@ class QnACommentUpdateViewController: UIViewController,SelectUpdateCommentVCSend
  
     
     func sendData(ImageString:String,bookName: String ,bookAuthorPublisher : String,height : Int,BID:Int){
-        print("\(bookName)test")
         self.bookNameLabel.text = bookName
         self.bookAPLabel.text = bookAuthorPublisher
         self.BID = BID
-        
         if let url = URL(string: ImageString) {
             self.bookImageView.load(url: url)
         }
