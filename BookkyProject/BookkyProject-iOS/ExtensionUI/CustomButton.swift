@@ -38,8 +38,8 @@ class ReviewButton : UIButton {
     var RID : Int = 0
     var isAccessible : Bool = false
     var contents : String = ""
-    var rating : Float = 0.0
-    convenience init(RID : Int ,isAccessible : Bool,contents : String , rating : Float) {
+    var rating : Double = 0.0
+    convenience init(RID : Int ,isAccessible : Bool,contents : String , rating : Double) {
         self.init()
         self.RID = RID
         self.isAccessible = isAccessible

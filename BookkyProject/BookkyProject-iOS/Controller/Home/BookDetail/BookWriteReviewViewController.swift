@@ -6,17 +6,16 @@
 //
 
 import UIKit
-
+import Cosmos
 class BookWriteReviewViewController: UIViewController{
 
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var starRatingView: CosmosView!
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookNameLabel: UILabel!
     @IBOutlet weak var bookAuthorNPublisherLabel: UILabel!
     @IBOutlet weak var writeReviewTextView: UITextView!
     @IBOutlet weak var writeReviewButton: UIButton!
-    @IBOutlet weak var starStackView: UIStackView!
-    @IBOutlet weak var starRatingSlider: UISlider!
+    
     var BID : Int = 0
     var url : URL? = nil
     var bookName : String = ""
@@ -30,74 +29,35 @@ class BookWriteReviewViewController: UIViewController{
         setUI()
         setData()
         setWriteTitleTextField()
-        initStarImageViewArray()
-        initSlider()
+        setStarSliderUI()
+   
     }
+//MARK: - starFunc https://velog.io/@h0neydear/Cosmos 참고
     
-    private func initSlider(){
-        starRatingSlider.setThumbImage(UIImage(), for: .normal)
-        starRatingSlider.addTarget(self, action: #selector(sliderStar), for: UIControl.Event.valueChanged)
-        
+    private func setStarSliderUI(){
+        starRatingView.rating = 0.0
+        starRatingView.settings.starSize = 45
+        starRatingView.settings.minTouchRating = 0
+        starRatingView.didTouchCosmos = didTouchCosmos
+        //단위
+        starRatingView.settings.fillMode = .half
+        updateRating(0)
     }
-    private func initStarImageViewArray(){
-        for idx in 0..<5 {
-            starImageView.append(starStackView.subviews[idx] as? UIImageView ?? UIImageView())
+    func updateRating(_ requiredRating: Double?) {
+        var newRatingValue : Double = 0.0
+        
+        if let nonEmptyRequiredRating = requiredRating {
+            newRatingValue = nonEmptyRequiredRating
         }
         
+        starRatingView.rating = newRatingValue
     }
- 
-    private func showStarImageFull(imageView : UIImageView){
-        imageView.image = UIImage(named: "star_full")
+    func didTouchCosmos(_ rating: Double){
+        updateRating(rating)
+        self.ratingStar = rating
         
     }
-    private func showStarImgaeHalf(imageView : UIImageView){
-        imageView.image = UIImage(named: "star_half")
-    }
-    private func showStarImageEmpty(imageView : UIImageView){
-        imageView.image = UIImage(named: "star_empty")
-    }
-    @objc func sliderStar(){
-        var rating = starRatingSlider.value
-        switch rating {
-        case 0:
-            self.ratingStar = 0.0
-        case 0..<0.5:
-            self.ratingStar = 0.5
-        case 0.5..<1.0:
-            self.ratingStar = 1
-        case 1.0..<1.5:
-            self.ratingStar = 1.5
-        case 1.5..<2.0:
-            self.ratingStar = 2.0
-        case 2.0..<2.5:
-            self.ratingStar = 2.5
-        case 2.5..<3.0:
-            self.ratingStar = 3.0
-        case 3.0..<3.5:
-            self.ratingStar = 3.5
-        case 3.5..<4.0:
-            self.ratingStar = 4.0
-        case 4.0..<4.5:
-            self.ratingStar = 4.5
-        case 4.5..<5.0:
-            self.ratingStar = 5
-        default:
-            self.ratingStar = 5
-        }
-        for idx in 0..<5 {
-            if rating > 0.5{
-                rating -= 1
-                showStarImageFull(imageView: starImageView[idx])
-            }else if 0 < rating && rating < 0.5 {
-                rating -= 0.5
-                showStarImgaeHalf(imageView: starImageView[idx])
-            }else {
-                showStarImageEmpty(imageView: starImageView[idx])
-            }
-                
-        }
-        
-    }
+//MARK: -
     private func setUI(){
 
         self.writeReviewButton.setTitle("리뷰 작성", for: .normal)
@@ -125,7 +85,7 @@ class BookWriteReviewViewController: UIViewController{
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         })
-        
+
     }
     private func bookReviewWrite(reviewContents: String ,BID: Int , rating: Double){
         HomePostDataAPI.shared.postCommunityWrite(contents: reviewContents, rating: rating, BID: BID){ (success,data) in

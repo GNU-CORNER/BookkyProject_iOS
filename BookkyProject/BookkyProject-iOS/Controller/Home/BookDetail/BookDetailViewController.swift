@@ -6,18 +6,14 @@
 //
 
 import UIKit
-
+import Cosmos
 class BookDetailViewController: UIViewController {
-    
-    
     @IBOutlet var bookDetailView: UIView!
     @IBOutlet weak var detailBookName: UILabel!
     @IBOutlet weak var detailBookAuthor: UILabel!
     @IBOutlet weak var detailBookTagListCollectionView: UICollectionView!
     @IBOutlet weak var bookDetailImage: UIImageView!
     var BID = 0
-    
-    @IBOutlet weak var ratingNumberLabel: UILabel!
     var bookDetailTagList : [BookDetailDataTagData] = []
     //네이버
     var bookDetailRevieList  : [ReviewData] = []
@@ -49,23 +45,27 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var bookDetailCommentTableView: UITableView!
     @IBOutlet weak var bookDetailScrollView: UIScrollView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
-    @IBOutlet weak var starImageView: UIImageView!
+    
     var userContents : String = ""
-    var userRating : Double = 0.0
+    
     // 관심도서 설정
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
+    //별점뷰
+    @IBOutlet weak var starRatingView: CosmosView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //리뷰 테이블뷰
         bookDetailCommentTableView.delegate = self
         bookDetailCommentTableView.dataSource = self
         self.navigationController?.navigationBar.tintColor = UIColor.black
-        
+        starViewUI()
         
         self.navigationController?.navigationBar.topItem?.title = ""
         setBookDetailUI()
         setColletioView()
-        print("\(self.BID)BID")
+        
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -73,6 +73,20 @@ class BookDetailViewController: UIViewController {
         getBookDetailData()
     
     }
+//MARK: - starUI
+    func updateRating(_ requiredRating: Double?) {
+        var newRatingValue : Double = 0.0
+        
+        if let nonEmptyRequiredRating = requiredRating {
+            newRatingValue = nonEmptyRequiredRating
+        }
+        
+        starRatingView.rating = newRatingValue
+    }
+    func starViewUI(){
+        starRatingView.settings.fillMode = .precise
+    }
+
     private func setBookDetailUI(){
         self.detailBookName.font = UIFont.boldSystemFont(ofSize: 18)
         self.detailBookAuthor.font = UIFont.systemFont(ofSize: 13)
@@ -199,37 +213,13 @@ class BookDetailViewController: UIViewController {
         self.detailBookName.text = model.TITLE
         self.detailBookAuthor.text = model.AUTHOR
         self.bookDetailTagList = model.tagData
-        self.ratingNumberLabel.text = "\(model.RATING)"
-        switch model.RATING {
-        case 0 :
-            self.starImageView.image = UIImage(named: "starZero")
-        case 0..<0.5:
-            self.starImageView.image = UIImage(named: "starZeroHalf")
-        case 0.5..<1.0:
-            self.starImageView.image = UIImage(named: "starOne")
-        case 1.0..<1.5:
-            self.starImageView.image = UIImage(named: "starOneHalf")
-        case 1.5..<2.0:
-            self.starImageView.image = UIImage(named: "starTwo")
-        case 2.0..<2.5:
-            self.starImageView.image = UIImage(named: "starTwoHalf")
-        case 2.5..<3.0:
-            self.starImageView.image = UIImage(named: "starThree")
-        case 3.0..<3.5:
-            self.starImageView.image = UIImage(named: "starThreeHalf")
-        case 3.5..<4.0:
-            self.starImageView.image = UIImage(named: "starFour")
-        case 4.0..<4.5:
-            self.starImageView.image = UIImage(named: "starFourHalf")
-        case 5.0:
-            self.starImageView.image = UIImage(named: "starFive")
-        default :
-            self.starImageView.image = UIImage(named: "starZero")
-        }
+        
+        
         self.bookImage = URL(string: "\(model.thumbnailImage)")
         self.bookName = model.TITLE
         self.AUTHOR = model.AUTHOR
-        
+        updateRating(model.RATING)
+        starRatingView.text = "\(model.RATING)"
         self.publisherLabel.text = "출판사 : " + model.PUBLISHER
         self.authorLabel.text = "저자 : " + model.AUTHOR
         self.priceLabel.text = "정가 : " + model.PRICE
@@ -315,7 +305,7 @@ class BookDetailViewController: UIViewController {
     @objc func tapAddReviewFunction(_ sender : Any){
         let RID : Int = (sender as! ReviewButton).RID
         let isAccessible : Bool = (sender as! ReviewButton).isAccessible
-        let rating : Float = (sender as! ReviewButton).rating
+        let rating : Double = (sender as! ReviewButton).rating
         let contents : String = (sender as! ReviewButton).contents
         self.userContents = contents
         let alert = UIAlertController(title: "리뷰 메뉴", message: nil, preferredStyle: .actionSheet)
