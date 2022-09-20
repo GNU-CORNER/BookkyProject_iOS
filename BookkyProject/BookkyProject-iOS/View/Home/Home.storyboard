@@ -160,7 +160,7 @@ Label</string>
                                 <color key="separatorColor" name="primaryColor"/>
                                 <color key="sectionIndexBackgroundColor" name="primaryColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="n1T-4B-4Yd">
-                                    <rect key="frame" x="0.0" y="35" width="414" height="450"/>
+                                    <rect key="frame" x="0.0" y="35" width="414" height="394"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="lXR-Ce-rmA">
@@ -184,51 +184,33 @@ Label</string>
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="SEi-91-jsy">
-                                            <rect key="frame" x="20" y="81" width="374" height="176"/>
+                                            <rect key="frame" x="20" y="81" width="374" height="86"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yov-gU-1Yt">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="83"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQW-Uu-wSd">
-                                                            <rect key="frame" x="0.0" y="26.5" width="187" height="30"/>
-                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                            <state key="normal" title="Button"/>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qdo-8Q-qcH">
-                                                            <rect key="frame" x="187" y="26.5" width="187" height="30"/>
-                                                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                            <state key="normal" title="Button"/>
-                                                        </button>
-                                                    </subviews>
-                                                </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="kMU-nR-F3V">
-                                                    <rect key="frame" x="0.0" y="93" width="374" height="83"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="86"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LV9-DF-Ecv">
-                                                            <rect key="frame" x="0.0" y="26.5" width="187" height="30"/>
+                                                            <rect key="frame" x="0.0" y="28" width="187" height="30"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="Button"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7G-hy-d5a">
-                                                            <rect key="frame" x="187" y="26.5" width="187" height="30"/>
+                                                            <rect key="frame" x="187" y="28" width="187" height="30"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="Button"/>
                                                         </button>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstItem="kMU-nR-F3V" firstAttribute="top" secondItem="SEi-91-jsy" secondAttribute="top" constant="93" id="VfW-F3-3QK"/>
-                                            </constraints>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YAL-l7-2ca">
-                                            <rect key="frame" x="0.0" y="287" width="414" height="163"/>
+                                            <rect key="frame" x="0.0" y="197" width="414" height="197"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="hO9-5J-dOC">
-                                                    <rect key="frame" x="20" y="8" width="374" height="21"/>
+                                                    <rect key="frame" x="20" y="8" width="374" height="55"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QnD-ia-ILI">
-                                                            <rect key="frame" x="8" y="8" width="64" height="5"/>
+                                                            <rect key="frame" x="8" y="8" width="64" height="39"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                             <state key="normal" title="Button"/>
@@ -240,7 +222,7 @@ Label</string>
                                                     <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="fse-hj-FBg">
-                                                    <rect key="frame" x="20" y="39" width="374" height="116"/>
+                                                    <rect key="frame" x="20" y="73" width="374" height="116"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="BvV-kh-5NX">
                                                             <rect key="frame" x="8" y="8" width="97" height="30"/>
@@ -340,9 +322,6 @@ Label</string>
                         <outlet property="QnABoardTextGoButton" destination="uEJ-oX-YVq" id="bK1-Vt-ay6"/>
                         <outlet property="boardButtonStackView" destination="fse-hj-FBg" id="tIX-g0-i7s"/>
                         <outlet property="bookListTableView" destination="tgD-mT-aSI" id="taF-En-Ceg"/>
-                        <outlet property="bookynatorButtonStackView" destination="yov-gU-1Yt" id="7fh-Yc-MxG"/>
-                        <outlet property="bookynatorGoButtonFirst" destination="AQW-Uu-wSd" id="Vqk-5E-Edv"/>
-                        <outlet property="bookynatorGoButtonSecond" destination="Qdo-8Q-qcH" id="0xl-rC-l2P"/>
                         <outlet property="communityGoButton" destination="QnD-ia-ILI" id="hiN-mp-kYw"/>
                         <outlet property="communityStackView" destination="YAL-l7-2ca" id="Hlf-O4-dyh"/>
                         <outlet property="freeBoardGoButton" destination="VUy-HU-YoD" id="sSf-x9-hi5"/>
@@ -1093,6 +1072,9 @@ Label</string>
         </scene>
     </scenes>
     <designables>
+        <designable name="GrE-5E-Kqv">
+            <size key="intrinsicContentSize" width="120" height="20"/>
+        </designable>
         <designable name="RU5-Gk-71u">
             <size key="intrinsicContentSize" width="120" height="20"/>
         </designable>

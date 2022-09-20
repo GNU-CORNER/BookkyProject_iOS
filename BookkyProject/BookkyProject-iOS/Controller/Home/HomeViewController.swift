@@ -17,9 +17,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - 추천하개 UI
     @IBOutlet weak var recommendButton: UIButton!
     @IBOutlet weak var recommendExplainLabel: UILabel!
-    @IBOutlet weak var bookynatorButtonStackView: UIStackView!
-    @IBOutlet weak var bookynatorGoButtonFirst: UIButton!
-    @IBOutlet weak var bookynatorGoButtonSecond: UIButton!
+    
     @IBOutlet weak var roadMapButtonStackView: UIStackView!
     @IBOutlet weak var roadMapGoButtonFirst: UIButton!
     @IBOutlet weak var roadMapGoButtonSecond: UIButton!
@@ -63,16 +61,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.recommendExplainLabel.text = "당신에게 적합한 책을 찾아 줄게요!"
         self.recommendExplainLabel.font = UIFont.systemFont(ofSize: 12)
         self.recommendExplainLabel.textColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
-        
-        self.bookynatorButtonStackView.layer.borderColor = UIColor(named: "primaryColor")?.cgColor
-        self.bookynatorButtonStackView.layer.borderWidth = 2
-        self.bookynatorButtonStackView.layer.cornerRadius = 10
-        
-        self.bookynatorGoButtonFirst.setTitle("당신의 책을 찾아보세요.", for: .normal)
-        self.bookynatorGoButtonFirst.tintColor =  UIColor.black
-        self.bookynatorGoButtonSecond.setTitle("북키네이터", for: .normal)
-        self.bookynatorGoButtonSecond.tintColor =  UIColor.black
-        self.bookynatorGoButtonSecond.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+
         
         self.roadMapButtonStackView.layer.borderColor = UIColor(named: "primaryColor")?.cgColor
         self.roadMapButtonStackView.layer.borderWidth = 2
