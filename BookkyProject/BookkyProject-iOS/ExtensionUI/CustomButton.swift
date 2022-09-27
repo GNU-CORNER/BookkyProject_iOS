@@ -20,6 +20,18 @@ class CustomButton : UIButton {
         self.contents = contents
         }
 }
+class HomeBoardTextButton : UIButton {
+    var PID : Int = 0
+    var communityType : Int = 0
+    
+    convenience init(PID: Int,CIcommunityTypeD : Int) {
+        self.init()
+        self.PID = PID
+        self.communityType = communityType
+        
+        }
+}
+
 class ImageCancelButton : UIButton {
     var row : Int = 0
     convenience init(row: Int) {

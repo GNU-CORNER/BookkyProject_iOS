@@ -26,11 +26,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     @IBOutlet weak var communityGoButton: UIButton!
     @IBOutlet weak var boardButtonStackView: UIStackView!
     @IBOutlet weak var freeBoardGoButton: UIButton!
-    @IBOutlet weak var freeBoardTextGoButton: UIButton!
+    @IBOutlet weak var freeBoardTextGoButton: HomeBoardTextButton!
     @IBOutlet weak var QnABoardGoButton: UIButton!
-    @IBOutlet weak var QnABoardTextGoButton: UIButton!
+    @IBOutlet weak var QnABoardTextGoButton: HomeBoardTextButton!
     @IBOutlet weak var hotBoardGoButton: UIButton!
-    @IBOutlet weak var hoeBoardTextGoButton: UIButton!
+    @IBOutlet weak var hotBoardTextGoButton: HomeBoardTextButton!
     // MARK: - 도서리스트 테이블
     @IBOutlet weak var bookListTableView: UITableView!
     var communityList : [CommunityRecentList] = []
@@ -74,10 +74,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.roadMapGoButtonSecond.titleLabel?.font = UIFont.systemFont(ofSize: 24)
     }
     private func setCommunityData(){
+    //MARK: - Free
         self.freeBoardTextGoButton.setTitle("\(self.communityList[0].title)", for: .normal)
+        self.freeBoardTextGoButton.tag = 0
+        self.freeBoardTextGoButton.PID = self.communityList[0].PID
+        self.freeBoardTextGoButton.communityType = self.communityList[0].communityType
+    //MARK: - QnA
         self.QnABoardTextGoButton.setTitle("\(self.communityList[1].title)", for: .normal)
-        self.hoeBoardTextGoButton.setTitle("\(self.communityList[2].title)", for: .normal)
+        self.QnABoardTextGoButton.PID = self.communityList[1].PID
+        self.QnABoardTextGoButton.communityType = self.communityList[1].communityType
+        self.QnABoardTextGoButton.tag = 1
+    //MARK: - HOT
+        self.hotBoardTextGoButton.setTitle("\(self.communityList[2].title)", for: .normal)
+        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
+        self.hotBoardTextGoButton.tag = 2
     }
+    
     // MARK: - 커뮤니티뷰 SET
     private func setCommunityView(){
         self.communityGoButton.setTitle("커뮤니티 >", for: .normal)
@@ -98,7 +110,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         
         self.hotBoardGoButton.setTitle("HoT게시판", for: .normal)
         self.hotBoardGoButton.tintColor = UIColor.black
-        self.hoeBoardTextGoButton.tintColor = UIColor.black
+        self.hotBoardTextGoButton.tintColor = UIColor.black
         
     }
     private func setBookTableView(){
@@ -159,6 +171,25 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.tabBarController?.selectedIndex = 1
         
         
+    }
+    
+    @IBAction func tapGoBoardTextDetail(_ sender: UIButton) {
+        
+        let PID : Int = (sender as! HomeBoardTextButton).PID
+        let communityType : Int = (sender as! HomeBoardTextButton).communityType
+        print("\(PID)")
+        print("\(communityType)")
+        
+        if communityType == 2 {
+            let QnACommunityStoryBoard: UIStoryboard = UIStoryboard(name: "QnACommunity", bundle: nil)
+            guard let QnAboardTextDetailViewController = QnACommunityStoryBoard.instantiateViewController(withIdentifier: "QnABoardViewController") as? QnABoardTextDetailViewController else {return}
+            QnAboardTextDetailViewController.PID = PID
+            QnAboardTextDetailViewController.boardTypeNumber = communityType
+            self.navigationController?.pushViewController(QnAboardTextDetailViewController, animated: true)
+        }else {
+            
+        }
+    
     }
     
 }

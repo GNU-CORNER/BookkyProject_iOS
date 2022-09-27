@@ -229,7 +229,6 @@ class BoardTextDetailViewController: UIViewController {
         CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
                 guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
-                print("\(communityGetDetailList)test")
                 let writeTextDetailData = communityGetDetailList.result.postdata
                 let commnetCount = communityGetDetailList.result
                 self.bookdata = communityGetDetailList.result.Book
@@ -683,9 +682,9 @@ extension BoardTextDetailViewController :UICollectionViewDelegate,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
         cell.setImageArray(model: self.ImageArray[indexPath.row])
-        self.updateImageArray.append(cell.UIImage)
-        
-        
+        if cell.UIImage != nil {
+            self.updateImageArray.append(cell.UIImage)
+        }
         return cell
     }
     
