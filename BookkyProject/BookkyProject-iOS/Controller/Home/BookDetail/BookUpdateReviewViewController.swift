@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import Cosmos
 class BookUpdateReviewViewController: UIViewController{
 
     @IBOutlet weak var tapBackButton: UIButton!
@@ -14,8 +14,6 @@ class BookUpdateReviewViewController: UIViewController{
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var bookNameLabel: UILabel!
     @IBOutlet weak var bookAuthorLabel: UILabel!
-    @IBOutlet weak var starStackView: UIStackView!
-    @IBOutlet weak var starSlider: UISlider!
     @IBOutlet weak var updateReviewButton: AutoAddPaddingButtton!
     @IBOutlet weak var updateTextView: UITextView!
     var url : URL? = nil
@@ -24,94 +22,37 @@ class BookUpdateReviewViewController: UIViewController{
     var bookAuthor : String  = ""
     var userContents : String = ""
     var starImageView = [UIImageView]()
-    var ratingStar : Float = 0.0
+    var ratingStar : Double = 0.0
+    @IBOutlet weak var updateStarView: CosmosView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setData()
         setWriteTitleTextField()
-        initStarImageViewArray()
-        initSlider()
-        updateStarImageView()
+        setStarSliderUI()
+        updateRating(self.ratingStar)
     }
-    
-    private func initSlider(){
-        starSlider.setThumbImage(UIImage(), for: .normal)
-        starSlider.addTarget(self, action: #selector(sliderStar), for: UIControl.Event.valueChanged)
+    private func setStarSliderUI(){
+        updateStarView.rating = 0.0
+        updateStarView.settings.starSize = 45
+        updateStarView.settings.minTouchRating = 0
+        updateStarView.didTouchCosmos = didTouchCosmos
+        //단위
+        updateStarView.settings.fillMode = .half
+      
+    }
+    func updateRating(_ requiredRating: Double?) {
+        var newRatingValue : Double = 0.0
         
-    }
-    private func initStarImageViewArray(){
-        for idx in 0..<5 {
-            starImageView.append(starStackView.subviews[idx] as? UIImageView ?? UIImageView())
+        if let nonEmptyRequiredRating = requiredRating {
+            newRatingValue = nonEmptyRequiredRating
         }
         
+        updateStarView.rating = newRatingValue
     }
-    private func updateStarImageView(){
-        var rating = self.ratingStar
-        for idx in 0..<5 {
-            if rating > 0.5{
-                rating -= 1
-                showStarImageFull(imageView: starImageView[idx])
-            }else if 0 < rating && rating <= 0.5 {
-                rating -= 0.5
-                showStarImgaeHalf(imageView: starImageView[idx])
-            }else {
-                showStarImageEmpty(imageView: starImageView[idx])
-            }
-                
-        }
-        
-    }
-    private func showStarImageFull(imageView : UIImageView){
-        imageView.image = UIImage(named: "star_full")
-        
-    }
-    private func showStarImgaeHalf(imageView : UIImageView){
-        imageView.image = UIImage(named: "star_half")
-    }
-    private func showStarImageEmpty(imageView : UIImageView){
-        imageView.image = UIImage(named: "star_empty")
-    }
-    @objc func sliderStar(){
-        var rating = starSlider.value
-        switch rating {
-        case 0:
-            self.ratingStar = 0.0
-        case 0..<0.5:
-            self.ratingStar = 0.5
-        case 0.5..<1.0:
-            self.ratingStar = 1
-        case 1.0..<1.5:
-            self.ratingStar = 1.5
-        case 1.5..<2.0:
-            self.ratingStar = 2.0
-        case 2.0..<2.5:
-            self.ratingStar = 2.5
-        case 2.5..<3.0:
-            self.ratingStar = 3.0
-        case 3.0..<3.5:
-            self.ratingStar = 3.5
-        case 3.5..<4.0:
-            self.ratingStar = 4.0
-        case 4.0..<4.5:
-            self.ratingStar = 4.5
-        case 4.5..<5.0:
-            self.ratingStar = 5
-        default:
-            self.ratingStar = 5
-        }
-        for idx in 0..<5 {
-            if rating > 0.5{
-                rating -= 1
-                showStarImageFull(imageView: starImageView[idx])
-            }else if 0 < rating && rating < 0.5 {
-                rating -= 0.5
-                showStarImgaeHalf(imageView: starImageView[idx])
-            }else {
-                showStarImageEmpty(imageView: starImageView[idx])
-            }
-                
-        }
+    func didTouchCosmos(_ rating: Double){
+        updateRating(rating)
+        self.ratingStar = rating
         
     }
     private func setUI(){
@@ -139,7 +80,7 @@ class BookUpdateReviewViewController: UIViewController{
     
     
     @IBAction func tapUpdateReview(_ sender: UIButton) {
-        updateHomeReview(reviewContents :updateTextView.text , RID : self.RID , rating : self.ratingStar)
+        updateHomeReview(reviewContents :updateTextView.text , RID : self.RID , rating : Float(self.ratingStar))
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
             self.presentingViewController?.dismiss(animated: true, completion: nil)
         })

@@ -20,6 +20,18 @@ class CustomButton : UIButton {
         self.contents = contents
         }
 }
+class HomeBoardTextButton : UIButton {
+    var PID : Int = 0
+    var communityType : Int = 0
+    
+    convenience init(PID: Int,CIcommunityTypeD : Int) {
+        self.init()
+        self.PID = PID
+        self.communityType = communityType
+        
+        }
+}
+
 class ImageCancelButton : UIButton {
     var row : Int = 0
     convenience init(row: Int) {
@@ -38,8 +50,8 @@ class ReviewButton : UIButton {
     var RID : Int = 0
     var isAccessible : Bool = false
     var contents : String = ""
-    var rating : Float = 0.0
-    convenience init(RID : Int ,isAccessible : Bool,contents : String , rating : Float) {
+    var rating : Double = 0.0
+    convenience init(RID : Int ,isAccessible : Bool,contents : String , rating : Double) {
         self.init()
         self.RID = RID
         self.isAccessible = isAccessible
