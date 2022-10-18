@@ -11,9 +11,10 @@ import UIKit
 class GetBookData {
     static var shared = GetBookData()
     //메인화면 API
-    func getBookData(completion: @escaping(Bool,Any)->Void){
+    func getBookData(view: UIViewController, completion: @escaping(Bool,Any)->Void){
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
             print("Launch: 사용자 이메일을 불러올 수 없음.")
+            RedirectView.loginView(previousView: view)
             return
         }
         print(userEmail)

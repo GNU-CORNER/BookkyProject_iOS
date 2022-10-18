@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol viewRefreshAfterLogin {
+    
+}
+
 class MyProfileViewController: UIViewController {
     
     var myTagsArray: [UserTagList] = []
@@ -28,14 +32,15 @@ class MyProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setDefaultMyProfileView()
-        setCollectionViewDelegate()
-        setCollectionViewDataSource()
-        registerNibCollectionViewCell()
-        self.loginButton.customView?.isHidden = true
-        
-        setView()
+//        setDefaultMyProfileView()
+//        setCollectionViewDelegate()
+//        setCollectionViewDataSource()
+//        registerNibCollectionViewCell()
+//        self.loginButton.customView?.isHidden = true
+//
+//        setView()
     }
+    
     
     public func setView() {
         self.navigationItem.title = "내 정보"
@@ -57,7 +62,13 @@ class MyProfileViewController: UIViewController {
     
     // MARK: - View Will Appear
     override func viewWillAppear(_ animated: Bool) {
+        setDefaultMyProfileView()
+        setCollectionViewDelegate()
+        setCollectionViewDataSource()
+        registerNibCollectionViewCell()
+        self.loginButton.customView?.isHidden = true
         
+        setView()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -92,14 +103,8 @@ class MyProfileViewController: UIViewController {
                         self.setDefaultUserImage(imageName: "북키프사")
                         return
                     }
-
                     if let userThumbnailImageURL = URL(string: userThumbnailImageString) {
-                        do {
-                            let userThumbnailData = try Data(contentsOf: userThumbnailImageURL)
-                            self.userImageView.image = UIImage(data: userThumbnailData)
-                        } catch {
-                            print(error)
-                        }
+                        self.userImageView.load(url: userThumbnailImageURL)
                     }
                     
                 }
@@ -183,9 +188,6 @@ class MyProfileViewController: UIViewController {
         setUserImageViewCornerRadius()
         setDefaultUserImage(imageName: "북키프사")
         setUserNameLabel(userName)
-//        self.navigationController?.navigationBar.topItem?.title = ""
-//        self.navigationItem.title = "내 정보"
-        
     }
     
     private func registerNibCollectionViewCell() {
@@ -275,12 +277,7 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
                 return UICollectionViewCell()
             }
             if let thumbnailUrl = URL(string: myBooksArray[indexPath.row].thumbnailImage) {
-                do {
-                    let thumbnailData = try Data(contentsOf: thumbnailUrl)
-                    myBooksCell.myBooksImageView.image = UIImage(data: thumbnailData)
-                } catch {
-                    print(error)
-                }
+                myBooksCell.myBooksImageView.load(url: thumbnailUrl)
             }
             myBooksCell.myBooksLabel.text = "\(myBooksArray[indexPath.row].title)"
             return myBooksCell
@@ -310,12 +307,7 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             myReviewsCell.myReviewsBookDescriptionLabel.text = myReviewsArray[indexPath.row].contents
             myReviewsCell.myReviewsBookAuthorLabel.text = myReviewsArray[indexPath.row].author
             if let thumbnailUrl = URL(string: myReviewsArray[indexPath.row].thumbnail) {
-                do {
-                    let thumbnailData = try Data(contentsOf: thumbnailUrl)
-                    myReviewsCell.myReviewsBookImageView.image = UIImage(data: thumbnailData)
-                } catch {
-                    print(error)
-                }
+                myReviewsCell.myReviewsBookImageView.load(url: thumbnailUrl)
             }
             myReviewsCell.myReviewsLikeLabel.text = String(myReviewsArray[indexPath.row].likeCnt)
 

@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginVC: UIViewController {
-
+    
     @IBOutlet weak var bookkyLogoImage: UIImageView!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var emailTextField: UITextField!
@@ -26,10 +26,10 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setLoginView()
     }
-
+    
     func setLoginView() {
         self.bookkyLogoImage?.image = UIImage(named: "Bookky_Logo")
         
@@ -84,17 +84,66 @@ class LoginVC: UIViewController {
                         UserDefaults.standard.set(true, forKey: UserDefaultsModel.launchBefore.rawValue)
                         RedirectView.initialResearchView(presentView: self)
                     }
+                    
+                    // FIXME: 임시 - AT 갱신코드, 대회 끝나고 지울 것
+                    print("LoginVC: \(statuscode)")
+                    print("request MyProfile false의 이유: \(userAccount.errorMessage)")
+                    
+                    guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+                        print("사용자 이메일을 불러올 수 없음.")
+                        return
+                    }
+                    guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+                          let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+                        print("토큰을 불러올 수 없음.")
+                        return
+                    }
+                    print("갱신요청")
+                    Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data, statuscode) in
+                        print(success)
+                        guard let tokens = data as? RefreshModel else { return }
+                        if success {
+                            if let newAccessToken = tokens.result?.accessToken {
+                                if !KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) {
+                                    print("새로운 토큰 제대로 저장이 안되었어요~~~~")
+                                }
+                                //                                self.requestMyprofile(accessToken: previousAccessToken)
+                            }
+                        } else {
+                            print(statuscode)
+                            if statuscode == 400 {
+                                // 유효한 토큰입니다. AccessToken의 만료기간이 남음
+                                print("AccessToken의 만료기간이 남음 \(tokens.errorMessage)")
+                            } else if statuscode == 401 {
+                                // 만료된 토큰입니다.
+                                print(tokens.errorMessage)
+                                RedirectView.loginView(previousView: self)
+                            } else if statuscode == 403 {
+                                // 유효하지 않은 토큰입니다. RefreshToken의 형식이 잘못됨
+                                // 로그인 화면 리다이렉트
+                                RedirectView.loginView(previousView: self)
+                            } else if statuscode == 404 {
+                                // RefreshTokenStorage와의 연결이 끊김
+                            } else if statuscode == 405 {
+                                // POST가 아닌 방식으로 접근 했을 경우
+                            }
+                        }
+                    }
+                    
+                } else {
+                    print(statuscode)
+                    print("request MyProfile false의 이유: \(userAccount.errorMessage)")
                 }
+                
             } else {
                 print(statuscode)
                 print("비번 틀림.")
             }
         }
     }
-    
-    
-    
 }
+
+
 
 
 extension LoginVC {
@@ -109,7 +158,7 @@ extension LoginVC {
     @IBAction func cancelLogin(_ sender: Any) {
         self.dismiss(animated: true)
     }
-
+    
     @IBAction func login(_ sender: Any) {
         guard let userEmail = self.emailTextField?.text, self.emailTextField?.text != "" else {
             print("이메일을 입력하세요.")
@@ -121,5 +170,5 @@ extension LoginVC {
         }
         requestLogin(email: userEmail, password: userPassword)
     }
-    
 }
+

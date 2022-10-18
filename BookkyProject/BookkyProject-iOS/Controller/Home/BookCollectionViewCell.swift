@@ -16,11 +16,9 @@ class BookCollectionViewCell: UICollectionViewCell {
     func setBookData(model: BookData){
         BID = model.TBID
         bookNameLabel.text = model.TITLE
-        
-        let url = URL(string: "\(model.thumbnailImage)")
-        let data = try! Data(contentsOf: url!)
-        bookImageView.image = UIImage(data: data)
-        
+        if let url = URL(string: "\(model.thumbnailImage)" ){
+            bookImageView.load(url: url)
+        }
     }
     func setTagMoreViewBookData(model : TagMoreViewBookData){
         BID = model.TBID

@@ -15,6 +15,7 @@ class ResearchViewController: UIViewController {
     @IBOutlet weak var tagsCollectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
     var selectedTagsCnt: Int = 0
+    var isFirstLogin: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,14 @@ class ResearchViewController: UIViewController {
         UserTagHandler.shared.userTagsUpdate(didSelectItems, accessToken) { (success, data, statuscode) in
             if success {
                 print("User Tags 수정 완료.")
+                DispatchQueue.main.async {
+                    if self.isFirstLogin {
+                        self.isFirstLogin = false
+                        self.dismiss(animated: true)
+                    } else {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }
             } else {
                 print("User Tags 수정이 안돼.")
             }
