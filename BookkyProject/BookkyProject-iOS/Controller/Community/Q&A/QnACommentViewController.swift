@@ -30,7 +30,7 @@ class QnACommentViewController: UIViewController {
     var commentCnt : Int =  0 // 댓글 갯수
     var commentType : Int = 0  // commentType  : 작성 0. 수정 1
     var replyCommentType : Int = 0
-    
+    var commentisLiked : Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         setTableViewCell()
@@ -81,6 +81,16 @@ class QnACommentViewController: UIViewController {
             }
             
             
+        }
+    }
+    //MARK: - 신고 기능
+    func tapReport(CID:Int ,PID :Int ,communityType : Int){
+        ReportPostAPi.shared.postReportAPI(CID: CID, PID: PID, communityType: communityType){(success,data) in
+            if success {
+                self.completeReport()
+            }else {
+                print("오류가 발생확인필요")
+            }
         }
     }
     private func QnApostCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , PID : Int){
@@ -142,22 +152,30 @@ class QnACommentViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
+    func completeReport(){
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "신고가 접수되었습니다.", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .cancel)
+            alert.addAction(cancel)
+            self.present(alert, animated: true)
+        }
+    }
     private func QnAreplyCommentActionsheet(){
         let alert = UIAlertController(title: "대댓글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         let report = UIAlertAction(title: "신고", style: .destructive){(_) in
             let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
             let diseasePost = UIAlertAction(title: "불건전 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: self.ReplyCellCID, PID: 0)
             }
             let adNsalePost = UIAlertAction(title: "광고 및 판매 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: self.ReplyCellCID, PID: 0)
             }
             let spamPost = UIAlertAction(title: "악성 도배 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: self.ReplyCellCID, PID: 0)
             }
             let swearPost = UIAlertAction(title: "욕설 및 비하 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: self.ReplyCellCID, PID: 0)
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel)
             reportAlert.addAction(diseasePost)
@@ -236,16 +254,16 @@ class QnACommentViewController: UIViewController {
         let report = UIAlertAction(title: "신고", style: .destructive){(_) in
             let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
             let diseasePost = UIAlertAction(title: "불건전 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: CID, PID: 0)
             }
             let adNsalePost = UIAlertAction(title: "광고 및 판매 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: CID, PID: 0)
             }
             let spamPost = UIAlertAction(title: "악성 도배 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: CID, PID: 0)
             }
             let swearPost = UIAlertAction(title: "욕설 및 비하 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: CID, PID: 0)
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel)
             reportAlert.addAction(diseasePost)
@@ -295,8 +313,8 @@ class QnACommentViewController: UIViewController {
                 self.getCommentData()
             })
         }
-    
-}
+        
+    }
     // 글작성 완료 alert ,동기 비동기 문제로 대댓글 작성칸이 사라지지 않아 추가를 함!
     func replyCommentComplete(){
         let alert = UIAlertController(title: "작성이 완료 되었습니다.", message: nil, preferredStyle: .alert)
@@ -307,17 +325,33 @@ class QnACommentViewController: UIViewController {
         }
     }
     //신고 팝업창
-    func reportAlert(){
+    func reportAlert(CID : Int , PID : Int){
         let reportAlert = UIAlertController(title: "게시판 성격에 부적절함", message: "게시물의 주제가 게시판의 성격에 벗어나, 다른 이용자에게 불편을 끼칠수 있는 게시물", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let report = UIAlertAction(title: "확인", style: .default)
+        let report = UIAlertAction(title: "확인", style: .default){(_) in
+            self.tapReport(CID: CID, PID: PID,communityType: self.boardTypeNumber)
+        }
         reportAlert.addAction(cancel)
         reportAlert.addAction(report)
         DispatchQueue.main.async {
             self.present(reportAlert, animated: true)
         }
     }
-
+    @objc func likeComment(_ sender : UIButton){
+        let CommentCID : Int = (sender as! CommentLikeButton).CoomentCID
+        CommunityPostAPI.shared.LikeCommunityComment(CommunityBoardNumber: self.boardTypeNumber, CID: CommentCID){ success, data in
+            if success {
+                print("좋아요 성공")
+            }else {
+                print("실패")
+            }
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+            self.getCommentData()
+        })
+        
+    }
+    
 }
 extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -363,16 +397,17 @@ extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
         headerView.userNameLabel.text = self.QnACommentList[section].nickname
         headerView.contentsLabel.text = self.QnACommentList[section].comment
         headerView.createDateLabel.text = self.QnACommentList[section].updateAt
-        //        self.commentisLiked = self.QnACommentList[section].isLiked
+    
         let likeCnt = self.QnACommentList[section].like?.count ?? 0
+        self.commentisLiked = self.QnACommentList[section].isLiked
         headerView.likeCntButton.setTitle("공감(\(likeCnt))", for: .normal)
-        //        headerView.likeCntButton.addTarget(self, action: #selector(likeComment), for: .touchUpInside)
+        headerView.likeCntButton.addTarget(self, action: #selector(likeComment), for: .touchUpInside)
         headerView.likeCntButton.CoomentCID = self.QnACommentList[section].CID
-        //        if self.commentisLiked == true{
-        //            headerView.likeCntButton.tintColor = UIColor(named: "PrimaryBlueColor")
-        //        }else {
-        //            headerView.likeCntButton.tintColor = UIColor.gray
-        //        }
+        if self.commentisLiked == true{
+            headerView.likeCntButton.tintColor = UIColor(named: "PrimaryBlueColor")
+        }else {
+            headerView.likeCntButton.tintColor = UIColor.gray
+        }
         headerView.layer.addBorder([.top], color: UIColor(named: "lightGrayColor") ?? UIColor.gray, width : 1)
         headerView.addFunctionButton.section = section
         headerView.addFunctionButton.contents = self.QnACommentList[section].comment
@@ -396,6 +431,19 @@ extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
             self.QnAreplyCommentContents = replycell.replyContents
             self.QnAreplyCommentActionsheet()
             self.section = indexPath.section
+        }
+        replycell.likebuttonAction = {
+            CommunityPostAPI.shared.LikeCommunityComment(CommunityBoardNumber: self.boardTypeNumber, CID: replycell.CID){ success, data in
+                if success {
+                    print("좋아요 성공")
+                }else {
+                    print("실패")
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                self.getCommentData()
+            })
+            
         }
         return replycell
         

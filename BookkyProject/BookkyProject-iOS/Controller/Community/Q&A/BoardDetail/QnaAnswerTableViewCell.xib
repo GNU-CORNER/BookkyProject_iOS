@@ -71,6 +71,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="46" height="61.5"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="tapLikeButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yQf-q3-wKw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQk-YB-94N" customClass="CustomQnAButton" customModule="BookkyProject_iOS" customModuleProvider="target">
                                 <rect key="frame" x="56" y="0.0" width="46" height="61.5"/>

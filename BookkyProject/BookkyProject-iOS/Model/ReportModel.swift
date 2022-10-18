@@ -8,6 +8,6 @@
 import Foundation
 struct ReportInforamtion  : Codable {
     let success : Bool
-    let result : String
+//    let result : String
     let errorMessage : String
 }

@@ -38,6 +38,7 @@ class BoardTextDetailViewController: UIViewController {
     var boardTypeNumber : Int = 0 // 게시판 번호
     var commentCnt : Int =  0 // 댓글 갯수
     // commentType  : 작성 0. 수정 1
+
     var commentType : Int = 0
     var replyCommentType : Int = 0
     // MARK: - 대댓글 을 위한 변수
@@ -92,16 +93,16 @@ class BoardTextDetailViewController: UIViewController {
         let report = UIAlertAction(title: "신고", style: .destructive){(_) in
             let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
             let diseasePost = UIAlertAction(title: "불건전 글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let adNsalePost = UIAlertAction(title: "광고 및 판매 글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let spamPost = UIAlertAction(title: "악성 도배 글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let swearPost = UIAlertAction(title: "욕설 및 비하 글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel)
             reportAlert.addAction(diseasePost)
@@ -185,6 +186,7 @@ class BoardTextDetailViewController: UIViewController {
         self.textDetailContentsLabel.numberOfLines = 0
         let likeCount =  model.like?.count ?? 0
         self.likeThatButton.setTitle("좋아요(\(likeCount))", for: .normal)
+        self.likeThatButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         if self.PostisLiked == true{
             self.likeThatButton.tintColor = UIColor(named: "PrimaryBlueColor")
         }else {
@@ -224,12 +226,11 @@ class BoardTextDetailViewController: UIViewController {
     }
     
     // MARK: - 데이터 통신함수
-    //GET PostDetai
+    //GET PostDetail
     private func getBoardTextDetailData(){
         CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
                 guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
-                debugPrint(communityGetDetailList)
                 let writeTextDetailData = communityGetDetailList.result.postdata
                 let commnetCount = communityGetDetailList.result
                 self.bookdata = communityGetDetailList.result.Book
@@ -365,20 +366,20 @@ class BoardTextDetailViewController: UIViewController {
         
     }
     func tapReport(CID:Int ,PID :Int ,communityType : Int){
-        ReportPostAPi.shared.postReportAPI(CID: 0, PID: 0, communityType: communityType){(success,data) in
+        ReportPostAPi.shared.postReportAPI(CID: CID, PID: PID, communityType: communityType){(success,data) in
             if success {
-                print("신고 성공")
+                self.completeReport()
             }else {
-                print("오류가 발생하였습니다.")
+                print("오류가 발생확인필요")
             }
         }
     }
     //신고 팝업창
-    func reportAlert(){
+    func reportAlert(CID : Int , PID : Int){
         let reportAlert = UIAlertController(title: "게시판 성격에 부적절함", message: "게시물의 주제가 게시판의 성격에 벗어나, 다른 이용자에게 불편을 끼칠수 있는 게시물", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
         let report = UIAlertAction(title: "확인", style: .default){(_) in
-            self.tapReport(CID: self.CID, PID: self.PID, communityType: self.commentType)
+            self.tapReport(CID: CID, PID: PID,communityType: 0)
         }
         reportAlert.addAction(cancel)
         reportAlert.addAction(report)
@@ -404,6 +405,15 @@ class BoardTextDetailViewController: UIViewController {
             self.present(alert, animated: true)
         }
     }
+    //신고 완료 -> 오류 수정 필요 alert main queue 에서 모든 코드를 적어야된다는데 위에 함수는 실행이 왜 되는지 이해안됨.
+    func completeReport(){
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "신고가 접수되었습니다.", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .cancel)
+            alert.addAction(cancel)
+            self.present(alert, animated: true)
+        }
+    }
     //대댓글 ActionSheet
     private func replyCommentActionsheet(){
         let alert = UIAlertController(title: "대댓글 메뉴", message: nil, preferredStyle: .actionSheet)
@@ -411,16 +421,16 @@ class BoardTextDetailViewController: UIViewController {
         let report = UIAlertAction(title: "신고", style: .destructive){(_) in
             let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
             let diseasePost = UIAlertAction(title: "불건전 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: self.ReplyCellCID, PID: 0)
             }
             let adNsalePost = UIAlertAction(title: "광고 및 판매 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: self.ReplyCellCID, PID: 0)
             }
             let spamPost = UIAlertAction(title: "악성 도배 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: self.ReplyCellCID, PID: 0)
             }
             let swearPost = UIAlertAction(title: "욕설 및 비하 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: self.ReplyCellCID, PID: 0)
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel)
             reportAlert.addAction(diseasePost)
@@ -432,6 +442,7 @@ class BoardTextDetailViewController: UIViewController {
                 self.present(reportAlert, animated: true)
             }
         }
+     
         if self.replycommentisAccessible == true {
             let delete = UIAlertAction(title: "대댓글 삭제", style: .destructive){(_) in
                 self.deleteComment(communityBoardNumber:self.boardTypeNumber  ,CID: self.ReplyCellCID)
@@ -491,16 +502,16 @@ class BoardTextDetailViewController: UIViewController {
         let report = UIAlertAction(title: "신고", style: .destructive){(_) in
             let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
             let diseasePost = UIAlertAction(title: "불건전 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: CID, PID: 0)
             }
             let adNsalePost = UIAlertAction(title: "광고 및 판매 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: CID, PID: 0)
             }
             let spamPost = UIAlertAction(title: "악성 도배 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: CID, PID: 0)
             }
             let swearPost = UIAlertAction(title: "욕설 및 비하 댓글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: CID, PID: 0)
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel)
             reportAlert.addAction(diseasePost)

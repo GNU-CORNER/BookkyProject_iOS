@@ -26,6 +26,7 @@ class ReportPostAPi{
         }else if PID == 0{
             reportType = 1
         }
+        
         let httpBody : [String:Any] = ["reportType":communityType,"TYPE":reportType]
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.reportPostURL+"CID=\(CID)&"+"PID=\(PID)"+"&communityType=\(communityType)") else {
@@ -44,8 +45,21 @@ class ReportPostAPi{
                 print("Error:  \(String(describing: error))")
                 return
             }
+            guard let  data = data , let response = response as? HTTPURLResponse, (200..<300) ~= response.statusCode else {
+                print("\(String(describing: error))")
+                return
+            }
+            do {
+                let reportResult = try JSONDecoder().decode(ReportInforamtion.self, from: data)
+                completionHandler(reportResult.success,data)
+                
+            }
+            catch(let err) {
+                print("Decoding Error")
+                print(err.localizedDescription)
+            }
             DispatchQueue.main.async {
-                let outputStr = String(data: data!, encoding: String.Encoding.utf8)
+                let outputStr = String(data: data, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
 
             }
