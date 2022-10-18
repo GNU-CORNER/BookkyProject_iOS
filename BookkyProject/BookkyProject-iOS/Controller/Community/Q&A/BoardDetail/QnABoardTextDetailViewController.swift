@@ -39,6 +39,7 @@ class QnABoardTextDetailViewController: UIViewController {
     var updateImageArray : [UIImage] = []
     var isAccessible : Bool = false //사용자의 글인지 아닌지 확인
     var ImageArray : [String] = []
+    var titleString  = ""
     lazy var rightButton: UIBarButtonItem = {
         let buttonImg = UIImage(systemName: "ellipsis")
         let barButtonItem = UIBarButtonItem(image: buttonImg, style: .plain, target: self, action: #selector(rightbarButtonAction(_:)))
@@ -63,16 +64,16 @@ class QnABoardTextDetailViewController: UIViewController {
         let report = UIAlertAction(title: "신고", style: .destructive){(_) in
             let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
             let diseasePost = UIAlertAction(title: "불건전 글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let adNsalePost = UIAlertAction(title: "광고 및 판매 글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let spamPost = UIAlertAction(title: "악성 도배 글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let swearPost = UIAlertAction(title: "욕설 및 비하 글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel)
             reportAlert.addAction(diseasePost)
@@ -142,12 +143,9 @@ class QnABoardTextDetailViewController: UIViewController {
         
         self.userNameLabel.font = UIFont.systemFont(ofSize: 14)
         
-        self.likeCntLButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        self.likeCntLButton.setTitleColor(UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1), for: .normal)
-        self.likeCntLButton.tintColor = UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1)
-        self.likeCntLButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+       
         //버튼이미지크기
-        self.likeCntLButton.setPreferredSymbolConfiguration(.init(pointSize: 12), forImageIn: .normal)
+     
         self.CommetButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         self.CommetButton.tintColor = UIColor(red: 184/255, green: 184/255, blue: 184/255, alpha: 1)
         self.answerLabel.font = UIFont.systemFont(ofSize: 12)
@@ -172,6 +170,7 @@ class QnABoardTextDetailViewController: UIViewController {
         if segue.identifier == "writePostCommentSegue" {
             guard let QnAWriteAnswerVIewController = segue.destination as? QnAWriteAnswerViewController else {return}
             QnAWriteAnswerVIewController.PID = self.PID
+            QnAWriteAnswerVIewController.titleString = self.titleString
             QnAWriteAnswerVIewController.boardTypeNumber = self.boardTypeNumber
         }else if  segue.identifier == "QnACommentSegue" {
             guard let QnACommentViewController = segue.destination as? QnACommentViewController else {return}
@@ -182,11 +181,19 @@ class QnABoardTextDetailViewController: UIViewController {
     private func setBoardTextDetailData(model :WriteTextDetailQnAPostData){
         
         self.QnATitleLabel.text = model.title
+        self.titleString = model.title
         self.QnAContentsLabel.text = model.contents
         self.QnACreateDateLabel.text = "\(model.createAt)"
         self.userNameLabel.text = model.nickname
         self.QnAViewCnt.text = "\(model.views)"
+        self.likeCntLButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        self.likeCntLButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         self.likeCntLButton.setTitle("좋아요(\(model.like?.count ?? 0))", for: .normal)
+        if self.PostisLiked == true{
+            self.likeCntLButton.tintColor = UIColor(named: "PrimaryBlueColor")
+        }else {
+            self.likeCntLButton.tintColor = UIColor.gray
+        }
         self.isAccessible = model.isAccessible
         let textCount = self.QnAContentsLabel.text?.count ?? 0
         
@@ -231,6 +238,7 @@ class QnABoardTextDetailViewController: UIViewController {
                 guard let communityGetDetailList = data as? WriteTextDetailQnAInformation else {return}
                 let writeTextDetailQnAData = communityGetDetailList.result.postdata
                 self.QnAReplyData = communityGetDetailList.result.replydata!
+                print("\(self.QnAReplyData)test")
                 self.bookdata = communityGetDetailList.result.Book
                 
                 self.BID = self.bookdata?.TBID ?? 0
@@ -260,12 +268,43 @@ class QnABoardTextDetailViewController: UIViewController {
             }
         }
     }
+    //MARK: - 신고 기능
+    func tapReport(CID:Int ,PID :Int ,communityType : Int){
+        ReportPostAPi.shared.postReportAPI(CID: CID, PID: PID, communityType: communityType){(success,data) in
+            if success {
+                self.completeReport()
+            }else {
+                print("오류가 발생확인필요")
+            }
+        }
+    }
+    func completeReport(){
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "신고가 접수되었습니다.", message: nil, preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "확인", style: .cancel)
+            alert.addAction(cancel)
+            self.present(alert, animated: true)
+        }
+    }
     @objc func tapGoCommentofReplyComment(_ sender : Any){
         let parentID : Int = (sender as! CustomQnAButton).parentID
         guard let QnACommentViewController = storyboard?.instantiateViewController(withIdentifier: "QnACommentViewController") as? QnACommentViewController else{return}
         self.navigationController?.pushViewController(QnACommentViewController, animated: true)
         QnACommentViewController.PID = parentID
         QnACommentViewController.boardTypeNumber = self.boardTypeNumber
+    }
+    @IBAction func tapLikeButton(_ sender: UIButton) {
+        CommunityPostAPI.shared.LikeCommunityPost(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { success, data in
+            if success {
+                print("좋아요 성공")
+            }else {
+                print("실패")
+            }
+            
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
+            self.getBoardTextDetailQnAData()
+        })
     }
     func commentDelte(){
         let alert = UIAlertController(title: "삭제 되었습니다.", message: nil, preferredStyle: .alert)
@@ -276,10 +315,12 @@ class QnABoardTextDetailViewController: UIViewController {
         }
     }
     //신고 팝업창
-    func reportAlert(){
+    func reportAlert(CID : Int , PID : Int){
         let reportAlert = UIAlertController(title: "게시판 성격에 부적절함", message: "게시물의 주제가 게시판의 성격에 벗어나, 다른 이용자에게 불편을 끼칠수 있는 게시물", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let report = UIAlertAction(title: "확인", style: .default)
+        let report = UIAlertAction(title: "확인", style: .default){(_) in
+            self.tapReport(CID: CID, PID: PID,communityType: self.boardTypeNumber)
+        }
         reportAlert.addAction(cancel)
         reportAlert.addAction(report)
         DispatchQueue.main.async {
@@ -288,7 +329,7 @@ class QnABoardTextDetailViewController: UIViewController {
     }
     //답글 ...버튼 액션
     @objc func addReplyCommentFunction(_ sender : Any){
-        let parentID : Int = (sender as! CustomQnAButtonAddFunction).parentID
+        let PID : Int = (sender as! CustomQnAButtonAddFunction).PID
         let isAccessible : Bool = (sender as! CustomQnAButtonAddFunction).isAccessible
         let commentBookData : CommentBookData? = (sender as! CustomQnAButtonAddFunction).commentBookData
         let commentUpdateImageArray : [UIImage] = (sender as! CustomQnAButtonAddFunction).commentUpdateImgArray
@@ -297,19 +338,19 @@ class QnABoardTextDetailViewController: UIViewController {
         let contents : String = (sender as! CustomQnAButtonAddFunction).contents
         let alert = UIAlertController(title: "답글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let report = UIAlertAction(title: "신고", style: .destructive){(_) in
+            let report = UIAlertAction(title: "신고", style: .destructive){(_) in
             let reportAlert = UIAlertController(title: "신고 사유 선택", message: nil, preferredStyle: .actionSheet)
             let diseasePost = UIAlertAction(title: "불건전 답글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let adNsalePost = UIAlertAction(title: "광고 및 판매 답글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let spamPost = UIAlertAction(title: "악성 도배 답글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let swearPost = UIAlertAction(title: "욕설 및 비하 답글", style: .default){(_) in
-                self.reportAlert()
+                self.reportAlert(CID: 0, PID: self.PID)
             }
             let cancel = UIAlertAction(title: "취소", style: .cancel)
             reportAlert.addAction(diseasePost)
@@ -323,7 +364,7 @@ class QnABoardTextDetailViewController: UIViewController {
         }
         if isAccessible == true{
             let delete = UIAlertAction(title: "답글 삭제", style: .destructive){(_) in
-                self.deletePost(communityBoardNumber: self.boardTypeNumber, PID: parentID)
+                self.deletePost(communityBoardNumber: self.boardTypeNumber, PID: PID)
                 self.commentDelte()
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
                     self.getBoardTextDetailQnAData()
@@ -333,7 +374,7 @@ class QnABoardTextDetailViewController: UIViewController {
                 guard let UpdateCommentviewController = self.storyboard?.instantiateViewController(withIdentifier: "QnACommentUpdateViewController")as? QnACommentUpdateViewController else {return}
                 UpdateCommentviewController.contentsString = contents
                 UpdateCommentviewController.BID = BID
-                UpdateCommentviewController.PID = parentID
+                UpdateCommentviewController.PID = PID
                 UpdateCommentviewController.bookData = commentBookData
                 UpdateCommentviewController.imageArray = commentUpdateImageArray
                 UpdateCommentviewController.boardTypeNumber = self.boardTypeNumber
@@ -360,13 +401,26 @@ extension QnABoardTextDetailViewController : UITableViewDataSource,UITableViewDe
         cell.setReplyData(model:self.QnAReplyData[indexPath.row])
         cell.commentButton.addTarget(self, action: #selector(tapGoCommentofReplyComment) , for: .touchUpInside)
         cell.commentButton.parentID = self.QnAReplyData[indexPath.row].PID
-        
         cell.addFunctionButton.addTarget(self, action: #selector(addReplyCommentFunction), for: .touchUpInside)
         cell.addFunctionButton.isAccessible = cell.QnaAnswerisAccessible
-        cell.addFunctionButton.parentID = cell.PID
+        cell.addFunctionButton.PID = cell.PID
         cell.addFunctionButton.BID = cell.BID
         cell.addFunctionButton.contents = cell.contents
         var commentUpdateImageArray : [UIImage] = []
+        cell.likebuttonAction = {
+            print("좋아요")
+            CommunityPostAPI.shared.LikeCommunityPost(CommunityBoardNumber: self.boardTypeNumber, PID: cell.PID){ success, data in
+                if success {
+                    print("좋아요 성공")
+                }else {
+                    print("실패")
+                }
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+                self.getBoardTextDetailQnAData()
+            })
+            
+        }
         for i in cell.ImageArray {
             let url = URL(string: i)
             let data = try! Data(contentsOf: url!)
@@ -409,15 +463,15 @@ class CustomQnAButton : UIButton {
     }
 }
 class CustomQnAButtonAddFunction : UIButton {
-    var parentID : Int = 0
+    var PID : Int = 0
     var BID : Int =  0
     var commentBookData : CommentBookData?
     var contents : String = ""
     var commentUpdateImgArray : [UIImage] = []
     var isAccessible : Bool = false
-    convenience init(parentID : Int,isAccessible : Bool , commentUpdateImgArray : [UIImage] ,contents : String,commentBookData : CommentBookData? ) {
+    convenience init(PID : Int,isAccessible : Bool , commentUpdateImgArray : [UIImage] ,contents : String,commentBookData : CommentBookData? ) {
         self.init()
-        self.parentID = parentID
+        self.PID = PID
         self.isAccessible = isAccessible
         self.contents = contents
         self.commentUpdateImgArray = commentUpdateImgArray

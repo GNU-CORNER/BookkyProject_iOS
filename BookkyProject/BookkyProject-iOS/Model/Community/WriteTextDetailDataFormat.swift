@@ -113,6 +113,7 @@ struct WriteTextDetailQnAReplyData : Codable{
     let PID : Int
     let commentCnt : Int?
     let isAccessible : Bool
+    let isLiked : Bool
     let TBID : Int
     let Book : CommentBookData?
     let postImage : [String]?
@@ -140,6 +141,7 @@ struct QnACommentDataList : Codable {
     let comment : String
     let updateAt : String
     let like : [Int]?
+    let isLiked : Bool
     let nickname : String
     let thumbnail : String?
     let isAccessible: Bool
@@ -151,6 +153,7 @@ struct QnAChildComment :Codable {
     let comment : String
     let updateAt : String
     let like : [Int]?
+    let isLiked : Bool
     let nickname : String
     let thumbnail : String?
     let isAccessible : Bool

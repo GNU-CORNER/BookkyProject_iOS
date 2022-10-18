@@ -21,6 +21,7 @@ class QnaAnswerTableViewCell: UITableViewCell {
     @IBOutlet weak var addFunctionButton: CustomQnAButtonAddFunction!
     var PID : Int = 0
     var BID : Int = 0
+    var likebuttonAction: (()->Void)? = nil
     var QnaAnswerisAccessible : Bool = false
     @IBOutlet weak var bookImg: UIImageView!
     @IBOutlet weak var bookNameLabel: UILabel!
@@ -34,7 +35,7 @@ class QnaAnswerTableViewCell: UITableViewCell {
     
     var commentBookData : CommentBookData?
     var contents : String = ""
-//    var commentBookData :
+    //    var commentBookData :
     override func awakeFromNib() {
         super.awakeFromNib()
         setUI()
@@ -46,10 +47,17 @@ class QnaAnswerTableViewCell: UITableViewCell {
         self.createDataLabel.text = model.updateAt
         self.contentsLabel.text = model.contents
         self.contents = model.contents
+        if model.isLiked == true{
+            likeCntLabel.tintColor = UIColor(named: "PrimaryBlueColor")
+        }else {
+            likeCntLabel.tintColor = UIColor.gray
+        }
         self.likeCntLabel.setTitle("좋아요(\(model.like?.count ?? 0))", for: .normal)
         self.choiceAnswerLabel.text = " "
+     
         self.commentButton.setTitle("댓글(\(model.commentCnt ?? 0))", for:.normal)
         self.PID = model.PID
+        
         self.BID = model.TBID
         self.QnaAnswerisAccessible = model.isAccessible
         self.bookNameLabel.text = model.Book?.TITLE
@@ -91,12 +99,12 @@ class QnaAnswerTableViewCell: UITableViewCell {
         self.commentButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         self.commentButton.tintColor = UIColor(named: "grayColor")
         self.addFunctionButton.tintColor = .black
-// MARK: - BookUI
+        // MARK: - BookUI
         self.bookNameLabel.font = UIFont.boldSystemFont(ofSize: 18)
         self.bookAPLabel.font = UIFont.systemFont(ofSize: 12)
         self.selectBookView.layer.borderWidth = 2
         self.selectBookView.layer.borderColor = UIColor(named: "lightGrayColor")?.cgColor
-
+        
     }
     private func setCollectionViewCell() {
         let flowLayout = UICollectionViewFlowLayout()
@@ -110,18 +118,21 @@ class QnaAnswerTableViewCell: UITableViewCell {
         let cellNib = UINib(nibName: "QnaAnswerImageCollectionViewCell", bundle: nil)
         self.imgCollectionView?.register(cellNib, forCellWithReuseIdentifier: "QnaImgViewid")
     }
+    @IBAction func tapLikeButton(_ sender: UIButton) {
+        likebuttonAction?()
+    }
 }
 extension QnaAnswerTableViewCell : UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.ImageArray.count
         
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "QnaImgViewid", for: indexPath) as? QnaAnswerImageCollectionViewCell else { return UICollectionViewCell()}
         cell.setImageArray(model: ImageArray[indexPath.row])
         return cell
     }
-
-
+    
+    
 }

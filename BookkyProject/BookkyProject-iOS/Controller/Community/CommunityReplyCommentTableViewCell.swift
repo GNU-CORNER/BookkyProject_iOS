@@ -48,14 +48,15 @@ class CommunityReplyCommentTableViewCell: UITableViewCell {
         self.userReplyCommentContentsLabel.text = model.comment
         self.replyCommentCreateAtLabel.text = model.updateAt
         self.replyCommentLIkeCntButton.setTitle("공감(\(likeCount))", for: .normal)
+        if model.isLiked == false{
+            self.replyCommentLIkeCntButton.tintColor = UIColor.gray
+            
+        }else {
+            self.replyCommentLIkeCntButton.tintColor = UIColor(named: "PrimaryBlueColor")
+        }
         self.userNameLabel.text = model.nickname
         self .isAccessible = model.isAccessible
-//        if model.isLiked == false{
-//            self.replyCommentLIkeCntButton.tintColor = UIColor.gray
-//            
-//        }else {
-//            self.replyCommentLIkeCntButton.tintColor = UIColor(named: "PrimaryBlueColor")
-//        }
+
         self.CID = model.CID
     }
     private func BoardTextReplyCommentTableViewCellUI(){

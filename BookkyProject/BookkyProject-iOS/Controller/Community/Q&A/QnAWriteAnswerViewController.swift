@@ -23,6 +23,7 @@ class QnAWriteAnswerViewController: UIViewController,SelectSendData {
     @IBOutlet weak var bookAPLabel: UILabel!
     @IBOutlet weak var selectBookView: UIView!
     @IBOutlet weak var selectBookDeleteButton: UIButton!
+    @IBOutlet weak var commentTitleLabel: UILabel!
     var imageArray : [UIImage] = []
     var postImageArray : [String] = []
     var bookViewHeight : Int = 0
@@ -35,13 +36,18 @@ class QnAWriteAnswerViewController: UIViewController,SelectSendData {
     var PID : Int = 0
     var TBID : Int = 0
     var boardTypeNumber : Int = 0
-    
+    var titleString = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         setWriteTitleTextField()
         
         writePostButtonUI()
         setCollectionViewCell()
+        setWriteAnswerViewUI()
+        
+    }
+    private func setWriteAnswerViewUI(){
+        self.commentTitleLabel.text = self.titleString
         bottomStackView.setCustomSpacing(200, after: addImageButton)
         self.selectBookViewHeight.constant = 0
         self.ImgCollectionViewHeight.constant = 0
