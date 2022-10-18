@@ -9,18 +9,19 @@ import UIKit
 
 class BoardTextDetailImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var UIimageView: UIImageView!
-    var UIImage : UIImage!
+    var ImageArray : [String] = []
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     func setImageArray(model : String) {
         if let url = URL(string: model) {
-              self.UIimageView.load(url: url)
-          }
+            self.UIimageView.load(url: url)
+        }
+        self.ImageArray = []
+        self.ImageArray.append(model)
     }
     override func prepareForReuse() {
         super.prepareForReuse()
-        UIimageView.image = nil
     }
 }

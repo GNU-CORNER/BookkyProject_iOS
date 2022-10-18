@@ -51,12 +51,16 @@ class QnABoardTextDetailViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         setTableViewCell()
         setBoardTextDetailUI()
-        setCollectionViewCell()
         setBookViewUI()
         self.navigationItem.rightBarButtonItem = self.rightButton
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        setCollectionViewCell()
+        getBoardTextDetailQnAData()
+        self.updateImageArray = []
+        
+    }
     
     @objc private func rightbarButtonAction(_ sender : Any){
         let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
@@ -117,10 +121,7 @@ class QnABoardTextDetailViewController: UIViewController {
         }
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        getBoardTextDetailQnAData()
-        self.updateImageArray = []
-    }
+
     func setTableViewCell(){
         self.QnATableView.dataSource = self
         self.QnATableView.delegate = self
@@ -445,8 +446,13 @@ extension QnABoardTextDetailViewController :UICollectionViewDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
         cell.setImageArray(model: self.ImageArray[indexPath.row])
-        if cell.UIImage != nil {
-            self.updateImageArray.append(cell.UIImage)
+        for i in cell.ImageArray {
+            let url = URL(string: i)
+            let data = try! Data(contentsOf: url!)
+            let UIImg = UIKit.UIImage(data: data)
+            if UIImg != nil {
+                updateImageArray.append(UIImg!)
+            }
         }
         return cell
     }
