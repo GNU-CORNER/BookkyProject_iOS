@@ -195,6 +195,7 @@ class BookDetailViewController: UIViewController {
             }
         }
     }
+
     private func setColletioView(){
         self.detailBookTagListCollectionView.delegate = self
         self.detailBookTagListCollectionView.dataSource = self

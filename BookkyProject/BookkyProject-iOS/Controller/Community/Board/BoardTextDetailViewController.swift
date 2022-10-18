@@ -84,8 +84,8 @@ class BoardTextDetailViewController: UIViewController {
         getBoardTextDetailData()
         self.updateImageArray = []
     }
- 
-
+    
+    
     @objc private func rightbarButtonAction(_ sender : Any){
         let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -119,7 +119,7 @@ class BoardTextDetailViewController: UIViewController {
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
                     self.navigationController?.popViewController(animated: true)
                 })
-               
+                
             }
             let update = UIAlertAction(title: "글 수정", style: .default){(_)in
                 guard let UpdatePostviewController = self.storyboard?.instantiateViewController(withIdentifier: "UpdatePostViewController") as? UpdatePostViewController
@@ -135,7 +135,7 @@ class BoardTextDetailViewController: UIViewController {
             }
             alert.addAction(delete)
             alert.addAction(update)
-           
+            
         }
         alert.addAction(cancel)
         alert.addAction(report)
@@ -153,7 +153,7 @@ class BoardTextDetailViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.topItem?.title = ""
     }
-   
+    
     func setBoardTextDetailUI(){
         self.textDetailTitleLabel.font = UIFont.systemFont(ofSize: 20)
         self.textDetailCreateDateLabel.font = UIFont.systemFont(ofSize: 11)
@@ -223,12 +223,13 @@ class BoardTextDetailViewController: UIViewController {
         self.DetailBookView.layer.borderColor = UIColor(named: "lightGrayColor")?.cgColor
     }
     
-// MARK: - 데이터 통신함수
+    // MARK: - 데이터 통신함수
     //GET PostDetai
     private func getBoardTextDetailData(){
         CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
             if success{
                 guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
+                debugPrint(communityGetDetailList)
                 let writeTextDetailData = communityGetDetailList.result.postdata
                 let commnetCount = communityGetDetailList.result
                 self.bookdata = communityGetDetailList.result.Book
@@ -335,7 +336,7 @@ class BoardTextDetailViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
             self.getBoardTextDetailData()
         })
-
+        
         self.commentTextView.text = nil
     }
     //대댓글 작성 TextField
@@ -360,14 +361,25 @@ class BoardTextDetailViewController: UIViewController {
             })
         }
         
-       
         
+        
+    }
+    func tapReport(CID:Int ,PID :Int ,communityType : Int){
+        ReportPostAPi.shared.postReportAPI(CID: 0, PID: 0, communityType: communityType){(success,data) in
+            if success {
+                print("신고 성공")
+            }else {
+                print("오류가 발생하였습니다.")
+            }
+        }
     }
     //신고 팝업창
     func reportAlert(){
         let reportAlert = UIAlertController(title: "게시판 성격에 부적절함", message: "게시물의 주제가 게시판의 성격에 벗어나, 다른 이용자에게 불편을 끼칠수 있는 게시물", preferredStyle: .alert)
         let cancel = UIAlertAction(title: "취소", style: .cancel)
-        let report = UIAlertAction(title: "확인", style: .default)
+        let report = UIAlertAction(title: "확인", style: .default){(_) in
+            self.tapReport(CID: self.CID, PID: self.PID, communityType: self.commentType)
+        }
         reportAlert.addAction(cancel)
         reportAlert.addAction(report)
         DispatchQueue.main.async {
@@ -510,7 +522,7 @@ class BoardTextDetailViewController: UIViewController {
         
         alert.addAction(cancel)
         alert.addAction(report)
-     
+        
         alert.addAction(writeComment)
         DispatchQueue.main.async {
             self.present(alert, animated: true)
@@ -555,7 +567,7 @@ class BoardTextDetailViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
             self.getBoardTextDetailData()
         })
-
+        
     }
 }
 
@@ -565,8 +577,8 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
             self.replyCommentFooterView = UIView(frame: CGRect(x: 25, y: 10, width: self.bookDetailCommentTableView.frame.width, height: 35))
             self.replytextField = UITextField(frame: CGRect(x: 30, y: 10, width: self.bookDetailCommentTableView.frame.width-100, height: 30))
             self.writeReplyButton = UIButton(frame:CGRect(x: self.bookDetailCommentTableView.frame.width-70, y: 10, width: 50, height: 30))
-//            textView.delegate = self
-//            textView.text = "내용을 입력해주세요"
+            //            textView.delegate = self
+            //            textView.text = "내용을 입력해주세요"
             self.replytextField.placeholder = "내용을 입력해주세요"
             self.replytextField.layer.borderWidth = 2
             self.replytextField.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1)
@@ -596,7 +608,7 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if self.section == section {
-           return self.tableViewfooterHeight
+            return self.tableViewfooterHeight
         }
         return 0
         
@@ -678,7 +690,7 @@ extension BoardTextDetailViewController :UICollectionViewDelegate,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.ImageArray.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
         cell.setImageArray(model: self.ImageArray[indexPath.row])

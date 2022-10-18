@@ -18,8 +18,8 @@ class BookkyURL {
     static let userPath = "/user"
     //MyProfile
     static let myprofilePath = "/myprofile"
-// MARK: - 홈 Get
-
+    // MARK: - 홈 Get
+    
     static let myprofileUpdatePath = "/user/myprofile"
     static let favoriteBookPath = "/user/favoritebook/"
     static let myPostsPath = "/user/mypost"
@@ -30,37 +30,38 @@ class BookkyURL {
     static let tagURL = "/books/tag/"
     static let tagMoreViewURL = "/home/tags"
     static let bookDetatilURL = "/books/detail/"
-// MARK: - 책상세정보
+    // MARK: - 책상세정보
     static let favoriteURL = "/user/favoritebook/"
-// MARK: - 도서상세 정보 리뷰
+    // MARK: - 도서상세 정보 리뷰
     static let bookDetailReview = "/books/reviews/"
     static let bookPostReview = "/review/"
     static let bookDeleteReview = "/review/"
     static let bookReviewLike = "/review/like/"
-// MARK: - 커뮤니티 Get
+    // MARK: - 커뮤니티 Get
     static let communityPostListGetURL =  "/community/postlist/"
     static let communityTextDetail = "/community/postdetail/"
     static let communityQnACommentGetURL = "/community/comment/"
     static let communityHotPostListGetURL = "/community/hotcommunity"
-// MARK: - 커뮤니티 post
+    // MARK: - 커뮤니티 post
     static let communityWritePostURL = "/community/writepost/"
     static let communityCommetPostURL = "/community/writecomment/"
     static let communityLikePost = "/community/like/"   //좋아요
     static let communityLikeComment = "/community/likecomment/"   //좋아요
-// MARK: - 커뮤니티 글 Update
+    // MARK: - 커뮤니티 글 Update
     static let communityUpdatePostURL = "/community/modifypost/"
     static let communityUpdateCommentURL = "/community/modifycomment/"
-// MARK: - 커뮤니티 Delete
+    // MARK: - 커뮤니티 Delete
     static let communityDeletePostURL = "/community/deletepost/"
     static let communityDeleteCommentURL = "/community/deletecomment/"
     static let nicknameCheckPath = "/user/nickname"
     static let tagsPath = "/tags"
     
-// MARK: - Books GET
+    // MARK: - Books GET
     static let booksSearchPath = "/books/search"
     
-// MARK: - 커뮤니티 Search
-static let communitySearchPostURL = "/community/search?keyword="
-static let communitySearchBookURL = "/community/post/book?keyword="
-
+    // MARK: - 커뮤니티 Search
+    static let communitySearchPostURL = "/community/search?keyword="
+    static let communitySearchBookURL = "/community/post/book?keyword="
+    // MARK: - 신고
+    static let reportPostURL = "/community/report?"
 }

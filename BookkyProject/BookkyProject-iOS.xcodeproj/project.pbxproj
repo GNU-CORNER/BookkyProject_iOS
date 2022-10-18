@@ -122,6 +122,8 @@
 		F82A862528464C8200DBBE00 /* CommentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82A862328464C8200DBBE00 /* CommentHeaderTableViewCell.swift */; };
 		F82A862628464C8200DBBE00 /* CommentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82A862428464C8200DBBE00 /* CommentHeaderTableViewCell.xib */; };
 		F840D07E2847A30E00CB0F3C /* ExtensionUIAertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */; };
+		F855A92428FEA08000E70D4E /* ReportPostAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F855A92328FEA08000E70D4E /* ReportPostAPI.swift */; };
+		F855A92628FEA13000E70D4E /* ReportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F855A92528FEA13000E70D4E /* ReportModel.swift */; };
 		F8584AEB284B4715006BDE8D /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8584AEA284B4715006BDE8D /* LoadingView.swift */; };
 		F8731D7F282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */; };
 		F8731D81282AAC4C00FB64ED /* BoardTextDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */; };
@@ -316,6 +318,8 @@
 		F82A862328464C8200DBBE00 /* CommentHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F82A862428464C8200DBBE00 /* CommentHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIAertAction.swift; sourceTree = "<group>"; };
+		F855A92328FEA08000E70D4E /* ReportPostAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReportPostAPI.swift; path = "BookkyProject-iOS/SerVice/ReportPostAPI.swift"; sourceTree = SOURCE_ROOT; };
+		F855A92528FEA13000E70D4E /* ReportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportModel.swift; sourceTree = "<group>"; };
 		F8584AEA284B4715006BDE8D /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		F8731D7E282A860000FB64ED /* HomeBookDetailReviewDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBookDetailReviewDataFormat.swift; sourceTree = "<group>"; };
 		F8731D80282AAC4C00FB64ED /* BoardTextDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextDetailViewController.swift; sourceTree = "<group>"; };
@@ -605,6 +609,7 @@
 				6883FE1E2847487A00C132A4 /* UserTagHandler.swift */,
 				6853E22E284B80EC002BA8C9 /* BooksAPI.swift */,
 				68CD4EE3284C27D500D94391 /* CoreDataManager.swift */,
+				F855A92328FEA08000E70D4E /* ReportPostAPI.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -621,6 +626,7 @@
 				68B21B08282A2D4C00707C5A /* MyProfileModel.swift */,
 				68307C3E284692B100109FBD /* MyProfileUpdateModel.swift */,
 				6883FE1C284732CB00C132A4 /* TagsModel.swift */,
+				F855A92528FEA13000E70D4E /* ReportModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -964,7 +970,6 @@
 				68683D3627DDF5EE008EF3CF /* Frameworks */,
 				68683D3727DDF5EE008EF3CF /* Resources */,
 				64B6C6A46D818B405CD79290 /* [CP] Embed Pods Frameworks */,
-				6A1DADDDDC1EFBB2591F0930 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -988,8 +993,6 @@
 				68683D4B27DDF5EF008EF3CF /* Sources */,
 				68683D4C27DDF5EF008EF3CF /* Frameworks */,
 				68683D4D27DDF5EF008EF3CF /* Resources */,
-				DE2C5E1F37779ED7DABB8D6B /* [CP] Embed Pods Frameworks */,
-				164AE9BC0DA93389AD704A39 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1010,7 +1013,6 @@
 				68683D5627DDF5EF008EF3CF /* Frameworks */,
 				68683D5727DDF5EF008EF3CF /* Resources */,
 				A6EA769810DA4AFE54F17A73 /* [CP] Embed Pods Frameworks */,
-				46CF80FCACFBCC02DC78C276 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1134,83 +1136,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		164AE9BC0DA93389AD704A39 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookkyProject-iOSTests/Pods-BookkyProject-iOSTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		46CF80FCACFBCC02DC78C276 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookkyProject-iOS-BookkyProject-iOSUITests/Pods-BookkyProject-iOS-BookkyProject-iOSUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		64B6C6A46D818B405CD79290 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BookkyProject-iOS/Pods-BookkyProject-iOS-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BookkyProject-iOS/Pods-BookkyProject-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BookkyProject-iOS/Pods-BookkyProject-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookkyProject-iOS/Pods-BookkyProject-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6A1DADDDDC1EFBB2591F0930 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookkyProject-iOS/Pods-BookkyProject-iOS-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookkyProject-iOS/Pods-BookkyProject-iOS-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		A6EA769810DA4AFE54F17A73 /* [CP] Embed Pods Frameworks */ = {
@@ -1219,20 +1159,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-BookkyProject-iOS-BookkyProject-iOSUITests/Pods-BookkyProject-iOS-BookkyProject-iOSUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Cosmos/Cosmos.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BookkyProject-iOS-BookkyProject-iOSUITests/Pods-BookkyProject-iOS-BookkyProject-iOSUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cosmos.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-BookkyProject-iOS-BookkyProject-iOSUITests/Pods-BookkyProject-iOS-BookkyProject-iOSUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookkyProject-iOS-BookkyProject-iOSUITests/Pods-BookkyProject-iOS-BookkyProject-iOSUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BookkyProject-iOS-BookkyProject-iOSUITests/Pods-BookkyProject-iOS-BookkyProject-iOSUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C090C0246B30D51C570CDE5C /* [CP] Check Pods Manifest.lock */ = {
@@ -1277,25 +1212,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE2C5E1F37779ED7DABB8D6B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BookkyProject-iOSTests/Pods-BookkyProject-iOSTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EB26FA97A48986924F704032 /* [CP] Check Pods Manifest.lock */ = {
@@ -1363,6 +1279,7 @@
 				F899B5D328490300000A03D7 /* CommunityDeleteDataSerVice.swift in Sources */,
 				F899B5D12848FE5E000A03D7 /* CommunityPostDataSerVice.swift in Sources */,
 				68683D7627DE40F4008EF3CF /* MyProfileViewController.swift in Sources */,
+				F855A92428FEA08000E70D4E /* ReportPostAPI.swift in Sources */,
 				6853E22C284B5EAF002BA8C9 /* SearchTableResultHeaderView.swift in Sources */,
 				683674BE282215B500CB618D /* MyTagsCollectionViewCell.swift in Sources */,
 				F877021328008C72002EA1F5 /* BookCollectionViewCell.swift in Sources */,
@@ -1399,6 +1316,7 @@
 				68683D7227DE40DB008EF3CF /* RecommendViewController.swift in Sources */,
 				F80756DC2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift in Sources */,
 				F8B3126828327C2000E01201 /* QnABoardTextDetailViewController.swift in Sources */,
+				F855A92628FEA13000E70D4E /* ReportModel.swift in Sources */,
 				F8A6039E284CE525004FD937 /* UpdatePostViewController.swift in Sources */,
 				F840D07E2847A30E00CB0F3C /* ExtensionUIAertAction.swift in Sources */,
 				F89297752844BA7C0059EE14 /* CommunityReplyCommentTableViewCell.swift in Sources */,

@@ -51,6 +51,7 @@ class HomePostDataAPI{
         guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
          else {
             print("Launch: 토큰을 불러올 수 없음.")
+            
             return
         }
         let httpBody : [String:Any] = ["contents":contents,"rating":rating]

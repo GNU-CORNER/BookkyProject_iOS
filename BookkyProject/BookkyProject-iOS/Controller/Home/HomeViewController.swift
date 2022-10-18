@@ -39,12 +39,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.setBookTableView()
         self.setRecommendView()
         self.setCommunityView()
-        getBookData()
+    
         statusBarView?.backgroundColor = UIColor(named:"primaryColor")
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getBookData()
         navigationController?.setNavigationBarHidden(true, animated: animated)
 //        self.bookListTableView.reloadData()
     }
@@ -86,6 +87,8 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.QnABoardTextGoButton.tag = 1
     //MARK: - HOT
         self.hotBoardTextGoButton.setTitle("\(self.communityList[2].title)", for: .normal)
+        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
+        self.hotBoardTextGoButton.PID = self.communityList[2].PID
         self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
         self.hotBoardTextGoButton.tag = 2
     }
@@ -177,9 +180,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         
         let PID : Int = (sender as! HomeBoardTextButton).PID
         let communityType : Int = (sender as! HomeBoardTextButton).communityType
-        print("\(PID)")
-        print("\(communityType)")
-        
         if communityType == 2 {
             let QnACommunityStoryBoard: UIStoryboard = UIStoryboard(name: "QnACommunity", bundle: nil)
             guard let QnAboardTextDetailViewController = QnACommunityStoryBoard.instantiateViewController(withIdentifier: "QnABoardViewController") as? QnABoardTextDetailViewController else {return}
@@ -187,7 +187,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
             QnAboardTextDetailViewController.boardTypeNumber = communityType
             self.navigationController?.pushViewController(QnAboardTextDetailViewController, animated: true)
         }else {
-            
+            let communityStoryBoard: UIStoryboard = UIStoryboard(name: "Community", bundle: nil)
+            guard let boardTextDetailViewController = communityStoryBoard.instantiateViewController(withIdentifier: "BookDetailViewController") as? BoardTextDetailViewController else {return}
+            boardTextDetailViewController.PID = PID
+            boardTextDetailViewController.boardTypeNumber = communityType
+            self.navigationController?.pushViewController(boardTextDetailViewController, animated: true)
         }
     
     }

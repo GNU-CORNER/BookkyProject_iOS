@@ -127,7 +127,6 @@ class CommunityViewController: UIViewController {
             setDropDownMenu()
             communityGetPostQnAList()
         }else if self.previousBoardNumber == 3 {
-            print("갱1")
             self.boardNameLabel.text = "내글 보기"
             self.boardTypeNumber = 3
             self.previousBoardNumber = 3
@@ -137,7 +136,6 @@ class CommunityViewController: UIViewController {
             self.currentTextCount = 0
             setDropDownMenu()
             communityGetPostMyList()
-            print("갱2")
         }else if self.previousBoardNumber == 4 {
             self.boardNameLabel.text = "H🔥t 게시판"
             self.boardTypeNumber = 4

@@ -6,6 +6,7 @@ target 'BookkyProject-iOS' do
   use_frameworks!
 
   # Pods for BookkyProject-iOS
+  pod 'Alamofire'
   pod 'Cosmos', '~> 23.0'
   target 'BookkyProject-iOSTests' do
     inherit! :search_paths
