@@ -54,6 +54,9 @@ class ResearchViewController: UIViewController {
         UserTagHandler.shared.userTagsUpdate(didSelectItems, accessToken) { (success, data, statuscode) in
             if success {
                 print("User Tags 수정 완료.")
+                DispatchQueue.main.async {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
             } else {
                 print("User Tags 수정이 안돼.")
             }
