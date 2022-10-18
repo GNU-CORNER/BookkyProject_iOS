@@ -98,6 +98,7 @@
 		68CD4EE1284C272E00D94391 /* Searches+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CD4EDF284C272E00D94391 /* Searches+CoreDataClass.swift */; };
 		68CD4EE2284C272E00D94391 /* Searches+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CD4EE0284C272E00D94391 /* Searches+CoreDataProperties.swift */; };
 		68CD4EE4284C27D500D94391 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68CD4EE3284C27D500D94391 /* CoreDataManager.swift */; };
+		68CFBC2A28FED40900F6C055 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68CFBC2928FED40900F6C055 /* GoogleService-Info.plist */; };
 		68FBE65427FCA245003DBFB7 /* BookkyURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65327FCA245003DBFB7 /* BookkyURL.swift */; };
 		68FBE65727FD50E8003DBFB7 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65627FD50E8003DBFB7 /* SignupModel.swift */; };
 		68FBE65927FDB1EF003DBFB7 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65827FDB1EF003DBFB7 /* UITextField.swift */; };
@@ -118,7 +119,6 @@
 		F8260583282E691C006DB702 /* QnABoardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */; };
 		F8260584282E691C006DB702 /* QnABoardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */; };
 		F8260587282E840F006DB702 /* BookWriteReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */; };
-		F828D7ED28BF867B00102680 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F828D7EC28BF867B00102680 /* GoogleService-Info.plist */; };
 		F82A862528464C8200DBBE00 /* CommentHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F82A862328464C8200DBBE00 /* CommentHeaderTableViewCell.swift */; };
 		F82A862628464C8200DBBE00 /* CommentHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F82A862428464C8200DBBE00 /* CommentHeaderTableViewCell.xib */; };
 		F840D07E2847A30E00CB0F3C /* ExtensionUIAertAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */; };
@@ -291,6 +291,7 @@
 		68CD4EDF284C272E00D94391 /* Searches+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Searches+CoreDataClass.swift"; sourceTree = "<group>"; };
 		68CD4EE0284C272E00D94391 /* Searches+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Searches+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		68CD4EE3284C27D500D94391 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CoreDataManager.swift; path = "BookkyProject-iOS/SerVice/CoreDataManager.swift"; sourceTree = SOURCE_ROOT; };
+		68CFBC2928FED40900F6C055 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		68FBE65327FCA245003DBFB7 /* BookkyURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookkyURL.swift; sourceTree = "<group>"; };
 		68FBE65627FD50E8003DBFB7 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
 		68FBE65827FDB1EF003DBFB7 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
@@ -314,7 +315,6 @@
 		F8260581282E691C006DB702 /* QnABoardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QnABoardTableViewCell.swift; sourceTree = "<group>"; };
 		F8260582282E691C006DB702 /* QnABoardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QnABoardTableViewCell.xib; sourceTree = "<group>"; };
 		F8260586282E840F006DB702 /* BookWriteReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookWriteReviewViewController.swift; sourceTree = "<group>"; };
-		F828D7EC28BF867B00102680 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F82A862328464C8200DBBE00 /* CommentHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		F82A862428464C8200DBBE00 /* CommentHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		F840D07D2847A30E00CB0F3C /* ExtensionUIAertAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIAertAction.swift; sourceTree = "<group>"; };
@@ -543,7 +543,7 @@
 				68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */,
 				68683D4527DDF5EF008EF3CF /* Assets.xcassets */,
 				68683D4A27DDF5EF008EF3CF /* Info.plist */,
-				F828D7EC28BF867B00102680 /* GoogleService-Info.plist */,
+				68CFBC2928FED40900F6C055 /* GoogleService-Info.plist */,
 			);
 			path = "BookkyProject-iOS";
 			sourceTree = "<group>";
@@ -1114,8 +1114,8 @@
 				6852E56B27F2EE1300CAEF02 /* Login.storyboard in Resources */,
 				68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */,
 				F8C10A922832C0C400D311F6 /* QnACommunity.storyboard in Resources */,
+				68CFBC2A28FED40900F6C055 /* GoogleService-Info.plist in Resources */,
 				F8260584282E691C006DB702 /* QnABoardTableViewCell.xib in Resources */,
-				F828D7ED28BF867B00102680 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

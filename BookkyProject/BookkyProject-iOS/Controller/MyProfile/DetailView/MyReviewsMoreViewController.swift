@@ -76,12 +76,7 @@ extension MyReviewsMoreViewController: UICollectionViewDelegate, UICollectionVie
         }
         
         if let bookThumbnailURL = URL(string: myReviewsMoreArray[indexPath.row].thumbnail) {
-            do {
-                let thumbnailData = try Data(contentsOf: bookThumbnailURL)
-                cell.myReviewBookThumbnailImageView.image = UIImage(data: thumbnailData)
-            } catch {
-                print(error)
-            }
+            cell.myReviewBookThumbnailImageView.load(url: bookThumbnailURL)
         }
         cell.myReviewBookTitleLabel.text = myReviewsMoreArray[indexPath.row].bookTitle
         cell.myReviewBookAuthorLabel.text = myReviewsMoreArray[indexPath.row].author

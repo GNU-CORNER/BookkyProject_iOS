@@ -102,12 +102,7 @@ extension SearchResultsViewController {
                 searchResultCell.searchResultBookRateLabel.text = String(filteredBooks[indexPath.row].rating)
                 // 이미지
                 if let thumbnailURL = URL(string: filteredBooks[indexPath.row].thumbnailImage) {
-                    do {
-                        let thumbnailData = try Data(contentsOf: thumbnailURL)
-                        searchResultCell.searchResultBookImageView.image = UIImage(data: thumbnailData)
-                    } catch {
-                        print(error)
-                    }
+                    searchResultCell.searchResultBookImageView.load(url: thumbnailURL)
                 }
                 searchResultCell.setBookTags(tagArray: filteredBooks[indexPath.row].tagData ?? [])
                 tableView.separatorStyle = .singleLine

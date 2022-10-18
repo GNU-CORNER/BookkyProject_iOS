@@ -71,14 +71,8 @@ extension MyBooksMoreViewController: UICollectionViewDelegate, UICollectionViewD
         else {
             return UICollectionViewCell()
         }
-//        cell.bookThumbnailImageView.image =  myBooksMoreArray[indexPath.row].thumbnailImage
         if let bookThumbnailURL = URL(string: myBooksMoreArray[indexPath.row].thumbnailImage) {
-            do {
-                let thumbnailData = try Data(contentsOf: bookThumbnailURL)
-                cell.bookThumbnailImageView.image = UIImage(data: thumbnailData)
-            } catch {
-                print(error)
-            }
+            cell.bookThumbnailImageView.load(url: bookThumbnailURL)
         }
         cell.booksTitleLabel.text = myBooksMoreArray[indexPath.row].title
         return cell

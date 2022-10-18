@@ -27,7 +27,8 @@ struct SearchDatum: Codable {
     let title, author: String
     let thumbnailImage: String
     let rating: Double
-    let bookIntroduction, publishDate, publisher: String
+    let bookIntroduction: String?
+    let publishDate, publisher: String
     let tagData: [TagDatum]?
 
     enum CodingKeys: String, CodingKey {

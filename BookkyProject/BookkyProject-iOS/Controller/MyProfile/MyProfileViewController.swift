@@ -93,13 +93,16 @@ class MyProfileViewController: UIViewController {
                         return
                     }
 
+//                    if let userThumbnailImageURL = URL(string: userThumbnailImageString) {
+//                        do {
+//                            let userThumbnailData = try Data(contentsOf: userThumbnailImageURL)
+//                            self.userImageView.image = UIImage(data: userThumbnailData)
+//                        } catch {
+//                            print(error)
+//                        }
+//                    }
                     if let userThumbnailImageURL = URL(string: userThumbnailImageString) {
-                        do {
-                            let userThumbnailData = try Data(contentsOf: userThumbnailImageURL)
-                            self.userImageView.image = UIImage(data: userThumbnailData)
-                        } catch {
-                            print(error)
-                        }
+                        self.userImageView.load(url: userThumbnailImageURL)
                     }
                     
                 }
@@ -275,12 +278,13 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
                 return UICollectionViewCell()
             }
             if let thumbnailUrl = URL(string: myBooksArray[indexPath.row].thumbnailImage) {
-                do {
-                    let thumbnailData = try Data(contentsOf: thumbnailUrl)
-                    myBooksCell.myBooksImageView.image = UIImage(data: thumbnailData)
-                } catch {
-                    print(error)
-                }
+//                do {
+//                    let thumbnailData = try Data(contentsOf: thumbnailUrl)
+//                    myBooksCell.myBooksImageView.image = UIImage(data: thumbnailData)
+//                } catch {
+//                    print(error)
+//                }
+                myBooksCell.myBooksImageView.load(url: thumbnailUrl)
             }
             myBooksCell.myBooksLabel.text = "\(myBooksArray[indexPath.row].title)"
             return myBooksCell
@@ -310,12 +314,7 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
             myReviewsCell.myReviewsBookDescriptionLabel.text = myReviewsArray[indexPath.row].contents
             myReviewsCell.myReviewsBookAuthorLabel.text = myReviewsArray[indexPath.row].author
             if let thumbnailUrl = URL(string: myReviewsArray[indexPath.row].thumbnail) {
-                do {
-                    let thumbnailData = try Data(contentsOf: thumbnailUrl)
-                    myReviewsCell.myReviewsBookImageView.image = UIImage(data: thumbnailData)
-                } catch {
-                    print(error)
-                }
+                myReviewsCell.myReviewsBookImageView.load(url: thumbnailUrl)
             }
             myReviewsCell.myReviewsLikeLabel.text = String(myReviewsArray[indexPath.row].likeCnt)
 

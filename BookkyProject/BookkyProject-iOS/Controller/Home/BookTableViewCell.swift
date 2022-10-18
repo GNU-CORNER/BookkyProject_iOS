@@ -79,12 +79,12 @@ extension BookTableViewCell :UICollectionViewDelegate,UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell :BookCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "bookCollectionViewCellid", for: indexPath) as? BookCollectionViewCell else {return UICollectionViewCell()}
-        if self.ViewControllernumber == 0 {
-            cell.setBookData(model: bookDataList[indexPath.row])
-            return cell
-        }else if self.ViewControllernumber == 1{
-            cell.setTagMoreViewBookData(model: tagMoreViewDataList[indexPath.row])
-            return cell
+        DispatchQueue.main.async {
+            if self.ViewControllernumber == 0 {
+                cell.setBookData(model: self.bookDataList[indexPath.row])
+            }else if self.ViewControllernumber == 1{
+                cell.setTagMoreViewBookData(model: self.tagMoreViewDataList[indexPath.row])
+            }
         }
        return cell
     }
