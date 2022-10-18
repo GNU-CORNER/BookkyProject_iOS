@@ -14,6 +14,7 @@ class InitialResearchViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     var isanswerNOButtonSelected: Bool = false
     var isanswerYESButtonSelected: Bool = false
+    var isFirstLogin: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,13 @@ class InitialResearchViewController: UIViewController {
         self.nextButton.isEnabled = true
         self.nextButton.layer.backgroundColor = UIColor(named: "primaryColor")?.cgColor
         self.nextButton.setTitleColor(UIColor(named: "White Color"), for: .normal)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "NextResearchView" {
+            let vc = segue.destination as! ResearchViewController
+            vc.isFirstLogin = self.isFirstLogin
+        }
     }
 }
 

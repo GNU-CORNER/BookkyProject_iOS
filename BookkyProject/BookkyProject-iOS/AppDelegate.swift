@@ -52,7 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
             // - [ ] 예외처리 할 것
             print("Launch: 사용자 이메일을 불러올 수 없음.")
-            
             return true
         }
         print(userEmail)

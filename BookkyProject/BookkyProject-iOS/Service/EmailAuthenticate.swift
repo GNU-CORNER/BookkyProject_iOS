@@ -42,6 +42,7 @@ class EmailAuthenticate {
                 completionHandler(true, decodedData)
             } catch {
                 print("Error: Email Sender Decode Error. \(String(describing: error))")
+                print("\(response.statusCode)")
             }
         }.resume()
     }

@@ -46,6 +46,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getBookData()
+        print("view will appear , getbook")
         navigationController?.setNavigationBarHidden(true, animated: animated)
 //        self.bookListTableView.reloadData()
     }
@@ -123,7 +124,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.bookListTableView.register(cellNib, forCellReuseIdentifier: "BookTableViewCellid")
     }
     private func getBookData(){
-        GetBookData.shared.getBookData(){ (sucess,data) in
+        GetBookData.shared.getBookData(view:self){ (sucess,data) in
             if sucess {
                 guard let bookData = data as? BookInformation else {return}
                 self.bookList = bookData.result.bookList

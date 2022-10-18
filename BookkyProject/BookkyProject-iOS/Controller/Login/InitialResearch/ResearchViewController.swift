@@ -15,6 +15,7 @@ class ResearchViewController: UIViewController {
     @IBOutlet weak var tagsCollectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
     var selectedTagsCnt: Int = 0
+    var isFirstLogin: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,12 @@ class ResearchViewController: UIViewController {
             if success {
                 print("User Tags 수정 완료.")
                 DispatchQueue.main.async {
-                    self.navigationController?.popToRootViewController(animated: true)
+                    if self.isFirstLogin {
+                        self.isFirstLogin = false
+                        self.dismiss(animated: true)
+                    } else {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 }
             } else {
                 print("User Tags 수정이 안돼.")
