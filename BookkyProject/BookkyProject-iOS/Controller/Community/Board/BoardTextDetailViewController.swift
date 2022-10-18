@@ -241,6 +241,8 @@ class BoardTextDetailViewController: UIViewController {
                 self.writeTextDetailcommentData = communityGetDetailList.result.commentdata ?? []
                 if communityGetDetailList.success{
                     DispatchQueue.main.async {
+                        self.setBoardTextDetailData(model: writeTextDetailData)
+                        self.setCommentCount(model: commnetCount)
                         if self.bookdata?.TITLE == nil {
                             self.bookViewHeight.constant = 0
                         }else{
@@ -251,8 +253,6 @@ class BoardTextDetailViewController: UIViewController {
                         }else {
                             self.ImageCollectionView.reloadData()
                         }
-                        self.setBoardTextDetailData(model: writeTextDetailData)
-                        self.setCommentCount(model: commnetCount)
                         self.bookDetailCommentTableView.reloadData()
                     }
                 }else{
@@ -705,8 +705,13 @@ extension BoardTextDetailViewController :UICollectionViewDelegate,UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
         cell.setImageArray(model: self.ImageArray[indexPath.row])
-        if cell.UIImage != nil {
-            self.updateImageArray.append(cell.UIImage)
+        for i in cell.ImageArray {
+            let url = URL(string: i)
+            let data = try! Data(contentsOf: url!)
+            let UIImg = UIKit.UIImage(data: data)
+            if UIImg != nil {
+                updateImageArray.append(UIImg!)
+            }
         }
         return cell
     }

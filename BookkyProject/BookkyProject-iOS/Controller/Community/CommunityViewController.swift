@@ -107,7 +107,7 @@ class CommunityViewController: UIViewController {
             setDropDownMenu()
             communityGetPostList()
         }else if self.previousBoardNumber == 1 {
-            self.boardNameLabel.text = "책 장터 게시판"
+            self.boardNameLabel.text = "책장터 게시판"
             self.boardTypeNumber = 1
             self.previousBoardNumber = 1
             self.currentPage = 1
@@ -261,7 +261,7 @@ class CommunityViewController: UIViewController {
         else if previousBoardNumber == 1 {
             self.bookMarketGoButton.setTitleColor(.black, for: .normal)
             self.bookMarketGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
-            boardName = "책 장터 게시판"
+            boardName = "책장터 게시판"
         }else if previousBoardNumber == 2{
             self.QnABoardGoButton.setTitleColor(.black, for: .normal)
             self.QnABoardGoButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
