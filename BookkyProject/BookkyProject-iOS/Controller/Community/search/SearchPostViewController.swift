@@ -21,6 +21,7 @@ class SearchPostViewController: UIViewController {
         setSearchBar()
         setTableView()
         searchTableViewCell()
+        self.keyboardDown()
     }
     private func setSearchBar(){
         let searchController = UISearchController(searchResultsController: nil)

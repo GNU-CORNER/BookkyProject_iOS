@@ -44,6 +44,7 @@ class QnAWriteAnswerViewController: UIViewController,SelectSendData {
         writePostButtonUI()
         setCollectionViewCell()
         setWriteAnswerViewUI()
+        self.keyboardDown()
         
     }
     private func setWriteAnswerViewUI(){

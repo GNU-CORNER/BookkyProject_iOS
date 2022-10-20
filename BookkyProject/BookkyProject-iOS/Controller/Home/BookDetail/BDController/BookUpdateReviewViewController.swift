@@ -31,6 +31,7 @@ class BookUpdateReviewViewController: UIViewController{
         setWriteTitleTextField()
         setStarSliderUI()
         updateRating(self.ratingStar)
+        self.keyboardDown()
     }
     private func setStarSliderUI(){
         updateStarView.rating = 0.0

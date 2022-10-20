@@ -37,6 +37,7 @@ class QnACommentViewController: UIViewController {
         getCommentData()
         QnAfooterViewUISet()
         print("\(self.PID)")
+        self.keyboardDown()
         
     }
     private func QnAfooterViewUISet(){
