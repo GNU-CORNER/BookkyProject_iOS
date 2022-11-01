@@ -23,10 +23,9 @@ class BookCollectionViewCell: UICollectionViewCell {
     func setTagMoreViewBookData(model : TagMoreViewBookData){
         BID = model.TBID
         self.bookNameLabel.text = model.TITLE
-        
-        let url = URL(string: "\(model.thumbnailImage)")
-        let data = try! Data(contentsOf: url!)
-        self.bookImageView.image = UIImage(data: data)
+        if let url = URL(string: "\(model.thumbnailImage)"){
+            self.bookImageView.load(url: url)
+        }
     }
     override func awakeFromNib() {
         super.awakeFromNib()

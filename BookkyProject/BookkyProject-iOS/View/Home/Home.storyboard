@@ -1097,20 +1097,6 @@ Label</string>
             <point key="canvasLocation" x="3400.0000000000005" y="1388.8392857142856"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="GrE-5E-Kqv">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
-        <designable name="RU5-Gk-71u">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
-        <designable name="kpf-zD-fVE">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
-        <designable name="oiU-bP-LMS">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
-    </designables>
     <inferredMetricsTieBreakers>
         <segue reference="y9q-dC-Lfa"/>
         <segue reference="GOj-gx-B2b"/>

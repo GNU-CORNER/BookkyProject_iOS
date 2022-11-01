@@ -707,11 +707,17 @@ extension BoardTextDetailViewController :UICollectionViewDelegate,UICollectionVi
         cell.setImageArray(model: self.ImageArray[indexPath.row])
         for i in cell.ImageArray {
             let url = URL(string: i)
-            let data = try! Data(contentsOf: url!)
-            let UIImg = UIKit.UIImage(data: data)
-            if UIImg != nil {
-                updateImageArray.append(UIImg!)
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: url!){
+                    let UIImg = UIKit.UIImage(data: data)
+                    if UIImg != nil {
+                        self.updateImageArray.append(UIImg!)
+                    }
+                }
             }
+            
+            
+            
         }
         return cell
     }
