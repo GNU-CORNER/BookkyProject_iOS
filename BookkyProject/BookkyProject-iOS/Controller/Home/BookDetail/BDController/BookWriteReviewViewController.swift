@@ -30,6 +30,7 @@ class BookWriteReviewViewController: UIViewController{
         setData()
         setWriteTitleTextField()
         setStarSliderUI()
+        self.keyboardDown()
    
     }
 //MARK: - starFunc https://velog.io/@h0neydear/Cosmos 참고

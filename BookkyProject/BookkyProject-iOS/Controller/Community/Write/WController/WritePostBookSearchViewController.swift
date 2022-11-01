@@ -29,7 +29,7 @@ class WritePostBookSearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setBookSearchTableView()
-
+        self.keyboardDown()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

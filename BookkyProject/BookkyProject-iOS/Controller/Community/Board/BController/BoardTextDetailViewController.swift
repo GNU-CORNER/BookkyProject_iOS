@@ -79,7 +79,7 @@ class BoardTextDetailViewController: UIViewController {
         setBookViewUI()
         secondLineStackView.setCustomSpacing(5, after: self.textDetailViewsImage)
         self.navigationItem.rightBarButtonItem = self.rightButton
-        
+        self.keyboardDown()
     }
     override func viewWillAppear(_ animated: Bool) {
         getBoardTextDetailData()

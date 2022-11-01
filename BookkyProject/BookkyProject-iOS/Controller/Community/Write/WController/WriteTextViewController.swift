@@ -55,6 +55,7 @@ class WriteTextViewController: UIViewController ,SelectSendData{
         dismissPickerView()
         boardPicker.tintColor = .clear
         boardPicker.text = "자유게시판"
+        self.keyboardDown()
     }
     //화면터치시내려감
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

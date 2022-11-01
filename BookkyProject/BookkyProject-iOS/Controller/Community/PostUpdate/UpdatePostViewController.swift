@@ -48,6 +48,7 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
         setStackViewSpacing()
         setCollectionViewCell()
         SetPostData()
+        self.keyboardDown()
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.imageArray = []

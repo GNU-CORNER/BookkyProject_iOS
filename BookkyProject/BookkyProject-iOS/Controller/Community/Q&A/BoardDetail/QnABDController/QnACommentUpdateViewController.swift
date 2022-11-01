@@ -43,6 +43,7 @@ class QnACommentUpdateViewController: UIViewController,SelectUpdateCommentVCSend
         setStackViewSpacing()
         setCollectionViewCell()
         SetPostData()
+        self.keyboardDown()
     }
     
     private func SetPostData(){

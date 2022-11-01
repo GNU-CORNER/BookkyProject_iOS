@@ -53,6 +53,7 @@ class QnABoardTextDetailViewController: UIViewController {
         setBoardTextDetailUI()
         setBookViewUI()
         self.navigationItem.rightBarButtonItem = self.rightButton
+        self.keyboardDown()
         
     }
     override func viewWillAppear(_ animated: Bool) {
