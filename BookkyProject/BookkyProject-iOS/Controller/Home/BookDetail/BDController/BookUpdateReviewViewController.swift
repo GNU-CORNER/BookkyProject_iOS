@@ -16,7 +16,7 @@ class BookUpdateReviewViewController: UIViewController{
     @IBOutlet weak var bookAuthorLabel: UILabel!
     @IBOutlet weak var updateReviewButton: AutoAddPaddingButtton!
     @IBOutlet weak var updateTextView: UITextView!
-    var url : URL? = nil
+    var url : String = ""
     var RID : Int = 0
     var bookName : String = ""
     var bookAuthor : String  = ""
@@ -67,8 +67,10 @@ class BookUpdateReviewViewController: UIViewController{
         
     }
     private func setData(){
-        let data = try! Data(contentsOf: self.url!)
-        self.bookImageView.image = UIImage(data: data)
+        if let url = URL(string:  self.url) {
+            self.bookImageView.load(url: url)
+        }
+        
         self.bookNameLabel.text = self.bookName
         self.bookAuthorLabel.text = self.bookAuthor
     }
@@ -117,5 +119,11 @@ extension BookUpdateReviewViewController : UITextViewDelegate{
             textView.text = "내용을 입력해주세요"
             textView.textColor = UIColor.lightGray
         }
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n"){
+            textView.resignFirstResponder()
+        }
+        return true
     }
 }

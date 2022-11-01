@@ -11,11 +11,14 @@ class TagViewController: UIViewController {
     var TID : Int = 0
     var BID : Int = 0
     @IBOutlet weak var tagCollectionView: UICollectionView!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
+    
     var tagBookList : [TagBookData]  = []
     var tagName : String = ""
     var deviceWidth = UIScreen.main.bounds.size.width
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.indicatorView.startAnimating()
         setCollectionView()
         getTagBookData()
         //        UIApplication.shared.statusBarStyle
@@ -30,6 +33,9 @@ class TagViewController: UIViewController {
                 self.tagName = tagBookData.result.bookList.tag
                 if tagBookData.success{
                     DispatchQueue.main.async {
+                        self.indicatorView.stopAnimating()
+                        self.indicatorView.isHidden = true
+                        self.tagCollectionView.isHidden = false
                         self.tagCollectionView.reloadData()
                     }
                 }else {

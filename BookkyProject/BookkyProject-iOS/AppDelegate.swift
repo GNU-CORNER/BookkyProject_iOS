@@ -12,7 +12,7 @@ import FirebaseAuth
 import FirebaseAnalytics
 import FirebaseMessaging
 
-@main
+ @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     let gcmMessageIDKey = "gcm.message_id"
     let aps = "aps"
