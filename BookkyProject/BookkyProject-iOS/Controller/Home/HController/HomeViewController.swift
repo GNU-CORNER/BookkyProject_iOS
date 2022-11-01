@@ -34,12 +34,14 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     // MARK: - 도서리스트 테이블
     @IBOutlet weak var bookListTableView: UITableView!
     var communityList : [CommunityRecentList] = []
+    @IBOutlet weak var readyIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.readyIndicator.startAnimating()
         self.setBookTableView()
         self.setRecommendView()
         self.setCommunityView()
-    
+        self.bookListTableView.isHidden = true
         statusBarView?.backgroundColor = UIColor(named:"primaryColor")
         
     }
@@ -131,11 +133,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                 self.communityList = bookData.result.communityList
                 if bookData.success{
                     DispatchQueue.main.async {
+                        self.readyIndicator.startAnimating()
+                        self.readyIndicator.isHidden = true
+                        self.bookListTableView.isHidden = false
                         self.setCommunityData()
                         self.userName = bookData.result.userData.nickname
                         self.bookListTableView.reloadData()
                     }
                 }else {
+                    
                     print("통신 오류")
                 }
             }
