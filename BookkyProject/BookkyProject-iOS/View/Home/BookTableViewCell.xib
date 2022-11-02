@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Pqk-K7-kaG">
-                        <rect key="frame" x="0.0" y="25.333333333333332" width="400" height="154.66666666666666"/>
+                        <rect key="frame" x="0.0" y="20.333333333333332" width="400" height="159.66666666666666"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g7W-Uo-MXb">
@@ -38,7 +38,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="dqQ-WU-yqo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ASo-YZ-IIn"/>
-                    <constraint firstItem="Pqk-K7-kaG" firstAttribute="top" secondItem="dqQ-WU-yqo" secondAttribute="bottom" constant="5" id="Coi-e2-Q5c"/>
+                    <constraint firstItem="Pqk-K7-kaG" firstAttribute="top" secondItem="dqQ-WU-yqo" secondAttribute="bottom" id="Coi-e2-Q5c"/>
                     <constraint firstItem="dqQ-WU-yqo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Idy-jv-qaC"/>
                     <constraint firstAttribute="bottom" secondItem="Pqk-K7-kaG" secondAttribute="bottom" id="M4V-7T-5aM"/>
                     <constraint firstAttribute="trailing" secondItem="Pqk-K7-kaG" secondAttribute="trailing" id="QRr-0e-ImI"/>

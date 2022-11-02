@@ -9,42 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--추천받개-->
-        <scene sceneID="TDd-Sa-gtD">
-            <objects>
-                <viewController id="hT6-e9-Gxo" customClass="RecommendViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uGw-ga-XtH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="150" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8FD-JY-hPF">
-                                <rect key="frame" x="0.0" y="48" width="414" height="765"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="2x5-u9-A2m"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="8FD-JY-hPF" firstAttribute="leading" secondItem="2x5-u9-A2m" secondAttribute="leading" id="1ze-uL-36a"/>
-                            <constraint firstItem="8FD-JY-hPF" firstAttribute="bottom" secondItem="2x5-u9-A2m" secondAttribute="bottom" id="JUo-kv-Gpw"/>
-                            <constraint firstItem="8FD-JY-hPF" firstAttribute="trailing" secondItem="2x5-u9-A2m" secondAttribute="trailing" id="Nia-CS-E2L"/>
-                            <constraint firstItem="8FD-JY-hPF" firstAttribute="top" secondItem="2x5-u9-A2m" secondAttribute="top" id="wTV-I2-aXI"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="추천받개" id="WiA-es-3C6"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="recommendTableView" destination="8FD-JY-hPF" id="m0n-ok-h55"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HWW-a6-tdP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="676.81159420289862" y="44.866071428571423"/>
-        </scene>
-        <!--View Controller-->
+        <!--Ready Recommand View Controller-->
         <scene sceneID="sKT-B5-RUv">
             <objects>
-                <viewController storyboardIdentifier="EmptyView" id="Cun-uM-WyG" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmptyView" id="Cun-uM-WyG" customClass="ReadyRecommandViewController" customModule="BookkyProject_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aQt-vM-UHM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -85,7 +53,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xTL-Pu-XqX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="546" y="772"/>
+            <point key="canvasLocation" x="604" y="45"/>
         </scene>
         <!--추천받개-->
         <scene sceneID="bA5-Ve-0Xr">

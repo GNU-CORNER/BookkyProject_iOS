@@ -95,7 +95,6 @@ class HomePostDataAPI{
         }
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
-        print("\(RID)")
         request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
         request.setValue("application/json", forHTTPHeaderField: "accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")

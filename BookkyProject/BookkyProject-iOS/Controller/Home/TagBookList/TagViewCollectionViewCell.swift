@@ -14,7 +14,7 @@ class TagViewCollectionViewCell: UICollectionViewCell {
     func setTagBookList(model: TagBookData){
         bookNameLabel.text = model.TITLE
         self.BID = model.TBID
-        if let url = URL(string: model.thumbnailImage ?? "") {
+        if let url = URL(string: model.thumbnailImage) {
             self.bookImageView.load(url: url)
         }
     }
