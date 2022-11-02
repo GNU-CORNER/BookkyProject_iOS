@@ -17,7 +17,7 @@ class BookDetailViewController: UIViewController {
     var bookDetailTagList : [BookDetailDataTagData] = []
     //네이버
     var bookDetailRevieList  : [ReviewData] = []
-    var bookImage : URL?  = nil
+    var bookImage : String = ""
     var bookName : String = ""
     var AUTHOR : String = ""
     @IBOutlet weak var naverGoButton: UIButton!
@@ -46,6 +46,7 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var bookDetailScrollView: UIScrollView!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     var userContents : String = ""
     
     // 관심도서 설정
@@ -56,6 +57,7 @@ class BookDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //리뷰 테이블뷰
+        self.indicatorView.startAnimating()
         bookDetailCommentTableView.delegate = self
         bookDetailCommentTableView.dataSource = self
         self.navigationController?.navigationBar.tintColor = UIColor.black
@@ -121,6 +123,9 @@ class BookDetailViewController: UIViewController {
                 
                 if bookDetailData.success{
                     DispatchQueue.main.async {
+                        self.bookDetailScrollView.isHidden = false
+                        self.indicatorView.isHidden = true
+                        self.indicatorView.stopAnimating()
                         self.setBookDetailData(model: DetailData)
                         self.navigationItem.rightBarButtonItem = self.favoriteButton
                         if favorite == true{
@@ -147,6 +152,9 @@ class BookDetailViewController: UIViewController {
                 let tableViewCellCount = self.bookDetailRevieList.count
                 if bookDetailReviewData.success{
                     DispatchQueue.main.async {
+                        self.bookDetailScrollView.isHidden = false
+                        self.indicatorView.isHidden = true
+                        self.indicatorView.stopAnimating()
                         if self.bookDetailRevieList.count != 0{
                             self.tableViewHeight.constant = CGFloat(100*tableViewCellCount)
                         }else {
@@ -207,16 +215,16 @@ class BookDetailViewController: UIViewController {
         self.detailBookTagListCollectionView?.showsHorizontalScrollIndicator = false
     }
     private func setBookDetailData(model:BookDetailData){
-        
-        let url = URL(string: "\(model.thumbnailImage)")
-        let data = try! Data(contentsOf: url!)
-        bookDetailImage.image = UIImage(data: data)
+    
+        if let url = URL(string: model.thumbnailImage) {
+            self.bookDetailImage.load(url: url)
+        }
         self.detailBookName.text = model.TITLE
         self.detailBookAuthor.text = model.AUTHOR
         self.bookDetailTagList = model.tagData
         
         
-        self.bookImage = URL(string: "\(model.thumbnailImage)")
+        self.bookImage = model.thumbnailImage
         self.bookName = model.TITLE
         self.AUTHOR = model.AUTHOR
         updateRating(model.RATING)

@@ -17,7 +17,7 @@ class BookWriteReviewViewController: UIViewController{
     @IBOutlet weak var writeReviewButton: UIButton!
     
     var BID : Int = 0
-    var url : URL? = nil
+    var url : String = ""
     var bookName : String = ""
     var bookAuthor : String  = ""
     var userContents : String = ""
@@ -70,8 +70,10 @@ class BookWriteReviewViewController: UIViewController{
         
     }
     private func setData(){
-        let data = try! Data(contentsOf: self.url!)
-        self.bookImage.image = UIImage(data: data)
+        if let url = URL(string: self.url) {
+            self.bookImage.load(url: url)
+        }
+        
         self.bookNameLabel.text = self.bookName
         self.bookAuthorNPublisherLabel.text = self.bookAuthor
     }
@@ -120,4 +122,11 @@ extension BookWriteReviewViewController : UITextViewDelegate{
             textView.textColor = UIColor.lightGray
         }
     }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n"){
+            textView.resignFirstResponder()
+        }
+        return true
+    }
+    
 }

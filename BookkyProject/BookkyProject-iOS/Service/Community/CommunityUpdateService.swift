@@ -22,7 +22,6 @@ class CommunityUpdateAPI{
         }
         
         let httpBody : [String:Any] = ["title":textTitle,"contents":textContent ,"TBID":TBID,"PID":parentQPID,"Images":thumbnail]
-        print("\(httpBody)")
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityUpdatePostURL+"\(CommunityBoardNumber)") else {
             print("Error: Cannot create URL")
@@ -57,7 +56,6 @@ class CommunityUpdateAPI{
             return
         }
         let httpBody : [String:Any] = ["comment":textContent ,"PID":parentQPID,"CID":CID]
-        print("\(httpBody)갱")
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityUpdateCommentURL+"\(CommunityBoardNumber)") else {
             print("Error: Cannot create URL")
