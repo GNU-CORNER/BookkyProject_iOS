@@ -48,7 +48,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getBookData()
-        print("view will appear , getbook")
         navigationController?.setNavigationBarHidden(true, animated: animated)
 //        self.bookListTableView.reloadData()
     }
@@ -209,6 +208,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
 extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 180
+        
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.bookListTableView.frame.width, height: 180))
