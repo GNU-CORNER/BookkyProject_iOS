@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,71 +11,66 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentHeaderid" id="KGk-i7-Jjw" customClass="CommentHeaderTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="92"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentHeaderid" rowHeight="114" id="KGk-i7-Jjw" customClass="CommentHeaderTableViewCell" customModule="BookkyProject_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="114"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="393" height="92"/>
+                <rect key="frame" x="0.0" y="0.0" width="393" height="114"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="90K-mp-wKS">
-                        <rect key="frame" x="20" y="5" width="353" height="23.5"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wCA-IT-epl">
+                        <rect key="frame" x="20" y="0.0" width="353" height="103"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3M-LM-ebU">
-                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="23.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="230" id="fzS-je-7xB"/>
-                                    <constraint firstAttribute="height" constant="23.5" id="jGD-fe-dAn"/>
-                                </constraints>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="90K-mp-wKS">
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="34.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3M-LM-ebU">
+                                        <rect key="frame" x="0.0" y="0.0" width="209.5" height="34.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ROo-fE-NrS" customClass="CustomButton" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="217.5" y="0.0" width="135.5" height="34.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="135.5" id="jOc-Ux-Faj"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="ellipsis" catalog="system"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRJ-hg-K2b">
+                                <rect key="frame" x="0.0" y="34.5" width="353" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ROo-fE-NrS" customClass="CustomButton" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                <rect key="frame" x="334" y="0.0" width="19" height="23.5"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" image="ellipsis" catalog="system"/>
-                            </button>
-                        </subviews>
-                    </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZRJ-hg-K2b">
-                        <rect key="frame" x="20" y="33.5" width="363" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="28" id="Ytj-RK-yr9"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PWy-sJ-Jbf">
-                        <rect key="frame" x="20" y="66.5" width="95.5" height="20.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scR-YD-j6E">
-                                <rect key="frame" x="0.0" y="0.0" width="41.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gb6-cO-ayA" customClass="CommentLikeButton" customModule="BookkyProject_iOS" customModuleProvider="target">
-                                <rect key="frame" x="49.5" y="0.0" width="46" height="20.5"/>
-                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="Button"/>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PWy-sJ-Jbf">
+                                <rect key="frame" x="0.0" y="68.5" width="353" height="34.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scR-YD-j6E">
+                                        <rect key="frame" x="0.0" y="0.0" width="41.5" height="34.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gb6-cO-ayA" customClass="CommentLikeButton" customModule="BookkyProject_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="49.5" y="0.0" width="303.5" height="34.5"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="PWy-sJ-Jbf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="KSe-WJ-RiO"/>
-                    <constraint firstItem="90K-mp-wKS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="P2v-w7-a6e"/>
-                    <constraint firstAttribute="bottom" secondItem="PWy-sJ-Jbf" secondAttribute="bottom" constant="5" id="Pf1-kt-2vl"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PWy-sJ-Jbf" secondAttribute="trailing" constant="10" id="ZFY-nS-8YD"/>
-                    <constraint firstItem="ZRJ-hg-K2b" firstAttribute="top" secondItem="90K-mp-wKS" secondAttribute="bottom" constant="5" id="dnH-Ys-1UR"/>
-                    <constraint firstAttribute="trailing" secondItem="90K-mp-wKS" secondAttribute="trailing" constant="20" id="oem-k1-tja"/>
-                    <constraint firstAttribute="trailing" secondItem="ZRJ-hg-K2b" secondAttribute="trailing" constant="10" id="pnI-iZ-Pzw"/>
-                    <constraint firstItem="PWy-sJ-Jbf" firstAttribute="top" secondItem="ZRJ-hg-K2b" secondAttribute="bottom" constant="5" id="s2H-bf-VLX"/>
-                    <constraint firstItem="ZRJ-hg-K2b" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ujW-Ds-ulc"/>
-                    <constraint firstItem="90K-mp-wKS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="xib-d6-BWw"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="wCA-IT-epl" secondAttribute="bottom" id="EI5-Co-bF9"/>
+                    <constraint firstItem="wCA-IT-epl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="cDX-YV-Ufi"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="wCA-IT-epl" secondAttribute="trailing" id="j2j-do-SEa"/>
+                    <constraint firstItem="wCA-IT-epl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="nud-ya-YMM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -86,7 +81,7 @@
                 <outlet property="likeCntButton" destination="gb6-cO-ayA" id="QLC-bl-GDK"/>
                 <outlet property="userNameLabel" destination="T3M-LM-ebU" id="Kr8-vO-gBL"/>
             </connections>
-            <point key="canvasLocation" x="255.79710144927537" y="-56.919642857142854"/>
+            <point key="canvasLocation" x="268.84057971014494" y="-40.848214285714285"/>
         </tableViewCell>
     </objects>
     <resources>

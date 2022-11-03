@@ -44,6 +44,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.bookListTableView.isHidden = true
         statusBarView?.backgroundColor = UIColor(named:"primaryColor")
         
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
