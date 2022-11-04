@@ -47,6 +47,7 @@ class QnAWriteAnswerViewController: UIViewController,SelectSendData {
         self.keyboardDown()
         
     }
+    
     private func setWriteAnswerViewUI(){
         self.commentTitleLabel.text = self.titleString
         bottomStackView.setCustomSpacing(200, after: addImageButton)
@@ -172,6 +173,12 @@ extension QnAWriteAnswerViewController:UITextViewDelegate{
             textView.textColor = UIColor.lightGray
         }
     }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            if (text == "\n"){
+                textView.resignFirstResponder()
+            }
+            return true
+        }
 }
 extension QnAWriteAnswerViewController :UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

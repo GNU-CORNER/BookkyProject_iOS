@@ -367,6 +367,8 @@ extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
             self.QnAreplytextField.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
             self.QnAreplytextField.layer.cornerRadius = 8
             self.QnAreplytextField.clearButtonMode = .whileEditing
+            self.QnAreplytextField.delegate = self
+            self.QnAreplytextField.returnKeyType = .done
             if self.replyCommentType == 0 {
                 writeReplyButton.setTitle("대댓글 달기", for: .normal)
             }else if self.replyCommentType == 1{
@@ -398,7 +400,7 @@ extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
         headerView.userNameLabel.text = self.QnACommentList[section].nickname
         headerView.contentsLabel.text = self.QnACommentList[section].comment
         headerView.createDateLabel.text = self.QnACommentList[section].updateAt
-    
+        
         let likeCnt = self.QnACommentList[section].like?.count ?? 0
         self.commentisLiked = self.QnACommentList[section].isLiked
         headerView.likeCntButton.setTitle("공감(\(likeCnt))", for: .normal)
@@ -463,4 +465,16 @@ extension QnACommentViewController : UITextViewDelegate{
             textView.textColor = UIColor.lightGray
         }
     }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n"){
+            textView.resignFirstResponder()
+        }
+        return true
+    }
+}
+extension QnACommentViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            view.endEditing(true)
+            return false
+        }
 }

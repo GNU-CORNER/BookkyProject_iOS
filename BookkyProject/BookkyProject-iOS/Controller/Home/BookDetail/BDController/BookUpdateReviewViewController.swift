@@ -33,6 +33,15 @@ class BookUpdateReviewViewController: UIViewController{
         updateRating(self.ratingStar)
         self.keyboardDown()
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addKeyboardNotifications()
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardNotifications()
+    }
     private func setStarSliderUI(){
         updateStarView.rating = 0.0
         updateStarView.settings.starSize = 45

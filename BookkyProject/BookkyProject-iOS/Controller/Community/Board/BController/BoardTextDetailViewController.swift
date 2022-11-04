@@ -84,8 +84,12 @@ class BoardTextDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         getBoardTextDetailData()
         self.updateImageArray = []
+        self.addKeyboardNotifications()
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardNotifications()
+    }
     
     @objc private func rightbarButtonAction(_ sender : Any){
         let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
@@ -601,7 +605,7 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
             }else if self.replyCommentType == 1{
                 self.writeReplyButton.setTitle("대댓글 수정", for: .normal)
             }
-            
+            self.replytextField.returnKeyType = .done
             self.writeReplyButton.titleLabel?.font = UIFont.systemFont(ofSize: 9)
             self.writeReplyButton.tintColor = .white
             self.writeReplyButton.layer.borderColor = UIColor(named: "PrimaryBlueColor")?.cgColor
@@ -609,6 +613,7 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
             self.writeReplyButton.layer.backgroundColor = UIColor(named: "PrimaryBlueColor")?.cgColor
             self.writeReplyButton.layer.cornerRadius = 15
             self.replytextField.addTarget(self, action: #selector(replyCommentText), for: .editingChanged)
+            self.replytextField.delegate = self
             self.writeReplyButton.addTarget(self, action: #selector(tapWriteReplyComment), for: .touchUpInside)
             
             self.replyCommentFooterView.addSubview(self.replytextField)
@@ -696,6 +701,19 @@ extension BoardTextDetailViewController : UITextViewDelegate{
             textView.textColor = UIColor.lightGray
         }
     }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if (text == "\n"){
+            textView.resignFirstResponder()
+        }
+        return true
+    }
+}
+extension BoardTextDetailViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
+    }
+    
 }
 extension BoardTextDetailViewController :UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

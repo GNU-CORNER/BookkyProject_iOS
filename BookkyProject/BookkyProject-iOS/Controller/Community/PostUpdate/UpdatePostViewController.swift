@@ -51,6 +51,7 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
         self.keyboardDown()
     }
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         self.imageArray = []
     }
     private func SetPostData(){
@@ -84,6 +85,8 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
         titleTextField.text = self.titleString
         titleTextField.layer.borderWidth = 1
         titleTextField.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
+        titleTextField.returnKeyType = .done
+        titleTextField.delegate = self
         
     }
     private func setWriteContentsTextView() {
@@ -93,6 +96,7 @@ class UpdatePostViewController: UIViewController,SelectUpdateVCSendData{
         contentsTextView.layer.borderWidth = 2
         contentsTextView.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1)
         contentsTextView.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
+        contentsTextView.delegate = self
     }
     func selectBookUI(){
         self.bookNameLabel.font = UIFont.boldSystemFont(ofSize: 18)
@@ -218,4 +222,18 @@ extension UpdatePostViewController :UICollectionViewDelegate,UICollectionViewDat
 
     
 
+}
+extension UpdatePostViewController : UITextViewDelegate{
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            if (text == "\n"){
+                textView.resignFirstResponder()
+            }
+            return true
+        }
+}
+extension UpdatePostViewController : UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            view.endEditing(true)
+            return false
+        }
 }
