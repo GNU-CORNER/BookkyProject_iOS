@@ -303,7 +303,7 @@ class CommunityViewController: UIViewController {
                 }else{
                     print("통신오류")
                 }
-                
+                self.moreScroll = true
             }
         }
         
@@ -323,6 +323,7 @@ class CommunityViewController: UIViewController {
                 }else {
                     print("통신 오류")
                 }
+                self.moreScroll = true
             }
         }
         
@@ -343,6 +344,7 @@ class CommunityViewController: UIViewController {
                 }else{
                     print("통신오류")
                 }
+                self.moreScroll = true
                 
             }
         }
@@ -362,6 +364,7 @@ class CommunityViewController: UIViewController {
                 }else{
                     print("통신오류")
                 }
+                self.moreScroll = true
             }
         }
     }
@@ -383,7 +386,6 @@ class CommunityViewController: UIViewController {
             }else {
                 self.communityGetPostList()
             }
-            self.moreScroll = true
             self.boardTableView.reloadData()
             
         })
