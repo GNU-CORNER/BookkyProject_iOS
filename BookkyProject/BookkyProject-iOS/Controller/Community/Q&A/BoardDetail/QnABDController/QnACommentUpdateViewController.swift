@@ -45,7 +45,7 @@ class QnACommentUpdateViewController: UIViewController,SelectUpdateCommentVCSend
         SetPostData()
         self.keyboardDown()
     }
-    
+
     private func SetPostData(){
         if self.BID == 0 {
             self.selectBookViewHeight.constant = 0
@@ -77,7 +77,7 @@ class QnACommentUpdateViewController: UIViewController,SelectUpdateCommentVCSend
        }
     
     private func setWriteContentsTextView() {
-//        contentsTextView.delegate = self // txtvReview가 유저가 선언한 outlet
+        contentsTextView.delegate = self // txtvReview가 유저가 선언한 outlet
         contentsTextView.text = self.contentsString
 //        contentsTextView.textColor = UIColor.lightGray
         contentsTextView.layer.borderWidth = 2
@@ -209,6 +209,13 @@ extension QnACommentUpdateViewController :UICollectionViewDelegate,UICollectionV
     
 
 }
-
+extension QnACommentUpdateViewController : UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            if (text == "\n"){
+                textView.resignFirstResponder()
+            }
+            return true
+        }
+}
 
 

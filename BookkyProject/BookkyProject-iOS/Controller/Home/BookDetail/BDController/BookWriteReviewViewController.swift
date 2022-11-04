@@ -33,6 +33,15 @@ class BookWriteReviewViewController: UIViewController{
         self.keyboardDown()
    
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.addKeyboardNotifications()
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.removeKeyboardNotifications()
+    }
 //MARK: - starFunc https://velog.io/@h0neydear/Cosmos 참고
     
     private func setStarSliderUI(){

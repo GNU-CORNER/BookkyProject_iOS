@@ -64,13 +64,12 @@ class WriteTextViewController: UIViewController ,SelectSendData{
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
-
-        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
     func selectBookUI(){
         self.bookNameLabel.font = UIFont.boldSystemFont(ofSize: 18)
         self.bookAuthorPublisher.font = UIFont.systemFont(ofSize: 12)
@@ -105,7 +104,8 @@ class WriteTextViewController: UIViewController ,SelectSendData{
         writeTitleTextField.layer.borderWidth = 1
         writeTitleTextField.placeholder = "제목을 입력해주세요"
         writeTitleTextField.layer.borderColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1).cgColor
-        
+        writeTitleTextField.delegate = self
+        writeTitleTextField.returnKeyType = .done
     }
     private func setWriteTitleTextView() {
         writeContentTextView.delegate = self // txtvReview가 유저가 선언한 outlet
@@ -238,6 +238,12 @@ extension WriteTextViewController : UITextViewDelegate{
             textView.textColor = UIColor.lightGray
         }
     }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            if (text == "\n"){
+                textView.resignFirstResponder()
+            }
+            return true
+        }
 }
 extension WriteTextViewController :UICollectionViewDelegate,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -255,7 +261,7 @@ extension WriteTextViewController :UICollectionViewDelegate,UICollectionViewData
     
 
 }
-extension WriteTextViewController : UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource{
+extension WriteTextViewController :UIPickerViewDelegate,UIPickerViewDataSource{
     //몇개의 선택한 리스트를 표시할것인지
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -270,5 +276,12 @@ extension WriteTextViewController : UITextFieldDelegate,UIPickerViewDelegate,UIP
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         boardPicker.text = boardArray[row]
         self.selectedBoardType = row
+    }
+}
+extension WriteTextViewController : UITextFieldDelegate{
+    //return클릭시
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        view.endEditing(true)
+        return false
     }
 }
