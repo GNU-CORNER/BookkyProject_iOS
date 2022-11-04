@@ -122,11 +122,15 @@ extension BookWriteReviewViewController : UITextViewDelegate{
             textView.textColor = UIColor.lightGray
         }
     }
+    //Return버튼클릭시 내려가도록함 다른 방법더있음 둘중에 뭐 할지 선택
+    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n"){
             textView.resignFirstResponder()
         }
         return true
     }
+
+    
     
 }

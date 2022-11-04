@@ -68,7 +68,6 @@ class BoardTableViewCell: UITableViewCell {
     func setBoardTableViewCellUI(){
         self.titleLabel.font = UIFont.systemFont(ofSize: 15)
         self.contentsLabel.font = UIFont.systemFont(ofSize: 13)
-        self.contentsLabel.numberOfLines = 2
         self.contentsLabel.textColor = UIColor(named: "grayColor")
         self.likeThatImageView.image = UIImage(named: "likeThat")
         self.commentImageView.image = UIImage(named: "comment")

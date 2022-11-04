@@ -240,7 +240,6 @@ class QnABoardTextDetailViewController: UIViewController {
                 guard let communityGetDetailList = data as? WriteTextDetailQnAInformation else {return}
                 let writeTextDetailQnAData = communityGetDetailList.result.postdata
                 self.QnAReplyData = communityGetDetailList.result.replydata!
-                print("\(self.QnAReplyData)test")
                 self.bookdata = communityGetDetailList.result.Book
                 
                 self.BID = self.bookdata?.TBID ?? 0
@@ -447,14 +446,18 @@ extension QnABoardTextDetailViewController :UICollectionViewDelegate,UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "BoardTextDetailid", for: indexPath) as? BoardTextDetailImageCollectionViewCell else {return UICollectionViewCell()}
         cell.setImageArray(model: self.ImageArray[indexPath.row])
-        for i in cell.ImageArray {
-            let url = URL(string: i)
-            let data = try! Data(contentsOf: url!)
-            let UIImg = UIKit.UIImage(data: data)
-            if UIImg != nil {
-                updateImageArray.append(UIImg!)
+        DispatchQueue.global().async {
+            for i in cell.ImageArray {
+                let url = URL(string: i)
+            
+                let data = try! Data(contentsOf: url!)
+                let UIImg = UIKit.UIImage(data: data)
+                if UIImg != nil {
+                    self.updateImageArray.append(UIImg!)
+                }
             }
         }
+        
         return cell
     }
     

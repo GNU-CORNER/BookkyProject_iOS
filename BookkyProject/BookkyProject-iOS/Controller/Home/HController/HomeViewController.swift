@@ -44,6 +44,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.bookListTableView.isHidden = true
         statusBarView?.backgroundColor = UIColor(named:"primaryColor")
         
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -88,11 +89,11 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.QnABoardTextGoButton.communityType = self.communityList[1].communityType
         self.QnABoardTextGoButton.tag = 1
     //MARK: - HOT
-        self.hotBoardTextGoButton.setTitle("\(self.communityList[2].title)", for: .normal)
-        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
-        self.hotBoardTextGoButton.PID = self.communityList[2].PID
-        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
-        self.hotBoardTextGoButton.tag = 2
+//        self.hotBoardTextGoButton.setTitle("\(self.communityList[2].title)", for: .normal)
+//        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
+//        self.hotBoardTextGoButton.PID = self.communityList[2].PID
+//        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
+//        self.hotBoardTextGoButton.tag = 2
     }
     
     // MARK: - 커뮤니티뷰 SET
