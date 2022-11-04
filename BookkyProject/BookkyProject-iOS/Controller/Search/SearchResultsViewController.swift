@@ -36,10 +36,9 @@ class SearchResultsViewController: UITableViewController {
         self.totalPage = totalPage
         if isScroll {
             self.filteredBooks.append(contentsOf: resultsArray)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: {
-                
+            DispatchQueue.main.async {
                 self.tableView.reloadData()
-            })
+            }
         } else {
             self.filteredBooks = resultsArray
             DispatchQueue.main.async {
@@ -70,6 +69,7 @@ extension SearchResultsViewController {
             return 1
         } else {            // - [x] 검색 결과가 있을 경우
             if section == 0 {
+                
                 return filteredBooks.count
             } else if section == 1 {
                 return 1

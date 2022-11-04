@@ -11,11 +11,13 @@ import CoreData
 class SearchViewController: UITableViewController, UISearchControllerDelegate {
     
     var recentSearchKeyword: [String] = []
-    var isLoading: Bool = false
+    var isLoading: Bool = true
     var page: Int = 1
     var searchController: UISearchController!
     var resultsTableViewController: SearchResultsViewController!
-    
+    var getPageDataCount : Int = 0
+    var totalSearchCount : Int = 0
+    var currentSearchCount : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -128,32 +130,49 @@ extension SearchViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let totalScrollSize = scrollView.contentSize.height - scrollView.bounds.height
-        let scrollSize = scrollView.contentOffset.y
+        let scrollSize = scrollView.contentOffset.y + 50
         
-        if scrollSize > totalScrollSize && self.tableView == resultsTableViewController.tableView {
-            if isLoading == false {
-                print("로딩실행")
-                beginFetch()
+        if currentSearchCount < totalSearchCount {
+            if scrollSize > totalScrollSize  {
+                print("끝")
+                if isLoading{
+                    print("로딩실행")
+                    beginFetch()
+                }
             }
+        
         }
+            
+        
     }
     
     func beginFetch() {
-        isLoading = true
+        isLoading = false
         guard let userInputText = self.searchController.searchBar.text else {
             print("사용자가 입력한 텍스트를 불러올 수 없음.")
             return
         }
-        self.page += 1
-        requestBooksSearch(page: self.page, keyword: userInputText, totalPage: 0, isScroll: true)
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+            self.page += 1
+            self.requestBooksSearch(page: self.page, keyword: userInputText, totalPage: 0, isScroll: true)
+            
+        })
+       
+     
+        
     }
     
     func requestBooksSearch(page: Int, keyword: String, totalPage: Int, isScroll: Bool) {
         Books.shared.booksSearch(keyword: keyword, quantity: 20, page: page, completionHandler: { (success, data, statuscode, total) in
             if success {
                 guard let decodedData = data as? SearchModel else { return }
+                self.getPageDataCount = decodedData.result?.searchData.count ?? 0
+                self.currentSearchCount += self.getPageDataCount
+                self.totalSearchCount = decodedData.result?.total ?? 0
                 guard let searchResults = decodedData.result?.searchData else { return }
                 self.resultsTableViewController.setSearchResults(resultsArray: searchResults, isNothing: false, totalPage: total ?? 0, isScroll: isScroll)
+                self.isLoading = true
+              
             } else {
                 print("통신오류 \(statuscode)")
                 if statuscode == 204 {
