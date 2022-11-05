@@ -215,9 +215,9 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.bookListTableView.frame.width, height: 180))
         headerView.backgroundColor = UIColor(named: "primaryColor")
         let welComeLabel = UILabel(frame: CGRect(x: self.bookListTableView.frame.width*(1/15), y: 25, width: self.bookListTableView.frame.width*(2/3), height: 180))
-        let noticeButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-60, y: 0, width: 50, height: 50))
+//        let noticeButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-60, y: 0, width: 50, height: 50))
         headerView.addSubview(welComeLabel)
-        headerView.addSubview(noticeButton)
+//        headerView.addSubview(noticeButton)
         welComeLabel.textColor = UIColor.white
         welComeLabel.text = "오늘\n\(userName)님에게\n추천하는 책이에요!"
         welComeLabel.asColr(targetString: userName, color: .black)
@@ -225,8 +225,8 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         welComeLabel.numberOfLines = 3
         welComeLabel.font = UIFont.systemFont(ofSize: 36)
         welComeLabel.sizeToFit()
-        noticeButton.setImage(UIImage(systemName: "bell"), for: .normal)
-        noticeButton.tintColor = UIColor.black
+//        noticeButton.setImage(UIImage(systemName: "bell"), for: .normal)
+//        noticeButton.tintColor = UIColor.black
         return headerView
     }
     

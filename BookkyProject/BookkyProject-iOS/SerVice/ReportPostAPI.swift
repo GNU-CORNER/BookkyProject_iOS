@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Alamofire
 class ReportPostAPi{
     static let shared = ReportPostAPi()
     func postReportAPI(CID : Int , PID :Int ,communityType : Int ,completionHandler : @escaping(Bool, Any) -> Void){

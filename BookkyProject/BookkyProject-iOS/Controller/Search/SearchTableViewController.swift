@@ -101,7 +101,15 @@ extension SearchViewController {
         }
         return headerView.frame.height
     }
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView == resultsTableViewController.tableView{
+            
+            let HomeStoryBoard = UIStoryboard(name: "Home", bundle: nil)
+            let bookDetailVC = HomeStoryBoard.instantiateViewController(withIdentifier: "BookDetailViewController")as? BookDetailViewController
+            bookDetailVC?.BID = resultsTableViewController.filteredBooks[indexPath.row].tbid
+            self.navigationController?.pushViewController(bookDetailVC!, animated: true)
+        }
+    }
 }
 
 // MARK: - UISearchBarDelegate
@@ -117,6 +125,7 @@ extension SearchViewController: UISearchBarDelegate {
         CoreDataManager.shared.save(keyword: userInputText, date: Date())
         // FIX: - page, total page
         requestBooksSearch(page: self.page, keyword: userInputText, totalPage: 0, isScroll: false)
+     
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
