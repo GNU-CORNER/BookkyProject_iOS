@@ -28,7 +28,6 @@ class CommunityPostAPI {
             print("Error: Cannot create URL")
             return
         }
-        print("\(url)갱")
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         

@@ -62,19 +62,6 @@ class SearchPostViewController: UIViewController {
             }
         }
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "boardTextDetailSegueId"{
-//            guard let boardTextDetailViewController = segue.destination as? BoardTextDetailViewController else {return}
-//            boardTextDetailViewController.PID = self.PID
-//            boardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
-//
-//        }else if segue.identifier == "QnAboardTextDetailSegueId"{
-//            guard let QnABoardTextDetailViewController = segue.destination as? QnABoardTextDetailViewController else {return}
-//            QnABoardTextDetailViewController.PID = self.PID
-//            QnABoardTextDetailViewController.boardTypeNumber = self.boardTypeNumber
-//        }
-//
-//    }
 }
 extension SearchPostViewController : UISearchResultsUpdating , UISearchBarDelegate{
     func updateSearchResults(for searchController: UISearchController) {

@@ -7,10 +7,7 @@
 
 import UIKit
 import CoreData
-import FirebaseCore
-import FirebaseAuth
-import FirebaseAnalytics
-import FirebaseMessaging
+
 
  @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,26 +23,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Thread.sleep(forTimeInterval: 0.1)
-        FirebaseApp.configure()
-        Messaging.messaging().delegate = self
-        if #available(iOS 10.0, *) {
-          // For iOS 10 display notification (sent via APNS)
-          UNUserNotificationCenter.current().delegate = self
-
-          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-          UNUserNotificationCenter.current().requestAuthorization(
-            options: authOptions,
-            completionHandler: { _, _ in }
-          )
-        } else {
-          let settings: UIUserNotificationSettings =
-            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-          application.registerUserNotificationSettings(settings)
-        }
-
-        application.registerForRemoteNotifications()
-        
+//        Thread.sleep(forTimeInterval: 0.1)
+//        FirebaseApp.configure()
+//        Messaging.messaging().delegate = self
+//        if #available(iOS 10.0, *) {
+//          // For iOS 10 display notification (sent via APNS)
+//          UNUserNotificationCenter.current().delegate = self
+//
+//          let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+//          UNUserNotificationCenter.current().requestAuthorization(
+//            options: authOptions,
+//            completionHandler: { _, _ in }
+//          )
+//        } else {
+//          let settings: UIUserNotificationSettings =
+//            UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//          application.registerUserNotificationSettings(settings)
+//        }
+//
+//        application.registerForRemoteNotifications()
+//
         
         print("Launch")
         // - [x] UserDefaults에 저장되어 있는 사용자 이메일 가져오기
@@ -94,16 +91,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-            print("가져올 데이터가 있음을 나타내는 원격 알림이 도착했음을 앱에 알림")
-            
-            if let messageID = userInfo[gcmMessageIDKey] {
-                print("Message ID: \(messageID)")
-            }
-            print("userInfo : ", userInfo)
-            completionHandler(UIBackgroundFetchResult.newData)
-    }
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+//                         fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//            print("가져올 데이터가 있음을 나타내는 원격 알림이 도착했음을 앱에 알림")
+//            
+//            if let messageID = userInfo[gcmMessageIDKey] {
+//                print("Message ID: \(messageID)")
+//            }
+//            print("userInfo : ", userInfo)
+//            completionHandler(UIBackgroundFetchResult.newData)
+//    }
 
     
     // MARK: UISceneSession Lifecycle
@@ -134,53 +131,53 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
-extension AppDelegate : MessagingDelegate {
-    
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("파이어베이스 토큰: \(String(describing: fcmToken))")
-    }
-}
+//extension AppDelegate : MessagingDelegate {
+//
+//    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+//        print("파이어베이스 토큰: \(String(describing: fcmToken))")
+//    }
+//}
 
-extension AppDelegate : UNUserNotificationCenterDelegate {
-    func userNotificationCenter(_ center: UNUserNotificationCenter,willPresent notification: UNNotification,withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        
-        print("앱이 포그라운드에서 실행되는 동안 도착한 알림을 처리하는 방법")
-                let userInfo = notification.request.content.userInfo
-                if let messageID = userInfo[gcmMessageIDKey] {
-                    print("Message ID: \(messageID)")
-                }
-                
-                if let data1 = userInfo[data1Key] {
-                    print("data1: \(data1)")
-                }
-                
-                if let data2 = userInfo[data2Key] {
-                    print("data2: \(data2)")
-                }
-                
-                if let apsData = userInfo[aps] {
-                    print("apsData : \(apsData)")
-                }
-        completionHandler([.alert, .badge, .sound])
-    }
-    
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        print("앱이 APNS에 성공적으로 등록되었음을 대리자에게 알림")
-        Messaging.messaging().apnsToken = deviceToken
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("APNS가 등록 프로세스를 성공적으로 완료할 수 없어서 대리인에게 전송되었음")
-    }
-
-    func userNotificationCenter(_ center: UNUserNotificationCenter,didReceive response: UNNotificationResponse,withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("전달된 알림에 대한 사용자의 응답을 처리하도록 대리인에게 요청합니다.")
-        let userInfo = response.notification.request.content.userInfo
-                
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID from userNotificationCenter didReceive: \(messageID)")
-        }
-        completionHandler()
-    }
-    
-}
+//extension AppDelegate : UNUserNotificationCenterDelegate {
+//    func userNotificationCenter(_ center: UNUserNotificationCenter,willPresent notification: UNNotification,withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+//
+//        print("앱이 포그라운드에서 실행되는 동안 도착한 알림을 처리하는 방법")
+//                let userInfo = notification.request.content.userInfo
+//                if let messageID = userInfo[gcmMessageIDKey] {
+//                    print("Message ID: \(messageID)")
+//                }
+//
+//                if let data1 = userInfo[data1Key] {
+//                    print("data1: \(data1)")
+//                }
+//
+//                if let data2 = userInfo[data2Key] {
+//                    print("data2: \(data2)")
+//                }
+//
+//                if let apsData = userInfo[aps] {
+//                    print("apsData : \(apsData)")
+//                }
+//        completionHandler([.alert, .badge, .sound])
+//    }
+//
+//    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+//        print("앱이 APNS에 성공적으로 등록되었음을 대리자에게 알림")
+//        Messaging.messaging().apnsToken = deviceToken
+//    }
+//
+//    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+//        print("APNS가 등록 프로세스를 성공적으로 완료할 수 없어서 대리인에게 전송되었음")
+//    }
+//
+//    func userNotificationCenter(_ center: UNUserNotificationCenter,didReceive response: UNNotificationResponse,withCompletionHandler completionHandler: @escaping () -> Void) {
+//        print("전달된 알림에 대한 사용자의 응답을 처리하도록 대리인에게 요청합니다.")
+//        let userInfo = response.notification.request.content.userInfo
+//
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//            print("Message ID from userNotificationCenter didReceive: \(messageID)")
+//        }
+//        completionHandler()
+//    }
+//
+//}

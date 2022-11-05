@@ -28,10 +28,10 @@ class WritePostBookSearchTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func setBookSearchList(model : BookSearchDataList){
-        let imgurl = URL(string: "\(model.thumbnailImage)")
-        self.UIImageString = model.thumbnailImage
-        let data = try! Data(contentsOf: imgurl!)
-        self.bookImage.image = UIImage(data: data)
+        
+        if let url = URL(string: model.thumbnailImage) {
+            self.bookImage.load(url: url)
+        }
         self.bookNameLabel.text = model.TITLE
         self.bookName = model.TITLE
         self.BID = model.TBID

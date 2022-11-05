@@ -47,9 +47,6 @@
 		6860BE382833D27500C7399E /* SearchDefaultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6860BE372833D27500C7399E /* SearchDefaultTableViewCell.xib */; };
 		6860BE3B283408F100C7399E /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6860BE3A283408F100C7399E /* SearchModel.swift */; };
 		6860BE3D2834701200C7399E /* SearchTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6860BE3C2834701200C7399E /* SearchTagCollectionViewCell.xib */; };
-		6862CD1A28B8D6F500F72553 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 6862CD1928B8D6F500F72553 /* FirebaseAnalytics */; };
-		6862CD1C28B8D6FE00F72553 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 6862CD1B28B8D6FE00F72553 /* FirebaseAuth */; };
-		6862CD2228B8DA9400F72553 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 6862CD2128B8DA9400F72553 /* FirebaseMessaging */; };
 		68683D3D27DDF5EE008EF3CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3C27DDF5EE008EF3CF /* AppDelegate.swift */; };
 		68683D3F27DDF5EE008EF3CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */; };
 		68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68683D4227DDF5EE008EF3CF /* Main.storyboard */; };
@@ -368,10 +365,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6862CD1A28B8D6F500F72553 /* FirebaseAnalytics in Frameworks */,
-				6862CD2228B8DA9400F72553 /* FirebaseMessaging in Frameworks */,
 				F81BC36B291289F9005D82C1 /* Cosmos in Frameworks */,
-				6862CD1C28B8D6FE00F72553 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,9 +1025,6 @@
 			);
 			name = "BookkyProject-iOS";
 			packageProductDependencies = (
-				6862CD1928B8D6F500F72553 /* FirebaseAnalytics */,
-				6862CD1B28B8D6FE00F72553 /* FirebaseAuth */,
-				6862CD2128B8DA9400F72553 /* FirebaseMessaging */,
 				F81BC36A291289F9005D82C1 /* Cosmos */,
 			);
 			productName = "BookkyProject-iOS";
@@ -1109,7 +1100,6 @@
 			);
 			mainGroup = 68683D3027DDF5EE008EF3CF;
 			packageReferences = (
-				68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F81BC369291289F9005D82C1 /* XCRemoteSwiftPackageReference "Cosmos" */,
 			);
 			productRefGroup = 68683D3A27DDF5EE008EF3CF /* Products */;
@@ -1666,14 +1656,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 		F81BC369291289F9005D82C1 /* XCRemoteSwiftPackageReference "Cosmos" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/Cosmos";
@@ -1685,21 +1667,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		6862CD1928B8D6F500F72553 /* FirebaseAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAnalytics;
-		};
-		6862CD1B28B8D6FE00F72553 /* FirebaseAuth */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
-		};
-		6862CD2128B8DA9400F72553 /* FirebaseMessaging */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 68AFBF3028B8940400D5BD59 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMessaging;
-		};
 		F81BC36A291289F9005D82C1 /* Cosmos */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F81BC369291289F9005D82C1 /* XCRemoteSwiftPackageReference "Cosmos" */;

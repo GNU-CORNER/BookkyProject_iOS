@@ -137,6 +137,16 @@ class LoginVC: UIViewController {
                 
             } else {
                 print(statuscode)
+                let attributedString = NSAttributedString(string: "아이디 또는 비밀번호를 잘못 입력했습니다.입력하신 내용을 다시 확인해주세요.", attributes: [
+                    NSAttributedString.Key.foregroundColor : UIColor.red
+                ])
+                DispatchQueue.main.async {
+                    let wrongLoginInfor = UIAlertController(title: "", message: "", preferredStyle: .alert)
+                    wrongLoginInfor.setValue(attributedString, forKey: "attributedTitle")
+                    let cancel = UIAlertAction(title: "확인", style: .cancel)
+                    wrongLoginInfor.addAction(cancel)
+                    self.present(wrongLoginInfor, animated: true)
+                }
                 print("비번 틀림.")
             }
         }

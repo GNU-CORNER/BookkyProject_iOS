@@ -9,6 +9,7 @@ import UIKit
 
 class SearchResultsViewController: UITableViewController {
 
+    @IBOutlet var searchResultTableView: UITableView!
     var searchKeyword: String = ""
     var filteredBooks: [SearchDatum] = []
     var totalFilteredBooks: Int = 0
@@ -20,10 +21,8 @@ class SearchResultsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         registerNibCell()
     }
-    
     private func registerNibCell() {
         tableView.register( UINib(nibName: "SearchResultTableViewCell", bundle: nil), forCellReuseIdentifier: "SearchResultCell" )
         tableView.register( UINib(nibName: "SearchTableResultHeaderView", bundle: nil), forHeaderFooterViewReuseIdentifier: "SearchResultHeaderView" )
@@ -54,7 +53,7 @@ class SearchResultsViewController: UITableViewController {
 // MARK: - Table view data source
 
 extension SearchResultsViewController {
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         if self.isNothing {
             return 1
@@ -127,7 +126,8 @@ extension SearchResultsViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        
+        print("t")
     }
     
 }

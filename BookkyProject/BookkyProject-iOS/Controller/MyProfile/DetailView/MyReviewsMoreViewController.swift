@@ -92,5 +92,11 @@ extension MyReviewsMoreViewController: UICollectionViewDelegate, UICollectionVie
         let width = collectionView.frame.width - 20
         return CGSize(width: width, height: 72)
     }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print()
+        let homeStoryBoard = UIStoryboard.init(name: "Home", bundle: nil)
+        let bookDetailVC = homeStoryBoard.instantiateViewController(withIdentifier: "BookDetailViewController")as? BookDetailViewController
+        bookDetailVC?.BID = myReviewsMoreArray[indexPath.row].tbid
+        self.navigationController?.pushViewController(bookDetailVC!, animated: true)
+    }
 }
