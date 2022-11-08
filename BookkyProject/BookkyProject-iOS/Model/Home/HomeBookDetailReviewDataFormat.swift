@@ -10,11 +10,11 @@ import Foundation
 //HomeView BookDetail Review
 struct BookDetailReviewInformation : Codable {
     let success : Bool
-    let result : ReviewDataList
-    let errorMessage: String
+    let result : ReviewDataList?
+    let errorMessage: String?
 }
 struct ReviewDataList : Codable {
-    let reviewList : [ReviewData]
+    let reviewList : [ReviewData]?
 }
 struct ReviewData : Codable {
     let RID : Int
@@ -30,3 +30,5 @@ struct ReviewData : Codable {
     let nickname : String
 
 }
+
+

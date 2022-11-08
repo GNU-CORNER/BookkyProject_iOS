@@ -32,13 +32,19 @@ class CommunityDeleteAPI {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try? JSONSerialization.data(withJSONObject: httpBody, options: [])
         session.dataTask(with: request) { data, response, error in
+            
             guard error == nil else {
                 print("Error: Community Write sender. \(String(describing: error))")
                 return
             }
+            guard let response = response as? HTTPURLResponse else {return}
             DispatchQueue.main.async {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
+            }
+            
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
             }
         }.resume()
     }
@@ -73,6 +79,10 @@ class CommunityDeleteAPI {
             DispatchQueue.main.async {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
+            }
+            guard let response = response as? HTTPURLResponse else {return}
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
             }
         }.resume()
     }

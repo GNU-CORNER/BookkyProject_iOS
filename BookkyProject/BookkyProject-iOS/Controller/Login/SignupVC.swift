@@ -53,7 +53,7 @@ class SignupVC: UIViewController {
         self.nicknameTextField?.addLeftPadding()
         self.nicknameTextField.layer.borderColor = .none
         self.nicknameTextField.layer.cornerRadius = 8.0
-        
+        self.nicknameTextField.delegate = self
         self.emailLabel?.text = "이메일"
         self.emailTextField?.addLeftPadding()
         self.emailTextField.layer.borderColor = .none
@@ -91,7 +91,12 @@ class SignupVC: UIViewController {
         self.signupButton.setTitle("회원가입", for: .normal)
         self.signupButton.layer.cornerRadius = 8.0
     }
-
+    private func isValidPassWord(testStr : String) -> Bool{
+        //최소 8자이상 ,대문자,소문자,숫자 조합
+        let passwordReg = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[!@#$%^&*()_+=-]).{8,25}"
+        let passwordText = NSPredicate(format:"SELF MATCHES %@", passwordReg)
+        return passwordText.evaluate(with: testStr)
+    }
     // - [x] 이메일 형식 확인 절차
     private func isValidEmail(testStr: String) -> Bool {
         let emailReg = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
@@ -158,8 +163,29 @@ class SignupVC: UIViewController {
             }
         }
     }
+    func checkMaxLen(textField:UITextField!,maxLen:Int){
+        if textField.text?.count ?? 0 > maxLen{
+            textField.deleteBackward()
+        }
+    }
+    @IBAction func textFieldChange(_ sender: UITextField) {
+        checkMaxLen(textField: nicknameTextField, maxLen: 7)
+    }
     
-    
+    @IBAction func passWordCheck(_ sender: UITextField) {
+        guard let passWordText = self.passwordTextField?.text else {return}
+        if isValidPassWord(testStr: passWordText){
+            print("비밀번호 형식 통과")
+        }else{
+            print("비밀번호 형식불통과")
+            DispatchQueue.main.async {
+                let notPW = UIAlertController(title:"최소 8자이상 입력,영문,숫자,특수문자 조합으로 비밀번호를 설정해주세요." , message: "", preferredStyle: .alert)
+                let cancel = UIAlertAction(title: "확인", style: .cancel)
+                notPW.addAction(cancel)
+                self.present(notPW,animated: true)
+            }
+        }
+    }
 }
 
 // MARK: - IBAction Extension
@@ -336,8 +362,8 @@ extension SignupVC {
 
 // MARK: - TextField Delegate Extension.
 extension SignupVC: UITextFieldDelegate {
-    
     func textFieldDidBeginEditing(_ textField: UITextField) {
+       
         if self.emailTextField.isEditing {
             print("이메일 텍스트 입력중")
             self.emailAuthenticationRequestButton.isEnabled = true
@@ -348,9 +374,9 @@ extension SignupVC: UITextFieldDelegate {
             self.emailCheckButton.isEnabled = true
             self.emailCheckButton.backgroundColor = UIColor(named: "primaryColor")
 //            self.emailAuthenticationRequestButton.setTitleColor(UIColor(named: "White color"), for: .normal)
-        } else { return }
+        }
+        else { return }
     }
-    
     func setTextFieldDelgate() {
         self.emailTextField.delegate = self
         self.emailCheckTextField.delegate = self

@@ -51,6 +51,7 @@ class CommunityGetAPI {
                 print("Decoding Error")
                 print(err.localizedDescription)
             }
+            
         }.resume()
         
     }
@@ -163,16 +164,7 @@ class CommunityGetAPI {
         
     }
     // MARK: -게시글상세
-    func getCommunityTextDetail(CommunityBoardNumber:Int ,PID : Int,completion : @escaping(Bool, Any) -> Void){
-        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
-            print("Launch: 사용자 이메일을 불러올 수 없음.")
-            return
-        }
-        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
-        else {
-            print("Launch: 토큰을 불러올 수 없음.")
-            return
-        }
+    func getCommunityTextDetail(accessToken: String,CommunityBoardNumber:Int ,PID : Int,completion : @escaping(Bool, Any,Int) -> Void){
         let session = URLSession(configuration: .default)
         guard let url = URL(string: BookkyURL.baseURL+BookkyURL.communityTextDetail+"\(CommunityBoardNumber)/"+"\(PID)") else {
             print("Error : Cannot create URL")
@@ -180,25 +172,24 @@ class CommunityGetAPI {
         }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
+        request.setValue("\(accessToken)", forHTTPHeaderField: "access-token")
         request.setValue("application/json", forHTTPHeaderField: "accept")
         session.dataTask(with: request) { (data, response, error) in
             guard error == nil else {
                 print("Error : error.")
                 return
             }
-            guard let data = data, let response = response as? HTTPURLResponse,(200..<300) ~= response.statusCode
-            else{
+            guard let data = data, let response = response as? HTTPURLResponse else{
                 print("\(String(describing: error))")
                 return
             }
             do {
                 if CommunityBoardNumber == 2 {
                     let CommunityTextQnADetail = try JSONDecoder().decode(WriteTextDetailQnAInformation.self, from: data)
-                    completion(true,CommunityTextQnADetail)
+                    completion(CommunityTextQnADetail.success,CommunityTextQnADetail,response.statusCode)
                 }else {
                     let CommunityTextDetail = try JSONDecoder().decode(WriteTextDetailInformation.self, from: data)
-                    completion(true,CommunityTextDetail)
+                    completion(CommunityTextDetail.success,CommunityTextDetail,response.statusCode)
                 }
                 
             }
@@ -235,7 +226,7 @@ class CommunityGetAPI {
                 print("Error:error.")
                 return
             }
-            guard let data = data, let response = response as? HTTPURLResponse,(200..<300) ~= response.statusCode else{
+            guard let data = data, let response = response as? HTTPURLResponse else{
                 print("\(String(describing: error))")
                 return
             }
@@ -245,6 +236,9 @@ class CommunityGetAPI {
             }catch(let err){
                 print("Decoding Error")
                 print(err.localizedDescription)
+            }
+            if response.statusCode == 401 {
+                completion(false, response.statusCode)
             }
         }.resume()
         
@@ -265,7 +259,7 @@ class CommunityGetAPI {
                 print("Error:error.")
                 return
             }
-            guard let data = data, let response = response as? HTTPURLResponse,(200..<300) ~= response.statusCode else{
+            guard let data = data, let response = response as? HTTPURLResponse else{
                 print("\(String(describing: error))")
                 return
             }
@@ -276,6 +270,10 @@ class CommunityGetAPI {
                 print("Decoding Error")
                 print(err.localizedDescription)
             }
+            if response.statusCode == 401 {
+                completion(false, response.statusCode)
+            }
+            
         }.resume()
     }
     func getCommunitySearchBook(searchText:String, completion : @escaping(Bool, Any) -> Void){
@@ -294,7 +292,7 @@ class CommunityGetAPI {
                 print("Error:error.")
                 return
             }
-            guard let data = data, let response = response as? HTTPURLResponse,(200..<300) ~= response.statusCode else{
+            guard let data = data, let response = response as? HTTPURLResponse else{
                 print("\(String(describing: error))")
                 return
             }
@@ -304,6 +302,9 @@ class CommunityGetAPI {
             }catch(let err){
                 print("Decoding Error")
                 print(err.localizedDescription)
+            }
+            if response.statusCode == 401 {
+                completion(false, response.statusCode)
             }
         }.resume()
         

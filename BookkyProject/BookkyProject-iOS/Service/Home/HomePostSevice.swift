@@ -27,7 +27,6 @@ class HomePostDataAPI{
         }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        
         request.setValue("\(previousAccessToken)", forHTTPHeaderField: "access-token")
         request.setValue("application/json", forHTTPHeaderField: "accept")
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -40,6 +39,10 @@ class HomePostDataAPI{
             DispatchQueue.main.async {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
+            }
+            guard let response = response as? HTTPURLResponse else {return}
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
             }
         }.resume()
     }
@@ -75,6 +78,10 @@ class HomePostDataAPI{
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
             }
+            guard let response = response as? HTTPURLResponse else {return}
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
+            }
         }.resume()
     }
     func updateHomeReviewLike(RID : Int,completionHandler : @escaping(Bool, Any) -> Void) {
@@ -106,6 +113,10 @@ class HomePostDataAPI{
             DispatchQueue.main.async {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
+            }
+            guard let response = response as? HTTPURLResponse else {return}
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
             }
         }.resume()
     }
@@ -139,6 +150,10 @@ class HomePostDataAPI{
             DispatchQueue.main.async {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
+            }
+            guard let response = response as? HTTPURLResponse else {return}
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
             }
         }.resume()
     }

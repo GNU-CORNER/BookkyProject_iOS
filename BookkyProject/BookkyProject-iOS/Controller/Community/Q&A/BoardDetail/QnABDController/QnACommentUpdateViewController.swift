@@ -140,9 +140,8 @@ class QnACommentUpdateViewController: UIViewController,SelectUpdateCommentVCSend
     @IBAction func tapUpdatePostButton(_ sender: UIButton) {
         var imgarray : [String] = []
         for i in self.imageArray {
-            guard let thumbnail = i.imageToPNGString() else {return}
-            let encodedThumbnail = "data:image/png;base64," + thumbnail
-            imgarray.append(encodedThumbnail)
+            guard let thumbnail = i.imageToPngNJPEGString() else {return}
+            imgarray.append(thumbnail)
         }
         
         let contentString = self.contentsTextView.text ?? ""
@@ -186,7 +185,7 @@ class QnACommentUpdateViewController: UIViewController,SelectUpdateCommentVCSend
             if success {
                 print("글 수정 성공")
             }else {
-                print("글 수정 실패")
+                self.errorNetWork()
             }
         }
     }

@@ -61,6 +61,7 @@ class BoardTextDetailViewController: UIViewController {
     var PostisLiked : Bool = false
     var commentisLiked : Bool = false
     var writeReplyButton : UIButton!
+    var accessToken : String = ""
     @IBOutlet weak var DetailBookView: UIView!
     @IBOutlet weak var ImageCollectionView: UICollectionView!
     lazy var rightButton: UIBarButtonItem = {
@@ -68,6 +69,16 @@ class BoardTextDetailViewController: UIViewController {
         let barButtonItem = UIBarButtonItem(image: buttonImg, style: .plain, target: self, action: #selector(rightbarButtonAction(_:)))
         return barButtonItem
     }()
+    //화면 밑으로 슬라이드하여 새로고침
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:#selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
+        return refreshControl
+    }()
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.getBoardTextDetailData(accessToken: self.accessToken)
+        refreshControl.endRefreshing()
+    }
     var previousBoardNumber : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,16 +91,30 @@ class BoardTextDetailViewController: UIViewController {
         secondLineStackView.setCustomSpacing(5, after: self.textDetailViewsImage)
         self.navigationItem.rightBarButtonItem = self.rightButton
         self.keyboardDown()
+        bookDetailCommentTableView.addSubview(self.refreshControl)
+    }
+    public func setView() {
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("MyProfile: 사용자 이메일을 불러올 수 없음.")
+            RedirectView.loginView(previousView: self)
+            return
+        }
+        guard let acessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+            print("MyProfile: 토큰을 불러올 수 없음.")
+            RedirectView.loginView(previousView: self)
+            return
+        }
+        DispatchQueue.main.async {
+            self.accessToken = acessToken
+            self.getBoardTextDetailData(accessToken: acessToken)
+        }
+        
     }
     override func viewWillAppear(_ animated: Bool) {
-        getBoardTextDetailData()
+        setView()
         self.updateImageArray = []
-        self.addKeyboardNotifications()
     }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.removeKeyboardNotifications()
-    }
+
     
     @objc private func rightbarButtonAction(_ sender : Any){
         let alert = UIAlertController(title: "글 메뉴", message: nil, preferredStyle: .actionSheet)
@@ -231,18 +256,18 @@ class BoardTextDetailViewController: UIViewController {
     
     // MARK: - 데이터 통신함수
     //GET PostDetail
-    private func getBoardTextDetailData(){
-        CommunityGetAPI.shared.getCommunityTextDetail(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data) in
+    private func getBoardTextDetailData(accessToken: String){
+        CommunityGetAPI.shared.getCommunityTextDetail(accessToken : accessToken,CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { (success, data,statusCode) in
+            guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
             if success{
-                guard let communityGetDetailList = data as? WriteTextDetailInformation else {return}
-                let writeTextDetailData = communityGetDetailList.result.postdata
-                let commnetCount = communityGetDetailList.result
-                self.bookdata = communityGetDetailList.result.Book
+                let writeTextDetailData = (communityGetDetailList.result?.postdata)!
+                let commnetCount = (communityGetDetailList.result)!
+                self.bookdata = (communityGetDetailList.result?.Book)!
                 
                 self.BID = self.bookdata?.TBID ?? 0
                 self.ImageArray = writeTextDetailData.postImage ?? []
                 self.PostisLiked = writeTextDetailData.isLiked
-                self.writeTextDetailcommentData = communityGetDetailList.result.commentdata ?? []
+                self.writeTextDetailcommentData = communityGetDetailList.result?.commentdata ?? []
                 if communityGetDetailList.success{
                     DispatchQueue.main.async {
                         self.setBoardTextDetailData(model: writeTextDetailData)
@@ -262,18 +287,71 @@ class BoardTextDetailViewController: UIViewController {
                 }else{
                     print("통신오류")
                 }
+            }else {
+                if let errMessage = communityGetDetailList.errorMessage{
+                    print("Home request fasle:\(errMessage)")
+                }
+                print("request Home: false")
+                if statusCode == 401 {
+                    // 새로 AT 갱신할 것.
+                    // 만료된 토큰입니다. RefreshToken의 기간이 지남
+                    print(statusCode)
+                    if let errorMessage = communityGetDetailList.errorMessage {
+                        print("request Book false의 이유: \(errorMessage)")
+                    }
+
+                    guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+                        print("사용자 이메일을 불러올 수 없음.")
+                        return
+                    }
+                    guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+                          let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+                        print("토큰을 불러올 수 없음.")
+                        return
+                    }
+                    print("갱신요청")
+                    Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data, statuscode) in
+                        guard let tokens = data as? RefreshModel else { return }
+                        if success {
+                            if let newAccessToken = tokens.result?.accessToken {
+                                if !KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) {
+                                    print("새로운 토큰 제대로 저장이 안되었어요~~~~")
+                                }
+                                print("getAT")
+                                self.getBoardTextDetailData(accessToken: newAccessToken)
+                            }
+                        } else {
+                            print(statuscode)
+                            if statuscode == 400 {
+                                // 유효한 토큰입니다. AccessToken의 만료기간이 남음
+                                print(tokens.errorMessage)
+                            } else if statuscode == 401 {
+                                // 만료된 토큰입니다.
+                                print(tokens.errorMessage)
+                                RedirectView.loginView(previousView: self)
+                            } else if statuscode == 403 {
+                                // 유효하지 않은 토큰입니다. RefreshToken의 형식이 잘못됨
+                                // 로그인 화면 리다이렉트
+                                RedirectView.loginView(previousView: self)
+                            }
+                        }
+                    }
+                    
+                }
+                
+           
             }
         }
     }
-    
     // Write 댓글,대댓글
     private func postCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , PID : Int){
         CommunityPostAPI.shared.postCommunityCommentWrite(comment: commnet, parentID: parentID, CommunityBoardNumber: communityBoardNumber, PID: PID) {(succes,data) in
             if succes{
-                print("댓글 쓰기 성공")
-                
+                self.replyCommentComplete()
             }else{
                 print("댓글 쓰기 실패")
+                self.errorNetWork()
+                
             }
         }
     }
@@ -281,9 +359,10 @@ class BoardTextDetailViewController: UIViewController {
     private func updateCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , CID : Int){
         CommunityUpdateAPI.shared.UpdateCommunityComment(textContent: commnet, CommunityBoardNumber: communityBoardNumber, parentQPID: parentID, CID: CID) { success, data in
             if success{
-                print("댓글 수정 성공")
+                self.replyCommentComplete()
             }else {
                 print("댓글 수정 실패")
+                self.errorNetWork()
             }
         }
         
@@ -295,6 +374,7 @@ class BoardTextDetailViewController: UIViewController {
                 print("글 삭제 성공")
             }else {
                 print("실패")
+                self.errorNetWork()
             }
         }
         
@@ -305,7 +385,7 @@ class BoardTextDetailViewController: UIViewController {
             if success{
                 print("댓글 삭제 성공")
             }else {
-                print("실패")
+                self.errorNetWork()
             }
         }
         
@@ -315,14 +395,15 @@ class BoardTextDetailViewController: UIViewController {
         CommunityPostAPI.shared.LikeCommunityPost(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { success, data in
             if success {
                 print("좋아요 성공")
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
+                    self.getBoardTextDetailData(accessToken: self.accessToken)
+                })
             }else {
-                print("실패")
+                self.errorNetWork()
             }
             
         }
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
-            self.getBoardTextDetailData()
-        })
+        
     }
     //댓글작성 버튼 클릭
     @IBAction func tapWriteComment(_ sender: UIButton) {
@@ -331,7 +412,7 @@ class BoardTextDetailViewController: UIViewController {
             self.CommentContents = self.commentTextView.text
             self.postCommentWriteData(commnet: self.CommentContents, parentID: 0, communityBoardNumber: self.boardTypeNumber, PID: self.PID)
             self.writeTextDetailcommentData = []
-            replyCommentComplete()
+            
         }else if self.commentType == 1{
             self.CommentContents = self.commentTextView.text
             self.updateCommentWriteData(commnet:  self.CommentContents, parentID: self.PID, communityBoardNumber: self.boardTypeNumber, CID:  self.CommentCID)
@@ -339,7 +420,7 @@ class BoardTextDetailViewController: UIViewController {
             self.commentType = 0
         }
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-            self.getBoardTextDetailData()
+            self.getBoardTextDetailData(accessToken:self.accessToken)
         })
         
         self.commentTextView.text = nil
@@ -353,16 +434,16 @@ class BoardTextDetailViewController: UIViewController {
         if self.replyCommentType == 0 {
             self.tableViewfooterHeight = 0
             self.postCommentWriteData(commnet: self.replyCommentContents, parentID: self.replyparentID, communityBoardNumber: self.boardTypeNumber, PID: self.PID)
-            replyCommentComplete()
+            
             DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-                self.getBoardTextDetailData()
+                self.getBoardTextDetailData(accessToken: self.accessToken)
             })
         }else if self.replyCommentType == 1{
             self.tableViewfooterHeight = 0
             self.updateCommentWriteData(commnet: self.replyCommentContents, parentID:self.PID , communityBoardNumber: self.boardTypeNumber, CID: self.ReplyCellCID)
-            replyCommentComplete()
+            
             DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-                self.getBoardTextDetailData()
+                self.getBoardTextDetailData(accessToken: self.accessToken)
             })
         }
         
@@ -452,14 +533,13 @@ class BoardTextDetailViewController: UIViewController {
                 self.deleteComment(communityBoardNumber:self.boardTypeNumber  ,CID: self.ReplyCellCID)
                 self.commentDelte()
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-                    
-                    self.getBoardTextDetailData()
+                    self.getBoardTextDetailData(accessToken: self.accessToken)
                 })
             }
             let update = UIAlertAction(title: "대댓글 수정", style: .default){(_)in
                 self.replyCommentType = 1
                 self.tableViewfooterHeight = 50
-                self.getBoardTextDetailData()
+                self.getBoardTextDetailData(accessToken: self.accessToken)
             }
             alert.addAction(delete)
             alert.addAction(update)
@@ -483,7 +563,7 @@ class BoardTextDetailViewController: UIViewController {
                 self.deleteComment(communityBoardNumber:self.boardTypeNumber  ,CID: CID)
                 self.commentDelte()
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-                    self.getBoardTextDetailData()
+                    self.getBoardTextDetailData(accessToken: self.accessToken)
                 })
             }
             let update = UIAlertAction(title: "댓글 수정", style: .default){(_)in
@@ -532,7 +612,7 @@ class BoardTextDetailViewController: UIViewController {
             self.replyparentID = CID
             self.section = section
             self.tableViewfooterHeight = 50
-            self.getBoardTextDetailData()
+            self.getBoardTextDetailData(accessToken: self.accessToken)
         }
         
         alert.addAction(cancel)
@@ -576,11 +656,11 @@ class BoardTextDetailViewController: UIViewController {
             if success {
                 print("좋아요 성공")
             }else {
-                print("실패")
+                self.errorNetWork()
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-            self.getBoardTextDetailData()
+            self.getBoardTextDetailData(accessToken: self.accessToken)
         })
         
     }
@@ -676,11 +756,11 @@ extension BoardTextDetailViewController :UITableViewDelegate,UITableViewDataSour
                 if success {
                     print("좋아요 성공")
                 }else {
-                    print("실패")
+                    self.errorNetWork()
                 }
             }
             DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
-                self.getBoardTextDetailData()
+                self.getBoardTextDetailData(accessToken: self.accessToken)
             })
             
         }

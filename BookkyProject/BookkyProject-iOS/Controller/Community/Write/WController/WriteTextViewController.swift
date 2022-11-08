@@ -157,13 +157,13 @@ class WriteTextViewController: UIViewController ,SelectSendData{
         let textContent = writeContentTextView.text ?? ""
         var imgarray : [String] = []
         for i in self.imageArray {
-            guard let thumbnail = i.imageToPNGString() else {return}
-            let encodedThumbnail = "data:image/png;base64," + thumbnail
-            imgarray.append(encodedThumbnail)
+            
+            guard let thumbnail = i.imageToPngNJPEGString() else {return}
+            imgarray.append(thumbnail)
         }
         communityPostWriteData(textTitle: textTitle, textContetnt: textContent, boardTypeNumber: self.selectedBoardType,parentQPID: 0,TBID:self.BID,thumbnail:imgarray)
 //
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.8, execute: {
             self.navigationController?.popViewController(animated: true)
         })
         
@@ -174,7 +174,7 @@ class WriteTextViewController: UIViewController ,SelectSendData{
             if success {
                 print("post통신 성공")
             }else {
-                print("post 통신 실패")
+                self.errorNetWork()
             }
         }
     }
@@ -197,7 +197,6 @@ class WriteTextViewController: UIViewController ,SelectSendData{
         self.bookNameLabel.text = bookName
         self.bookAuthorPublisher.text = bookAuthorPublisher
         self.BID = BID
-        
         if let url = URL(string: ImageString) {
             self.BookImageView.load(url: url)
         }

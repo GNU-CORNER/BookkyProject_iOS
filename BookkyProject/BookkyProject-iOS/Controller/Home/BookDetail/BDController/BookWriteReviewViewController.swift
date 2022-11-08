@@ -35,12 +35,12 @@ class BookWriteReviewViewController: UIViewController{
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.addKeyboardNotifications()
+        
         
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        self.removeKeyboardNotifications()
+        
     }
 //MARK: - starFunc https://velog.io/@h0neydear/Cosmos 참고
     
@@ -104,8 +104,7 @@ class BookWriteReviewViewController: UIViewController{
             if success {
                 print("post통신 성공")
             }else {
-                
-                print("post 통신 실패")
+                self.errorNetWork()
             }
         }
     }

@@ -303,6 +303,9 @@
                                                         <color key="textColor" name="PrimaryColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="textFieldChange:" destination="9pw-zk-4OP" eventType="editingChanged" id="aq7-Up-LFa"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>
@@ -418,6 +421,9 @@
                                                         <color key="textColor" name="PrimaryColor"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
+                                                        <connections>
+                                                            <action selector="passWordCheck:" destination="9pw-zk-4OP" eventType="editingDidEnd" id="sIp-Km-Nag"/>
+                                                        </connections>
                                                     </textField>
                                                 </subviews>
                                             </stackView>

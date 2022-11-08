@@ -6,7 +6,6 @@
 //
 
 import UIKit
-
 protocol viewRefreshAfterLogin {
     
 }
@@ -84,6 +83,7 @@ class MyProfileViewController: UIViewController {
         print("request MyProfile: 통신 요청")
         MyProfileAPI.shared.myprofile(accessToken: accessToken) { (success, data, statuscode) in
             guard let myprofileData = data as? MyprofileModel else { return }
+            print("\(success)")
             if success {
                 print("잘 되었따.")
                 self.myTagsArray = (myprofileData.result?.userData?.userTagList)!

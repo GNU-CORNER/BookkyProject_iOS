@@ -48,13 +48,27 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getBookData()
+        setView()
+
         navigationController?.setNavigationBarHidden(true, animated: animated)
-//        self.bookListTableView.reloadData()
+        //        self.bookListTableView.reloadData()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    public func setView() {
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("MyProfile: 사용자 이메일을 불러올 수 없음.")
+            RedirectView.loginView(previousView: self)
+            return
+        }
+        guard let acessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+            print("MyProfile: 토큰을 불러올 수 없음.")
+            RedirectView.loginView(previousView: self)
+            return
+        }
+        self.getBookData(accessToken: acessToken)
     }
     // MARK: - 추천하개뷰 Set
     private func setRecommendView(){
@@ -65,7 +79,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.recommendExplainLabel.text = "당신에게 적합한 책을 찾아 줄게요!"
         self.recommendExplainLabel.font = UIFont.systemFont(ofSize: 12)
         self.recommendExplainLabel.textColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1)
-
+        
         
         self.roadMapButtonStackView.layer.borderColor = UIColor(named: "primaryColor")?.cgColor
         self.roadMapButtonStackView.layer.borderWidth = 2
@@ -78,22 +92,22 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.roadMapGoButtonSecond.titleLabel?.font = UIFont.systemFont(ofSize: 24)
     }
     private func setCommunityData(){
-    //MARK: - Free
+        //MARK: - Free
         self.freeBoardTextGoButton.setTitle("\(self.communityList[0].title)", for: .normal)
         self.freeBoardTextGoButton.tag = 0
         self.freeBoardTextGoButton.PID = self.communityList[0].PID
         self.freeBoardTextGoButton.communityType = self.communityList[0].communityType
-    //MARK: - QnA
+        //MARK: - QnA
         self.QnABoardTextGoButton.setTitle("\(self.communityList[1].title)", for: .normal)
         self.QnABoardTextGoButton.PID = self.communityList[1].PID
         self.QnABoardTextGoButton.communityType = self.communityList[1].communityType
         self.QnABoardTextGoButton.tag = 1
-    //MARK: - HOT
-//        self.hotBoardTextGoButton.setTitle("\(self.communityList[2].title)", for: .normal)
-//        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
-//        self.hotBoardTextGoButton.PID = self.communityList[2].PID
-//        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
-//        self.hotBoardTextGoButton.tag = 2
+        //MARK: - HOT
+        //        self.hotBoardTextGoButton.setTitle("\(self.communityList[2].title)", for: .normal)
+        //        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
+        //        self.hotBoardTextGoButton.PID = self.communityList[2].PID
+        //        self.hotBoardTextGoButton.communityType = self.communityList[2].communityType
+        //        self.hotBoardTextGoButton.tag = 2
     }
     
     // MARK: - 커뮤니티뷰 SET
@@ -107,7 +121,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.boardButtonStackView.layer.borderColor = UIColor(red: 196/255, green: 196/255, blue: 196/255, alpha: 1).cgColor
         self.freeBoardGoButton.setTitle("자유게시판", for: .normal)
         self.freeBoardGoButton.tintColor = UIColor.black
-      
+        
         self.freeBoardTextGoButton.tintColor = UIColor.black
         
         self.QnABoardGoButton.setTitle("Q&A게시판", for: .normal)
@@ -125,25 +139,75 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         let cellNib = UINib(nibName: "BookTableViewCell", bundle: nil)
         self.bookListTableView.register(cellNib, forCellReuseIdentifier: "BookTableViewCellid")
     }
-    private func getBookData(){
-        GetBookData.shared.getBookData(view:self){ (sucess,data) in
+    private func getBookData(accessToken: String){
+        GetBookData.shared.getBookData(accessToken : accessToken,view:self){ (sucess,data,statusCode) in
+            guard let bookData = data as? BookInformation else {return}
             if sucess {
-                guard let bookData = data as? BookInformation else {return}
-                self.bookList = bookData.result.bookList
-                self.communityList = bookData.result.communityList
+                self.bookList = (bookData.result?.bookList)!
+                self.communityList = (bookData.result?.communityList)!
                 if bookData.success{
                     DispatchQueue.main.async {
                         self.readyIndicator.startAnimating()
                         self.readyIndicator.isHidden = true
                         self.bookListTableView.isHidden = false
                         self.setCommunityData()
-                        self.userName = bookData.result.userData.nickname
+                        self.userName = (bookData.result?.userData?.nickname)!
                         self.bookListTableView.reloadData()
                     }
-                }else {
-                    
-                    print("통신 오류")
                 }
+            }else {
+                if let errMessage = bookData.errorMessage{
+                    print("Home request fasle:\(errMessage)")
+                }
+                print("request Home: false")
+                if statusCode == 401 {
+                    // 새로 AT 갱신할 것.
+                    // 만료된 토큰입니다. RefreshToken의 기간이 지남
+                    print(statusCode)
+                    if let errorMessage = bookData.errorMessage {
+                        print("request Book false의 이유: \(errorMessage)")
+                    }
+
+                    guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+                        print("사용자 이메일을 불러올 수 없음.")
+                        return
+                    }
+                    guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+                          let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+                        print("토큰을 불러올 수 없음.")
+                        return
+                    }
+                    print("갱신요청")
+                    Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data, statuscode) in
+                        guard let tokens = data as? RefreshModel else { return }
+                        if success {
+                            if let newAccessToken = tokens.result?.accessToken {
+                                if !KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) {
+                                    print("새로운 토큰 제대로 저장이 안되었어요~~~~")
+                                }
+                                print("getAT")
+                                self.getBookData(accessToken: newAccessToken)
+                            }
+                        } else {
+                            print(statuscode)
+                            if statuscode == 400 {
+                                // 유효한 토큰입니다. AccessToken의 만료기간이 남음
+                                print(tokens.errorMessage)
+                            } else if statuscode == 401 {
+                                // 만료된 토큰입니다.
+                                print(tokens.errorMessage)
+                                RedirectView.loginView(previousView: self)
+                            } else if statuscode == 403 {
+                                // 유효하지 않은 토큰입니다. RefreshToken의 형식이 잘못됨
+                                // 로그인 화면 리다이렉트
+                                RedirectView.loginView(previousView: self)
+                            }
+                        }
+                    }
+                    
+                }
+                
+           
             }
         }
     }
@@ -169,7 +233,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         let navigationController = tabBarController?.viewControllers![1] as! UINavigationController
         guard let communityViewController = navigationController.topViewController as? CommunityViewController else {return}
         communityViewController.previousBoardNumber = 2
-        self.tabBarController?.selectedIndex = 1 
+        self.tabBarController?.selectedIndex = 1
         
         
     }
@@ -200,7 +264,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
             boardTextDetailViewController.boardTypeNumber = communityType
             self.navigationController?.pushViewController(boardTextDetailViewController, animated: true)
         }
-    
+        
     }
     
 }
@@ -215,9 +279,9 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: self.bookListTableView.frame.width, height: 180))
         headerView.backgroundColor = UIColor(named: "primaryColor")
         let welComeLabel = UILabel(frame: CGRect(x: self.bookListTableView.frame.width*(1/15), y: 25, width: self.bookListTableView.frame.width*(2/3), height: 180))
-//        let noticeButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-60, y: 0, width: 50, height: 50))
+        //        let noticeButton = UIButton(frame: CGRect(x: self.bookListTableView.frame.width-60, y: 0, width: 50, height: 50))
         headerView.addSubview(welComeLabel)
-//        headerView.addSubview(noticeButton)
+        //        headerView.addSubview(noticeButton)
         welComeLabel.textColor = UIColor.white
         welComeLabel.text = "오늘\n\(userName)님에게\n추천하는 책이에요!"
         welComeLabel.asColr(targetString: userName, color: .black)
@@ -225,8 +289,8 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         welComeLabel.numberOfLines = 3
         welComeLabel.font = UIFont.systemFont(ofSize: 36)
         welComeLabel.sizeToFit()
-//        noticeButton.setImage(UIImage(systemName: "bell"), for: .normal)
-//        noticeButton.tintColor = UIColor.black
+        //        noticeButton.setImage(UIImage(systemName: "bell"), for: .normal)
+        //        noticeButton.tintColor = UIColor.black
         return headerView
     }
     
@@ -241,7 +305,7 @@ extension HomeViewController : UITableViewDelegate , UITableViewDataSource{
         addMoreTagViewButton.addTarget(self, action: #selector(tapAddMoreTagViewButton), for: .touchUpInside)
         return footeriew
     }
-  
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell:BookTableViewCell = tableView.dequeueReusableCell(withIdentifier: "BookTableViewCellid", for: indexPath) as? BookTableViewCell else { return UITableViewCell()}
         cell.setBookInformation(model: bookList[indexPath.row])
