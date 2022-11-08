@@ -33,9 +33,14 @@ class HomeReviewDeleteAPI {
                 print("Error: Review Delte sender. \(String(describing: error))")
                 return
             }
+            guard let response = response as? HTTPURLResponse else {return}
             DispatchQueue.main.async {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
+            }
+            
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
             }
         }.resume()
     }

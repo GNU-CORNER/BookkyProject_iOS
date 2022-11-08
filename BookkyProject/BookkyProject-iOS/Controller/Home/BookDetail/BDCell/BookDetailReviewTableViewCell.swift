@@ -58,6 +58,7 @@ class BookDetailReviewTableViewCell: UITableViewCell {
         userReviewStarView.text = "\(model.rating)"
         userReviewStarView.settings.textFont = UIFont.systemFont(ofSize: 11)
     }
+
     func setTableViewCellUI(){
         self.reviewUserNameLabel.font = UIFont.boldSystemFont(ofSize: 12)
         

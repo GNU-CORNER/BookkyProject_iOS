@@ -8,13 +8,13 @@
 import Foundation
 struct BookInformation : Codable {
     let success : Bool
-    let result : ResultData
-    let errorMessage : String
+    let result : ResultData?
+    let errorMessage : String?
 }
 struct ResultData : Codable {
-    let bookList : [BookList]
-    let userData : HomeUserData
-    let communityList : [CommunityRecentList]
+    let bookList : [BookList]?
+    let userData : HomeUserData?
+    let communityList : [CommunityRecentList]?
 }
 struct CommunityRecentList : Codable {
     let title : String
@@ -43,12 +43,12 @@ struct BookData : Codable{
 //HomeView BookDetail
 struct BookDetailInformation : Codable {
     let success : Bool
-    let result : BookDetailBookList
-    let errorMessage: String
+    let result : BookDetailBookList?
+    let errorMessage: String?
 }
 struct BookDetailBookList : Codable {
-    let bookList : BookDetailData
-    let isFavorite : Bool
+    let bookList : BookDetailData?
+    let isFavorite : Bool?
 }
 struct BookDetailData : Codable{
     let TBID : Int

@@ -8,12 +8,12 @@
 import Foundation
 struct TagMoreViewBookInformation : Codable {
     let success : Bool
-    let result : TagMoreViewBookListData
-    let errorMessage : String
+    let result : TagMoreViewBookListData?
+    let errorMessage : String?
 }
 struct TagMoreViewBookListData : Codable {
-    let bookList : [TagmoreViewBookList]
-    let nickname : String
+    let bookList : [TagmoreViewBookList]?
+    let nickname : String?
 }
 struct TagmoreViewBookList : Codable {
     let tag : String

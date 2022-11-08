@@ -90,9 +90,8 @@ class QnAWriteAnswerViewController: UIViewController,SelectSendData {
         let textContent = writeContentsTextView.text ?? ""
         var imgarray : [String] = []
         for i in self.imageArray {
-            guard let thumbnail = i.imageToPNGString() else {return}
-            let encodedThumbnail = "data:image/png;base64," + thumbnail
-            imgarray.append(encodedThumbnail)
+            guard let thumbnail = i.imageToPngNJPEGString() else {return}
+            imgarray.append(thumbnail)
         }
         communityPostWriteData(textTitle: "Title", textContetnt: textContent , boardTypeNumber: self.boardTypeNumber, parentQPID: self.PID,TBID:self.TBID,thumbnail:imgarray)
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
@@ -104,7 +103,8 @@ class QnAWriteAnswerViewController: UIViewController,SelectSendData {
             if success {
                 print("post통신 성공")
             }else {
-                print("post 통신 실패")
+                self.errorNetWork()
+                
             }
         }
     }

@@ -79,6 +79,8 @@ class QnACommentViewController: UIViewController {
                 }else{
                     print("통신오류")
                 }
+            }else{
+                self.errorNetWork()
             }
             
             
@@ -97,10 +99,9 @@ class QnACommentViewController: UIViewController {
     private func QnApostCommentWriteData(commnet : String ,parentID : Int ,communityBoardNumber: Int , PID : Int){
         CommunityPostAPI.shared.postCommunityCommentWrite(comment: commnet, parentID: parentID, CommunityBoardNumber: communityBoardNumber, PID: PID) {(succes,data) in
             if succes{
-                print("댓글 쓰기 성공")
-                
+                self.QnAreplyCommentComplete()
             }else{
-                print("실패")
+                self.errorNetWork()
             }
         }
     }
@@ -109,7 +110,7 @@ class QnACommentViewController: UIViewController {
             if success{
                 print("댓글 삭제 성공")
             }else {
-                print("실패")
+                self.errorNetWork()
             }
         }
     }
@@ -118,7 +119,7 @@ class QnACommentViewController: UIViewController {
             if success{
                 print("댓글 수정 성공")
             }else {
-                print("댓글 수정 실패")
+                self.errorNetWork()
             }
         }
         
@@ -127,7 +128,7 @@ class QnACommentViewController: UIViewController {
         if self.commentType == 0 {self.QnACommentContents = self.QnACommentTextView.text
             self.QnApostCommentWriteData(commnet: self.QnACommentContents, parentID: 0, communityBoardNumber: self.boardTypeNumber, PID: self.PID)
             self.QnACommentList = []
-            QnAreplyCommentComplete()
+            
             DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
                 self.getCommentData()
             })
@@ -344,7 +345,7 @@ class QnACommentViewController: UIViewController {
             if success {
                 print("좋아요 성공")
             }else {
-                print("실패")
+                self.errorNetWork()
             }
         }
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
@@ -440,7 +441,7 @@ extension QnACommentViewController :UITableViewDelegate, UITableViewDataSource {
                 if success {
                     print("좋아요 성공")
                 }else {
-                    print("실패")
+                    self.errorNetWork()
                 }
             }
             DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {

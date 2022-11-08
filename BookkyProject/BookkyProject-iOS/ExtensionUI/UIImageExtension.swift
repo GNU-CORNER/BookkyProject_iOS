@@ -15,8 +15,10 @@ extension UIImage {
         return data?.base64EncodedString()
     }
     
-//    func iamgeToJPEGString() -> String? {
-//
-//    }
+    func imageToPngNJPEGString() -> String?{
+        guard let imageData = self.jpegData(compressionQuality: 1) ?? self.pngData() else { return nil }
+        let data = imageData.base64EncodedString()
+        return data
+    }
     
 }

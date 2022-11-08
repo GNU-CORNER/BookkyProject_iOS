@@ -53,6 +53,9 @@ class BookDetailViewController: UIViewController {
     @IBOutlet weak var favoriteButton: UIBarButtonItem!
     //별점뷰
     @IBOutlet weak var starRatingView: CosmosView!
+    //리뷰데이터 유무
+    var reviewDataOk : Bool = false
+    var accessToken = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,14 +69,34 @@ class BookDetailViewController: UIViewController {
         self.navigationController?.navigationBar.topItem?.title = ""
         setBookDetailUI()
         setColletioView()
-        
+        registerNoReviewcell()
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getBookDetailReViewData()
-        getBookDetailData()
-    
+        
+        setView()
+        
+    }
+    public func setView(){
+        guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+            print("MyProfile: 사용자 이메일을 불러올 수 없음.")
+            RedirectView.loginView(previousView: self)
+            return
+        }
+        guard let acessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) else {
+            print("MyProfile: 토큰을 불러올 수 없음.")
+            RedirectView.loginView(previousView: self)
+            return
+        }
+        self.accessToken = acessToken
+        getBookDetailReViewData(accessToken:acessToken)
+        getBookDetailData(accessToken: acessToken)
+    }
+//MARk: - NoReviewCell
+    func registerNoReviewcell(){
+        let cellNib = UINib(nibName: "NoReviewTableViewCell", bundle: nil)
+        self.bookDetailCommentTableView.register(cellNib, forCellReuseIdentifier: "NoReviewTableViewCellid")
     }
 //MARK: - starUI
     func updateRating(_ requiredRating: Double?) {
@@ -114,13 +137,12 @@ class BookDetailViewController: UIViewController {
         
     }
 // MARK: - API 통신
-    private func getBookDetailData(){
-        GetBookData.shared.getDetailBookData(BID: self.BID){ (sucess,data) in
+    private func getBookDetailData(accessToken : String){
+        GetBookData.shared.getDetailBookData(BID: self.BID,accessToken: accessToken){ (sucess,data,statusCode) in
+            guard let bookDetailData = data as? BookDetailInformation else {return}
             if sucess {
-                guard let bookDetailData = data as? BookDetailInformation else {return}
-                let DetailData = bookDetailData.result.bookList
-                let favorite = bookDetailData.result.isFavorite
-                
+                let DetailData = (bookDetailData.result?.bookList)!
+                let favorite = (bookDetailData.result?.isFavorite)!
                 if bookDetailData.success{
                     DispatchQueue.main.async {
                         self.bookDetailScrollView.isHidden = false
@@ -138,17 +160,70 @@ class BookDetailViewController: UIViewController {
                         self.detailBookTagListCollectionView.reloadData()
                         
                     }
-                }else {
-                    print("통신 오류")
                 }
+            }else {
+                if let errMessage = bookDetailData.errorMessage{
+                    print("Home request fasle:\(errMessage)")
+                }
+                print("request Home: false")
+                if statusCode == 401 {
+                    // 새로 AT 갱신할 것.
+                    // 만료된 토큰입니다. RefreshToken의 기간이 지남
+                    print(statusCode)
+                    if let errorMessage = bookDetailData.errorMessage {
+                        print("request Book false의 이유: \(errorMessage)")
+                    }
+
+                    guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+                        print("사용자 이메일을 불러올 수 없음.")
+                        return
+                    }
+                    guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+                          let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+                        print("토큰을 불러올 수 없음.")
+                        return
+                    }
+                    print("갱신요청")
+                    Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data, statuscode) in
+                        guard let tokens = data as? RefreshModel else { return }
+                        if success {
+                            if let newAccessToken = tokens.result?.accessToken {
+                                if !KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) {
+                                    print("새로운 토큰 제대로 저장이 안되었어요~~~~")
+                                }
+                                print("getAT")
+                                self.getBookDetailData(accessToken: newAccessToken)
+                            }
+                        } else {
+                            print(statuscode)
+                            if statuscode == 400 {
+                                // 유효한 토큰입니다. AccessToken의 만료기간이 남음
+                                print(tokens.errorMessage)
+                            } else if statuscode == 401 {
+                                // 만료된 토큰입니다.
+                                print(tokens.errorMessage)
+                                RedirectView.loginView(previousView: self)
+                            } else if statuscode == 403 {
+                                // 유효하지 않은 토큰입니다. RefreshToken의 형식이 잘못됨
+                                // 로그인 화면 리다이렉트
+                                RedirectView.loginView(previousView: self)
+                            }
+                        }
+                    }
+                    
+                }
+                
+           
             }
         }
     }
-    private func getBookDetailReViewData(){
-        GetBookData.shared.getBookDetailReviewData(BID: self.BID) { (success,data) in
+    
+    private func getBookDetailReViewData(accessToken:String){
+        GetBookData.shared.getBookDetailReviewData(BID: self.BID,accessToken: accessToken) { (success,data,statusCode) in
+            guard let bookDetailReviewData = data as? BookDetailReviewInformation else {return}
             if success {
-                guard let bookDetailReviewData = data as? BookDetailReviewInformation else {return}
-                self.bookDetailRevieList = bookDetailReviewData.result.reviewList
+                self.reviewDataOk = true
+                self.bookDetailRevieList = (bookDetailReviewData.result?.reviewList)!
                 let tableViewCellCount = self.bookDetailRevieList.count
                 if bookDetailReviewData.success{
                     DispatchQueue.main.async {
@@ -166,10 +241,58 @@ class BookDetailViewController: UIViewController {
                     print("통신오류")
                 }
             }else {
-                DispatchQueue.main.async {
-                    self.tableViewHeight.constant = 0.1
-                    self.bookDetailCommentTableView.reloadData()
+                if let errMessage = bookDetailReviewData.errorMessage{
+                    print("Home request fasle:\(errMessage)")
                 }
+                print("request Home: false")
+                if statusCode == 401 {
+                    // 새로 AT 갱신할 것.
+                    // 만료된 토큰입니다. RefreshToken의 기간이 지남
+                    print(statusCode)
+                    if let errorMessage = bookDetailReviewData.errorMessage {
+                        print("request Book false의 이유: \(errorMessage)")
+                    }
+
+                    guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
+                        print("사용자 이메일을 불러올 수 없음.")
+                        return
+                    }
+                    guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue),
+                          let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue) else {
+                        print("토큰을 불러올 수 없음.")
+                        return
+                    }
+                    print("갱신요청")
+                    Account.shared.refreshAuth(accessToken: previousAccessToken, refreshToken: previousRefreshToken) { (success, data, statuscode) in
+                        guard let tokens = data as? RefreshModel else { return }
+                        if success {
+                            if let newAccessToken = tokens.result?.accessToken {
+                                if !KeychainManager.shared.update(newAccessToken, userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue) {
+                                    print("새로운 토큰 제대로 저장이 안되었어요~~~~")
+                                }
+                                print("getAT")
+                                self.getBookDetailReViewData(accessToken: newAccessToken)
+                            }
+                        } else {
+                            print(statuscode)
+                            if statuscode == 400 {
+                                // 유효한 토큰입니다. AccessToken의 만료기간이 남음
+                                print(tokens.errorMessage)
+                            } else if statuscode == 401 {
+                                // 만료된 토큰입니다.
+                                print(tokens.errorMessage)
+                                RedirectView.loginView(previousView: self)
+                            } else if statuscode == 403 {
+                                // 유효하지 않은 토큰입니다. RefreshToken의 형식이 잘못됨
+                                // 로그인 화면 리다이렉트
+                                RedirectView.loginView(previousView: self)
+                            }
+                        }
+                    }
+                    
+                }
+                
+           
             }
         }
     }
@@ -180,7 +303,7 @@ class BookDetailViewController: UIViewController {
             if success {
                 print("리뷰가 성공적으로 삭제 되었습니다.")
             }else {
-                print("리뷰 삭제에 실패했습니다.")
+                self.errorNetWork()
             }
         }
     }
@@ -190,7 +313,7 @@ class BookDetailViewController: UIViewController {
             if success {
                 print("좋아요 성공")
             }else {
-                print("좋아요 실패")
+                self.errorNetWork()
             }
         }
     }
@@ -199,7 +322,7 @@ class BookDetailViewController: UIViewController {
             if success {
                 print("좋아요 성공")
             }else {
-                print("좋아요 실패")
+                self.errorNetWork()
             }
         }
     }
@@ -278,7 +401,7 @@ class BookDetailViewController: UIViewController {
     @IBAction func tapFaovorite(_ sender: UIBarButtonItem) {
         self.tapFavoriteBook(BID: self.BID)
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-            self.getBookDetailData()
+            self.getBookDetailData(accessToken: self.accessToken)
         })
         
     }
@@ -307,7 +430,7 @@ class BookDetailViewController: UIViewController {
         let RID : Int = (sender as! ReviewButton).RID
         likeReviewUpdate(RID: RID)
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-            self.getBookDetailReViewData()
+            self.getBookDetailReViewData(accessToken: self.accessToken)
         })
         
     }
@@ -325,8 +448,8 @@ class BookDetailViewController: UIViewController {
                 self.deleteBookDetailReviewData(RID: RID)
                 self.completeDelete()
                 DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-                    self.getBookDetailReViewData()
-                    self.getBookDetailData()
+                    self.getBookDetailReViewData(accessToken: self.accessToken)
+                    self.getBookDetailData(accessToken: self.accessToken)
                 })
                 
                 
@@ -387,19 +510,28 @@ extension BookDetailViewController : UICollectionViewDelegateFlowLayout{
 }
 extension BookDetailViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.bookDetailRevieList.count
+        if reviewDataOk == true{
+            return self.bookDetailRevieList.count
+        }else{
+            return 1
+        }
+        
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell : BookDetailReviewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "bookDetailCommentTableViewcellid")as? BookDetailReviewTableViewCell else {return UITableViewCell()}
-        cell.setReview(model : self.bookDetailRevieList[indexPath.row])
-        
-        cell.reviewAddFunction.RID = cell.RID
-        cell.reviewAddFunction.isAccessible = cell.reviewIsAccessible
-        cell.reviewAddFunction.rating = cell.rating
-        cell.reviewAddFunction.contents = cell.contents
-        cell.reviewLikeButton.RID = cell.RID
-        cell.reviewLikeButton.addTarget(self, action: #selector(tapAddLike), for: .touchUpInside)
-        cell.reviewAddFunction.addTarget(self, action: #selector(tapAddReviewFunction), for: .touchUpInside)
+        if reviewDataOk == true {
+            guard let cell : BookDetailReviewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "bookDetailCommentTableViewcellid")as? BookDetailReviewTableViewCell else {return UITableViewCell()}
+            cell.setReview(model : self.bookDetailRevieList[indexPath.row])
+            
+            cell.reviewAddFunction.RID = cell.RID
+            cell.reviewAddFunction.isAccessible = cell.reviewIsAccessible
+            cell.reviewAddFunction.rating = cell.rating
+            cell.reviewAddFunction.contents = cell.contents
+            cell.reviewLikeButton.RID = cell.RID
+            cell.reviewLikeButton.addTarget(self, action: #selector(tapAddLike), for: .touchUpInside)
+            cell.reviewAddFunction.addTarget(self, action: #selector(tapAddReviewFunction), for: .touchUpInside)
+            return cell
+        }
+        guard let cell : NoReviewTableViewCell = tableView.dequeueReusableCell(withIdentifier: "NoReviewTableViewCellid")as? NoReviewTableViewCell else {return UITableViewCell()}
         return cell
     }
 }

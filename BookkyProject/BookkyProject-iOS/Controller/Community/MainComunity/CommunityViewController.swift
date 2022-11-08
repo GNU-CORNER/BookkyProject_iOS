@@ -39,7 +39,15 @@ class CommunityViewController: UIViewController {
     var currentTextCount : Int = 0
     //replyCnt. -1 일반글 갯수 있으면 Q&A글
     var replyCnt : Int = 0
-    
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action:#selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
+        return refreshControl
+    }()
+    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+        self.updateTableView()
+        refreshControl.endRefreshing()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +62,10 @@ class CommunityViewController: UIViewController {
         //초기화
         setinitCommunity()
         boardTypeColor()
+     
+        boardTableView.addSubview(self.refreshControl)
     }
+    
     func SetdropDownView(){
         self.freeBoardGoButton.setTitle("자유", for: .normal)
         self.hotBoardGobutton.setTitle("HOT", for: .normal)
@@ -93,8 +104,11 @@ class CommunityViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         setDropDownMenu()
         self.updateTableView()
+     
+        
         
     }
+ 
     func updateTableView(){
         if self.previousBoardNumber == 0  {
             self.boardNameLabel.text = "자유 게시판"
@@ -154,11 +168,6 @@ class CommunityViewController: UIViewController {
         super.viewWillDisappear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        super.viewDidAppear(animated)
-    //
-    //
-    //    }
     
     private func boardTypeColor() {
         self.freeBoardGoButton.tintColor = UIColor(named: "grayColor")
@@ -368,7 +377,7 @@ class CommunityViewController: UIViewController {
             }
         }
     }
-   
+    
     private func beginfetch(){
         self.moreScroll = false
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {

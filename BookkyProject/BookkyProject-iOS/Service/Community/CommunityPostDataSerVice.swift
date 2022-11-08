@@ -6,23 +6,26 @@
 //
 
 import Foundation
+import Combine
 class CommunityPostAPI {
     static let shared = CommunityPostAPI()
     // MARK: - 글작성 , 답글도 포함
     func postCommunityWrite(textTitle : String , textContent : String ,CommunityBoardNumber : Int ,parentQPID : Int,TBID:Int,thumbnail : [String],completionHandler : @escaping(Bool, Any) -> Void){
+        var encodedThumbnailArr : [String] = []
         guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
             print("Launch: 사용자 이메일을 불러올 수 없음.")
             return
         }
-        
-        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
-                //              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue)
-        else {
+        for i in thumbnail{
+            let encodedThumbnail = "data:image/png;base64," + i
+            encodedThumbnailArr.append(encodedThumbnail)
+        }
+        guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)else {
             print("Launch: 토큰을 불러올 수 없음.")
             return
         }
-        let httpBody : [String:Any] = ["title":textTitle,"contents":textContent ,"TBID":TBID,"parentQPID":parentQPID,"Images":thumbnail]
-        print("\(httpBody)갱")
+        let httpBody : [String:Any] = ["title":textTitle,"contents":textContent ,"TBID":TBID,"parentQPID":parentQPID,"Images":encodedThumbnailArr]
+        
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityWritePostURL+"\(CommunityBoardNumber)") else {
             print("Error: Cannot create URL")
@@ -40,11 +43,17 @@ class CommunityPostAPI {
                 print("Error: Community Write sender. \(String(describing: error))")
                 return
             }
+            guard let response = response as? HTTPURLResponse else {return}
             DispatchQueue.main.async {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
             }
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
+            }
+            
         }.resume()
+        
     }
     // MARK: - 댓글 작성 // 대댓글도 포함
     func postCommunityCommentWrite(comment : String , parentID : Int ,CommunityBoardNumber : Int ,PID : Int,completionHandler : @escaping(Bool, Any) -> Void){
@@ -77,9 +86,13 @@ class CommunityPostAPI {
                 print("Error: Community Write sender. \(String(describing: error))")
                 return
             }
+            guard let response = response as? HTTPURLResponse else {return}
             DispatchQueue.main.async {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
+            }
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
             }
         }.resume()
     }
@@ -115,6 +128,10 @@ class CommunityPostAPI {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
             }
+            guard let response = response as? HTTPURLResponse else {return}
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
+            }
         }.resume()
     }
     func LikeCommunityComment(CommunityBoardNumber : Int ,CID : Int,completionHandler : @escaping(Bool, Any) -> Void){
@@ -122,15 +139,13 @@ class CommunityPostAPI {
             print("Launch: 사용자 이메일을 불러올 수 없음.")
             return
         }
-        print("\(CID)갱5")
         guard let previousAccessToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.accessToken.rawValue)
                 //              let previousRefreshToken = KeychainManager.shared.read(userEmail: userEmail, itemLabel: UserDefaultsModel.refreshToken.rawValue)
         else {
             print("Launch: 토큰을 불러올 수 없음.")
             return
         }
-        print("\(CommunityBoardNumber)갱")
-        print("\(CID)갱")
+
         let session = URLSession(configuration: .default)
         guard let url = URL(string:BookkyURL.baseURL + BookkyURL.communityLikeComment+"\(CommunityBoardNumber)/\(CID)") else {
             print("Error: Cannot create URL")
@@ -150,6 +165,10 @@ class CommunityPostAPI {
             DispatchQueue.main.async {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
+            }
+            guard let response = response as? HTTPURLResponse else {return}
+            if response.statusCode == 401 {
+                completionHandler(false, response.statusCode)
             }
         }.resume()
     }

@@ -101,6 +101,8 @@
 		68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */; };
 		68FD8F9A284CBBEA00F2BBB5 /* SearchNoResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68FD8F98284CBBEA00F2BBB5 /* SearchNoResultTableViewCell.swift */; };
 		68FD8F9B284CBBEA00F2BBB5 /* SearchNoResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68FD8F99284CBBEA00F2BBB5 /* SearchNoResultTableViewCell.xib */; };
+		F80607C429160F4300DC8C59 /* NoReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80607C229160F4300DC8C59 /* NoReviewTableViewCell.swift */; };
+		F80607C529160F4300DC8C59 /* NoReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F80607C329160F4300DC8C59 /* NoReviewTableViewCell.xib */; };
 		F80756DC2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */; };
 		F8075DFB284BD4EE00305F1C /* HomePostSevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8075DFA284BD4EE00305F1C /* HomePostSevice.swift */; };
 		F8075DFE284CA36000305F1C /* HomeDeleteSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8075DFD284CA36000305F1C /* HomeDeleteSerVice.swift */; };
@@ -140,7 +142,6 @@
 		F899B5CF28485D55000A03D7 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5CE28485D55000A03D7 /* CustomButton.swift */; };
 		F899B5D12848FE5E000A03D7 /* CommunityPostDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */; };
 		F899B5D328490300000A03D7 /* CommunityDeleteDataSerVice.swift in Sources */ = {isa = PBXBuildFile; fileRef = F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */; };
-		F8A10586290194830082F2CB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F8A10585290194830082F2CB /* GoogleService-Info.plist */; };
 		F8A1058829019F720082F2CB /* ExtensionUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A1058729019F720082F2CB /* ExtensionUIViewController.swift */; };
 		F8A6039B284CD4C1004FD937 /* BookUpdateReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6039A284CD4C1004FD937 /* BookUpdateReviewViewController.swift */; };
 		F8A6039E284CE525004FD937 /* UpdatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8A6039D284CE525004FD937 /* UpdatePostViewController.swift */; };
@@ -158,6 +159,7 @@
 		F8C10A902832C05D00D311F6 /* QnACommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C10A8F2832C05D00D311F6 /* QnACommentViewController.swift */; };
 		F8C10A922832C0C400D311F6 /* QnACommunity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F8C10A912832C0C400D311F6 /* QnACommunity.storyboard */; };
 		F8C11E83281FE45E000D1689 /* ButtonPadding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8C11E82281FE45E000D1689 /* ButtonPadding.swift */; };
+		F8C5B2D9291A8AEF003D8446 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F8C5B2D8291A8AEF003D8446 /* IQKeyboardManagerSwift */; };
 		F8C84C95280471CF00B5E7DA /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68683D4027DDF5EE008EF3CF /* HomeViewController.swift */; };
 		F8D04ABB29128B9E00531869 /* ReadyRecommandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D04ABA29128B9E00531869 /* ReadyRecommandViewController.swift */; };
 		F8D55D0928ABA2E000F3A38A /* QnACommentUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8D55D0828ABA2E000F3A38A /* QnACommentUpdateViewController.swift */; };
@@ -291,6 +293,8 @@
 		68FBE65C27FEE38A003DBFB7 /* UserDefaultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsModel.swift; sourceTree = "<group>"; };
 		68FD8F98284CBBEA00F2BBB5 /* SearchNoResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNoResultTableViewCell.swift; sourceTree = "<group>"; };
 		68FD8F99284CBBEA00F2BBB5 /* SearchNoResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchNoResultTableViewCell.xib; sourceTree = "<group>"; };
+		F80607C229160F4300DC8C59 /* NoReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoReviewTableViewCell.swift; sourceTree = "<group>"; };
+		F80607C329160F4300DC8C59 /* NoReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoReviewTableViewCell.xib; sourceTree = "<group>"; };
 		F80756DB2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailTagCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8075DFA284BD4EE00305F1C /* HomePostSevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomePostSevice.swift; path = "BookkyProject-iOS/Service/Home/HomePostSevice.swift"; sourceTree = SOURCE_ROOT; };
 		F8075DFD284CA36000305F1C /* HomeDeleteSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeDeleteSerVice.swift; path = "BookkyProject-iOS/SerVice/Home/HomeDeleteSerVice.swift"; sourceTree = SOURCE_ROOT; };
@@ -330,7 +334,6 @@
 		F899B5CE28485D55000A03D7 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityPostDataSerVice.swift; path = "BookkyProject-iOS/Service/Community/CommunityPostDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
 		F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommunityDeleteDataSerVice.swift; path = "BookkyProject-iOS/Service/Community/CommunityDeleteDataSerVice.swift"; sourceTree = SOURCE_ROOT; };
-		F8A10585290194830082F2CB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F8A1058729019F720082F2CB /* ExtensionUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIViewController.swift; sourceTree = "<group>"; };
 		F8A6039A284CD4C1004FD937 /* BookUpdateReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookUpdateReviewViewController.swift; sourceTree = "<group>"; };
 		F8A6039D284CE525004FD937 /* UpdatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePostViewController.swift; sourceTree = "<group>"; };
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F81BC36B291289F9005D82C1 /* Cosmos in Frameworks */,
+				F8C5B2D9291A8AEF003D8446 /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,7 +520,6 @@
 				68683D3E27DDF5EE008EF3CF /* SceneDelegate.swift */,
 				68683D4527DDF5EF008EF3CF /* Assets.xcassets */,
 				68683D4A27DDF5EF008EF3CF /* Info.plist */,
-				F8A10585290194830082F2CB /* GoogleService-Info.plist */,
 			);
 			path = "BookkyProject-iOS";
 			sourceTree = "<group>";
@@ -576,7 +579,6 @@
 				686B212F2805498000384408 /* KeychainManager.swift */,
 				68169243282A85450066946A /* MyProfileAPI.swift */,
 				68169246282B8B530066946A /* RedirectView.swift */,
-				F8886F292821309300044737 /* CommunityGetDataSerVice.swift */,
 				68307C3A2846004500109FBD /* CameraHandler.swift */,
 				6883FE1E2847487A00C132A4 /* UserTagHandler.swift */,
 				6853E22E284B80EC002BA8C9 /* BooksAPI.swift */,
@@ -841,6 +843,7 @@
 				F899B5D02848FE5E000A03D7 /* CommunityPostDataSerVice.swift */,
 				F899B5D228490300000A03D7 /* CommunityDeleteDataSerVice.swift */,
 				F8A603A4284D17DD004FD937 /* CommunityUpdateService.swift */,
+				F8886F292821309300044737 /* CommunityGetDataSerVice.swift */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -1004,6 +1007,8 @@
 				F877020E2800893A002EA1F5 /* BookTableViewCell.xib */,
 				F877021228008C72002EA1F5 /* BookCollectionViewCell.xib */,
 				68683D4727DDF5EF008EF3CF /* LaunchScreen.storyboard */,
+				F80607C229160F4300DC8C59 /* NoReviewTableViewCell.swift */,
+				F80607C329160F4300DC8C59 /* NoReviewTableViewCell.xib */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1026,6 +1031,7 @@
 			name = "BookkyProject-iOS";
 			packageProductDependencies = (
 				F81BC36A291289F9005D82C1 /* Cosmos */,
+				F8C5B2D8291A8AEF003D8446 /* IQKeyboardManagerSwift */,
 			);
 			productName = "BookkyProject-iOS";
 			productReference = 68683D3927DDF5EE008EF3CF /* BookkyProject-iOS.app */;
@@ -1101,6 +1107,7 @@
 			mainGroup = 68683D3027DDF5EE008EF3CF;
 			packageReferences = (
 				F81BC369291289F9005D82C1 /* XCRemoteSwiftPackageReference "Cosmos" */,
+				F8C5B2D7291A8AEF003D8446 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 68683D3A27DDF5EE008EF3CF /* Products */;
 			projectDirPath = "";
@@ -1135,6 +1142,7 @@
 				6860BE2828336E2D00C7399E /* SettingsView.storyboard in Resources */,
 				6853E226284B1E84002BA8C9 /* SearchTableHeaderView.xib in Resources */,
 				68683D4427DDF5EE008EF3CF /* Main.storyboard in Resources */,
+				F80607C529160F4300DC8C59 /* NoReviewTableViewCell.xib in Resources */,
 				68C4E918284DDC6100589137 /* KoddiUDOnGothic-Regular.ttf in Resources */,
 				68C8629A27DF659F004B4F73 /* Search.storyboard in Resources */,
 				6860BE382833D27500C7399E /* SearchDefaultTableViewCell.xib in Resources */,
@@ -1158,7 +1166,6 @@
 				68B21B07282939C800707C5A /* MyReviewsCollectionViewCell.xib in Resources */,
 				F8C10A922832C0C400D311F6 /* QnACommunity.storyboard in Resources */,
 				F8260584282E691C006DB702 /* QnABoardTableViewCell.xib in Resources */,
-				F8A10586290194830082F2CB /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1254,6 +1261,7 @@
 				F8F31C54284A8B17001C61DC /* ExtensionUIImage.swift in Sources */,
 				F8F6623C280588A5000135B8 /* BookDetailViewController.swift in Sources */,
 				F8FFC1F9281EA639005B18B2 /* TagDataFormat.swift in Sources */,
+				F80607C429160F4300DC8C59 /* NoReviewTableViewCell.swift in Sources */,
 				F8B0D3FE281ECC5F007E271F /* TagCollectionReusableViewHeader.swift in Sources */,
 				68683D7227DE40DB008EF3CF /* RecommendViewController.swift in Sources */,
 				F80756DC2806F7C4009F88EA /* BookDetailTagCollectionViewCell.swift in Sources */,
@@ -1664,6 +1672,14 @@
 				kind = branch;
 			};
 		};
+		F8C5B2D7291A8AEF003D8446 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1671,6 +1687,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F81BC369291289F9005D82C1 /* XCRemoteSwiftPackageReference "Cosmos" */;
 			productName = Cosmos;
+		};
+		F8C5B2D8291A8AEF003D8446 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F8C5B2D7291A8AEF003D8446 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 

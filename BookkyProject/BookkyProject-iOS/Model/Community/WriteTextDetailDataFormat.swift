@@ -8,12 +8,12 @@
 import Foundation
 struct WriteTextDetailInformation : Codable {
     let success : Bool
-    let result : WriteTextDetailData
-    let errorMessage :String
+    let result : WriteTextDetailData?
+    let errorMessage :String?
 }
 
 struct WriteTextDetailData : Codable{
-    let postdata : WriteTextDetailPostData
+    let postdata : WriteTextDetailPostData?
     let commentdata : [WriteTextDetailCommentdata]?
     let commentCnt : Int?
     let Book : PostDetailBookData?
@@ -67,14 +67,14 @@ struct ChildComment : Codable{
 // MARK: - Q&A Detail
 struct WriteTextDetailQnAInformation :Codable {
     let success : Bool
-    let result : WriteQnATextDetailData
-    let errorMessage :String
+    let result : WriteQnATextDetailData?
+    let errorMessage :String?
 }
 struct WriteQnATextDetailData : Codable {
-    let postdata : WriteTextDetailQnAPostData
+    let postdata : WriteTextDetailQnAPostData?
     let replydata : [WriteTextDetailQnAReplyData]?
     let commentCnt : Int?
-    let replyCnt : Int
+    let replyCnt : Int?
     let Book : QnAPostDetailBookData?
 }
 struct QnAPostDetailBookData : Codable {
