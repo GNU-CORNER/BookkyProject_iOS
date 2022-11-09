@@ -57,14 +57,17 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="RFu-sZ-fu3">
                                         <rect key="frame" x="0.0" y="158" width="364" height="74"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KSk-td-4YO">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="닉네임은 최대 영문,한글7자 이내로 작성하여야 합니다." textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="KSk-td-4YO">
                                                 <rect key="frame" x="0.0" y="0.0" width="364" height="41"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="41" id="TPy-JI-2bP"/>
                                                 </constraints>
                                                 <color key="textColor" name="primaryColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <action selector="changeTextField:" destination="Y6W-OH-hqX" eventType="editingChanged" id="qla-rv-7FX"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="프로필 사진과 닉네임을 입력해주세요." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Wf-T1Q">
                                                 <rect key="frame" x="70" y="56" width="224" height="18"/>

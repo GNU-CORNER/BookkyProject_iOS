@@ -294,14 +294,14 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-tV-tX0">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="닉네임은 최대 영문,한글7자 이내로 작성하여야 합니다." textAlignment="natural" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="7FF-tV-tX0">
                                                         <rect key="frame" x="0.0" y="25" width="364" height="45"/>
                                                         <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="45" id="cpi-zI-xRE"/>
                                                         </constraints>
                                                         <color key="textColor" name="PrimaryColor"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                         <connections>
                                                             <action selector="textFieldChange:" destination="9pw-zk-4OP" eventType="editingChanged" id="aq7-Up-LFa"/>
