@@ -39,5 +39,11 @@
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>카메라로 촬영한 이미지를 사용하기위해서 카메라 권한이 필요합니다.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>사진 이미지를 사용하기위해서 사진 권한이 필요합니다.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>사진 이미지를 사용하기위해서 사진 권한이 필요합니다.</string>
 </dict>
 </plist>

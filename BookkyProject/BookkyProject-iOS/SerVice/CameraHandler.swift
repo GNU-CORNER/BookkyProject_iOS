@@ -22,10 +22,21 @@ class CameraHandler: NSObject {
         let actionSheet = UIAlertController(title: "사진을 가져올 곳을 선택하세요.", message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "취소", style: .cancel)
         let cameraAction = UIAlertAction(title: "카메라", style: .default, handler: { (alert:UIAlertAction!) -> Void in
-            self.cameraWillPresent()
+            let myProfileUpdatePickerController = UIImagePickerController()
+            myProfileUpdatePickerController.delegate = self
+            authDeviceCamera(vc){
+                myProfileUpdatePickerController.sourceType = . camera
+                self.currentViewController.present(myProfileUpdatePickerController, animated: true)
+            }
         })
         let photoLibraryAction = UIAlertAction(title: "앨범", style: .default, handler: { (alert:UIAlertAction) -> Void in
-            self.photoLibraryWillPresent()
+            let myProfileUpdatePickerController = UIImagePickerController()
+            myProfileUpdatePickerController.delegate = self
+            authPhotoLibrary(vc){
+                myProfileUpdatePickerController.sourceType = .photoLibrary
+                self.currentViewController.present(myProfileUpdatePickerController, animated: true)
+            }
+            
         })
         actionSheet.addAction(cancelAction)
         actionSheet.addAction(cameraAction)
@@ -34,27 +45,8 @@ class CameraHandler: NSObject {
         vc.present(actionSheet, animated: true, completion: nil)
     }
     
-    func cameraWillPresent() {
-//        if #available(iOS 14, *) {
-//            let myProfileUpdatePickerController = PHPickerViewController(configuration: PHPickerConfiguration())
-//        } else {
-            let myProfileUpdatePickerController = UIImagePickerController()
-            myProfileUpdatePickerController.delegate = self
-            myProfileUpdatePickerController.sourceType = .camera
-            currentViewController.present(myProfileUpdatePickerController, animated: true, completion: nil)
-//        }
-    }
     
-    func photoLibraryWillPresent() {
-//        if #available(iOS 14, *) {
-            
-//        } else {
-            let myProfileUpdatePickerController = UIImagePickerController()
-            myProfileUpdatePickerController.delegate = self
-            myProfileUpdatePickerController.sourceType = .photoLibrary
-            currentViewController.present(myProfileUpdatePickerController, animated: true, completion: nil)
-//        }
-    }
+
 }
 
 extension CameraHandler: UIImagePickerControllerDelegate , UINavigationControllerDelegate {

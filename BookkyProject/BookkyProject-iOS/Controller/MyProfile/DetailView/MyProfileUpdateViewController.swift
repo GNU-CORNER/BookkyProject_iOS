@@ -58,7 +58,14 @@ class MyProfileUpdateViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
-    
+    func checkMaxLen(textField:UITextField!,maxLen:Int){
+        if textField.text?.count ?? 0 > maxLen{
+            textField.deleteBackward()
+        }
+    }
+    @IBAction func changeTextField(_ sender: UITextField) {
+        checkMaxLen(textField: myprofileNicknameTextField, maxLen: 7)
+    }
     
     @IBAction func myProfileWillUpdate(_ sender: Any) {
         // - [x] 이미지, 닉네임 가져오기

@@ -166,6 +166,7 @@
 		F8E386A7282BE6AA006F9BDD /* TagMoreButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E386A6282BE6AA006F9BDD /* TagMoreButtonViewController.swift */; };
 		F8E68A352828C4450046760A /* WriteTextDetailDataFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E68A342828C4450046760A /* WriteTextDetailDataFormat.swift */; };
 		F8E68A7D282960320046760A /* BookDetailReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8E68A7C282960320046760A /* BookDetailReviewTableViewCell.swift */; };
+		F8EDB09D291BBD3700DB2C49 /* PhothAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8EDB09C291BBD3700DB2C49 /* PhothAuth.swift */; };
 		F8F31C50284A435C001C61DC /* WriteAddImgCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F31C4F284A435C001C61DC /* WriteAddImgCollectionViewCell.swift */; };
 		F8F31C52284A799E001C61DC /* BoardTextDetailImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F31C51284A799E001C61DC /* BoardTextDetailImageCollectionViewCell.swift */; };
 		F8F31C54284A8B17001C61DC /* ExtensionUIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8F31C53284A8B17001C61DC /* ExtensionUIImage.swift */; };
@@ -355,6 +356,7 @@
 		F8E386A6282BE6AA006F9BDD /* TagMoreButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagMoreButtonViewController.swift; sourceTree = "<group>"; };
 		F8E68A342828C4450046760A /* WriteTextDetailDataFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteTextDetailDataFormat.swift; sourceTree = "<group>"; };
 		F8E68A7C282960320046760A /* BookDetailReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailReviewTableViewCell.swift; sourceTree = "<group>"; };
+		F8EDB09C291BBD3700DB2C49 /* PhothAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhothAuth.swift; sourceTree = "<group>"; };
 		F8F31C4F284A435C001C61DC /* WriteAddImgCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteAddImgCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8F31C51284A799E001C61DC /* BoardTextDetailImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardTextDetailImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		F8F31C53284A8B17001C61DC /* ExtensionUIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUIImage.swift; sourceTree = "<group>"; };
@@ -793,6 +795,7 @@
 				F8584AEA284B4715006BDE8D /* LoadingView.swift */,
 				681EEE2B28A23FAE00FF9B40 /* UIView.swift */,
 				F8A1058729019F720082F2CB /* ExtensionUIViewController.swift */,
+				F8EDB09C291BBD3700DB2C49 /* PhothAuth.swift */,
 			);
 			path = ExtensionUI;
 			sourceTree = "<group>";
@@ -1304,6 +1307,7 @@
 				F8E68A352828C4450046760A /* WriteTextDetailDataFormat.swift in Sources */,
 				6852E57427F307BB00CAEF02 /* SocialSignupVC.swift in Sources */,
 				687C137B2879BDA500452917 /* MyBooksMoreCollectionViewCell.swift in Sources */,
+				F8EDB09D291BBD3700DB2C49 /* PhothAuth.swift in Sources */,
 				F8C10A882832B89600D311F6 /* SearchPostTableViewCell.swift in Sources */,
 				F8260580282E6290006DB702 /* WritePostBookSearchTableViewCell.swift in Sources */,
 				68FBE65D27FEE38A003DBFB7 /* UserDefaultsModel.swift in Sources */,
