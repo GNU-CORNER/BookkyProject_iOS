@@ -43,13 +43,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.setCommunityView()
         self.bookListTableView.isHidden = true
         statusBarView?.backgroundColor = UIColor(named:"primaryColor")
-        
+        setView()
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setView()
-
+        
         navigationController?.setNavigationBarHidden(true, animated: animated)
         //        self.bookListTableView.reloadData()
     }
@@ -138,6 +138,10 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
         self.bookListTableView.delegate = self
         let cellNib = UINib(nibName: "BookTableViewCell", bundle: nil)
         self.bookListTableView.register(cellNib, forCellReuseIdentifier: "BookTableViewCellid")
+        if #available(iOS 15.0, *) {
+            //ios iPhone 테이블뷰와 StatusBar 간격 생김 문제
+            bookListTableView.sectionHeaderTopPadding = 0
+        }
     }
     private func getBookData(accessToken: String){
         GetBookData.shared.getBookData(accessToken : accessToken,view:self){ (sucess,data,statusCode) in
@@ -167,7 +171,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                     if let errorMessage = bookData.errorMessage {
                         print("request Book false의 이유: \(errorMessage)")
                     }
-
+                    
                     guard let userEmail = UserDefaults.standard.string(forKey: UserDefaultsModel.email.rawValue) else {
                         print("사용자 이메일을 불러올 수 없음.")
                         return
@@ -207,7 +211,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate {
                     
                 }
                 
-           
+                
             }
         }
     }

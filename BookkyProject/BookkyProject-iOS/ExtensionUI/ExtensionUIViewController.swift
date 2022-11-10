@@ -18,7 +18,7 @@ extension UIViewController {
             errNetWork.addAction(cancel)
             self.present(errNetWork, animated: true)
         }
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
             self.tabBarController?.selectedIndex = 0
         })
         
