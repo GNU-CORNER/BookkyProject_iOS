@@ -383,7 +383,9 @@ class BoardTextDetailViewController: UIViewController {
     private func deleteComment(communityBoardNumber: Int ,CID: Int){
         CommunityDeleteAPI.shared.DeletComment(CommunityBoardNumber: communityBoardNumber, CID: CID) { (success,data) in
             if success{
-                print("댓글 삭제 성공")
+                DispatchQueue.main.async {
+                    self.getBoardTextDetailData(accessToken: self.accessToken)
+                }
             }else {
                 self.errorNetWork()
             }
@@ -395,8 +397,9 @@ class BoardTextDetailViewController: UIViewController {
         CommunityPostAPI.shared.LikeCommunityPost(CommunityBoardNumber: self.boardTypeNumber, PID: self.PID) { success, data in
             if success {
                 print("좋아요 성공")
-                DispatchQueue.main.asyncAfter(deadline: .now()+0.2, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3, execute: {
                     self.getBoardTextDetailData(accessToken: self.accessToken)
+                    
                 })
             }else {
                 self.errorNetWork()
@@ -654,7 +657,7 @@ class BoardTextDetailViewController: UIViewController {
         let CommentCID : Int = (sender as! CommentLikeButton).CoomentCID
         CommunityPostAPI.shared.LikeCommunityComment(CommunityBoardNumber: self.boardTypeNumber, CID: CommentCID){ success, data in
             if success {
-                print("좋아요 성공")
+                
             }else {
                 self.errorNetWork()
             }

@@ -48,6 +48,9 @@ class CommunityPostAPI {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
             }
+            if response.statusCode >= 200 && response.statusCode <= 300{
+                completionHandler(true, response.statusCode)
+            }
             if response.statusCode == 401 {
                 completionHandler(false, response.statusCode)
             }
@@ -91,6 +94,9 @@ class CommunityPostAPI {
                 let outputStr = String(data: data!, encoding: String.Encoding.utf8)
                 print("result: \(outputStr!)")
             }
+            if response.statusCode >= 200 && response.statusCode <= 300{
+                completionHandler(true, response.statusCode)
+            }
             if response.statusCode == 401 {
                 completionHandler(false, response.statusCode)
             }
@@ -129,6 +135,9 @@ class CommunityPostAPI {
                 print("result: \(outputStr!)")
             }
             guard let response = response as? HTTPURLResponse else {return}
+            if response.statusCode >= 200 && response.statusCode <= 300{
+                completionHandler(true, response.statusCode)
+            }
             if response.statusCode == 401 {
                 completionHandler(false, response.statusCode)
             }
@@ -167,6 +176,9 @@ class CommunityPostAPI {
                 print("result: \(outputStr!)")
             }
             guard let response = response as? HTTPURLResponse else {return}
+            if response.statusCode >= 200 && response.statusCode <= 300{
+                completionHandler(true, response.statusCode)
+            }
             if response.statusCode == 401 {
                 completionHandler(false, response.statusCode)
             }
