@@ -39,15 +39,20 @@ class CommunityViewController: UIViewController {
     var currentTextCount : Int = 0
     //replyCnt. -1 일반글 갯수 있으면 Q&A글
     var replyCnt : Int = 0
-    lazy var refreshControl: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action:#selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
-        return refreshControl
-    }()
-    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
-        self.updateTableView()
-        refreshControl.endRefreshing()
-    }
+//    lazy var refreshControl: UIRefreshControl = {
+//        let refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action:#selector(handleRefresh(_:)),for: UIControl.Event.valueChanged)
+//        return refreshControl
+//    }()
+//    @objc func handleRefresh(_ refreshControl: UIRefreshControl) {
+//        postListFree = []
+//        postListBookMarket = []
+//        postListQnA  = []
+//        myPostList = []
+//        hotPostList  = []
+//        self.updateTableView()
+//        refreshControl.endRefreshing()
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,7 +68,7 @@ class CommunityViewController: UIViewController {
         setinitCommunity()
         boardTypeColor()
      
-        boardTableView.addSubview(self.refreshControl)
+//        boardTableView.addSubview(self.refreshControl)
     }
     
     func SetdropDownView(){

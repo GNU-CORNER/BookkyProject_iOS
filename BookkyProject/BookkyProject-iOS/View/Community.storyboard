@@ -403,6 +403,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="chO-Zb-Z2r">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="제목을 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a0d-vc-Ocv">
                                 <rect key="frame" x="0.0" y="171.5" width="414" height="34"/>
                                 <color key="backgroundColor" red="0.97647064920000004" green="0.97647064920000004" blue="0.97647064920000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -595,8 +598,10 @@
                             <constraint firstItem="zpN-cr-IHi" firstAttribute="leading" secondItem="74j-7L-e1u" secondAttribute="leading" constant="10" id="hX3-YS-ZdO"/>
                             <constraint firstItem="DoE-PT-cpA" firstAttribute="top" secondItem="egO-Jd-hbW" secondAttribute="bottom" constant="10" id="hiN-eY-A1C"/>
                             <constraint firstItem="egO-Jd-hbW" firstAttribute="centerX" secondItem="GrY-E0-XQH" secondAttribute="centerX" id="lFk-4d-Nhc"/>
+                            <constraint firstItem="chO-Zb-Z2r" firstAttribute="centerY" secondItem="GrY-E0-XQH" secondAttribute="centerY" id="oNN-hX-JtB"/>
                             <constraint firstItem="Zwq-Ry-Uzh" firstAttribute="top" secondItem="74j-7L-e1u" secondAttribute="top" constant="5" id="pPU-cj-JS8"/>
                             <constraint firstItem="6DD-f5-uJi" firstAttribute="top" secondItem="zpN-cr-IHi" secondAttribute="bottom" constant="10" id="qKS-Zv-gF9"/>
+                            <constraint firstItem="chO-Zb-Z2r" firstAttribute="centerX" secondItem="GrY-E0-XQH" secondAttribute="centerX" id="sDO-nK-Lum"/>
                             <constraint firstItem="dKb-dl-uVB" firstAttribute="top" secondItem="6DD-f5-uJi" secondAttribute="bottom" constant="5" id="wQX-td-wKb"/>
                         </constraints>
                     </view>
@@ -614,6 +619,7 @@
                         <outlet property="bookNameLabel" destination="Rox-d2-8Pj" id="0D2-7B-Mj9"/>
                         <outlet property="bookthumbnailImageAddButton" destination="d30-4R-TQK" id="ZFh-yZ-Y6r"/>
                         <outlet property="communityGoBackButton" destination="Zwq-Ry-Uzh" id="gWj-Ow-fIR"/>
+                        <outlet property="indicatorView" destination="chO-Zb-Z2r" id="qW3-Qt-SDk"/>
                         <outlet property="selectBookDeleteButton" destination="tqb-yG-nmY" id="L20-wc-dgq"/>
                         <outlet property="selectBookView" destination="I00-Gk-akB" id="wOO-bv-Ava"/>
                         <outlet property="writeContentTextView" destination="6DD-f5-uJi" id="YOg-CS-bPe"/>
@@ -1227,7 +1233,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="5G1-W6-QfJ"/>
+        <segue reference="EFA-Bq-MpU"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Book" width="18" height="18"/>

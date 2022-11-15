@@ -20,7 +20,7 @@ class BookDetailViewController: UIViewController {
     var bookImage : String = ""
     var bookName : String = ""
     var AUTHOR : String = ""
-    @IBOutlet weak var naverGoButton: UIButton!
+    
     //도서정보
     @IBOutlet weak var bookInformationLabel: UILabel!
     @IBOutlet weak var publisherLabel: UILabel!
@@ -122,7 +122,6 @@ class BookDetailViewController: UIViewController {
         self.indexTitleLabel.layer.addBorder([.bottom], color: UIColor(named: "primaryColor") ?? UIColor.blue, width : 2.5)
         self.reviewTitleLabel.layer.addBorder([.bottom], color: UIColor(named: "primaryColor") ?? UIColor.blue, width : 2.5)
         //네이버 버튼 수정 필요
-        self.naverGoButton.backgroundColor = UIColor(red: 3/255, green: 199/255, blue: 107/255, alpha: 1)
         self.bookExplainContent.font =  UIFont.systemFont(ofSize: 12)
         self.bookIndexLabel.font = UIFont.systemFont(ofSize: 12)
         
