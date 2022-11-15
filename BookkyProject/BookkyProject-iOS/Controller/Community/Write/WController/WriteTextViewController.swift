@@ -9,6 +9,7 @@ import UIKit
 
 class WriteTextViewController: UIViewController ,SelectSendData{
     
+    
     @IBOutlet weak var boardPicker: UITextField!
     
     @IBOutlet weak var writeContentTextView: UITextView!
@@ -28,6 +29,7 @@ class WriteTextViewController: UIViewController ,SelectSendData{
     @IBOutlet weak var bookAuthorPublisher: UILabel!
     @IBOutlet weak var selectBookView: UIView!
     @IBOutlet weak var selectBookDeleteButton: UIButton!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     var imageArray : [UIImage] = []
     var postImageArray : [String] = []
     var bookViewHeight : Int = 0
@@ -40,6 +42,7 @@ class WriteTextViewController: UIViewController ,SelectSendData{
     var UserImage : UIImageView!
     let boardArray = ["자유게시판","책장터게시판","Q&A게시판"]
     var selectedBoardType : Int = 0
+    var writeSuccess : Bool = false
     override func viewDidLoad() {
         super.viewDidLoad()
         setwriteTitleTextField()
@@ -162,10 +165,28 @@ class WriteTextViewController: UIViewController ,SelectSendData{
             imgarray.append(thumbnail)
         }
         communityPostWriteData(textTitle: textTitle, textContetnt: textContent, boardTypeNumber: self.selectedBoardType,parentQPID: 0,TBID:self.BID,thumbnail:imgarray)
-//
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.8, execute: {
-            self.navigationController?.popViewController(animated: true)
-        })
+        
+        DispatchQueue.main.async {
+            self.view.bringSubviewToFront(self.indicatorView)
+            self.indicatorView.isHidden = false
+            self.indicatorView.startAnimating()
+                    }
+        if imageArray.count == 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
+                self.indicatorView.isHidden = true
+                self.indicatorView.stopAnimating()
+                self.navigationController?.popViewController(animated: true)
+            })
+        }else{
+            DispatchQueue.main.asyncAfter(deadline: .now()+10, execute: {
+                self.indicatorView.isHidden = true
+                self.indicatorView.stopAnimating()
+                self.navigationController?.popViewController(animated: true)
+            })
+        }
+        
+        
+        
         
         
     }
@@ -173,6 +194,7 @@ class WriteTextViewController: UIViewController ,SelectSendData{
         CommunityPostAPI.shared.postCommunityWrite(textTitle: textTitle, textContent: textContetnt, CommunityBoardNumber: boardTypeNumber , parentQPID : parentQPID ,TBID:TBID,thumbnail: thumbnail){(success,data)in
             if success {
                 print("post통신 성공")
+                
             }else {
                 self.errorNetWork()
             }

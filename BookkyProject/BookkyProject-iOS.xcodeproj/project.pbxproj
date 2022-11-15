@@ -1497,8 +1497,9 @@
 				INFOPLIST_FILE = "BookkyProject-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "개서적";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 촬영한 이미지를 사용하기위해서 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진 이미지를 사용하기위해서 사진 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 이미지를 사용하기위해서 사진 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -1532,8 +1533,9 @@
 				INFOPLIST_FILE = "BookkyProject-iOS/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "개서적";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.books";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow to use Camera.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please allow access to select a photo.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라로 촬영한 이미지를 사용하기위해서 카메라 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진 이미지를 사용하기위해서 사진 권한이 필요합니다.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "사진 이미지를 사용하기위해서 사진 권한이 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
