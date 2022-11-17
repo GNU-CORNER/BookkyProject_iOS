@@ -547,7 +547,7 @@ Label</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zcf-jv-rud">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zcf-jv-rud">
                                                         <rect key="frame" x="20" y="226" width="374" height="96"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="749" ambiguous="YES" text="내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음내용없음" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35B-HJ-9e1" customClass="CustomLabel" customModule="BookkyProject_iOS" customModuleProvider="target">
@@ -579,7 +579,7 @@ Label</string>
                                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="500" constant="85" id="van-Fs-4wC"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="목차" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tID-RB-2zP">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" text="목차" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tID-RB-2zP">
                                                         <rect key="frame" x="20" y="337" width="29.666666666666671" height="30"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="sLD-R2-Bt3"/>
@@ -589,7 +589,7 @@ Label</string>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Uax-f4-X8K">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Uax-f4-X8K">
                                                         <rect key="frame" x="20" y="377" width="374" height="137.66666666666663"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" ambiguous="YES" text="내용없음" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ROM-14-Too" customClass="CustomLabel" customModule="BookkyProject_iOS" customModuleProvider="target">
@@ -655,6 +655,8 @@ Label</string>
                                                     <constraint firstAttribute="trailing" secondItem="xWU-uO-d0D" secondAttribute="trailing" constant="20" id="9Vk-UU-Aek"/>
                                                     <constraint firstItem="oLk-yc-laX" firstAttribute="top" secondItem="CAw-Q2-qsj" secondAttribute="bottom" constant="15" id="CNX-Pq-l0K"/>
                                                     <constraint firstItem="J5B-GE-n6d" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="DHR-ig-iB9"/>
+                                                    <constraint firstItem="zcf-jv-rud" firstAttribute="top" secondItem="oLk-yc-laX" secondAttribute="bottom" constant="10" id="IST-8A-OzK"/>
+                                                    <constraint firstItem="Uax-f4-X8K" firstAttribute="top" secondItem="tID-RB-2zP" secondAttribute="bottom" constant="10" id="ItK-07-3uz"/>
                                                     <constraint firstItem="xWU-uO-d0D" firstAttribute="top" secondItem="Uax-f4-X8K" secondAttribute="bottom" constant="15" id="IuU-mZ-5ai"/>
                                                     <constraint firstItem="CAw-Q2-qsj" firstAttribute="leading" secondItem="AaO-8P-Zih" secondAttribute="leading" constant="20" id="PW9-6n-fd4"/>
                                                     <constraint firstItem="Uax-f4-X8K" firstAttribute="top" secondItem="tID-RB-2zP" secondAttribute="top" constant="40" id="Rtn-2e-AYR"/>
